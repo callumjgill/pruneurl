@@ -1,6 +1,10 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "description": "A simple single page application for generating short URLs.",
+  "main": "index.js",
+  "author": "Callum Gill",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
