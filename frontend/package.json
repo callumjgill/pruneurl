@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "pruneurl.com",
   "version": "0.1.0",
   "description": "A simple single page application for generating short URLs.",
   "main": "index.js",
