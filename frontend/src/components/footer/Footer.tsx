@@ -1,7 +1,6 @@
 import { Container, Row } from "react-bootstrap";
 import SimpleLink from "../links/SimpleLink";
 
-// TODO: add proper versioning here
 const Footer = () => {
   return (
     <Container fluid className="footer" as="footer">
@@ -16,7 +15,7 @@ const Footer = () => {
         </h6>
       </Row>
       <Row>
-        <h6>Version 0.0.0</h6>
+        <h6>Version {`${process.env.REACT_APP_VERSION}`}</h6>
       </Row>
     </Container>
   );
