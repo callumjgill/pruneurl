@@ -8,7 +8,7 @@ interface FormRowProps extends FormGroupProps {
 const FormRow = (props: FormRowProps) => {
   const { children, ...formGroupProps } = { ...props };
   return (
-    <Row className="mb-3">
+    <Row className="mt-3 mb-3">
       <Form.Group {...formGroupProps}>{children}</Form.Group>
     </Row>
   );
