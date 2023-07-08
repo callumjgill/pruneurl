@@ -1,0 +1,16 @@
+@use "colors";
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: colors.$footerColor;
+  height: 5vh;
+  width: 100%;
+  padding: 2px;
+}
+
+.footer h6 {
+  color: white;
+}
