@@ -1,18 +1,20 @@
-export const isSuccess = (errorCode: number) => {
-  return errorCode > 199 && errorCode < 300;
+export const isSuccess = (statusCode: number) => {
+  return statusCode > 199 && statusCode < 300;
 };
 
-export const getDescriptionFromStatusCode = (errorCode: number) => {
-  if (isSuccess(errorCode)) {
+export const getDescriptionFromStatusCode = (statusCode: number) => {
+  if (isSuccess(statusCode)) {
     return "Success!";
   }
 
-  switch (errorCode) {
+  switch (statusCode) {
     case 401:
       return "Unauthorized!";
     case 404:
       return "Cannot find resource!";
+    case 500:
+      return "An server error occured whilst submitting the url!";
     default:
-      return "Unknown error!";
+      return "An unknown error occured whilst submitting the url!";
   }
 };
