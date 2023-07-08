@@ -2,12 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Chrome against localhost",
+      "name": "Launch Brave Against Localhost (Windows)",
       "type": "chrome",
-      "request": "attach",
-      "port": 9222,
-      "urlFilter": "http://localhost:3000/*",
-      "webRoot": "${workspaceFolder}/frontend"
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "runtimeExecutable": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
     }
   ]
 }
