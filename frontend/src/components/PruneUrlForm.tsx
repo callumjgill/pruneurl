@@ -1,23 +1,39 @@
-import { FormEvent, useState } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { FormEvent, useEffect, useState } from "react";
+import { Form, InputGroup } from "react-bootstrap";
 import InvalidUrlFeedback from "./InvalidUrlFeedback";
 import UrlFormControl from "./UrlFormControl";
 import FormRow from "./FormRow";
+import SubmitUrlButton from "./buttons/SubmitUrlButton";
 
 const domain = window.location.host;
 
+const simulateSubmittingUrlToBackend = () => {
+  return new Promise((resolve) => setTimeout(resolve, 2000));
+};
+
 const PruneUrlForm = () => {
   const [validated, setValidated] = useState<boolean>(false);
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
     const form = event.currentTarget;
+    const formIsValid = form.checkValidity();
     if (!form.checkValidity()) {
-      event.preventDefault();
       event.stopPropagation();
     }
 
     setValidated(true);
+    setSubmitting(formIsValid);
   };
+
+  useEffect(() => {
+    if (submitting) {
+      simulateSubmittingUrlToBackend().then(() => {
+        setSubmitting(false);
+      });
+    }
+  }, [submitting]);
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -38,7 +54,7 @@ const PruneUrlForm = () => {
           <InvalidUrlFeedback />
         </InputGroup>
       </FormRow>
-      <Button type="submit">Prune</Button>
+      <SubmitUrlButton submitting={submitting} />
     </Form>
   );
 };
