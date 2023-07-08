@@ -1,0 +1,10 @@
+@use "colors";
+
+.simple-link {
+  text-decoration: none;
+  color: darken(colors.$lightYellow, 10%);
+  &:hover {
+    transition: ease 0.5s;
+    color: darken(colors.$lightYellow, 25%);
+  }
+}
