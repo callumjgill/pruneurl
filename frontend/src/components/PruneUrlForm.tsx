@@ -70,9 +70,17 @@ const PruneUrlForm = () => {
           <FormRow controlId={`${domain}-PrunedUrl`}>
             <Form.Label>Your generated pruned URL:</Form.Label>
             <InputGroup>
-              <Form.Control readOnly value={dummyPrunedUrl} />
+              <Form.Control
+                readOnly
+                value={dummyPrunedUrl}
+                aria-describedby="generatedUrlBlock"
+              />
               <CopyToClipboardButton text={dummyPrunedUrl} />
             </InputGroup>
+            <Form.Text id="generatedUrlBlock" muted>
+              This pruned url will be available to use for 30 days, after which
+              it shall expire.
+            </Form.Text>
           </FormRow>
         )}
       </Form>
