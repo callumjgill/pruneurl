@@ -18,7 +18,7 @@ const PruneUrlForm = () => {
       </Row>
       <Row className="mb-3">
         <Form.Group controlId={`${domain}-YourPrunedURL`}>
-          <Form.Label>Your pruned URL</Form.Label>
+          <Form.Label>Your Pruned URL</Form.Label>
           <InputGroup>
             <InputGroup.Text>{domain}/</InputGroup.Text>
             <Form.Control type="url" placeholder="example (optional)" />
