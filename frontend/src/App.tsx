@@ -1,15 +1,8 @@
-import { Container, Row } from "react-bootstrap";
-import PruneUrlForm from "./views/PruneUrlForm";
 import "./styles/App.scss";
+import FormView from "./views/FormView";
 
 const App = () => {
-  return (
-    <Container>
-      <Row>
-        <PruneUrlForm />
-      </Row>
-    </Container>
-  );
+  return <FormView />;
 };
 
 export default App;

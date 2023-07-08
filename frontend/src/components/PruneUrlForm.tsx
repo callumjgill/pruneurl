@@ -4,7 +4,8 @@ const domain = window.location.host;
 
 const PruneUrlForm = () => {
   return (
-    <Form className="form-box">
+    <Form>
+      <h1 className="text-center mb-4">{domain}</h1>
       <Row className="mb-3">
         <Form.Group controlId={`${domain}-LongURL`}>
           <Form.Label>Long URL</Form.Label>
