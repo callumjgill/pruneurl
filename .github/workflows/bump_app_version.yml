@@ -39,6 +39,7 @@ jobs:
         run: |
           git config --global user.name '${{ github.event.pusher.name }}'
           git config --global user.email '${{ github.event.pusher.email }}'
+          git add :/
           git commit -m "chore(package): bump package.json version to ${{ needs.bump_git_tag_version.outputs.version }}"
           git push
   update_changelog:
@@ -54,5 +55,6 @@ jobs:
         run: |
           git config --global user.name '${{ github.event.pusher.name }}'
           git config --global user.email '${{ github.event.pusher.email }}'
+          git add :/
           git commit -m "documentation(changelog): Update CHANGELOG.md for version ${{ needs.bump_git_tag_version.outputs.version }}"
           git push
