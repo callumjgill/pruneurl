@@ -1,0 +1,5 @@
+@use "colors";
+
+$primary: colors.$primaryColor;
+
+@import "~bootstrap/scss/bootstrap"; // This should be @use but i cannot get it to work :(
