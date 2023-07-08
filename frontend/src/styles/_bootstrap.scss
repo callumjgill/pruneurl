@@ -1,0 +1,6 @@
+@use "colors";
+
+$primary: colors.$primaryColor;
+$input-group-addon-bg: darken(rgb(248 249 250), 15%);
+
+@import "~bootstrap/scss/bootstrap"; // This should be @use but i cannot get it to work :(

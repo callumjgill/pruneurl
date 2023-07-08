@@ -1,0 +1,13 @@
+@use "colors" as *;
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-image: linear-gradient(
+    $backgroundGradientTop,
+    $backgroundGradientBottom
+  );
+}
