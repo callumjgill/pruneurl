@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
+import { InfoCircle } from "react-bootstrap-icons";
 import InvalidUrlFeedback from "./InvalidUrlFeedback";
 import UrlFormControl from "./FormControls/UrlFormControl";
 import FormRow from "./FormRow";
@@ -78,8 +79,10 @@ const PruneUrlForm = () => {
               <CopyToClipboardButton text={dummyPrunedUrl} />
             </InputGroup>
             <Form.Text id="generatedUrlBlock" muted>
-              This pruned url will be available to use for 30 days, after which
-              it shall expire.
+              <div className="form-expiry-text-container">
+                <InfoCircle />
+                <span>This pruned url will expire in 30 days.</span>
+              </div>
             </Form.Text>
           </FormRow>
         )}

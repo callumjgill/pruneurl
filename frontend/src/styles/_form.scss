@@ -11,3 +11,10 @@
   box-shadow: 5px 10px 15px -5px;
   width: 100%;
 }
+
+.form-expiry-text-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
