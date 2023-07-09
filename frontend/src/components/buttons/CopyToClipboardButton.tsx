@@ -18,7 +18,7 @@ const CopyToClipboardButton = (props: CopyToClipboardButtonProps) => {
   };
 
   return (
-    <Button variant="secondary" onClick={handleClick}>
+    <Button className="copy-button" variant="secondary" onClick={handleClick}>
       {copying ? <ButtonSpinner /> : "Copy"}
     </Button>
   );
