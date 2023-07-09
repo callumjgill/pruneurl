@@ -1,16 +1,30 @@
+@use "bootstrap";
 @use "colors";
 
 .footer {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
+
+  @media screen and (max-width: #{map-get(bootstrap.$grid-breakpoints, sm)}) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  @media screen and (min-width: #{map-get(bootstrap.$grid-breakpoints, sm)}) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2px;
+  }
+
   background-color: colors.$footerColor;
   height: 5vh;
   width: 100%;
-  padding: 2px;
-}
 
-.footer h6 {
-  color: white;
+  h6 {
+    color: white;
+    @media screen and (max-width: #{map-get(bootstrap.$grid-breakpoints, sm)}) {
+      font-size: 0.6rem;
+    }
+  }
 }

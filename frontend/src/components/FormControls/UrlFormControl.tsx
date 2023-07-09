@@ -7,7 +7,7 @@ const UrlFormControl = (props: UrlFormControlProps) => {
   const { domain } = { ...props };
   return (
     <FormRow controlId={`${domain}-LongURL`}>
-      <Form.Label>Input a long URL</Form.Label>
+      <Form.Label>Input a long URL *</Form.Label>
       <Form.Control
         required
         type="url"
