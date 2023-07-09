@@ -1,8 +1,6 @@
 import { useEffect, useReducer } from "react";
 import { ToastContainer } from "react-bootstrap";
-import { isSuccess } from "../../utils/statusCodes";
-import SubmitSuccessfulToast from "./SubmitSuccessfulToast";
-import SubmitFailedToast from "./SubmitFailedToast";
+import SubmitToast from "./SubmitToast";
 
 interface SubmitToastContainerProps {
   latestStatusCode?: number;
@@ -101,17 +99,13 @@ const SubmitToastContainer = (props: SubmitToastContainerProps) => {
 
   return (
     <ToastContainer className="p-3" position="top-end" style={{ zIndex: 1 }}>
-      {Object.entries(statusCodes).map(([id, statusCode]) =>
-        isSuccess(statusCode) ? (
-          <SubmitSuccessfulToast key={id} onClose={() => handleOnClose(id)} />
-        ) : (
-          <SubmitFailedToast
-            key={id}
-            errorStatusCode={statusCode}
-            onClose={() => handleOnClose(id)}
-          />
-        ),
-      )}
+      {Object.entries(statusCodes).map(([id, statusCode]) => (
+        <SubmitToast
+          key={id}
+          statusCode={statusCode}
+          onClose={() => handleOnClose(id)}
+        />
+      ))}
     </ToastContainer>
   );
 };
