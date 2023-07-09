@@ -102,8 +102,9 @@ const SubmitToastContainer = (props: SubmitToastContainerProps) => {
       {Object.entries(statusCodes).map(([id, statusCode]) => (
         <SubmitToast
           key={id}
+          className="mb-2"
           statusCode={statusCode}
-          onClose={() => handleOnClose(id)}
+          onCloseCallback={() => handleOnClose(id)}
         />
       ))}
     </ToastContainer>
