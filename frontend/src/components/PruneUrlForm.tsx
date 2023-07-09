@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import { Collapse, Form } from "react-bootstrap";
 import UrlFormControl from "./FormControls/UrlFormControl";
 import SubmitUrlButton from "./buttons/SubmitUrlButton";
 import ShortUrlFormControl from "./FormControls/ShortUrlFormControl";
@@ -50,12 +50,14 @@ const PruneUrlForm = () => {
         <UrlFormControl domain={domain} />
         <ShortUrlFormControl domain={domain} />
         <SubmitUrlButton submitting={submitting} />
-        {submitted && (
-          <GeneratedUrlFormControl
-            domain={domain}
-            generatedUrl={dummyPrunedUrl}
-          />
-        )}
+        <Collapse in={submitted} timeout={5000} mountOnEnter>
+          <div>
+            <GeneratedUrlFormControl
+              domain={domain}
+              generatedUrl={dummyPrunedUrl}
+            />
+          </div>
+        </Collapse>
       </Form>
       <SubmitToastContainer
         latestStatusCode={latestStatusCode}
