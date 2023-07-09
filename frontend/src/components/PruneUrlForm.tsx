@@ -1,13 +1,10 @@
 import { FormEvent, useEffect, useState } from "react";
-import { Form, InputGroup } from "react-bootstrap";
-import { InfoCircle } from "react-bootstrap-icons";
-import InvalidUrlFeedback from "./InvalidUrlFeedback";
+import { Form } from "react-bootstrap";
 import UrlFormControl from "./FormControls/UrlFormControl";
-import FormRow from "./FormRow";
 import SubmitUrlButton from "./buttons/SubmitUrlButton";
 import ShortUrlFormControl from "./FormControls/ShortUrlFormControl";
-import CopyToClipboardButton from "./buttons/CopyToClipboardButton";
 import SubmitToastContainer from "./toasts/SubmitToastContainer";
+import GeneratedUrlFormControl from "./FormControls/GeneratedUrlFormControl";
 
 const domain = window.location.host;
 const dummyPrunedUrl = `${domain}/abc`;
@@ -50,41 +47,14 @@ const PruneUrlForm = () => {
     <>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <h1 className="text-center mb-4">{domain}</h1>
-        <FormRow controlId={`${domain}-LongURL`}>
-          <Form.Label>Input a long URL</Form.Label>
-          <UrlFormControl
-            required
-            placeholder="https://www.example.com/Ah73764142rrvwxcqwed1r4r"
-          />
-          <InvalidUrlFeedback />
-        </FormRow>
-        <FormRow controlId={`${domain}-YourPrunedURL`}>
-          <Form.Label>Input a desired pruned URL</Form.Label>
-          <InputGroup hasValidation>
-            <InputGroup.Text>{domain}/</InputGroup.Text>
-            <ShortUrlFormControl placeholder="example (optional)" />
-            <InvalidUrlFeedback />
-          </InputGroup>
-        </FormRow>
+        <UrlFormControl domain={domain} />
+        <ShortUrlFormControl domain={domain} />
         <SubmitUrlButton submitting={submitting} />
         {submitted && (
-          <FormRow controlId={`${domain}-PrunedUrl`}>
-            <Form.Label>Your generated pruned URL:</Form.Label>
-            <InputGroup>
-              <Form.Control
-                readOnly
-                value={dummyPrunedUrl}
-                aria-describedby="generatedUrlBlock"
-              />
-              <CopyToClipboardButton text={dummyPrunedUrl} />
-            </InputGroup>
-            <Form.Text id="generatedUrlBlock" muted>
-              <div className="form-expiry-text-container">
-                <InfoCircle />
-                <span>This pruned url will expire in 30 days.</span>
-              </div>
-            </Form.Text>
-          </FormRow>
+          <GeneratedUrlFormControl
+            domain={domain}
+            generatedUrl={dummyPrunedUrl}
+          />
         )}
       </Form>
       <SubmitToastContainer
