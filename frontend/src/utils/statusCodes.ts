@@ -4,7 +4,7 @@ export const isSuccess = (statusCode: number) => {
 
 export const getDescriptionFromStatusCode = (statusCode: number) => {
   if (isSuccess(statusCode)) {
-    return "Success!";
+    return "Your URL has been pruned!";
   }
 
   switch (statusCode) {
