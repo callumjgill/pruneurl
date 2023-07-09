@@ -1,15 +1,40 @@
+@use "bootstrap";
+
+$smallScreenFontSize: 0.85rem;
+
 .form-flex-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40%;
   height: 95vh;
+  @media screen and (max-width: #{map-get(bootstrap.$grid-breakpoints, sm)}) {
+    width: 90%;
+  }
+
+  @media screen and (min-width: #{map-get(bootstrap.$grid-breakpoints, sm)}) and (max-width: #{map-get(bootstrap.$grid-breakpoints, md)}) {
+    width: 70%;
+  }
+
+  @media screen and (min-width: #{map-get(bootstrap.$grid-breakpoints, md)}) and (max-width: #{map-get(bootstrap.$grid-breakpoints, lg)}) {
+    width: 60%;
+  }
+
+  @media screen and (min-width: #{map-get(bootstrap.$grid-breakpoints, lg)}) {
+    width: 40%;
+  }
 }
 
 .form-box {
   background-color: white;
   box-shadow: 5px 10px 15px -5px;
   width: 100%;
+  @media screen and (max-width: #{map-get(bootstrap.$grid-breakpoints, sm)}) {
+    padding: 1rem;
+  }
+
+  @media screen and (min-width: #{map-get(bootstrap.$grid-breakpoints, sm)}) {
+    padding: 3rem;
+  }
 }
 
 .form-expiry-text-container {
@@ -17,4 +42,18 @@
   justify-content: flex-start;
   align-items: center;
   gap: 6px;
+}
+
+@media screen and (max-width: #{map-get(bootstrap.$grid-breakpoints, sm)}) {
+  label {
+    font-size: $smallScreenFontSize;
+  }
+
+  .form-control {
+    font-size: $smallScreenFontSize;
+  }
+
+  .input-group-text {
+    font-size: $smallScreenFontSize;
+  }
 }
