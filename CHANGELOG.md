@@ -11,3 +11,16 @@
 
 - **Form:** split form controls into dedicated components ([0450b41](https://github.com/callumjgill/pruneurl/commit/0450b41f73ccdccacf2b64dc8fe6352099d59302))
 - **toasts:** consolidate toast types into one component ([cc7cfcf](https://github.com/callumjgill/pruneurl/commit/cc7cfcf0283861d6a10a5c541cff49d5f984f04c))
+### [0.1.1](https://github.com/callumjgill/pruneurl/compare/v0.1.0...v0.1.1) (2023-07-09)
+
+
+### Bug Fixes
+
+* **buttons:** fix spinner size in form buttons ([f190a0f](https://github.com/callumjgill/pruneurl/commit/f190a0fd3bff430ee1cad5932e0450565daa47d2))
+
+
+### Documentation
+
+* **changelog:** add heading to changelog ([367f7ba](https://github.com/callumjgill/pruneurl/commit/367f7bae584ed968ad6866965f192af5374bc127))
+
+
