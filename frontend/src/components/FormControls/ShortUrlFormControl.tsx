@@ -1,5 +1,5 @@
 import { Form, InputGroup } from "react-bootstrap";
-import { UrlFormControlProps } from "./UrlFormControlProps";
+import { UrlFormControlWithDomainProps } from "./UrlFormControlProps";
 import FormRow from "../FormRow";
 import InvalidUrlFeedback from "../InvalidUrlFeedback";
 import useBreakpoint from "../../hooks/useBreakpoint";
@@ -22,11 +22,11 @@ const ShortUrlFormControlContainer = (props: {
   return <InputGroup hasValidation>{props.children}</InputGroup>;
 };
 
-const UrlFormControl = (props: UrlFormControlProps) => {
-  const { domain } = { ...props };
+const UrlFormControl = (props: UrlFormControlWithDomainProps) => {
+  const { domain, controlId } = { ...props };
 
   return (
-    <FormRow controlId={`${domain}-YourPrunedURL`}>
+    <FormRow controlId={controlId}>
       <Form.Label>Input a desired pruned URL</Form.Label>
       <ShortUrlFormControlContainer>
         <InputGroup.Text>{domain}/</InputGroup.Text>
