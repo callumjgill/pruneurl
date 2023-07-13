@@ -4,9 +4,10 @@ import InvalidUrlFeedback from "../InvalidUrlFeedback";
 import FormRow from "../FormRow";
 
 const UrlFormControl = (props: UrlFormControlProps) => {
-  const { domain } = { ...props };
+  const { controlId } = { ...props };
+
   return (
-    <FormRow controlId={`${domain}-LongURL`}>
+    <FormRow controlId={controlId}>
       <Form.Label>Input a long URL *</Form.Label>
       <Form.Control
         required
