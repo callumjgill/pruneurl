@@ -61,3 +61,12 @@
 * **frontend:** modify DummyAPI to use waitAsync method instead of its private method ([c7bf91a](https://github.com/callumjgill/pruneurl/commit/c7bf91aff116ae14cecf44f86b290902555016ad))
 
 
+## [0.5.0](https://github.com/callumjgill/pruneurl/compare/v0.4.0...v0.5.0) (2023-07-14)
+
+
+### Features
+
+* **backend:** add initial ASP.NET 7 app project & solution ([6ca60e4](https://github.com/callumjgill/pruneurl/commit/6ca60e4ba9a099a19456135bb41bce57669e90d1))
+* **backend:** add test templates & solution folders for each architecture layer ([869c729](https://github.com/callumjgill/pruneurl/commit/869c72998cc083f8b1938c6fc546e267cade9668))
+
+
