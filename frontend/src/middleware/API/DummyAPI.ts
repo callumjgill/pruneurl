@@ -1,3 +1,4 @@
+import { waitAsync } from "../../utils/time";
 import API from "./API";
 import PruneUrlResult from "./DTOs/PruneUrlResult";
 
@@ -5,17 +6,13 @@ export default class DummyApi implements API {
   private dummyPrunedUrl: string = `abc`;
 
   public async pruneUrl(_: string, pruneUrl?: string): Promise<PruneUrlResult> {
-    await this.simulateSubmittingUrlToBackend();
+    await waitAsync(2);
     const result: PruneUrlResult = {
       prunedUrl: !pruneUrl ? this.dummyPrunedUrl : pruneUrl,
       error: this.getError(),
     };
     return result;
   }
-
-  private simulateSubmittingUrlToBackend = (): Promise<void> => {
-    return new Promise((resolve) => setTimeout(resolve, 2000));
-  };
 
   private getError(): number | undefined {
     if (
