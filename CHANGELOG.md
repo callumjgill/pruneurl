@@ -46,3 +46,18 @@
 * **changelog:** update scopes in changelog ([a4c9264](https://github.com/callumjgill/pruneurl/commit/a4c92643cc136da23b0f7089050d5a439ecf9408))
 
 
+## [0.4.0](https://github.com/callumjgill/pruneurl/compare/v0.3.0...v0.4.0) (2023-07-14)
+
+
+### Features
+
+* **frontend:** add CopyToClipboardTooltip ([1feea50](https://github.com/callumjgill/pruneurl/commit/1feea50d2bf1eb8fe18feb156bb2a4c56a1705de))
+* **frontend:** add waitAsync function to time utils ([714155b](https://github.com/callumjgill/pruneurl/commit/714155bce69213eab387d6fd1a4d9f95900ea74d))
+
+
+### Code Refactoring
+
+* **frontend:** extend CopyToClipboardButton to use tooltip once text copied ([1957ba6](https://github.com/callumjgill/pruneurl/commit/1957ba64ba35fb1ae12d8c25a892165a11b58fc9))
+* **frontend:** modify DummyAPI to use waitAsync method instead of its private method ([c7bf91a](https://github.com/callumjgill/pruneurl/commit/c7bf91aff116ae14cecf44f86b290902555016ad))
+
+
