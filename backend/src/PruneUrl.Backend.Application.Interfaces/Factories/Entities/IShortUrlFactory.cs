@@ -19,7 +19,7 @@ namespace PruneUrl.Backend.Application.Interfaces.Factories.Entities
     /// A new <see cref="ShortUrl" /> instance. This will have a new unique ID and not reference an
     /// existing "short url".
     /// </returns>
-    ShortUrl Create(string longUrl, string? shortUrl = null);
+    ShortUrl Create(string longUrl, int? sequenceId = null, string? shortUrl = null);
 
     #endregion Public Methods
   }
