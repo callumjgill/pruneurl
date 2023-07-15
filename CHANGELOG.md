@@ -99,3 +99,24 @@
 * **backend:** add ShortUrlUnitTests ([d692358](https://github.com/callumjgill/pruneurl/commit/d692358ef27f23dbd2e02f9411c7356083f81b15))
 
 
+## [0.7.0](https://github.com/callumjgill/pruneurl/compare/v0.6.0...v0.7.0) (2023-07-15)
+
+
+### Features
+
+* **backend:** add ShortUrlProvider implementation of IShortUrlProvider ([0a9a8f8](https://github.com/callumjgill/pruneurl/commit/0a9a8f8b2faf574b75644044952a04042e576a86))
+
+
+### Tests
+
+* **backend:** add ShortUrlProviderUnitTests ([c10bc16](https://github.com/callumjgill/pruneurl/commit/c10bc16cabe3e26cbaea5ae592686f9d6d80bc8c))
+* **backend:** modify ShortUrlFactoryUnitTests to account for refactored ShortUrlFactory code ([eaeef11](https://github.com/callumjgill/pruneurl/commit/eaeef110a7e4b7bd6f430970cc50d1ec397f124d))
+
+
+### Code Refactoring
+
+* **backend:** extend IShortUrlFactory.Create method with a int? parameter for sequence id ([16db624](https://github.com/callumjgill/pruneurl/commit/16db624788fc3138096d72652ac524b07d7e9a2c))
+* **backend:** modify ShortUrlFactory to implement IShortUrlFactory & IShortUrlProvider changes ([88dec1a](https://github.com/callumjgill/pruneurl/commit/88dec1a4b4b60688178769d14624ed405f166b98))
+* **backend:** replace string parameter in IShortUrlProvider.GetShortUrl with int parameter ([7911a1a](https://github.com/callumjgill/pruneurl/commit/7911a1ae16af3179522ab4ba83040e84187d3687))
+
+
