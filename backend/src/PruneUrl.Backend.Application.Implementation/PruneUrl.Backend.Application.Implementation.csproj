@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\PruneUrl.Backend.Application.Interfaces\PruneUrl.Backend.Application.Interfaces.csproj" />
+  </ItemGroup>
+</Project>
