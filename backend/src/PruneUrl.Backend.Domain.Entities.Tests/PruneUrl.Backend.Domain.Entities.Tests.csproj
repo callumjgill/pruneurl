@@ -18,4 +18,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PruneUrl.Backend.Domain.Entities\PruneUrl.Backend.Domain.Entities.csproj" />
+    <ProjectReference Include="..\PruneUrl.Backend.TestHelpers\PruneUrl.Backend.TestHelpers.csproj" />
+  </ItemGroup>
+
 </Project>
