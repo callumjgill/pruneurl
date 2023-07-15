@@ -2,18 +2,19 @@
 {
   /// <summary>
   /// Defines a provider for "short" url's. Implementations will generate and return a short url
-  /// based upon the given long url.
+  /// based upon the given sequence id. This is a "unique" positive integer value which is returned
+  /// from the database.
   /// </summary>
   public interface IShortUrlProvider
   {
     #region Public Methods
 
     /// <summary>
-    /// Returns a "short" url given a "long" url.
+    /// Returns a "short" url given the sequence id.
     /// </summary>
-    /// <param name="longUrl"> The long url to shorten. </param>
+    /// <param name="sequenceId"> The sequence id for the short url. </param>
     /// <returns> A shortened url. </returns>
-    string GetShortUrl(string longUrl);
+    string GetShortUrl(int sequenceId);
 
     #endregion Public Methods
   }
