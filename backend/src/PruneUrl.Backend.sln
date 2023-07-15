@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8CED138A-11A4-4621-A313-AE0840E6007D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Domain.Entities", "PruneUrl.Backend.Domain.Entities\PruneUrl.Backend.Domain.Entities.csproj", "{ED8FE1A1-E344-49FB-B128-AEC079E74B64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{00E9E33F-B32D-41E8-9621-ABAB95705D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00E9E33F-B32D-41E8-9621-ABAB95705D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00E9E33F-B32D-41E8-9621-ABAB95705D84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED8FE1A1-E344-49FB-B128-AEC079E74B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED8FE1A1-E344-49FB-B128-AEC079E74B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED8FE1A1-E344-49FB-B128-AEC079E74B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED8FE1A1-E344-49FB-B128-AEC079E74B64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{00E9E33F-B32D-41E8-9621-ABAB95705D84} = {8CED138A-11A4-4621-A313-AE0840E6007D}
+		{ED8FE1A1-E344-49FB-B128-AEC079E74B64} = {9851F9A7-8F0F-4FAD-9685-C057ED0D7B23}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FEA1099-8BF1-4329-90EB-A8405E3F7CBA}
