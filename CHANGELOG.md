@@ -70,3 +70,32 @@
 * **backend:** add test templates & solution folders for each architecture layer ([869c729](https://github.com/callumjgill/pruneurl/commit/869c72998cc083f8b1938c6fc546e267cade9668))
 
 
+## [0.6.0](https://github.com/callumjgill/pruneurl/compare/v0.5.0...v0.6.0) (2023-07-15)
+
+
+### Features
+
+* **backend:** add DateTimeProvider implementation of IDateTimeProvider ([2a9e9d3](https://github.com/callumjgill/pruneurl/commit/2a9e9d31916b08028c580a4829ab1df45e3adb95))
+* **backend:** add entity project to domain layer ([d3d1640](https://github.com/callumjgill/pruneurl/commit/d3d164099a3329e490861098af87091cbae0b53c))
+* **backend:** add IDateTimeProvider interface ([f0b82a7](https://github.com/callumjgill/pruneurl/commit/f0b82a76e57b0b1daf1c2731b595e68df5499884))
+* **backend:** add IEntity interface ([ee3b8d4](https://github.com/callumjgill/pruneurl/commit/ee3b8d4ea5d87f2f3933236e16e4f3fac5fe367b))
+* **backend:** add IEntityIdProvider interface ([f0ee06f](https://github.com/callumjgill/pruneurl/commit/f0ee06fbca6c195051844f51eb3e6f62a5ef2458))
+* **backend:** add implementation project to application layer ([bf68faa](https://github.com/callumjgill/pruneurl/commit/bf68faa89023605cf8eb2c7042fb2e4609e07cdc))
+* **backend:** add Interfaces project to application layer ([3ff63b7](https://github.com/callumjgill/pruneurl/commit/3ff63b7c9d2b63995e94e87ef4d31d3210c345be))
+* **backend:** add IShortUrlFactory interface ([76261e7](https://github.com/callumjgill/pruneurl/commit/76261e71e64ae8bd1428d02a0253fae726e07319))
+* **backend:** add IShortUrlProvider interface ([a4e7152](https://github.com/callumjgill/pruneurl/commit/a4e71524993ba4f430030c94b700b061e704a434))
+* **backend:** add ShortUrl entity record ([7128f1f](https://github.com/callumjgill/pruneurl/commit/7128f1f260b9fc8ed471a51d8a7a11d53e7075d7))
+* **backend:** add ShortUrlFactory implementation of IShortUrlFactory ([8ed938d](https://github.com/callumjgill/pruneurl/commit/8ed938df95137d84b60fc8b410c646f579daf341))
+* **backend:** add TestHelpers project ([f7ecbad](https://github.com/callumjgill/pruneurl/commit/f7ecbad93d8839199582d383b59363f82d8d0bd9))
+
+
+### Tests
+
+* **backend:** add application implementation test project ([07aac58](https://github.com/callumjgill/pruneurl/commit/07aac58035d5423356cc4537263d128915ed3d4a))
+* **backend:** add entity tests project ([9ecb475](https://github.com/callumjgill/pruneurl/commit/9ecb475b631ad6a5ca76b52e594d6c1f50126639))
+* **backend:** add EntityTestHelper ([aadcc34](https://github.com/callumjgill/pruneurl/commit/aadcc341a54156ce74cc5f2e42d912476698f929))
+* **backend:** add missing Moq dependency to test projects ([e5e6265](https://github.com/callumjgill/pruneurl/commit/e5e6265b478d69bd45713f4331f12985388cc287))
+* **backend:** add ShortUrlFactoryUnitTests ([ba46fe3](https://github.com/callumjgill/pruneurl/commit/ba46fe30e58bd72bdf3a99769e8048a9e85884d4))
+* **backend:** add ShortUrlUnitTests ([d692358](https://github.com/callumjgill/pruneurl/commit/d692358ef27f23dbd2e02f9411c7356083f81b15))
+
+
