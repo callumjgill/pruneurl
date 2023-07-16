@@ -1,5 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\PruneUrl.Backend.Domain.Entities\PruneUrl.Backend.Domain.Entities.csproj" />
+    <PackageReference Include="Google.Cloud.Firestore" Version="3.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PruneUrl.Backend.Application.Interfaces.Database\PruneUrl.Backend.Application.Interfaces.Database.csproj" />
   </ItemGroup>
 </Project>
