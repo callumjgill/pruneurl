@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.13.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PruneUrl.Backend.Domain.Entities\PruneUrl.Backend.Domain.Entities.csproj" />
   </ItemGroup>
 
