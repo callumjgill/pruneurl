@@ -10,6 +10,19 @@ namespace PruneUrl.Backend.TestHelpers
     #region Public Methods
 
     /// <summary>
+    /// Creates a new <see cref="SequenceId" /> instance for testing.
+    /// </summary>
+    /// <param name="id"> Optional id for the sequence id. </param>
+    /// <param name="value"> Optional value for the sequence id. </param>
+    /// <returns> A new <see cref="SequenceId" /> instance. </returns>
+    public static SequenceId CreateSequenceId(string? id = null, int? value = null)
+    {
+      string idToUse = id ?? string.Empty;
+      int valueToUse = value ?? default;
+      return new SequenceId(idToUse, valueToUse);
+    }
+
+    /// <summary>
     /// Creates a new <see cref="ShortUrl" /> instance for testing.
     /// </summary>
     /// <param name="id"> Optional id for the short url. </param>
