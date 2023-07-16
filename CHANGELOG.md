@@ -120,3 +120,20 @@
 * **backend:** replace string parameter in IShortUrlProvider.GetShortUrl with int parameter ([7911a1a](https://github.com/callumjgill/pruneurl/commit/7911a1ae16af3179522ab4ba83040e84187d3687))
 
 
+## [0.8.0](https://github.com/callumjgill/pruneurl/compare/v0.7.0...v0.8.0) (2023-07-16)
+
+
+### Features
+
+* **backend:** add 'CreateSequenceId' method to EntityTestHelper ([f000b08](https://github.com/callumjgill/pruneurl/commit/f000b085b24abe9a9d810ac55596ead3933e9e3b))
+* **backend:** add ISequenceIdFactory interface to application layer ([07d5edc](https://github.com/callumjgill/pruneurl/commit/07d5edce32479755b41c98f224a9437a5d44c2fb))
+* **backend:** add SequenceId entity record ([e3891aa](https://github.com/callumjgill/pruneurl/commit/e3891aa33b85fc191692d0fd46e3fd89911da84a))
+* **backend:** add SequenceIdFactory implementation to Application layer ([9ffbe7f](https://github.com/callumjgill/pruneurl/commit/9ffbe7f907e78e12d04776a83ccb7993e2b6fe99))
+
+
+### Tests
+
+* **backend:** add SequenceIdFactoryUnitTests ([6d36b76](https://github.com/callumjgill/pruneurl/commit/6d36b764c98db3a7734eb8f99349d28a5f64d490))
+* **backend:** add SequenceIdUnitTests ([b3975b8](https://github.com/callumjgill/pruneurl/commit/b3975b8507bfcf1578b1d613083e796382fae6c1))
+
+
