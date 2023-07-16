@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Applicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Infrastructure.Database", "PruneUrl.Backend.Infrastructure.Database\PruneUrl.Backend.Infrastructure.Database.csproj", "{ED7973BA-66CE-4B9F-A7F3-A1F2ACE80E90}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Application.Interfaces.Database", "PruneUrl.Backend.Application.Interfaces.Database\PruneUrl.Backend.Application.Interfaces.Database.csproj", "{E7077EED-6F9C-4E07-BDD2-AFB82CC7C805}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{ED7973BA-66CE-4B9F-A7F3-A1F2ACE80E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED7973BA-66CE-4B9F-A7F3-A1F2ACE80E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED7973BA-66CE-4B9F-A7F3-A1F2ACE80E90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7077EED-6F9C-4E07-BDD2-AFB82CC7C805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7077EED-6F9C-4E07-BDD2-AFB82CC7C805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7077EED-6F9C-4E07-BDD2-AFB82CC7C805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7077EED-6F9C-4E07-BDD2-AFB82CC7C805}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{78B2B33B-6D45-4063-AC81-E1D9F21F43C9} = {976BFA04-77C5-4DF8-A821-A2A5291E6739}
 		{0F1280DE-3D13-4FD4-93A8-364E8B84E2C5} = {976BFA04-77C5-4DF8-A821-A2A5291E6739}
 		{ED7973BA-66CE-4B9F-A7F3-A1F2ACE80E90} = {8D383C4D-5D61-47CD-8397-9166E6EB023D}
+		{E7077EED-6F9C-4E07-BDD2-AFB82CC7C805} = {976BFA04-77C5-4DF8-A821-A2A5291E6739}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FEA1099-8BF1-4329-90EB-A8405E3F7CBA}
