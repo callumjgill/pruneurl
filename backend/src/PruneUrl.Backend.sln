@@ -27,13 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Applicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Application.Implementation.Tests", "PruneUrl.Backend.Application.Implementation.Tests\PruneUrl.Backend.Application.Implementation.Tests.csproj", "{0F1280DE-3D13-4FD4-93A8-364E8B84E2C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Infrastructure.Database", "PruneUrl.Backend.Infrastructure.Database\PruneUrl.Backend.Infrastructure.Database.csproj", "{ED7973BA-66CE-4B9F-A7F3-A1F2ACE80E90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Infrastructure.Database.Firestore", "PruneUrl.Backend.Infrastructure.Database\PruneUrl.Backend.Infrastructure.Database.Firestore.csproj", "{ED7973BA-66CE-4B9F-A7F3-A1F2ACE80E90}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Application.Interfaces.Database", "PruneUrl.Backend.Application.Interfaces.Database\PruneUrl.Backend.Application.Interfaces.Database.csproj", "{E7077EED-6F9C-4E07-BDD2-AFB82CC7C805}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{1B28013D-6DB8-410B-A0BE-91FB776B4A9C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Infrastructure.Database.Tests", "PruneUrl.Backend.Infrastructure.Database.Tests\PruneUrl.Backend.Infrastructure.Database.Tests.csproj", "{1E6D3E34-3E30-412A-B0B3-64AB3B8E61F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Infrastructure.Database.Firestore.Tests", "PruneUrl.Backend.Infrastructure.Database.Tests\PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.csproj", "{1E6D3E34-3E30-412A-B0B3-64AB3B8E61F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
