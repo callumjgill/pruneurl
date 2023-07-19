@@ -1,14 +1,16 @@
 ﻿using Google.Cloud.Firestore;
 using PruneUrl.Backend.Application.Interfaces.Database.DbTransaction;
-using PruneUrl.Backend.Domain.Entities;
+using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 
 namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbTransaction
 {
   /// <summary>
   /// An implementation of <see cref="IDbTransaction{T}" /> specific to Firestore.
   /// </summary>
-  /// <typeparam name="T"> The <see cref="IEntity" /> the transaction is concerned with. </typeparam>
-  internal sealed class FirestoreDbTransaction<T> : IDbTransaction<T> where T : IEntity
+  /// <typeparam name="T">
+  /// The <see cref="FirestoreEntityDTO" /> the transaction is concerned with.
+  /// </typeparam>
+  internal sealed class FirestoreDbTransaction<T> : IDbTransaction<T> where T : FirestoreEntityDTO
   {
     #region Private Fields
 
