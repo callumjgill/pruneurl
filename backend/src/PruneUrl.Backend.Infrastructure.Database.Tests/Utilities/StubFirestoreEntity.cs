@@ -1,6 +1,5 @@
 ﻿using Google.Cloud.Firestore;
-using PruneUrl.Backend.Domain.Entities;
-using System.Diagnostics.CodeAnalysis;
+using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 
 namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities
 {
@@ -8,7 +7,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities
   /// A test, or "stub", version of a "firestore" entity.
   /// </summary>
   [FirestoreData]
-  internal sealed class StubFirestoreEntity : IEntity
+  internal sealed class StubFirestoreEntity : FirestoreEntityDTO
   {
     #region Public Constructors
 
@@ -33,14 +32,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities
     }
 
     #endregion Internal Constructors
-
-    #region Public Properties
-
-    /// <inheritdoc cref="IEntity.Id" />
-    [FirestoreDocumentId]
-    [AllowNull]
-    public string Id { get; set; }
-
-    #endregion Public Properties
   }
 }
