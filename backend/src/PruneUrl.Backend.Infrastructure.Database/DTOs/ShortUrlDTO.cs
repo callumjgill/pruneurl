@@ -7,7 +7,7 @@
   /// entity also knows when it was created as this is used to determine whether the url is valid,
   /// i.e. not expired.
   /// </summary>
-  public sealed class ShortUrlDTO : FirestoreEntityDTO
+  internal sealed class ShortUrlDTO : FirestoreEntityDTO
   {
     #region Public Properties
 
