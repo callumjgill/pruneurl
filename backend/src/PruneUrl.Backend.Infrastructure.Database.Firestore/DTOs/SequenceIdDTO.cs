@@ -6,6 +6,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs
   /// An <see cref="FirestoreEntityDTO" /> encapsulating a "sequence id". This is an integer value
   /// which is updated each time a new short url is created.
   /// </summary>
+  [FirestoreData]
   internal sealed class SequenceIdDTO : FirestoreEntityDTO
   {
     #region Public Properties
