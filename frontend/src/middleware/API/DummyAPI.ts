@@ -5,10 +5,10 @@ import PruneUrlResult from "./DTOs/PruneUrlResult";
 export default class DummyApi implements API {
   private dummyPrunedUrl: string = `abc`;
 
-  public async pruneUrl(_: string, pruneUrl?: string): Promise<PruneUrlResult> {
+  public async pruneUrl(_: string): Promise<PruneUrlResult> {
     await waitAsync(2);
     const result: PruneUrlResult = {
-      prunedUrl: !pruneUrl ? this.dummyPrunedUrl : pruneUrl,
+      prunedUrl: this.dummyPrunedUrl,
       error: this.getError(),
     };
     return result;
