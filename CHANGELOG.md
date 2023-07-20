@@ -176,3 +176,11 @@
 * **backend:** add utility functions for working with FirestoreDb in test enviroment ([f15d24a](https://github.com/callumjgill/pruneurl/commit/f15d24a03c059783c85c8e19f36aa051a052602a))
 
 
+### [0.9.1](https://github.com/callumjgill/pruneurl/compare/v0.9.0...v0.9.1) (2023-07-20)
+
+
+### Code Refactoring
+
+* **frontend:** remove short url input from form ([a7908c6](https://github.com/callumjgill/pruneurl/commit/a7908c6d16d979888cb9c5d00b13c2714ec7b5cb))
+
+
