@@ -137,3 +137,42 @@
 * **backend:** add SequenceIdUnitTests ([b3975b8](https://github.com/callumjgill/pruneurl/commit/b3975b8507bfcf1578b1d613083e796382fae6c1))
 
 
+## [0.9.0](https://github.com/callumjgill/pruneurl/compare/v0.8.0...v0.9.0) (2023-07-20)
+
+
+### Features
+
+* **backend:** add adapters for IDbQuery and IDbTransaction for DTO types to core types ([2f6011c](https://github.com/callumjgill/pruneurl/commit/2f6011cecbd4e3ae1203d2d0aeadb4155874e4a2))
+* **backend:** add CollectionReferenceHelper to firestore infrastructure project ([8e87564](https://github.com/callumjgill/pruneurl/commit/8e87564ba21d9a5901157288dec820522f915dbd))
+* **backend:** add database interface project to application layer ([e5d4a6a](https://github.com/callumjgill/pruneurl/commit/e5d4a6a1eb26177bd72fa55fe23a684cc9e8bc9b))
+* **backend:** add Database project to Infrastructure layer ([3271c2b](https://github.com/callumjgill/pruneurl/commit/3271c2b89a46d5a42e98fdaf7557e4ec6dd54da4))
+* **backend:** add DTOs specific to Firestore DB for entities ([f7af7cb](https://github.com/callumjgill/pruneurl/commit/f7af7cb9ea80ff78f960b78486494678d651a666))
+* **backend:** add FirebaseDbTransactionFactory implementation of IDbTransactionFactory interface ([568eedc](https://github.com/callumjgill/pruneurl/commit/568eedc493ebb5fe00b3376deccb5dacf74eb503))
+* **backend:** add FirestoreDbQuery implementation of IDbQuery ([c10ef57](https://github.com/callumjgill/pruneurl/commit/c10ef5747d9c3454f71dbf992a2c28141a0a1312))
+* **backend:** add FirestoreDbQueryFactory implementation of IDbQueryFactory ([d784f6e](https://github.com/callumjgill/pruneurl/commit/d784f6e6163b686fc941f8bef8ca8d4c1e97b4f7))
+* **backend:** add FirestoreDbTransaction implementation of IDbTransaction ([09961eb](https://github.com/callumjgill/pruneurl/commit/09961eb15ca0219cb6022267a6dacbd95fb88379))
+* **backend:** add generic TestCaseAttribute class to TestHelpers ([4732024](https://github.com/callumjgill/pruneurl/commit/4732024bec01458a15f7f65e09b90849f763bc94))
+* **backend:** add IDbQuery interface ([24ec40f](https://github.com/callumjgill/pruneurl/commit/24ec40f61b218da74c278622642eb8c620b2e018))
+* **backend:** add IDbQueryFactory interface ([63341e7](https://github.com/callumjgill/pruneurl/commit/63341e77d6bc6af69baa190889136483130ca23a))
+* **backend:** add IDbTransaction interface ([5d6e2e3](https://github.com/callumjgill/pruneurl/commit/5d6e2e34c76d7f7908eaaa3b71266cddb1de02db))
+* **backend:** add IDbTransactionFactory interface ([e1f5c1d](https://github.com/callumjgill/pruneurl/commit/e1f5c1d30bde270248ee3dae92b4ed082c4c8f58))
+
+
+### Tests
+
+* **backend:** add FirestoreDbQueryUnitTests ([5dc8347](https://github.com/callumjgill/pruneurl/commit/5dc83473fd5bfa4e2bef749750302648b5285da3))
+* **backend:** add Infrastructure.Database test project ([2640659](https://github.com/callumjgill/pruneurl/commit/2640659914548f0a96f548908277b9bd3d0526fc))
+* **backend:** add integration tests for FirestoreEntityDTOs ([578c1c7](https://github.com/callumjgill/pruneurl/commit/578c1c750fc4eee976bb4dee27c498602d853ec8))
+* **backend:** add StubFirestoreEntity for testing firestore DB code ([0495667](https://github.com/callumjgill/pruneurl/commit/04956670f78ad95437448304801aec9a3ec399e7))
+* **backend:** add tests for FirestoreDbTransaction ([0dc1606](https://github.com/callumjgill/pruneurl/commit/0dc1606968bfe80be97430788274887ce6c4fdc6))
+* **backend:** add unit tests for CollectionReferenceHelper ([cea7b58](https://github.com/callumjgill/pruneurl/commit/cea7b58d2daf5410a606568d0658808dc8376727))
+* **backend:** add unit tests for FirestoreDbQueryAdapter ([9d7a5c5](https://github.com/callumjgill/pruneurl/commit/9d7a5c51cb4276e73d1d5d9a1dd3ed8f77c45b6b))
+* **backend:** add unit tests for FirestoreDbQueryFactory ([a29731c](https://github.com/callumjgill/pruneurl/commit/a29731c8848d5defeda67496a9aa9157f1d64fe3))
+* **backend:** add unit tests for FirestoreDbTransactionAdapter ([cc32491](https://github.com/callumjgill/pruneurl/commit/cc324917c6f7908703cb07d6acbf8c06961e812c))
+* **backend:** add unit tests for FirestoreDbTransactionFactory ([f4cf4bc](https://github.com/callumjgill/pruneurl/commit/f4cf4bca01c96a791d2be058332354252bb17ff4))
+* **backend:** add unit tests for FirestoreEntityDTO's ([1e6a37d](https://github.com/callumjgill/pruneurl/commit/1e6a37da3cc77c12dd4611eee0eb54e344f3c391))
+* **backend:** add unit tests for the FirestoreDTOProfile ([5b06108](https://github.com/callumjgill/pruneurl/commit/5b061088a8022cade0bf6379b1976179c971af37))
+* **backend:** add unit tests for the InvalidEntityTypeMapException class ([a00eb65](https://github.com/callumjgill/pruneurl/commit/a00eb65808228929b2a382737ef593eca72ce0e7))
+* **backend:** add utility functions for working with FirestoreDb in test enviroment ([f15d24a](https://github.com/callumjgill/pruneurl/commit/f15d24a03c059783c85c8e19f36aa051a052602a))
+
+
