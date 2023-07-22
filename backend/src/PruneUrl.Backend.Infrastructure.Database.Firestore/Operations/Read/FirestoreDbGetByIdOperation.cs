@@ -1,14 +1,16 @@
 ﻿using Google.Cloud.Firestore;
-using PruneUrl.Backend.Application.Interfaces.Database.DbQuery;
+using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
 using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbQuery
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read
 {
   /// <summary>
-  /// An implementation of <see cref="IDbQuery{T}" /> specific to Firestore.
+  /// An implementation of <see cref="IDbGetByIdOperation{T}" /> specific to Firestore.
   /// </summary>
-  /// <typeparam name="T"> The <see cref="FirestoreEntityDTO" /> the query is concerned with. </typeparam>
-  internal sealed class FirestoreDbQuery<T> : IDbQuery<T> where T : FirestoreEntityDTO
+  /// <typeparam name="T">
+  /// The <see cref="FirestoreEntityDTO" /> the operation is concerned with.
+  /// </typeparam>
+  internal sealed class FirestoreDbGetByIdOperation<T> : IDbGetByIdOperation<T> where T : FirestoreEntityDTO
   {
     #region Private Fields
 
@@ -19,13 +21,13 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbQuery
     #region Public Constructors
 
     /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbQuery{T}" /> class.
+    /// Instantiates a new instance of the <see cref="FirestoreDbGetByIdOperation{T}" /> class.
     /// </summary>
     /// <param name="collectionReference">
     /// The reference to the collection in the Firestore database corresponding to the <typeparamref
     /// name="T" /> type.
     /// </param>
-    public FirestoreDbQuery(CollectionReference collection)
+    public FirestoreDbGetByIdOperation(CollectionReference collection)
     {
       this.collection = collection;
     }
@@ -34,7 +36,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbQuery
 
     #region Public Methods
 
-    /// <inheritdoc cref="IDbQuery{T}" />
+    /// <inheritdoc cref="IDbGetByIdOperation{T}.GetByIdAsync(string, CancellationToken)" />
     public async Task<T?> GetByIdAsync(string id, CancellationToken cancellationToken = default)
     {
       DocumentReference document = collection.Document(id);

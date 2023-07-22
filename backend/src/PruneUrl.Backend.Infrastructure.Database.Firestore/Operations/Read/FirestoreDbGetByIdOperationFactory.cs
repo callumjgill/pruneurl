@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
 using Google.Cloud.Firestore;
-using PruneUrl.Backend.Application.Interfaces.Database.DbQuery;
+using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
 using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 using PruneUrl.Backend.Infrastructure.Database.Firestore.Exceptions;
 using PruneUrl.Backend.Infrastructure.Database.Firestore.Utilities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbQuery
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read
 {
   /// <summary>
-  /// Defines a factory for creating <see cref="IDbQuery{T}" /> ( <see cref="FirestoreDbQuery{T}"
-  /// />) instances.
+  /// Defines a factory for creating <see cref="IDbGetByIdOperation{T}" /> ( <see
+  /// cref="FirestoreDbGetByIdOperation{T}" />) instances.
   /// </summary>
-  public sealed class FirestoreDbQueryFactory : IDbQueryFactory
+  public sealed class FirestoreDbGetByIdOperationFactory : IDbGetByIdOperationFactory
   {
     #region Private Fields
 
@@ -24,16 +24,16 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbQuery
     #region Public Constructors
 
     /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbQueryFactory" /> class.
+    /// Instantiates a new instance of the <see cref="FirestoreDbGetByIdOperationFactory" /> class.
     /// </summary>
     /// <param name="firestoreDb">
-    /// The <see cref="FirestoreDb" /> instance for creating queries against.
+    /// The <see cref="FirestoreDb" /> instance for creating the operations against.
     /// </param>
     /// <param name="mapper">
     /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
     /// />'s and the core <see cref="IEntity" />'s.
     /// </param>
-    public FirestoreDbQueryFactory(FirestoreDb firestoreDb, IMapper mapper)
+    public FirestoreDbGetByIdOperationFactory(FirestoreDb firestoreDb, IMapper mapper)
     {
       this.firestoreDb = firestoreDb;
       this.mapper = mapper;
@@ -43,8 +43,8 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbQuery
 
     #region Public Methods
 
-    /// <inheritdoc cref="IDbQueryFactory.Create{T}" />
-    public IDbQuery<T> Create<T>() where T : IEntity
+    /// <inheritdoc cref="IDbGetByIdOperationFactory.Create{T}" />
+    public IDbGetByIdOperation<T> Create<T>() where T : IEntity
     {
       switch (typeof(T))
       {
@@ -63,13 +63,13 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbQuery
 
     #region Private Methods
 
-    private IDbQuery<TEntity> Create<TEntity, TFirestoreEntity>()
+    private IDbGetByIdOperation<TEntity> Create<TEntity, TFirestoreEntity>()
       where TEntity : IEntity
       where TFirestoreEntity : FirestoreEntityDTO
     {
       CollectionReference collection = firestoreDb.Collection(CollectionReferenceHelper.GetCollectionPath<TEntity>());
-      var firestoreDbQuery = new FirestoreDbQuery<TFirestoreEntity>(collection);
-      return new FirestoreDbQueryAdapter<TEntity, TFirestoreEntity>(firestoreDbQuery, mapper);
+      var firestoreDbGetByIdOperation = new FirestoreDbGetByIdOperation<TFirestoreEntity>(collection);
+      return new FirestoreDbGetByIdOperationAdapter<TEntity, TFirestoreEntity>(firestoreDbGetByIdOperation, mapper);
     }
 
     #endregion Private Methods
