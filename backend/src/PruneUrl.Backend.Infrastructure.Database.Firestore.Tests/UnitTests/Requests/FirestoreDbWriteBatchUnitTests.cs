@@ -1,19 +1,18 @@
 ﻿using Google.Cloud.Firestore;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
-using PruneUrl.Backend.Application.Interfaces.Database.DbTransaction;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DbTransaction;
+using PruneUrl.Backend.Infrastructure.Database.Firestore.Requests;
 using PruneUrl.Backend.Infrastructure.Database.Tests.Utilities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.DbTransaction
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Requests
 {
   [TestFixture]
   [Description("These tests require communicating with the FirestoreDb emulator, which is in-memory and so this can be considered a unit test.")]
-  public sealed class FirestoreDbTransactionUnitTests
+  public sealed class FirestoreDbWriteBatchUnitTests
   {
     #region Private Fields
 
-    private const string testCollectionPath = "TransactionTest";
+    private const string testCollectionPath = "WriteBatchTest";
 
     #endregion Private Fields
 
@@ -35,11 +34,11 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.DbT
       DocumentReference testDocumentReferenceToCreate = testCollectionReference.Document(newTestId);
 
       // Test
-      var dbTransaction = new FirestoreDbTransaction<StubFirestoreEntity>(testCollectionReference, testWriteBatch);
+      var dbWriteBatch = new FirestoreDbWriteBatch<StubFirestoreEntity>(testCollectionReference, testWriteBatch);
       var newStubEntity = new StubFirestoreEntity(newTestId);
-      dbTransaction.Create(newStubEntity)
-                   .Delete(initialTestId);
-      await dbTransaction.CommitAsync();
+      dbWriteBatch.Create(newStubEntity);
+      dbWriteBatch.Delete(initialTestId);
+      await dbWriteBatch.CommitAsync();
       CollectionReference afterCommitTestCollectionReference = testFirestoreDb.Collection(testCollectionPath);
       IEnumerable<DocumentReference> afterCommitDocuments = afterCommitTestCollectionReference.ListDocumentsAsync().ToBlockingEnumerable();
 
@@ -61,39 +60,12 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.DbT
       WriteBatch testWriteBatch = testFirestoreDb.StartBatch();
 
       // Test
-      var dbTransaction = new FirestoreDbTransaction<StubFirestoreEntity>(testCollectionReference, testWriteBatch);
-      await dbTransaction.CommitAsync();
+      var dbWriteBatch = new FirestoreDbWriteBatch<StubFirestoreEntity>(testCollectionReference, testWriteBatch);
+      await dbWriteBatch.CommitAsync();
       CollectionReference afterCommitTestCollectionReference = testFirestoreDb.Collection(testCollectionPath);
       IEnumerable<DocumentReference> afterCommitDocuments = afterCommitTestCollectionReference.ListDocumentsAsync().ToBlockingEnumerable();
 
       Assert.That(afterCommitDocuments, Is.EquivalentTo(beforeCommitDocuments));
-    }
-
-    [Test]
-    public void CreateTest_ReturnsSameTransaction()
-    {
-      string testId = Guid.NewGuid().ToString();
-      FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      CollectionReference testCollectionReference = testFirestoreDb.Collection(testCollectionPath);
-      WriteBatch testWriteBatch = testFirestoreDb.StartBatch();
-
-      var dbTransaction = new FirestoreDbTransaction<StubFirestoreEntity>(testCollectionReference, testWriteBatch);
-      var newStubEntity = new StubFirestoreEntity(testId);
-      IDbTransaction<StubFirestoreEntity> dbTransactionFollowingCreate = dbTransaction.Create(newStubEntity);
-      Assert.That(dbTransactionFollowingCreate, Is.EqualTo(dbTransaction));
-    }
-
-    [Test]
-    public void DeleteTest_ReturnsDifferentTransaction()
-    {
-      string testId = Guid.NewGuid().ToString();
-      FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      CollectionReference testCollectionReference = testFirestoreDb.Collection(testCollectionPath);
-      WriteBatch testWriteBatch = testFirestoreDb.StartBatch();
-
-      var dbTransaction = new FirestoreDbTransaction<StubFirestoreEntity>(testCollectionReference, testWriteBatch);
-      IDbTransaction<StubFirestoreEntity> dbTransactionFollowingDelete = dbTransaction.Delete(testId);
-      Assert.That(dbTransactionFollowingDelete, Is.EqualTo(dbTransaction));
     }
 
     [SetUp]

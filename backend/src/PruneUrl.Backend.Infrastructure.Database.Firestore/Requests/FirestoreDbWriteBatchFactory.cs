@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
 using Google.Cloud.Firestore;
-using PruneUrl.Backend.Application.Interfaces.Database.DbTransaction;
+using PruneUrl.Backend.Application.Interfaces.Database.Requests;
 using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 using PruneUrl.Backend.Infrastructure.Database.Firestore.Exceptions;
 using PruneUrl.Backend.Infrastructure.Database.Firestore.Utilities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbTransaction
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
 {
   /// <summary>
-  /// A factory for creating <see cref="IDbTransaction{T}" /> ( <see
-  /// cref="FirestoreDbTransaction{T}" />) instances.
+  /// A factory for creating <see cref="IDbWriteBatch{T}" /> ( <see cref="FirestoreDbWriteBatch{T}"
+  /// />) instances.
   /// </summary>
-  public sealed class FirestoreDbTransactionFactory : IDbTransactionFactory
+  public sealed class FirestoreDbWriteBatchFactory : IDbWriteBatchFactory
   {
     #region Private Fields
 
@@ -24,16 +24,16 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbTransaction
     #region Public Constructors
 
     /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbTransactionFactory" /> class.
+    /// Instantiates a new instance of the <see cref="FirestoreDbWriteBatchFactory" /> class.
     /// </summary>
     /// <param name="firestoreDb">
-    /// The <see cref="FirestoreDb" /> instance for creating transactions against.
+    /// The <see cref="FirestoreDb" /> instance for creating batches against.
     /// </param>
     /// <param name="mapper">
     /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
     /// />'s and the core <see cref="IEntity" />'s.
     /// </param>
-    public FirestoreDbTransactionFactory(FirestoreDb firestoreDb, IMapper mapper)
+    public FirestoreDbWriteBatchFactory(FirestoreDb firestoreDb, IMapper mapper)
     {
       this.firestoreDb = firestoreDb;
       this.mapper = mapper;
@@ -43,8 +43,8 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbTransaction
 
     #region Public Methods
 
-    /// <inheritdoc cref="IDbTransactionFactory.Create{T}" />
-    public IDbTransaction<T> Create<T>() where T : IEntity
+    /// <inheritdoc cref="IDbWriteBatchFactory.Create{T}" />
+    public IDbWriteBatch<T> Create<T>() where T : IEntity
     {
       switch (typeof(T))
       {
@@ -63,14 +63,14 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DbTransaction
 
     #region Private Methods
 
-    private IDbTransaction<TEntity> Create<TEntity, TFirestoreEntity>()
+    private IDbWriteBatch<TEntity> Create<TEntity, TFirestoreEntity>()
       where TEntity : IEntity
       where TFirestoreEntity : FirestoreEntityDTO
     {
       CollectionReference collection = firestoreDb.Collection(CollectionReferenceHelper.GetCollectionPath<TEntity>());
       WriteBatch writeBatch = firestoreDb.StartBatch();
-      var firestoreDbTransaction = new FirestoreDbTransaction<TFirestoreEntity>(collection, writeBatch);
-      return new FirestoreDbTransactionAdapter<TEntity, TFirestoreEntity>(firestoreDbTransaction, mapper);
+      var firestoreDbWriteBatch = new FirestoreDbWriteBatch<TFirestoreEntity>(collection, writeBatch);
+      return new FirestoreDbWriteBatchAdapter<TEntity, TFirestoreEntity>(firestoreDbWriteBatch, mapper);
     }
 
     #endregion Private Methods
