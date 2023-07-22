@@ -6,15 +6,10 @@ using PruneUrl.Backend.Infrastructure.Database.Tests.Utilities;
 namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Operations.Read
 {
   [TestFixture]
+  [Parallelizable]
   [Description("These tests require communicating with the FirestoreDb emulator, which is in-memory and so this can be considered a unit test.")]
   public sealed class FirestoreDbGetByIdOperationUnitTests
   {
-    #region Private Fields
-
-    private const string testCollectionPath = "GetByIdTest";
-
-    #endregion Private Fields
-
     #region Public Methods
 
     [Test]
@@ -23,7 +18,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Operations.Re
       // Setup database for test
       string testId = Guid.NewGuid().ToString();
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      CollectionReference testCollectionReference = testFirestoreDb.Collection(testCollectionPath);
+      CollectionReference testCollectionReference = TestFirestoreDbHelper.GetTestCollectionReference(testFirestoreDb);
       DocumentReference testDocumentReference = testCollectionReference.Document(testId);
       var stubEntity = new StubFirestoreEntity(testId);
       await testDocumentReference.CreateAsync(stubEntity);
@@ -41,18 +36,12 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Operations.Re
       // Setup database for test
       string testId = Guid.NewGuid().ToString();
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      CollectionReference testCollectionReference = testFirestoreDb.Collection(testCollectionPath);
+      CollectionReference testCollectionReference = TestFirestoreDbHelper.GetTestCollectionReference(testFirestoreDb);
 
       // Test
       var dbGetByIdOperation = new FirestoreDbGetByIdOperation<StubFirestoreEntity>(testCollectionReference);
       StubFirestoreEntity? result = await dbGetByIdOperation.GetByIdAsync(testId);
       Assert.That(result, Is.Null);
-    }
-
-    [SetUp]
-    public async Task SetupTest()
-    {
-      await TestFirestoreDbHelper.ClearEmulatedDatabase();
     }
 
     #endregion Public Methods

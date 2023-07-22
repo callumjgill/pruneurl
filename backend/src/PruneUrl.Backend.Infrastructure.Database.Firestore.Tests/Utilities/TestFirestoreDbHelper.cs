@@ -35,6 +35,17 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities
     }
 
     /// <summary>
+    /// Creates a test <see cref="CollectionReference" /> instance from a <see cref="FirestoreDb" />
+    /// instance. Ensures it is unique for the test so that they can be ran in parallel.
+    /// </summary>
+    /// <param name="firestoreDb"> The test <see cref="FirestoreDb" /> instance. </param>
+    /// <returns> The test <see cref="CollectionReference" /> instance. </returns>
+    public static CollectionReference GetTestCollectionReference(FirestoreDb firestoreDb)
+    {
+      return firestoreDb.Collection(Guid.NewGuid().ToString());
+    }
+
+    /// <summary>
     /// Creates a test <see cref="FirestoreDb" /> instance.
     /// </summary>
     /// <returns> The test <see cref="FirestoreDb" /> instance. </returns>
