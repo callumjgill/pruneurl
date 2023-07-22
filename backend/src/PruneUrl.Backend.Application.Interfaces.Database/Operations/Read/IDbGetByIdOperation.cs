@@ -1,12 +1,13 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Interfaces.Database.DbQuery
+namespace PruneUrl.Backend.Application.Interfaces.Database.Operations.Read
 {
   /// <summary>
-  /// Defines a "query", or read-only, operation which can be performed on an underlying database.
+  /// Defines an operation for reading a <typeparamref name="T" /> via its unique id from the
+  /// underlying database.
   /// </summary>
-  /// <typeparam name="T"> The <see cref="IEntity" /> the query is concerned with. </typeparam>
-  public interface IDbQuery<T> where T : IEntity
+  /// <typeparam name="T"> The <see cref="IEntity" /> the operation is concerned with. </typeparam>
+  public interface IDbGetByIdOperation<T> where T : IEntity
   {
     #region Public Methods
 

@@ -1,17 +1,17 @@
 ﻿using Google.Cloud.Firestore;
 using NUnit.Framework;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DbQuery;
+using PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read;
 using PruneUrl.Backend.Infrastructure.Database.Tests.Utilities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.DbQuery
+namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Operations.Read
 {
   [TestFixture]
   [Description("These tests require communicating with the FirestoreDb emulator, which is in-memory and so this can be considered a unit test.")]
-  public sealed class FirestoreDbQueryUnitTests
+  public sealed class FirestoreDbGetByIdOperationUnitTests
   {
     #region Private Fields
 
-    private const string testCollectionPath = "QueryTest";
+    private const string testCollectionPath = "GetByIdTest";
 
     #endregion Private Fields
 
@@ -29,8 +29,8 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.DbQuery
       await testDocumentReference.CreateAsync(stubEntity);
 
       // Test
-      var dbQuery = new FirestoreDbQuery<StubFirestoreEntity>(testCollectionReference);
-      StubFirestoreEntity? result = await dbQuery.GetByIdAsync(testId);
+      var dbGetByIdOperation = new FirestoreDbGetByIdOperation<StubFirestoreEntity>(testCollectionReference);
+      StubFirestoreEntity? result = await dbGetByIdOperation.GetByIdAsync(testId);
       Assert.That(result, Is.Not.Null);
       Assert.That(result.Id, Is.EqualTo(testId));
     }
@@ -44,8 +44,8 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.DbQuery
       CollectionReference testCollectionReference = testFirestoreDb.Collection(testCollectionPath);
 
       // Test
-      var dbQuery = new FirestoreDbQuery<StubFirestoreEntity>(testCollectionReference);
-      StubFirestoreEntity? result = await dbQuery.GetByIdAsync(testId);
+      var dbGetByIdOperation = new FirestoreDbGetByIdOperation<StubFirestoreEntity>(testCollectionReference);
+      StubFirestoreEntity? result = await dbGetByIdOperation.GetByIdAsync(testId);
       Assert.That(result, Is.Null);
     }
 
