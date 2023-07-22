@@ -7,15 +7,10 @@ using PruneUrl.Backend.Infrastructure.Database.Tests.Utilities;
 namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Requests
 {
   [TestFixture]
+  [Parallelizable]
   [Description("These tests require communicating with the FirestoreDb emulator, which is in-memory and so this can be considered a unit test.")]
   public sealed class FirestoreDbWriteBatchUnitTests
   {
-    #region Private Fields
-
-    private const string testCollectionPath = "WriteBatchTest";
-
-    #endregion Private Fields
-
     #region Public Methods
 
     [Test]
@@ -25,7 +20,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       string initialTestId = Guid.NewGuid().ToString();
       string newTestId = Guid.NewGuid().ToString();
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      CollectionReference testCollectionReference = testFirestoreDb.Collection(testCollectionPath);
+      CollectionReference testCollectionReference = TestFirestoreDbHelper.GetTestCollectionReference(testFirestoreDb);
       DocumentReference testDocumentReference = testCollectionReference.Document(initialTestId);
       var stubEntity = new StubFirestoreEntity(initialTestId);
       await testDocumentReference.CreateAsync(stubEntity);
@@ -39,8 +34,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       dbWriteBatch.Create(newStubEntity);
       dbWriteBatch.Delete(initialTestId);
       await dbWriteBatch.CommitAsync();
-      CollectionReference afterCommitTestCollectionReference = testFirestoreDb.Collection(testCollectionPath);
-      IEnumerable<DocumentReference> afterCommitDocuments = afterCommitTestCollectionReference.ListDocumentsAsync().ToBlockingEnumerable();
+      IEnumerable<DocumentReference> afterCommitDocuments = testCollectionReference.ListDocumentsAsync().ToBlockingEnumerable();
 
       Assert.That(afterCommitDocuments, Is.Not.EquivalentTo(beforeCommitDocuments));
       Assert.That(afterCommitDocuments, Is.EquivalentTo(new[] { testDocumentReferenceToCreate }));
@@ -52,7 +46,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       // Setup database for test
       string testId = Guid.NewGuid().ToString();
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      CollectionReference testCollectionReference = testFirestoreDb.Collection(testCollectionPath);
+      CollectionReference testCollectionReference = TestFirestoreDbHelper.GetTestCollectionReference(testFirestoreDb);
       DocumentReference testDocumentReference = testCollectionReference.Document(testId);
       var stubEntity = new StubFirestoreEntity(testId);
       await testDocumentReference.CreateAsync(stubEntity);
@@ -62,16 +56,9 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       // Test
       var dbWriteBatch = new FirestoreDbWriteBatch<StubFirestoreEntity>(testCollectionReference, testWriteBatch);
       await dbWriteBatch.CommitAsync();
-      CollectionReference afterCommitTestCollectionReference = testFirestoreDb.Collection(testCollectionPath);
-      IEnumerable<DocumentReference> afterCommitDocuments = afterCommitTestCollectionReference.ListDocumentsAsync().ToBlockingEnumerable();
+      IEnumerable<DocumentReference> afterCommitDocuments = testCollectionReference.ListDocumentsAsync().ToBlockingEnumerable();
 
       Assert.That(afterCommitDocuments, Is.EquivalentTo(beforeCommitDocuments));
-    }
-
-    [SetUp]
-    public async Task SetupTest()
-    {
-      await TestFirestoreDbHelper.ClearEmulatedDatabase();
     }
 
     #endregion Public Methods
