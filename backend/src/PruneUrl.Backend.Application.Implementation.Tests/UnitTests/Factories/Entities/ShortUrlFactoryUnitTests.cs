@@ -13,35 +13,20 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
   {
     #region Public Methods
 
-    [Test]
-    public void CreateTest_Invalid()
+    [TestCase("")]
+    [TestCase("www.youtube.com")]
+    [TestCase("https://www.youtube.com")]
+    [TestCase("This is a load gibberish")]
+    [TestCase("")]
+    [TestCase("www.youtube.com")]
+    [TestCase("https://www.youtube.com")]
+    [TestCase("This is a load gibberish")]
+    public void CreateTest_Valid(string longUrl)
     {
-      var shortUrlFactory = new ShortUrlFactory(
-        Mock.Of<IDateTimeProvider>(),
-        Mock.Of<IEntityIdProvider>(),
-        Mock.Of<IShortUrlProvider>());
-
-      Assert.That(() => shortUrlFactory.Create(string.Empty), Throws.TypeOf<ArgumentNullException>());
-    }
-
-    [TestCase("", null)]
-    [TestCase("www.youtube.com", null)]
-    [TestCase("https://www.youtube.com", null)]
-    [TestCase("This is a load gibberish", null)]
-    [TestCase("", "")]
-    [TestCase("www.youtube.com", "absdf")]
-    [TestCase("https://www.youtube.com", "kjh")]
-    [TestCase("This is a load gibberish", "This is not a load of gibberish")]
-    public void CreateTest_Valid(string longUrl, string? shortUrl)
-    {
-      int? testSequenceId = shortUrl == null ? 0 : null;
+      int testSequenceId = 23652;
       string testId = Guid.NewGuid().ToString();
       DateTime testCreated = DateTime.Now;
-      string shortUrlToUse = shortUrl ?? "testing123";
-
-      Times invocationsForDateTimeProvider = Times.Once();
-      Times invocationsForEntityIdProvider = Times.Once();
-      Times invocationsForShortUrlProvider = shortUrl == null ? Times.Once() : Times.Never();
+      string shortUrlToUse = "testing123";
 
       var dateTimeProviderMock = new Mock<IDateTimeProvider>();
       var entityIdProviderMock = new Mock<IEntityIdProvider>();
@@ -56,7 +41,7 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
         entityIdProviderMock.Object,
         shortUrlProviderMock.Object);
 
-      ShortUrl actualShortUrl = shortUrlFactory.Create(longUrl, testSequenceId, shortUrl);
+      ShortUrl actualShortUrl = shortUrlFactory.Create(longUrl, testSequenceId);
       Assert.Multiple(() =>
       {
         Assert.That(actualShortUrl.Id, Is.EqualTo(testId));
@@ -64,13 +49,10 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
         Assert.That(actualShortUrl.Url, Is.EqualTo(shortUrlToUse));
         Assert.That(actualShortUrl.Created, Is.EqualTo(testCreated));
       });
-      dateTimeProviderMock.Verify(x => x.GetNow(), invocationsForDateTimeProvider);
-      entityIdProviderMock.Verify(x => x.NewId(), invocationsForEntityIdProvider);
-      shortUrlProviderMock.Verify(x => x.GetShortUrl(It.IsAny<int>()), invocationsForShortUrlProvider);
-      if (testSequenceId.HasValue)
-      {
-        shortUrlProviderMock.Verify(x => x.GetShortUrl(testSequenceId.Value), invocationsForShortUrlProvider);
-      }
+      dateTimeProviderMock.Verify(x => x.GetNow(), Times.Once);
+      entityIdProviderMock.Verify(x => x.NewId(), Times.Once);
+      shortUrlProviderMock.Verify(x => x.GetShortUrl(It.IsAny<int>()), Times.Once);
+      shortUrlProviderMock.Verify(x => x.GetShortUrl(testSequenceId), Times.Once);
     }
 
     #endregion Public Methods
