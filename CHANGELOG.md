@@ -184,3 +184,31 @@
 * **frontend:** remove short url input from form ([a7908c6](https://github.com/callumjgill/pruneurl/commit/a7908c6d16d979888cb9c5d00b13c2714ec7b5cb))
 
 
+## [0.10.0](https://github.com/callumjgill/pruneurl/compare/v0.9.1...v0.10.0) (2023-07-23)
+
+
+### Features
+
+* **backend:** add IDbTransaction interface & Firebase implementations for read-write combinations ([9939038](https://github.com/callumjgill/pruneurl/commit/99390383d6b15d234141dd536c7bde4837968400))
+* **backend:** add IDbTransactionProvider and implementation to allow running a single IDbTransaction multiple times before succeeding ([fcab4bd](https://github.com/callumjgill/pruneurl/commit/fcab4bd10cd02079e05e8d95f7df3f386cde6164))
+* **backend:** add IDbUpdateOperation interface ([4ebd822](https://github.com/callumjgill/pruneurl/commit/4ebd822af86eb3e124552d5c28cf9691d9385595))
+* **backend:** add transaction request use case for retrieving and bumping a sequence id ([c65a614](https://github.com/callumjgill/pruneurl/commit/c65a61446ba20ded89f45e6dce09175ee1565856))
+
+
+### Tests
+
+* **backend:** add tests for configuration project in application layer ([d0ff6ee](https://github.com/callumjgill/pruneurl/commit/d0ff6eec7941c84e2c0d76a7fb4d0a397db88a12))
+* **backend:** add tests for the GetAndBumpSequenceIdRequest transaction classes ([613bbcc](https://github.com/callumjgill/pruneurl/commit/613bbccc431a0c7216a21165eb4591bb91b4ed11))
+* **backend:** add unit tests for EntityNotFoundException in application layer ([c01d58b](https://github.com/callumjgill/pruneurl/commit/c01d58ba333d57c10269b5252da1b919cc55bb34))
+* **backend:** add unit tests for the Firestore IDbTransactionProvider related implementations ([dca939c](https://github.com/callumjgill/pruneurl/commit/dca939cf7f20d76e0676e922108178ab11cc2595))
+* **backend:** add unit tests for the IDbTransaction Firebase implementations ([9379298](https://github.com/callumjgill/pruneurl/commit/9379298a64c009d353f5a32598641f019cc8f072))
+* **backend:** refactor tests with emulator to be parallelizable ([6f3a7fb](https://github.com/callumjgill/pruneurl/commit/6f3a7fbbdd78e29b77b05eb42dc5d46d9c2e71ae))
+
+
+### Code Refactoring
+
+* **backend:** add CreateFromExisting method to ISequenceIdFactory ([8b4c912](https://github.com/callumjgill/pruneurl/commit/8b4c912c3a4162e66f46cb51f59c24b38116280e))
+* **backend:** rename IDbQuery to IDbGetByIdOperation to follow LSP ([73aecc7](https://github.com/callumjgill/pruneurl/commit/73aecc75973229fb3370d6fad9060bf63e78194b))
+* **backend:** split IDbTransaction into smaller interfaces & rename IDbWriteBatch ([00e1c44](https://github.com/callumjgill/pruneurl/commit/00e1c44b342473da535f3fb31b5329625779ed37))
+
+
