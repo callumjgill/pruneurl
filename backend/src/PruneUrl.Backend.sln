@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Applicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Application.Exceptions", "PruneUrl.Backend.Application.Exceptions\PruneUrl.Backend.Application.Exceptions.csproj", "{B39CD327-6C7D-43DA-9626-9DF60E88ECAB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Transactions.Tests", "PruneUrl.Backend.Application.Transactions.Tests\PruneUrl.Backend.Transactions.Tests.csproj", "{BD969C58-32C1-44ED-9D02-713B2BBA02AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Application.Transactions.Tests", "PruneUrl.Backend.Application.Transactions.Tests\PruneUrl.Backend.Application.Transactions.Tests.csproj", "{BD969C58-32C1-44ED-9D02-713B2BBA02AC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Application.Configuration.Tests", "PruneUrl.Backend.Application.Configuration.Tests\PruneUrl.Backend.Application.Configuration.Tests.csproj", "{3570CF6C-508F-4005-99AF-F9CD5998B643}"
 EndProject
