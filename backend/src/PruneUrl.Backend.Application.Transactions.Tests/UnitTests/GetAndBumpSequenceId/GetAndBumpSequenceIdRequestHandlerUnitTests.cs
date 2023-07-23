@@ -9,7 +9,7 @@ using PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId;
 using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.Transactions.Tests.UnitTests
+namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSequenceId
 {
   [TestFixture]
   [Parallelizable]
