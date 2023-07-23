@@ -40,34 +40,15 @@ namespace PruneUrl.Backend.Application.Implementation.Factories.Entities
 
     #region Public Methods
 
-    /// <inheritdoc cref="IShortUrlFactory.Create(string, int?, string?)" />
-    public ShortUrl Create(string longUrl, int? sequenceId = null, string? shortUrl = null)
+    /// <inheritdoc cref="IShortUrlFactory.Create(string, int)" />
+    public ShortUrl Create(string longUrl, int sequenceId)
     {
-      string shortUrlToUse = GetShortUrlToUse(sequenceId, shortUrl);
+      string shortUrlToUse = shortUrlProvider.GetShortUrl(sequenceId);
       DateTime created = dateTimeProvider.GetNow();
       string id = entityIdProvider.NewId();
       return new ShortUrl(id, longUrl, shortUrlToUse, created);
     }
 
     #endregion Public Methods
-
-    #region Private Methods
-
-    private string GetShortUrlToUse(int? sequenceId, string? shortUrl)
-    {
-      if (shortUrl != null)
-      {
-        return shortUrl;
-      }
-
-      if (!sequenceId.HasValue)
-      {
-        throw new ArgumentNullException(nameof(sequenceId), "Sequence id cannot be null when no short url is provided!");
-      }
-
-      return shortUrlProvider.GetShortUrl(sequenceId.Value);
-    }
-
-    #endregion Private Methods
   }
 }
