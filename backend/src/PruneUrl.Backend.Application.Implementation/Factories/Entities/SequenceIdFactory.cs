@@ -35,15 +35,30 @@ namespace PruneUrl.Backend.Application.Implementation.Factories.Entities
     /// <inheritdoc cref="ISequenceIdFactory.Create(int)" />
     public SequenceId Create(int sequenceId)
     {
-      if (sequenceId < 0)
-      {
-        throw new ArgumentException("Sequence Id cannot be less than 0!", nameof(sequenceId));
-      }
-
+      AssertSequenceId(sequenceId);
       string id = entityIdProvider.NewId();
       return new SequenceId(id, sequenceId);
     }
 
+    /// <inheritdoc cref="ISequenceIdFactory.Create(SequenceId, int)" />
+    public SequenceId CreateFromExisting(SequenceId sequenceId, int newSequenceIdValue)
+    {
+      AssertSequenceId(newSequenceIdValue);
+      return new SequenceId(sequenceId.Id, newSequenceIdValue);
+    }
+
     #endregion Public Methods
+
+    #region Private Methods
+
+    private void AssertSequenceId(int sequenceId)
+    {
+      if (sequenceId < 0)
+      {
+        throw new ArgumentException("Sequence Id cannot be less than 0!", nameof(sequenceId));
+      }
+    }
+
+    #endregion Private Methods
   }
 }

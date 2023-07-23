@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PruneUrl.Backend.Application.Implementation\PruneUrl.Backend.Application.Implementation.csproj" />
+    <ProjectReference Include="..\PruneUrl.Backend.TestHelpers\PruneUrl.Backend.TestHelpers.csproj" />
   </ItemGroup>
 
 </Project>
