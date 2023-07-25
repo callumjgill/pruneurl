@@ -212,3 +212,23 @@
 * **backend:** split IDbTransaction into smaller interfaces & rename IDbWriteBatch ([00e1c44](https://github.com/callumjgill/pruneurl/commit/00e1c44b342473da535f3fb31b5329625779ed37))
 
 
+## [0.11.0](https://github.com/callumjgill/pruneurl/compare/v0.10.0...v0.11.0) (2023-07-25)
+
+
+### Features
+
+* **backend:** add CreateShortUrlCommand use case ([490ee53](https://github.com/callumjgill/pruneurl/commit/490ee5359de308fe57c1a69312e17eca85045a15))
+* **backend:** add CreateShortUrlCommand use case classes ([965c759](https://github.com/callumjgill/pruneurl/commit/965c759203027e3b0b695777674ea9e3fdc824c6))
+* **backend:** add MediatR request decorator for validation ([3fc266f](https://github.com/callumjgill/pruneurl/commit/3fc266fd207453a407f0c8e4dcdc8741fb4e60ba))
+
+
+### Tests
+
+* **backend:** add tests for the requests application layer project ([2788b6b](https://github.com/callumjgill/pruneurl/commit/2788b6b5ba516ec94dbf2f0b209c27f45c84aeef))
+
+
+### Code Refactoring
+
+* **backend:** remove optional short url being supplied to the IShortUrlFactory interface ([f24603c](https://github.com/callumjgill/pruneurl/commit/f24603c76ec2dade9dcc1ef0ac406d605ab7e5d1))
+
+
