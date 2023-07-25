@@ -24,33 +24,28 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
     public void CreateTest_Valid(string longUrl)
     {
       int testSequenceId = 23652;
-      string testId = Guid.NewGuid().ToString();
       DateTime testCreated = DateTime.Now;
       string shortUrlToUse = "testing123";
 
       var dateTimeProviderMock = new Mock<IDateTimeProvider>();
-      var entityIdProviderMock = new Mock<IEntityIdProvider>();
       var shortUrlProviderMock = new Mock<IShortUrlProvider>();
 
       dateTimeProviderMock.Setup(x => x.GetNow()).Returns(testCreated);
-      entityIdProviderMock.Setup(x => x.NewId()).Returns(testId);
       shortUrlProviderMock.Setup(x => x.GetShortUrl(It.IsAny<int>())).Returns(shortUrlToUse);
 
       var shortUrlFactory = new ShortUrlFactory(
         dateTimeProviderMock.Object,
-        entityIdProviderMock.Object,
         shortUrlProviderMock.Object);
 
       ShortUrl actualShortUrl = shortUrlFactory.Create(longUrl, testSequenceId);
       Assert.Multiple(() =>
       {
-        Assert.That(actualShortUrl.Id, Is.EqualTo(testId));
+        Assert.That(actualShortUrl.Id, Is.EqualTo(testSequenceId.ToString()));
         Assert.That(actualShortUrl.LongUrl, Is.EqualTo(longUrl));
         Assert.That(actualShortUrl.Url, Is.EqualTo(shortUrlToUse));
         Assert.That(actualShortUrl.Created, Is.EqualTo(testCreated));
       });
       dateTimeProviderMock.Verify(x => x.GetNow(), Times.Once);
-      entityIdProviderMock.Verify(x => x.NewId(), Times.Once);
       shortUrlProviderMock.Verify(x => x.GetShortUrl(It.IsAny<int>()), Times.Once);
       shortUrlProviderMock.Verify(x => x.GetShortUrl(testSequenceId), Times.Once);
     }
