@@ -6,6 +6,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PruneUrl.Backend.Application.Commands\PruneUrl.Backend.Application.Commands.csproj" />
+    <ProjectReference Include="..\PruneUrl.Backend.Application.Implementation\PruneUrl.Backend.Application.Implementation.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Application.Queries\PruneUrl.Backend.Application.Queries.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Infrastructure.Database.Firestore\PruneUrl.Backend.Infrastructure.Database.Firestore.csproj" />
   </ItemGroup>
