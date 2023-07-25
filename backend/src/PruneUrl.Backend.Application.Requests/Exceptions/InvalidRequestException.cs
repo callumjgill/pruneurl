@@ -1,11 +1,11 @@
 ﻿using FluentValidation.Results;
+using MediatR;
 using System.Text;
 
 namespace PruneUrl.Backend.Application.Requests.Exceptions
 {
   /// <summary>
-  /// An exception which is thrown when a <see cref="IRequest" /> or <see cref="InvalidRequest{T}"
-  /// /> is invalid.
+  /// An exception which is thrown when a <see cref="IRequest" /> or <see cref="IRequest{T}" /> is invalid.
   /// </summary>
   public sealed class InvalidRequestException : Exception
   {
@@ -18,7 +18,9 @@ namespace PruneUrl.Backend.Application.Requests.Exceptions
     /// <param name="validationFailures">
     /// The collection of <see cref="ValidationFailure" />'s to create the exception message from.
     /// </param>
-    public InvalidRequestException(string requestName, IEnumerable<ValidationFailure> validationFailures) : base(GetExceptionMessage(requestName, validationFailures)) { }
+    public InvalidRequestException(string requestName, IEnumerable<ValidationFailure> validationFailures) : base(GetExceptionMessage(requestName, validationFailures))
+    {
+    }
 
     #endregion Public Constructors
 
