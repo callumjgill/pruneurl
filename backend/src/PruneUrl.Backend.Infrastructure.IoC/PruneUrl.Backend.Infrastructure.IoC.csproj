@@ -2,8 +2,10 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="7.0.1" />
     <PackageReference Include="AutoMapper.Contrib.Autofac.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PruneUrl.Backend.Application.Commands\PruneUrl.Backend.Application.Commands.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Infrastructure.Database.Firestore\PruneUrl.Backend.Infrastructure.Database.Firestore.csproj" />
   </ItemGroup>
 </Project>
