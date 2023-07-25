@@ -3,11 +3,11 @@
 namespace PruneUrl.Backend.Application.Implementation.Providers
 {
   /// <summary>
-  /// A provider for "short" url's. This takes the long url and converts it's string representation
-  /// into a base 62 representation. This representation uses all numbers, lowercase letters and
-  /// uppercase letters.
+  /// A provider/converter for "short" url's. This takes the long url and converts it's string
+  /// representation into a base 62 representation. This representation uses all numbers, lowercase
+  /// letters and uppercase letters.
   /// </summary>
-  public sealed class ShortUrlProvider : IShortUrlProvider
+  public sealed class ShortUrlProvider : IShortUrlProvider, ISequenceIdProvider
   {
     #region Private Fields
 
@@ -18,7 +18,23 @@ namespace PruneUrl.Backend.Application.Implementation.Providers
 
     #region Public Methods
 
-    /// <inheritdoc cref="IShortUrlProvider.GetShortUrl(uint)" />
+    /// <inheritdoc cref="ISequenceIdProvider.GetSequenceId(string)" />
+    public int GetSequenceId(string shortUrl)
+    {
+      int sequenceId = 0;
+      char[] shortUrlChars = shortUrl.ToCharArray();
+      double exponent = shortUrlChars.Length - 1;
+      foreach (char shortUrlCharacter in shortUrlChars)
+      {
+        double indexInCharMap = Array.FindIndex(characterMap, character => character == shortUrlCharacter);
+        sequenceId += (int)(indexInCharMap * Math.Pow(baseNumber, exponent));
+        exponent--;
+      }
+
+      return sequenceId;
+    }
+
+    /// <inheritdoc cref="IShortUrlProvider.GetShortUrl(int)" />
     public string GetShortUrl(int sequenceId)
     {
       var shortUrlCharacters = new Stack<char>();
