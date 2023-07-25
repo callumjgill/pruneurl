@@ -232,3 +232,22 @@
 * **backend:** remove optional short url being supplied to the IShortUrlFactory interface ([f24603c](https://github.com/callumjgill/pruneurl/commit/f24603c76ec2dade9dcc1ef0ac406d605ab7e5d1))
 
 
+## [0.12.0](https://github.com/callumjgill/pruneurl/compare/v0.11.0...v0.12.0) (2023-07-25)
+
+
+### Features
+
+* **backend:** add GetShortUrlQuery and related classes ([1f29dd8](https://github.com/callumjgill/pruneurl/commit/1f29dd8a526aaa6cab4f5aa579aace9b0111c749))
+* **backend:** add ISequenceIdProvider & implementation for converting a short url back to its sequence id ([8e1f763](https://github.com/callumjgill/pruneurl/commit/8e1f763545b923baad3ad8074fae1e4c75ca2c3a))
+
+
+### Tests
+
+* **backend:** add unit tests for the GetShortUrlQuery classes ([f42e902](https://github.com/callumjgill/pruneurl/commit/f42e9026f4311933477ca1f711a78c8c59c69ed7))
+
+
+### Code Refactoring
+
+* **backend:** remove injecting IEntityIdProvider into ShortUrlFactory and use the sequence id integer value for the ShortUrl entity id ([ba83d05](https://github.com/callumjgill/pruneurl/commit/ba83d0538083edf5ad206c4ff485b78626ada10b))
+
+
