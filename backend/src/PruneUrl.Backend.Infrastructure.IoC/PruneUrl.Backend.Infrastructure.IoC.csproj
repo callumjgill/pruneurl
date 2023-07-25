@@ -8,6 +8,7 @@
     <ProjectReference Include="..\PruneUrl.Backend.Application.Commands\PruneUrl.Backend.Application.Commands.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Application.Implementation\PruneUrl.Backend.Application.Implementation.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Application.Queries\PruneUrl.Backend.Application.Queries.csproj" />
+    <ProjectReference Include="..\PruneUrl.Backend.Application.Requests\PruneUrl.Backend.Application.Requests.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Application.Transactions\PruneUrl.Backend.Application.Transactions.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Infrastructure.Database.Firestore\PruneUrl.Backend.Infrastructure.Database.Firestore.csproj" />
   </ItemGroup>
