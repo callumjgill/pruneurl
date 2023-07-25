@@ -59,6 +59,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Applicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Application.Queries.Tests", "PruneUrl.Backend.Application.Queries.Tests\PruneUrl.Backend.Application.Queries.Tests.csproj", "{8C887A66-E898-43D1-9390-DD27924826EB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Infrastructure.IoC", "PruneUrl.Backend.Infrastructure.IoC\PruneUrl.Backend.Infrastructure.IoC.csproj", "{3C161724-443D-42CE-837B-1E4E1C3A0F25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{8C887A66-E898-43D1-9390-DD27924826EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C887A66-E898-43D1-9390-DD27924826EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C887A66-E898-43D1-9390-DD27924826EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C161724-443D-42CE-837B-1E4E1C3A0F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C161724-443D-42CE-837B-1E4E1C3A0F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C161724-443D-42CE-837B-1E4E1C3A0F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C161724-443D-42CE-837B-1E4E1C3A0F25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -181,6 +187,7 @@ Global
 		{2344C239-CCD8-4BAC-81BD-501FB25BBFF9} = {976BFA04-77C5-4DF8-A821-A2A5291E6739}
 		{B5715F0C-CA68-48A5-9ED6-C7E0C4950FBD} = {976BFA04-77C5-4DF8-A821-A2A5291E6739}
 		{8C887A66-E898-43D1-9390-DD27924826EB} = {976BFA04-77C5-4DF8-A821-A2A5291E6739}
+		{3C161724-443D-42CE-837B-1E4E1C3A0F25} = {8D383C4D-5D61-47CD-8397-9166E6EB023D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FEA1099-8BF1-4329-90EB-A8405E3F7CBA}
