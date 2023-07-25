@@ -1,6 +1,6 @@
 {
   "name": "pruneurl.com",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "A simple single page application for generating short URLs.",
   "main": "index.js",
   "author": "Callum Gill",
