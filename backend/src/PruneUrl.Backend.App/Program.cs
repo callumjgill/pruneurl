@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using PruneUrl.Backend.App.Endpoints;
 using PruneUrl.Backend.Infrastructure.IoC.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAll
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapEndpointRoutes();
 
 app.UseHttpLogging();
 
