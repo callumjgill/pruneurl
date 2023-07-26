@@ -251,3 +251,32 @@
 * **backend:** remove injecting IEntityIdProvider into ShortUrlFactory and use the sequence id integer value for the ShortUrl entity id ([ba83d05](https://github.com/callumjgill/pruneurl/commit/ba83d0538083edf5ad206c4ff485b78626ada10b))
 
 
+## [0.13.0](https://github.com/callumjgill/pruneurl/compare/v0.12.0...v0.13.0) (2023-07-26)
+
+
+### Features
+
+* **backend:** add CommandsModule for autofac registrations ([71a3d56](https://github.com/callumjgill/pruneurl/commit/71a3d560e43a732c9ac3a7c8bb14e4b2a7772adc))
+* **backend:** add FirebaseModule for autofac registrations ([4bdaf73](https://github.com/callumjgill/pruneurl/commit/4bdaf73489dc53ac43a6a3e7a235037be02c8554))
+* **backend:** add FirestoreDbOptions to Firestore infrastructure project ([d865cf6](https://github.com/callumjgill/pruneurl/commit/d865cf62b1324c9271d50bccc3c8de1f76923d60))
+* **backend:** add GuidEntityIdProvider implementation of IEntityIdProvider ([8ff767b](https://github.com/callumjgill/pruneurl/commit/8ff767b7dd08530e017e774a66494f25773397b4))
+* **backend:** add ImplementationModule for autofac registrations ([0431ccb](https://github.com/callumjgill/pruneurl/commit/0431ccbef9ff594dff902c7bcacbae07e6ac0996))
+* **backend:** add InvalidConfigurationException and extensions for IConfiguration to the Firebase infrastructure project ([9831fda](https://github.com/callumjgill/pruneurl/commit/9831fda22c2f72f1be0b215eaeaae58dec5d8ad9))
+* **backend:** add IoC project to infrastructure which will use Autofac for the IoC container ([7366a7f](https://github.com/callumjgill/pruneurl/commit/7366a7f9a257169386921e0d180eab56108af580))
+* **backend:** add missing GetShortUrlQueryValidator class ([9c792a9](https://github.com/callumjgill/pruneurl/commit/9c792a9e6b7cd017bcf8cba1b8c70ec6324f2d88))
+* **backend:** add QueriesModule for autofac registrations ([b03e644](https://github.com/callumjgill/pruneurl/commit/b03e644fde3d04498b47941db761ea6b186d1636))
+* **backend:** add RegisterAllModules extension method for the Autofac ContainerBuilder ([051907d](https://github.com/callumjgill/pruneurl/commit/051907d7338e62f1874da688be7d41249d50e180))
+* **backend:** add RequestsModule for autofac registrations ([685be6b](https://github.com/callumjgill/pruneurl/commit/685be6b84b8abfca813b281254daa37e1d11187e))
+* **backend:** add TransactionModule for autofac registrations ([471eb55](https://github.com/callumjgill/pruneurl/commit/471eb5513e33c295b270509e4f0690fabc846c94))
+
+
+### Tests
+
+* **backend:** add GetShortUrlQueryValidator unit tests ([c7f206e](https://github.com/callumjgill/pruneurl/commit/c7f206e48e336fd600b1707a435e0b5f44532ab8))
+* **backend:** add integration test for registering all components in IoC container (autofac) ([4ad5a1e](https://github.com/callumjgill/pruneurl/commit/4ad5a1e28b6b8152ef7c28a29e0bea7b3057cf9f))
+* **backend:** add unit tests for ConfigurationExtensions ([ebe90c9](https://github.com/callumjgill/pruneurl/commit/ebe90c9cb5687299efa0b12339d39c0542be0421))
+* **backend:** add unit tests for FirestoreDbOptions ([0e52d35](https://github.com/callumjgill/pruneurl/commit/0e52d35231251cc52597fd692fbe0b1980e9d482))
+* **backend:** add unit tests for GuidEntityIdProvider ([8ea1d4b](https://github.com/callumjgill/pruneurl/commit/8ea1d4b3338fe8d4164393325094214127c12ae3))
+* **backend:** add unit tests for InvalidConfigurationException ([e6fb052](https://github.com/callumjgill/pruneurl/commit/e6fb052a0932bb238e7b406d44b70235f4cb2afd))
+
+
