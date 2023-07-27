@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
+using PruneUrl.Backend.Application.Commands.CreateSequenceId;
 using PruneUrl.Backend.Application.Commands.CreateShortUrl;
 using PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
 using PruneUrl.Backend.Application.Implementation.Factories.Entities;
@@ -14,6 +15,7 @@ using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
 using PruneUrl.Backend.Application.Interfaces.Database.Requests;
 using PruneUrl.Backend.Application.Interfaces.Factories.Entities;
 using PruneUrl.Backend.Application.Interfaces.Providers;
+using PruneUrl.Backend.Application.Queries.GetSequenceId;
 using PruneUrl.Backend.Application.Queries.GetShortUrl;
 using PruneUrl.Backend.Application.Requests.Decorators;
 using PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId;
@@ -62,6 +64,8 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Tests.IntegrationTests.Extensions
         {
           Assert.That(container.Resolve<IRequestHandler<CreateShortUrlCommand>>(), Is.TypeOf<ValidateRequestHandlerDecorator<CreateShortUrlCommand>>());
           Assert.That(container.Resolve<IValidator<CreateShortUrlCommand>>(), Is.TypeOf<CreateShortUrlCommandValidator>());
+          Assert.That(container.Resolve<IRequestHandler<CreateSequenceIdCommand>>(), Is.TypeOf<ValidateRequestHandlerDecorator<CreateSequenceIdCommand>>());
+          Assert.That(container.Resolve<IValidator<CreateSequenceIdCommand>>(), Is.TypeOf<CreateSequenceIdCommandValidator>());
           Assert.That(container.Resolve<ISequenceIdFactory>(), Is.TypeOf<SequenceIdFactory>());
           Assert.That(container.Resolve<IShortUrlFactory>(), Is.TypeOf<ShortUrlFactory>());
           Assert.That(container.Resolve<IDateTimeProvider>(), Is.TypeOf<DateTimeProvider>());
@@ -69,6 +73,8 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Tests.IntegrationTests.Extensions
           Assert.That(container.Resolve<ISequenceIdProvider>(), Is.TypeOf<ShortUrlProvider>());
           Assert.That(container.Resolve<IRequestHandler<GetShortUrlQuery, GetShortUrlQueryResponse>>(), Is.TypeOf<ValidateRequestHandlerDecorator<GetShortUrlQuery, GetShortUrlQueryResponse>>());
           Assert.That(container.Resolve<IValidator<GetShortUrlQuery>>(), Is.TypeOf<GetShortUrlQueryValidator>());
+          Assert.That(container.Resolve<IRequestHandler<GetSequenceIdQuery, GetSequenceIdQueryResponse>>(), Is.TypeOf<ValidateRequestHandlerDecorator<GetSequenceIdQuery, GetSequenceIdQueryResponse>>());
+          Assert.That(container.Resolve<IValidator<GetSequenceIdQuery>>(), Is.TypeOf<GetSequenceIdQueryValidator>());
           Assert.That(container.Resolve<IRequestHandler<GetAndBumpSequenceIdRequest, GetAndBumpSequenceIdResponse>>(), Is.TypeOf<GetAndBumpSequenceIdRequestHandler>());
           Assert.That(container.Resolve<IFirestoreDbTransactionFactory>(), Is.TypeOf<FirestoreDbTransactionFactory>());
           Assert.That(container.Resolve<IDbGetByIdOperationFactory>(), Is.TypeOf<FirestoreDbGetByIdOperationFactory>());
