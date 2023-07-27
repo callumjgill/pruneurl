@@ -52,7 +52,7 @@ namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSe
       dbTransaction.GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>()).Returns(testSequenceId);
       dbTransactionProvider.RunTransactionAsync(Arg.Any<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>(), Arg.Any<CancellationToken>())
                            .Returns(x => x.Arg<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>().Invoke(dbTransaction));
-      sequenceIdFactory.CreateFromExisting(Arg.Any<SequenceId>(), Arg.Any<int>()).Returns(nextSequenceId);
+      sequenceIdFactory.Create(Arg.Any<string>(), Arg.Any<int>()).Returns(nextSequenceId);
 
       CancellationToken cancellationToken = CancellationToken.None;
       var requestHandler = new GetAndBumpSequenceIdRequestHandler(dbTransactionProvider, sequenceIdOptions, sequenceIdFactory);
@@ -62,8 +62,8 @@ namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSe
       await dbTransaction.Received(1).GetByIdAsync(testId, cancellationToken);
       dbTransaction.Received(1).Update(Arg.Any<SequenceId>());
       dbTransaction.Received(1).Update(nextSequenceId);
-      sequenceIdFactory.Received(1).CreateFromExisting(Arg.Any<SequenceId>(), Arg.Any<int>());
-      sequenceIdFactory.Received(1).CreateFromExisting(testSequenceId, testSequenceId.Value + 1);
+      sequenceIdFactory.Received(1).Create(Arg.Any<string>(), Arg.Any<int>());
+      sequenceIdFactory.Received(1).Create(testId, testSequenceId.Value + 1);
       _ = sequenceIdOptions.Received(1).Value;
     }
 

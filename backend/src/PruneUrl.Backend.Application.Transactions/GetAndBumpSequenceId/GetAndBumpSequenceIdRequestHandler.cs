@@ -63,7 +63,7 @@ namespace PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId
 
     private void BumpSequenceIdValue(IDbUpdateOperation<SequenceId> dbUpdateOperation, SequenceId previousSequenceId)
     {
-      SequenceId nextSequenceId = sequenceIdFactory.CreateFromExisting(previousSequenceId, previousSequenceId.Value + 1);
+      SequenceId nextSequenceId = sequenceIdFactory.Create(previousSequenceId.Id, previousSequenceId.Value + 1);
       dbUpdateOperation.Update(nextSequenceId);
     }
 
