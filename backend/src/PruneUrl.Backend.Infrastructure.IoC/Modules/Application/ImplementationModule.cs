@@ -32,7 +32,6 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application
     private void RegisterProviders(ContainerBuilder builder)
     {
       builder.RegisterType<DateTimeProvider>().As<IDateTimeProvider>();
-      builder.RegisterType<GuidEntityIdProvider>().As<IEntityIdProvider>();
       builder.RegisterType<ShortUrlProvider>().AsImplementedInterfaces();
     }
 

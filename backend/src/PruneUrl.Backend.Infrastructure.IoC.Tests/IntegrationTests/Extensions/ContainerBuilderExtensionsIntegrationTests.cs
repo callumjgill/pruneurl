@@ -65,7 +65,6 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Tests.IntegrationTests.Extensions
           Assert.That(container.Resolve<ISequenceIdFactory>(), Is.TypeOf<SequenceIdFactory>());
           Assert.That(container.Resolve<IShortUrlFactory>(), Is.TypeOf<ShortUrlFactory>());
           Assert.That(container.Resolve<IDateTimeProvider>(), Is.TypeOf<DateTimeProvider>());
-          Assert.That(container.Resolve<IEntityIdProvider>(), Is.TypeOf<GuidEntityIdProvider>());
           Assert.That(container.Resolve<IShortUrlProvider>(), Is.TypeOf<ShortUrlProvider>());
           Assert.That(container.Resolve<ISequenceIdProvider>(), Is.TypeOf<ShortUrlProvider>());
           Assert.That(container.Resolve<IRequestHandler<GetShortUrlQuery, GetShortUrlQueryResponse>>(), Is.TypeOf<ValidateRequestHandlerDecorator<GetShortUrlQuery, GetShortUrlQueryResponse>>());
