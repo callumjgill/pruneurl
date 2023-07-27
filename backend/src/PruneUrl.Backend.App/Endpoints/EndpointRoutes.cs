@@ -10,6 +10,7 @@ namespace PruneUrl.Backend.App.Endpoints
   {
     #region Private Fields
 
+    private const string ApiUrlResourceGroup = "/api";
     private const string ShortUrlResourceGroup = "/shortUrls";
 
     #endregion Private Fields
@@ -23,8 +24,10 @@ namespace PruneUrl.Backend.App.Endpoints
     /// <returns> </returns>
     public static IEndpointRouteBuilder MapEndpointRoutes(this IEndpointRouteBuilder routeBuilder)
     {
-      routeBuilder.MapRedirectRoutes()
-                  .MapShortUrlRoutes();
+      routeBuilder.MapRedirectRoutes();
+
+      RouteGroupBuilder apiResourceGroup = routeBuilder.MapGroup(ApiUrlResourceGroup);
+      apiResourceGroup.MapShortUrlRoutes();
 
       return routeBuilder;
     }
@@ -36,8 +39,18 @@ namespace PruneUrl.Backend.App.Endpoints
     private static IEndpointRouteBuilder MapRedirectRoutes(this IEndpointRouteBuilder routeBuilder)
     {
       routeBuilder.MapGet("/{shortUrl}", RedirectEndpointRestMethods.GetShortUrl)
-                  .WithName(RouteNames.PostShortUrlRoute)
+                  .WithName(RouteNames.RedirectRoute)
+                  .WithOpenApi(generatedOperation =>
+                  {
+                    OpenApiParameter parameter = generatedOperation.Parameters[0];
+                    parameter.Description = "The short url to use for redirection to the corresponding long url.";
+
+                    generatedOperation.Summary = "Redirects the caller to the equivalent long url.";
+                    generatedOperation.Description = "Redirects the caller to the equivalent long url if the short url is found and valid.";
+                    return generatedOperation;
+                  })
                   .Produces(StatusCodes.Status307TemporaryRedirect)
+                  .Produces(StatusCodes.Status404NotFound)
                   .Produces(StatusCodes.Status500InternalServerError);
 
       return routeBuilder;
