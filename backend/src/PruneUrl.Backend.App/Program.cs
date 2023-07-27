@@ -2,6 +2,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using PruneUrl.Backend.App.Endpoints;
+using PruneUrl.Backend.App.Startup;
 using PruneUrl.Backend.Infrastructure.IoC.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,5 +42,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+await app.EnsureDbIsSetup();
 
 await app.RunAsync();
