@@ -11,7 +11,7 @@ namespace PruneUrl.Backend.App.Endpoints
     #region Private Fields
 
     private const string ApiUrlResourceGroup = "/api";
-    private const string ShortUrlResourceGroup = "/shortUrls";
+    private const string ShortUrlResourceGroup = "/short-urls";
 
     #endregion Private Fields
 

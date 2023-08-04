@@ -3,6 +3,8 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using PruneUrl.Backend.App.Endpoints;
 using PruneUrl.Backend.App.Startup;
+using PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
+using PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration;
 using PruneUrl.Backend.Infrastructure.IoC.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,16 +12,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders() // Remove defaults
                .AddConsole();
 
+builder.Services.AddOptions<SequenceIdOptions>().Bind(builder.Configuration.GetSection(nameof(SequenceIdOptions)));
+builder.Services.AddOptions<FirestoreTransactionOptions>().Bind(builder.Configuration.GetSection(nameof(FirestoreTransactionOptions)));
+builder.Services.AddOptions<FirestoreDbOptions>().Bind(builder.Configuration.GetSection(nameof(FirestoreDbOptions)));
+
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
   options.SwaggerDoc("v1", new OpenApiInfo
   {
     Version = "v1",
-    Title = "pruneurl.com REST API",
-    Description = "An ASP.NET Core Minimal API for managing the backend of pruneurl.com"
+    Title = "PruneUrl REST API",
+    Description = "An ASP.NET Core Minimal API for managing the backend of PruneUrl"
   });
 });
-builder.Services.AddEndpointsApiExplorer();
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAllModules());
@@ -33,7 +39,10 @@ app.UseHttpLogging();
 if (app.Environment.IsDevelopment())
 {
   app.UseSwagger();
-  app.UseSwaggerUI();
+  app.UseSwaggerUI(options =>
+  {
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "PruneUrl REST API V1");
+  });
 }
 
 if (!app.Environment.IsDevelopment())
