@@ -40,7 +40,7 @@ namespace PruneUrl.Backend.App.Endpoints
         var command = new CreateShortUrlCommand(requestBody.LongUrl, sequenceId);
         await mediator.Send(command);
         string shortUrl = shortUrlProvider.GetShortUrl(sequenceId);
-        return Results.CreatedAtRoute(RouteNames.RedirectRoute, shortUrl);
+        return Results.CreatedAtRoute(RouteNames.RedirectRoute, new { shortUrl });
       });
     }
 
