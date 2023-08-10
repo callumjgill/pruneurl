@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Google.Cloud.Firestore;
-using Moq;
+using NSubstitute;
 using NUnit.Framework;
 using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
 using PruneUrl.Backend.Domain.Entities;
@@ -22,7 +22,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Operations.Re
     public void CreateTest_Invalid()
     {
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      var factory = new FirestoreDbGetByIdOperationFactory(testFirestoreDb, Mock.Of<IMapper>());
+      var factory = new FirestoreDbGetByIdOperationFactory(testFirestoreDb, Substitute.For<IMapper>());
       Assert.That(factory.Create<IEntity>, Throws.TypeOf<InvalidEntityTypeMapException>().With.Message.EqualTo($"No mapping exists for the type {typeof(IEntity)}!"));
     }
 
@@ -47,7 +47,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Operations.Re
       where TFirestoreEntity : FirestoreEntityDTO
     {
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      var factory = new FirestoreDbGetByIdOperationFactory(testFirestoreDb, Mock.Of<IMapper>());
+      var factory = new FirestoreDbGetByIdOperationFactory(testFirestoreDb, Substitute.For<IMapper>());
       IDbGetByIdOperation<TEntity> actualDbGetByIdOperation = factory.Create<TEntity>();
       Assert.That(actualDbGetByIdOperation, Is.TypeOf<FirestoreDbGetByIdOperationAdapter<TEntity, TFirestoreEntity>>());
     }

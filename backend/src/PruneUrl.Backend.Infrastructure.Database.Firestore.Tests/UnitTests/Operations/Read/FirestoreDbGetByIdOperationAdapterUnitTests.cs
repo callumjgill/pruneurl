@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Moq;
+using NSubstitute;
 using NUnit.Framework;
 using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
 using PruneUrl.Backend.Domain.Entities;
@@ -18,35 +18,35 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Ope
     public async Task GetByIdAsyncTest_ReturnsMappedEntityIfAdapteeReturnsEntity()
     {
       string testId = Guid.NewGuid().ToString();
-      var adapteeDbGetByIdOperationMock = new Mock<IDbGetByIdOperation<FirestoreEntityDTO>>();
-      var mapperMock = new Mock<IMapper>();
-      var testFirestoreEntity = Mock.Of<FirestoreEntityDTO>();
-      var expectedEntity = Mock.Of<IEntity>();
+      var adapteeDbGetByIdOperation = Substitute.For<IDbGetByIdOperation<FirestoreEntityDTO>>();
+      var mapper = Substitute.For<IMapper>();
+      var testFirestoreEntity = Substitute.For<FirestoreEntityDTO>();
+      var expectedEntity = Substitute.For<IEntity>();
 
-      adapteeDbGetByIdOperationMock.Setup(x => x.GetByIdAsync(It.IsAny<string>(), It.IsAny<CancellationToken>())).ReturnsAsync(testFirestoreEntity);
-      mapperMock.Setup(x => x.Map<FirestoreEntityDTO, IEntity>(It.IsAny<FirestoreEntityDTO>())).Returns(expectedEntity);
+      adapteeDbGetByIdOperation.GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>()).Returns(testFirestoreEntity);
+      mapper.Map<FirestoreEntityDTO, IEntity>(Arg.Any<FirestoreEntityDTO>()).Returns(expectedEntity);
 
-      var adapter = new FirestoreDbGetByIdOperationAdapter<IEntity, FirestoreEntityDTO>(adapteeDbGetByIdOperationMock.Object, mapperMock.Object);
+      var adapter = new FirestoreDbGetByIdOperationAdapter<IEntity, FirestoreEntityDTO>(adapteeDbGetByIdOperation, mapper);
       IEntity? actualEntity = await adapter.GetByIdAsync(testId);
       Assert.That(actualEntity, Is.EqualTo(expectedEntity));
-      adapteeDbGetByIdOperationMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
-      adapteeDbGetByIdOperationMock.Verify(x => x.GetByIdAsync(testId, default), Times.Once);
-      mapperMock.Verify(x => x.Map<FirestoreEntityDTO, IEntity>(It.IsAny<FirestoreEntityDTO>()), Times.Once);
-      mapperMock.Verify(x => x.Map<FirestoreEntityDTO, IEntity>(testFirestoreEntity), Times.Once);
+      await adapteeDbGetByIdOperation.Received(1).GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
+      await adapteeDbGetByIdOperation.Received(1).GetByIdAsync(testId, default);
+      mapper.Received(1).Map<FirestoreEntityDTO, IEntity>(Arg.Any<FirestoreEntityDTO>());
+      mapper.Received(1).Map<FirestoreEntityDTO, IEntity>(testFirestoreEntity);
     }
 
     [Test]
     public async Task GetByIdAsyncTest_ReturnsNullIfAdapteeReturnsNull()
     {
       string testId = Guid.NewGuid().ToString();
-      var adapteeDbGetByIdOperationMock = new Mock<IDbGetByIdOperation<FirestoreEntityDTO>>();
-      var mapperMock = new Mock<IMapper>();
+      var adapteeDbGetByIdOperation = Substitute.For<IDbGetByIdOperation<FirestoreEntityDTO>>();
+      var mapper = Substitute.For<IMapper>();
 
-      var adapter = new FirestoreDbGetByIdOperationAdapter<IEntity, FirestoreEntityDTO>(adapteeDbGetByIdOperationMock.Object, mapperMock.Object);
+      var adapter = new FirestoreDbGetByIdOperationAdapter<IEntity, FirestoreEntityDTO>(adapteeDbGetByIdOperation, mapper);
       IEntity? actualEntity = await adapter.GetByIdAsync(testId);
       Assert.That(actualEntity, Is.Null);
-      adapteeDbGetByIdOperationMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
-      adapteeDbGetByIdOperationMock.Verify(x => x.GetByIdAsync(testId, default), Times.Once);
+      await adapteeDbGetByIdOperation.Received(1).GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
+      await adapteeDbGetByIdOperation.Received(1).GetByIdAsync(testId, default);
     }
 
     #endregion Public Methods

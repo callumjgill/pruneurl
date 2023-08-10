@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Google.Cloud.Firestore;
-using Moq;
+using NSubstitute;
 using NUnit.Framework;
 using PruneUrl.Backend.Application.Interfaces.Database.Requests;
 using PruneUrl.Backend.Domain.Entities;
@@ -21,7 +21,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
     public void CreateTest_Invalid()
     {
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      var factory = new FirestoreDbWriteBatchFactory(testFirestoreDb, Mock.Of<IMapper>());
+      var factory = new FirestoreDbWriteBatchFactory(testFirestoreDb, Substitute.For<IMapper>());
       Assert.That(factory.Create<IEntity>, Throws.TypeOf<InvalidEntityTypeMapException>().With.Message.EqualTo($"No mapping exists for the type {typeof(IEntity)}!"));
     }
 
@@ -46,7 +46,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       where TFirestoreEntity : FirestoreEntityDTO
     {
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      var factory = new FirestoreDbTransactionFactory(testFirestoreDb, Mock.Of<IMapper>());
+      var factory = new FirestoreDbTransactionFactory(testFirestoreDb, Substitute.For<IMapper>());
       await testFirestoreDb.RunTransactionAsync(transaction =>
       {
         IDbTransaction<TEntity> actualDbTransaction = factory.Create<TEntity>(transaction);
