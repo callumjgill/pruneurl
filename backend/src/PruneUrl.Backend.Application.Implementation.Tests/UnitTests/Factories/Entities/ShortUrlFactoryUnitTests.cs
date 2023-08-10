@@ -1,4 +1,4 @@
-﻿using Moq;
+﻿using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using PruneUrl.Backend.Application.Implementation.Factories.Entities;
@@ -27,15 +27,13 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
       DateTime testCreated = DateTime.Now;
       string shortUrlToUse = "testing123";
 
-      var dateTimeProviderMock = new Mock<IDateTimeProvider>();
-      var shortUrlProviderMock = new Mock<IShortUrlProvider>();
+      var dateTimeProvider = Substitute.For<IDateTimeProvider>();
+      var shortUrlProvider = Substitute.For<IShortUrlProvider>();
 
-      dateTimeProviderMock.Setup(x => x.GetNow()).Returns(testCreated);
-      shortUrlProviderMock.Setup(x => x.GetShortUrl(It.IsAny<int>())).Returns(shortUrlToUse);
+      dateTimeProvider.GetNow().Returns(testCreated);
+      shortUrlProvider.GetShortUrl(Arg.Any<int>()).Returns(shortUrlToUse);
 
-      var shortUrlFactory = new ShortUrlFactory(
-        dateTimeProviderMock.Object,
-        shortUrlProviderMock.Object);
+      var shortUrlFactory = new ShortUrlFactory(dateTimeProvider, shortUrlProvider);
 
       ShortUrl actualShortUrl = shortUrlFactory.Create(longUrl, testSequenceId);
       Assert.Multiple(() =>
@@ -45,9 +43,9 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
         Assert.That(actualShortUrl.Url, Is.EqualTo(shortUrlToUse));
         Assert.That(actualShortUrl.Created, Is.EqualTo(testCreated));
       });
-      dateTimeProviderMock.Verify(x => x.GetNow(), Times.Once);
-      shortUrlProviderMock.Verify(x => x.GetShortUrl(It.IsAny<int>()), Times.Once);
-      shortUrlProviderMock.Verify(x => x.GetShortUrl(testSequenceId), Times.Once);
+      dateTimeProvider.Received(1).GetNow();
+      shortUrlProvider.Received(1).GetShortUrl(Arg.Any<int>());
+      shortUrlProvider.Received(1).GetShortUrl(testSequenceId);
     }
 
     #endregion Public Methods
