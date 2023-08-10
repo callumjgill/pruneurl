@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
-using Moq;
+using NSubstitute;
 using NUnit.Framework;
 using PruneUrl.Backend.Application.Requests.Decorators;
 using PruneUrl.Backend.Application.Requests.Exceptions;
@@ -17,88 +17,88 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Decorators
     [Test]
     public void HandleTest_NoResponse_IsNotValid()
     {
-      var requestHandlerMock = new Mock<IRequestHandler<IRequest>>();
-      var validatorMock = new Mock<IValidator<IRequest>>();
-      var validationResultMock = new Mock<ValidationResult>();
-      var requestMock = Mock.Of<IRequest>();
+      var requestHandler = Substitute.For<IRequestHandler<IRequest>>();
+      var validator = Substitute.For<IValidator<IRequest>>();
+      var validationResult = Substitute.For<ValidationResult>();
+      var request = Substitute.For<IRequest>();
       CancellationToken cancellationToken = CancellationToken.None;
 
-      validationResultMock.Setup(x => x.IsValid).Returns(false);
-      validatorMock.Setup(x => x.Validate(It.IsAny<IRequest>())).Returns(validationResultMock.Object);
-      requestHandlerMock.Setup(x => x.Handle(It.IsAny<IRequest>(), It.IsAny<CancellationToken>())).Returns(Task.CompletedTask);
+      validationResult.IsValid.Returns(false);
+      validator.Validate(Arg.Any<IRequest>()).Returns(validationResult);
+      requestHandler.Handle(Arg.Any<IRequest>(), Arg.Any<CancellationToken>()).Returns(Task.CompletedTask);
 
-      var decorator = new ValidateRequestHandlerDecorator<IRequest>(requestHandlerMock.Object, validatorMock.Object);
-      Assert.That(async () => await decorator.Handle(requestMock, cancellationToken), Throws.TypeOf<InvalidRequestException>());
-      validatorMock.Verify(x => x.Validate(It.IsAny<IRequest>()), Times.Once);
-      validatorMock.Verify(x => x.Validate(requestMock), Times.Once);
-      requestHandlerMock.Verify(x => x.Handle(It.IsAny<IRequest>(), It.IsAny<CancellationToken>()), Times.Never);
-      requestHandlerMock.Verify(x => x.Handle(requestMock, cancellationToken), Times.Never);
+      var decorator = new ValidateRequestHandlerDecorator<IRequest>(requestHandler, validator);
+      Assert.That(async () => await decorator.Handle(request, cancellationToken), Throws.TypeOf<InvalidRequestException>());
+      validator.Received(1).Validate(Arg.Any<IRequest>());
+      validator.Received(1).Validate(request);
+      requestHandler.DidNotReceive().Handle(Arg.Any<IRequest>(), Arg.Any<CancellationToken>());
+      requestHandler.DidNotReceive().Handle(request, cancellationToken);
     }
 
     [Test]
     public void HandleTest_NoResponse_IsValid()
     {
-      var requestHandlerMock = new Mock<IRequestHandler<IRequest>>();
-      var validatorMock = new Mock<IValidator<IRequest>>();
-      var validationResultMock = new Mock<ValidationResult>();
-      var requestMock = Mock.Of<IRequest>();
+      var requestHandler = Substitute.For<IRequestHandler<IRequest>>();
+      var validator = Substitute.For<IValidator<IRequest>>();
+      var validationResult = Substitute.For<ValidationResult>();
+      var request = Substitute.For<IRequest>();
       CancellationToken cancellationToken = CancellationToken.None;
 
-      validationResultMock.Setup(x => x.IsValid).Returns(true);
-      validatorMock.Setup(x => x.Validate(It.IsAny<IRequest>())).Returns(validationResultMock.Object);
-      requestHandlerMock.Setup(x => x.Handle(It.IsAny<IRequest>(), It.IsAny<CancellationToken>())).Returns(Task.CompletedTask);
+      validationResult.IsValid.Returns(true);
+      validator.Validate(Arg.Any<IRequest>()).Returns(validationResult);
+      requestHandler.Handle(Arg.Any<IRequest>(), Arg.Any<CancellationToken>()).Returns(Task.CompletedTask);
 
-      var decorator = new ValidateRequestHandlerDecorator<IRequest>(requestHandlerMock.Object, validatorMock.Object);
-      Assert.That(async () => await decorator.Handle(requestMock, cancellationToken), Throws.Nothing);
-      validatorMock.Verify(x => x.Validate(It.IsAny<IRequest>()), Times.Once);
-      validatorMock.Verify(x => x.Validate(requestMock), Times.Once);
-      requestHandlerMock.Verify(x => x.Handle(It.IsAny<IRequest>(), It.IsAny<CancellationToken>()), Times.Once);
-      requestHandlerMock.Verify(x => x.Handle(requestMock, cancellationToken), Times.Once);
+      var decorator = new ValidateRequestHandlerDecorator<IRequest>(requestHandler, validator);
+      Assert.That(async () => await decorator.Handle(request, cancellationToken), Throws.Nothing);
+      validator.Received(1).Validate(Arg.Any<IRequest>());
+      validator.Received(1).Validate(request);
+      requestHandler.Received(1).Handle(Arg.Any<IRequest>(), Arg.Any<CancellationToken>());
+      requestHandler.Received(1).Handle(request, cancellationToken);
     }
 
     [Test]
     public void HandleTest_Response_IsNotValid()
     {
-      var requestHandlerMock = new Mock<IRequestHandler<IRequest<StubResponse>, StubResponse>>();
-      var validatorMock = new Mock<IValidator<IRequest<StubResponse>>>();
-      var validationResultMock = new Mock<ValidationResult>();
-      var requestMock = Mock.Of<IRequest<StubResponse>>();
-      var responseMock = Mock.Of<StubResponse>();
+      var requestHandler = Substitute.For<IRequestHandler<IRequest<StubResponse>, StubResponse>>();
+      var validator = Substitute.For<IValidator<IRequest<StubResponse>>>();
+      var validationResult = Substitute.For<ValidationResult>();
+      var request = Substitute.For<IRequest<StubResponse>>();
+      var response = Substitute.For<StubResponse>();
       CancellationToken cancellationToken = CancellationToken.None;
 
-      validationResultMock.Setup(x => x.IsValid).Returns(false);
-      validatorMock.Setup(x => x.Validate(It.IsAny<IRequest<StubResponse>>())).Returns(validationResultMock.Object);
-      requestHandlerMock.Setup(x => x.Handle(It.IsAny<IRequest<StubResponse>>(), It.IsAny<CancellationToken>())).ReturnsAsync(responseMock);
+      validationResult.IsValid.Returns(false);
+      validator.Validate(Arg.Any<IRequest<StubResponse>>()).Returns(validationResult);
+      requestHandler.Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>()).Returns(response);
 
-      var decorator = new ValidateRequestHandlerDecorator<IRequest<StubResponse>, StubResponse>(requestHandlerMock.Object, validatorMock.Object);
-      Assert.That(async () => await decorator.Handle(requestMock, cancellationToken), Throws.TypeOf<InvalidRequestException>());
-      validatorMock.Verify(x => x.Validate(It.IsAny<IRequest<StubResponse>>()), Times.Once);
-      validatorMock.Verify(x => x.Validate(requestMock), Times.Once);
-      requestHandlerMock.Verify(x => x.Handle(It.IsAny<IRequest<StubResponse>>(), It.IsAny<CancellationToken>()), Times.Never);
-      requestHandlerMock.Verify(x => x.Handle(requestMock, cancellationToken), Times.Never);
+      var decorator = new ValidateRequestHandlerDecorator<IRequest<StubResponse>, StubResponse>(requestHandler, validator);
+      Assert.That(async () => await decorator.Handle(request, cancellationToken), Throws.TypeOf<InvalidRequestException>());
+      validator.Received(1).Validate(Arg.Any<IRequest<StubResponse>>());
+      validator.Received(1).Validate(request);
+      requestHandler.DidNotReceive().Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>());
+      requestHandler.DidNotReceive().Handle(request, cancellationToken);
     }
 
     [Test]
     public async Task HandleTest_Response_IsValid()
     {
-      var requestHandlerMock = new Mock<IRequestHandler<IRequest<StubResponse>, StubResponse>>();
-      var validatorMock = new Mock<IValidator<IRequest<StubResponse>>>();
-      var validationResultMock = new Mock<ValidationResult>();
-      var requestMock = Mock.Of<IRequest<StubResponse>>();
-      var responseMock = Mock.Of<StubResponse>();
+      var requestHandler = Substitute.For<IRequestHandler<IRequest<StubResponse>, StubResponse>>();
+      var validator = Substitute.For<IValidator<IRequest<StubResponse>>>();
+      var validationResult = Substitute.For<ValidationResult>();
+      var request = Substitute.For<IRequest<StubResponse>>();
+      var response = Substitute.For<StubResponse>();
       CancellationToken cancellationToken = CancellationToken.None;
 
-      validationResultMock.Setup(x => x.IsValid).Returns(true);
-      validatorMock.Setup(x => x.Validate(It.IsAny<IRequest<StubResponse>>())).Returns(validationResultMock.Object);
-      requestHandlerMock.Setup(x => x.Handle(It.IsAny<IRequest<StubResponse>>(), It.IsAny<CancellationToken>())).ReturnsAsync(responseMock);
+      validationResult.IsValid.Returns(true);
+      validator.Validate(Arg.Any<IRequest<StubResponse>>()).Returns(validationResult);
+      requestHandler.Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>()).Returns(response);
 
-      var decorator = new ValidateRequestHandlerDecorator<IRequest<StubResponse>, StubResponse>(requestHandlerMock.Object, validatorMock.Object);
-      StubResponse response = await decorator.Handle(requestMock, cancellationToken);
-      Assert.That(response, Is.EqualTo(responseMock));
-      validatorMock.Verify(x => x.Validate(It.IsAny<IRequest<StubResponse>>()), Times.Once);
-      validatorMock.Verify(x => x.Validate(requestMock), Times.Once);
-      requestHandlerMock.Verify(x => x.Handle(It.IsAny<IRequest<StubResponse>>(), It.IsAny<CancellationToken>()), Times.Once);
-      requestHandlerMock.Verify(x => x.Handle(requestMock, cancellationToken), Times.Once);
+      var decorator = new ValidateRequestHandlerDecorator<IRequest<StubResponse>, StubResponse>(requestHandler, validator);
+      StubResponse actualResponse = await decorator.Handle(request, cancellationToken);
+      Assert.That(actualResponse, Is.EqualTo(response));
+      validator.Received(1).Validate(Arg.Any<IRequest<StubResponse>>());
+      validator.Received(1).Validate(request);
+      await requestHandler.Received(1).Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>());
+      await requestHandler.Received(1).Handle(request, cancellationToken);
     }
 
     #endregion Public Methods
