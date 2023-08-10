@@ -1,4 +1,4 @@
-﻿using Moq;
+﻿using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using PruneUrl.Backend.Application.Implementation.Factories.Entities;
@@ -26,7 +26,7 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
     {
       const string testId = "Testing123";
       var existingSequenceId = EntityTestHelper.CreateSequenceId(testId);
-      var sequenceIdFactory = new SequenceIdFactory(Mock.Of<IEntityIdProvider>());
+      var sequenceIdFactory = new SequenceIdFactory(Substitute.For<IEntityIdProvider>());
       var negativeIntegers = GetRandomRangeOfValues(int.MinValue, 0, NumberOfIntsToTest);
       var exceptions = new ConcurrentQueue<Exception>();
       Parallel.ForEach(negativeIntegers, invalidSequenceId =>
@@ -58,18 +58,18 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
       {
         try
         {
-          var entityIdProviderMock = new Mock<IEntityIdProvider>();
+          var entityIdProvider = Substitute.For<IEntityIdProvider>();
 
-          entityIdProviderMock.Setup(x => x.NewId()).Returns(testId);
+          entityIdProvider.NewId().Returns(testId);
 
-          var sequenceIdFactory = new SequenceIdFactory(entityIdProviderMock.Object);
+          var sequenceIdFactory = new SequenceIdFactory(entityIdProvider);
           var actualSequenceId = sequenceIdFactory.CreateFromExisting(existingSequenceId, sequenceId);
           Assert.Multiple(() =>
           {
             Assert.That(actualSequenceId.Id, Is.EqualTo(testId));
             Assert.That(actualSequenceId.Value, Is.EqualTo(sequenceId));
           });
-          entityIdProviderMock.Verify(x => x.NewId(), Times.Never);
+          entityIdProvider.DidNotReceive().NewId();
         }
         catch (Exception ex)
         {
@@ -86,7 +86,7 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
     [Test]
     public void CreateTest_Invalid()
     {
-      var sequenceIdFactory = new SequenceIdFactory(Mock.Of<IEntityIdProvider>());
+      var sequenceIdFactory = new SequenceIdFactory(Substitute.For<IEntityIdProvider>());
       var negativeIntegers = GetRandomRangeOfValues(int.MinValue, 0, NumberOfIntsToTest);
       var exceptions = new ConcurrentQueue<Exception>();
       Parallel.ForEach(negativeIntegers, invalidSequenceId =>
@@ -117,18 +117,18 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
       {
         try
         {
-          var entityIdProviderMock = new Mock<IEntityIdProvider>();
+          var entityIdProvider = Substitute.For<IEntityIdProvider>();
 
-          entityIdProviderMock.Setup(x => x.NewId()).Returns(testId);
+          entityIdProvider.NewId().Returns(testId);
 
-          var sequenceIdFactory = new SequenceIdFactory(entityIdProviderMock.Object);
+          var sequenceIdFactory = new SequenceIdFactory(entityIdProvider);
           var actualSequenceId = sequenceIdFactory.Create(sequenceId);
           Assert.Multiple(() =>
           {
             Assert.That(actualSequenceId.Id, Is.EqualTo(testId));
             Assert.That(actualSequenceId.Value, Is.EqualTo(sequenceId));
           });
-          entityIdProviderMock.Verify(x => x.NewId(), Times.Once);
+          entityIdProvider.Received().NewId();
         }
         catch (Exception ex)
         {
