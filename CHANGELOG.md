@@ -280,3 +280,6 @@
 * **backend:** add unit tests for InvalidConfigurationException ([e6fb052](https://github.com/callumjgill/pruneurl/commit/e6fb052a0932bb238e7b406d44b70235f4cb2afd))
 
 
+### [0.13.1](https://github.com/callumjgill/pruneurl/compare/v0.13.0...v0.13.1) (2023-08-10)
+
+
