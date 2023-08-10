@@ -1,4 +1,4 @@
-﻿using Moq;
+﻿using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using PruneUrl.Backend.Application.Exceptions.Database;
@@ -21,43 +21,43 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl
     {
       const string testShortUrl = "hsfwgss";
       const int testSequenceId = 233243;
-      var dbGetByIdOperationMock = new Mock<IDbGetByIdOperation<ShortUrl>>();
-      var sequenceIdProviderMock = new Mock<ISequenceIdProvider>();
+      var dbGetByIdOperation = Substitute.For<IDbGetByIdOperation<ShortUrl>>();
+      var sequenceIdProvider = Substitute.For<ISequenceIdProvider>();
       ShortUrl testShortUrlEntity = EntityTestHelper.CreateShortUrl();
       var query = new GetShortUrlQuery(testShortUrl);
       var cancellationToken = CancellationToken.None;
 
-      dbGetByIdOperationMock.Setup(x => x.GetByIdAsync(It.IsAny<string>(), It.IsAny<CancellationToken>())).ReturnsAsync(testShortUrlEntity);
-      sequenceIdProviderMock.Setup(x => x.GetSequenceId(It.IsAny<string>())).Returns(testSequenceId);
+      dbGetByIdOperation.GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>()).Returns(testShortUrlEntity);
+      sequenceIdProvider.GetSequenceId(Arg.Any<string>()).Returns(testSequenceId);
 
-      var handler = new GetShortUrlQueryHandler(dbGetByIdOperationMock.Object, sequenceIdProviderMock.Object);
+      var handler = new GetShortUrlQueryHandler(dbGetByIdOperation, sequenceIdProvider);
       GetShortUrlQueryResponse response = await handler.Handle(query, cancellationToken);
       Assert.That(response.ShortUrl, Is.EqualTo(testShortUrlEntity));
-      dbGetByIdOperationMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
-      dbGetByIdOperationMock.Verify(x => x.GetByIdAsync(testSequenceId.ToString(), cancellationToken), Times.Once);
-      sequenceIdProviderMock.Verify(x => x.GetSequenceId(It.IsAny<string>()), Times.Once);
-      sequenceIdProviderMock.Verify(x => x.GetSequenceId(testShortUrl), Times.Once);
+      await dbGetByIdOperation.Received(1).GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
+      await dbGetByIdOperation.Received(1).GetByIdAsync(testSequenceId.ToString(), cancellationToken);
+      sequenceIdProvider.Received(1).GetSequenceId(Arg.Any<string>());
+      sequenceIdProvider.Received(1).GetSequenceId(testShortUrl);
     }
 
     [Test]
-    public void GetShortUrlTest_EntityNotFound()
+    public async Task GetShortUrlTest_EntityNotFound()
     {
       const string testShortUrl = "hsfwgss";
       const int testSequenceId = 233243;
-      var dbGetByIdOperationMock = new Mock<IDbGetByIdOperation<ShortUrl>>();
-      var sequenceIdProviderMock = new Mock<ISequenceIdProvider>();
+      var dbGetByIdOperation = Substitute.For<IDbGetByIdOperation<ShortUrl>>();
+      var sequenceIdProvider = Substitute.For<ISequenceIdProvider>();
       ShortUrl testShortUrlEntity = EntityTestHelper.CreateShortUrl();
       var query = new GetShortUrlQuery(testShortUrl);
       var cancellationToken = CancellationToken.None;
 
-      sequenceIdProviderMock.Setup(x => x.GetSequenceId(It.IsAny<string>())).Returns(testSequenceId);
+      sequenceIdProvider.GetSequenceId(Arg.Any<string>()).Returns(testSequenceId);
 
-      var handler = new GetShortUrlQueryHandler(dbGetByIdOperationMock.Object, sequenceIdProviderMock.Object);
+      var handler = new GetShortUrlQueryHandler(dbGetByIdOperation, sequenceIdProvider);
       Assert.That(async () => await handler.Handle(query, cancellationToken), Throws.TypeOf<EntityNotFoundException>().With.Message.EqualTo($"Entity of type {typeof(ShortUrl)} with id {testSequenceId} was not found!"));
-      dbGetByIdOperationMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
-      dbGetByIdOperationMock.Verify(x => x.GetByIdAsync(testSequenceId.ToString(), cancellationToken), Times.Once);
-      sequenceIdProviderMock.Verify(x => x.GetSequenceId(It.IsAny<string>()), Times.Once);
-      sequenceIdProviderMock.Verify(x => x.GetSequenceId(testShortUrl), Times.Once);
+      await dbGetByIdOperation.Received(1).GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
+      await dbGetByIdOperation.Received(1).GetByIdAsync(testSequenceId.ToString(), cancellationToken);
+      sequenceIdProvider.Received(1).GetSequenceId(Arg.Any<string>());
+      sequenceIdProvider.Received(1).GetSequenceId(testShortUrl);
     }
 
     #endregion Public Methods
