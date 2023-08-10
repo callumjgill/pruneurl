@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
-using Moq;
+using NSubstitute;
 using NUnit.Framework;
 using PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
 using PruneUrl.Backend.Application.Exceptions.Database;
@@ -21,50 +21,50 @@ namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSe
     public void HandleTest_Fail()
     {
       string testId = Guid.NewGuid().ToString();
-      var dbTransactionProviderMock = new Mock<IDbTransactionProvider>();
-      var sequenceIdOptionsMock = new Mock<IOptions<SequenceIdOptions>>();
+      var dbTransactionProvider = Substitute.For<IDbTransactionProvider>();
+      var sequenceIdOptions = Substitute.For<IOptions<SequenceIdOptions>>();
 
       SequenceId testSequenceId = EntityTestHelper.CreateSequenceId(testId, 1254);
 
-      sequenceIdOptionsMock.Setup(x => x.Value).Returns(new SequenceIdOptions() { Id = testId });
-      dbTransactionProviderMock.Setup(x => x.RunTransactionAsync(It.IsAny<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>(), It.IsAny<CancellationToken>()))
-                               .Returns((Func<IDbTransaction<SequenceId>, Task<SequenceId>> callback, CancellationToken _) => callback(Mock.Of<IDbTransaction<SequenceId>>()));
+      sequenceIdOptions.Value.Returns(new SequenceIdOptions() { Id = testId });
+      dbTransactionProvider.RunTransactionAsync(Arg.Any<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>(), Arg.Any<CancellationToken>())
+                           .Returns(x => x.Arg<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>().Invoke(Substitute.For<IDbTransaction<SequenceId>>()));
 
       CancellationToken cancellationToken = CancellationToken.None;
-      var requestHandler = new GetAndBumpSequenceIdRequestHandler(dbTransactionProviderMock.Object, sequenceIdOptionsMock.Object, Mock.Of<ISequenceIdFactory>());
+      var requestHandler = new GetAndBumpSequenceIdRequestHandler(dbTransactionProvider, sequenceIdOptions, Substitute.For<ISequenceIdFactory>());
       Assert.That(async () => await requestHandler.Handle(new GetAndBumpSequenceIdRequest(), cancellationToken), Throws.TypeOf<EntityNotFoundException>().With.Message.EqualTo($"Entity of type {typeof(SequenceId)} with id {testId} was not found!"));
-      sequenceIdOptionsMock.Verify(x => x.Value, Times.Once);
+      _ = sequenceIdOptions.Received(1).Value;
     }
 
     [Test]
     public async Task HandleTest_Success()
     {
       string testId = Guid.NewGuid().ToString();
-      var dbTransactionProviderMock = new Mock<IDbTransactionProvider>();
-      var sequenceIdFactoryMock = new Mock<ISequenceIdFactory>();
-      var sequenceIdOptionsMock = new Mock<IOptions<SequenceIdOptions>>();
+      var dbTransactionProvider = Substitute.For<IDbTransactionProvider>();
+      var sequenceIdFactory = Substitute.For<ISequenceIdFactory>();
+      var sequenceIdOptions = Substitute.For<IOptions<SequenceIdOptions>>();
 
       SequenceId testSequenceId = EntityTestHelper.CreateSequenceId(testId, 1254);
-      var dbTransactionMock = new Mock<IDbTransaction<SequenceId>>();
+      var dbTransaction = Substitute.For<IDbTransaction<SequenceId>>();
       SequenceId nextSequenceId = EntityTestHelper.CreateSequenceId(testId, testSequenceId.Value + 1);
 
-      sequenceIdOptionsMock.Setup(x => x.Value).Returns(new SequenceIdOptions() { Id = testId });
-      dbTransactionMock.Setup(x => x.GetByIdAsync(It.IsAny<string>(), It.IsAny<CancellationToken>())).ReturnsAsync(testSequenceId);
-      dbTransactionProviderMock.Setup(x => x.RunTransactionAsync(It.IsAny<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>(), It.IsAny<CancellationToken>()))
-                               .Returns((Func<IDbTransaction<SequenceId>, Task<SequenceId>> callback, CancellationToken _) => callback(dbTransactionMock.Object));
-      sequenceIdFactoryMock.Setup(x => x.CreateFromExisting(It.IsAny<SequenceId>(), It.IsAny<int>())).Returns(nextSequenceId);
+      sequenceIdOptions.Value.Returns(new SequenceIdOptions() { Id = testId });
+      dbTransaction.GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>()).Returns(testSequenceId);
+      dbTransactionProvider.RunTransactionAsync(Arg.Any<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>(), Arg.Any<CancellationToken>())
+                           .Returns(x => x.Arg<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>().Invoke(dbTransaction));
+      sequenceIdFactory.CreateFromExisting(Arg.Any<SequenceId>(), Arg.Any<int>()).Returns(nextSequenceId);
 
       CancellationToken cancellationToken = CancellationToken.None;
-      var requestHandler = new GetAndBumpSequenceIdRequestHandler(dbTransactionProviderMock.Object, sequenceIdOptionsMock.Object, sequenceIdFactoryMock.Object);
+      var requestHandler = new GetAndBumpSequenceIdRequestHandler(dbTransactionProvider, sequenceIdOptions, sequenceIdFactory);
       GetAndBumpSequenceIdResponse response = await requestHandler.Handle(new GetAndBumpSequenceIdRequest(), cancellationToken);
       Assert.That(response.SequenceId, Is.EqualTo(testSequenceId));
-      dbTransactionMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
-      dbTransactionMock.Verify(x => x.GetByIdAsync(testId, cancellationToken), Times.Once);
-      dbTransactionMock.Verify(x => x.Update(It.IsAny<SequenceId>()), Times.Once);
-      dbTransactionMock.Verify(x => x.Update(nextSequenceId), Times.Once);
-      sequenceIdFactoryMock.Verify(x => x.CreateFromExisting(It.IsAny<SequenceId>(), It.IsAny<int>()), Times.Once);
-      sequenceIdFactoryMock.Verify(x => x.CreateFromExisting(testSequenceId, testSequenceId.Value + 1), Times.Once);
-      sequenceIdOptionsMock.Verify(x => x.Value, Times.Once);
+      await dbTransaction.Received(1).GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
+      await dbTransaction.Received(1).GetByIdAsync(testId, cancellationToken);
+      dbTransaction.Received(1).Update(Arg.Any<SequenceId>());
+      dbTransaction.Received(1).Update(nextSequenceId);
+      sequenceIdFactory.Received(1).CreateFromExisting(Arg.Any<SequenceId>(), Arg.Any<int>());
+      sequenceIdFactory.Received(1).CreateFromExisting(testSequenceId, testSequenceId.Value + 1);
+      _ = sequenceIdOptions.Received(1).Value;
     }
 
     #endregion Public Methods
