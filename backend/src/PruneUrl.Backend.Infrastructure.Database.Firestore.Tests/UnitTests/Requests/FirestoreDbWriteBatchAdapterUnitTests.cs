@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Moq;
+using NSubstitute;
 using NUnit.Framework;
 using PruneUrl.Backend.Application.Interfaces.Database.Requests;
 using PruneUrl.Backend.Domain.Entities;
@@ -18,42 +18,42 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
     public async Task CommitAsyncTest()
     {
       var cancellationToken = new CancellationToken();
-      var adapteeDbWriteBatchMock = new Mock<IDbWriteBatch<FirestoreEntityDTO>>();
-      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<IEntity, FirestoreEntityDTO>(adapteeDbWriteBatchMock.Object, Mock.Of<IMapper>());
+      var adapteeDbWriteBatch = Substitute.For<IDbWriteBatch<FirestoreEntityDTO>>();
+      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<IEntity, FirestoreEntityDTO>(adapteeDbWriteBatch, Substitute.For<IMapper>());
 
       await adapterFirestoreDbWriteBatch.CommitAsync(cancellationToken);
-      adapteeDbWriteBatchMock.Verify(x => x.CommitAsync(It.IsAny<CancellationToken>()), Times.Once);
-      adapteeDbWriteBatchMock.Verify(x => x.CommitAsync(cancellationToken), Times.Once);
+      await adapteeDbWriteBatch.Received(1).CommitAsync(Arg.Any<CancellationToken>());
+      await adapteeDbWriteBatch.Received(1).CommitAsync(cancellationToken);
     }
 
     [Test]
     public void CreateTest()
     {
-      var testEntity = Mock.Of<IEntity>();
-      var adapteeDbWriteBatchMock = new Mock<IDbWriteBatch<FirestoreEntityDTO>>();
-      var mapperMock = new Mock<IMapper>();
-      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<IEntity, FirestoreEntityDTO>(adapteeDbWriteBatchMock.Object, mapperMock.Object);
-      var testFirestoreEntity = Mock.Of<FirestoreEntityDTO>();
+      var testEntity = Substitute.For<IEntity>();
+      var adapteeDbWriteBatch = Substitute.For<IDbWriteBatch<FirestoreEntityDTO>>();
+      var mapper = Substitute.For<IMapper>();
+      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<IEntity, FirestoreEntityDTO>(adapteeDbWriteBatch, mapper);
+      var testFirestoreEntity = Substitute.For<FirestoreEntityDTO>();
 
-      mapperMock.Setup(x => x.Map<IEntity, FirestoreEntityDTO>(It.IsAny<IEntity>())).Returns(testFirestoreEntity);
+      mapper.Map<IEntity, FirestoreEntityDTO>(Arg.Any<IEntity>()).Returns(testFirestoreEntity);
 
       adapterFirestoreDbWriteBatch.Create(testEntity);
-      adapteeDbWriteBatchMock.Verify(x => x.Create(It.IsAny<FirestoreEntityDTO>()), Times.Once);
-      adapteeDbWriteBatchMock.Verify(x => x.Create(testFirestoreEntity), Times.Once);
-      mapperMock.Verify(x => x.Map<IEntity, FirestoreEntityDTO>(It.IsAny<IEntity>()), Times.Once);
-      mapperMock.Verify(x => x.Map<IEntity, FirestoreEntityDTO>(testEntity), Times.Once);
+      adapteeDbWriteBatch.Received(1).Create(Arg.Any<FirestoreEntityDTO>());
+      adapteeDbWriteBatch.Received(1).Create(testFirestoreEntity);
+      mapper.Received(1).Map<IEntity, FirestoreEntityDTO>(Arg.Any<IEntity>());
+      mapper.Received(1).Map<IEntity, FirestoreEntityDTO>(testEntity);
     }
 
     [Test]
     public void DeleteTest()
     {
       var testId = Guid.NewGuid().ToString();
-      var adapteeDbWriteBatchMock = new Mock<IDbWriteBatch<FirestoreEntityDTO>>();
-      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<IEntity, FirestoreEntityDTO>(adapteeDbWriteBatchMock.Object, Mock.Of<IMapper>());
+      var adapteeDbWriteBatch = Substitute.For<IDbWriteBatch<FirestoreEntityDTO>>();
+      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<IEntity, FirestoreEntityDTO>(adapteeDbWriteBatch, Substitute.For<IMapper>());
 
       adapterFirestoreDbWriteBatch.Delete(testId);
-      adapteeDbWriteBatchMock.Verify(x => x.Delete(It.IsAny<string>()), Times.Once);
-      adapteeDbWriteBatchMock.Verify(x => x.Delete(testId), Times.Once);
+      adapteeDbWriteBatch.Received(1).Delete(Arg.Any<string>());
+      adapteeDbWriteBatch.Received(1).Delete(testId);
     }
 
     #endregion Public Methods
