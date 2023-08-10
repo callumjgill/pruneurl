@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
-using Moq;
+using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using PruneUrl.Backend.Application.Requests.Exceptions;
@@ -19,17 +19,17 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Extensions
     [TestCase(false)]
     public void ValidateRequestTest(bool isValid)
     {
-      var validatorMock = new Mock<IValidator<IRequest>>();
-      var requestMock = Mock.Of<IRequest>();
-      var validationResultMock = new Mock<ValidationResult>();
+      var validator = Substitute.For<IValidator<IRequest>>();
+      var request = Substitute.For<IRequest>();
+      var validationResult = Substitute.For<ValidationResult>();
 
-      validationResultMock.Setup(x => x.IsValid).Returns(isValid);
-      validatorMock.Setup(x => x.Validate(It.IsAny<IRequest>())).Returns(validationResultMock.Object);
+      validationResult.IsValid.Returns(isValid);
+      validator.Validate(Arg.Any<IRequest>()).Returns(validationResult);
 
       Constraint expectedOutcome = isValid ? Throws.Nothing : Throws.TypeOf<InvalidRequestException>();
-      Assert.That(() => validatorMock.Object.ValidateRequest(requestMock), expectedOutcome);
-      validatorMock.Verify(x => x.Validate(It.IsAny<IRequest>()), Times.Once);
-      validatorMock.Verify(x => x.Validate(requestMock), Times.Once);
+      Assert.That(() => validator.ValidateRequest(request), expectedOutcome);
+      validator.Received(1).Validate(Arg.Any<IRequest>());
+      validator.Received(1).Validate(request);
     }
 
     #endregion Public Methods
