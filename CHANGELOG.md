@@ -312,3 +312,11 @@
 * **backend:** remove IEntityIdProvider and refactor ISequenceIdFactory to have id passed into Create method ([452419a](https://github.com/callumjgill/pruneurl/commit/452419a07b254c406eac36ae6b627f8456109418))
 
 
+### [0.14.1](https://github.com/callumjgill/pruneurl/compare/v0.14.0...v0.14.1) (2023-08-11)
+
+
+### Code Refactoring
+
+* **backend:** remove detailed validation message in favour of simpler one ([d21e90b](https://github.com/callumjgill/pruneurl/commit/d21e90bb2124ef9e9481b99a8a4a8d9ffff390fa))
+
+
