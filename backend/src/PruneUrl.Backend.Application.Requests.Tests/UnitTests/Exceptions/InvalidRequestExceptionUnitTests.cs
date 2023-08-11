@@ -13,20 +13,19 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Exceptions
     [Test]
     public void ConstructorTest()
     {
-      const string requestName = "Test";
-      List<ValidationFailure> validationFailures = new List<ValidationFailure>
+      var validationFailures = new List<ValidationFailure>
       {
-        new ValidationFailure("Property1", "Error1"),
-        new ValidationFailure("Property2", "Error2"),
-        new ValidationFailure("Property3", "Error3"),
+        new ValidationFailure("Property1", string.Empty),
+        new ValidationFailure("Property2", string.Empty),
+        new ValidationFailure("Property3", string.Empty)
       };
-      string expectedMessage = $"The '{requestName}' request is invalid! Validation errors:{Environment.NewLine}";
+      string expectedMessage = $"The request is invalid!{Environment.NewLine}";
       foreach (ValidationFailure validationFailure in validationFailures)
       {
-        expectedMessage += $"\tProperty '{validationFailure.PropertyName}' is invalid: {validationFailure.ErrorMessage}{Environment.NewLine}";
+        expectedMessage += $"\tProperty '{validationFailure.PropertyName}' is invalid.{Environment.NewLine}";
       }
 
-      var exception = new InvalidRequestException(requestName, validationFailures);
+      var exception = new InvalidRequestException(validationFailures);
       Assert.That(exception.Message, Is.EqualTo(expectedMessage));
     }
 

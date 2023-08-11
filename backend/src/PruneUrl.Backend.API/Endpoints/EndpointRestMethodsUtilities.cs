@@ -1,4 +1,6 @@
-﻿namespace PruneUrl.Backend.App.Endpoints
+﻿using PruneUrl.Backend.Application.Requests.Exceptions;
+
+namespace PruneUrl.Backend.App.Endpoints
 {
   /// <summary>
   /// Static class containing useful utilities to be used by the REST endpoint methods.
@@ -21,6 +23,10 @@
       {
         IResult result = await restMethod();
         return result;
+      }
+      catch (InvalidRequestException ex)
+      {
+        return Results.BadRequest(ex.Message);
       }
       catch (Exception)
       {

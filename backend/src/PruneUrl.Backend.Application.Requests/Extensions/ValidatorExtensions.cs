@@ -26,7 +26,7 @@ namespace PruneUrl.Backend.Application.Requests.Extensions
       ValidationResult validationResult = validator.Validate(request);
       if (!validationResult.IsValid)
       {
-        throw new InvalidRequestException(nameof(TRequest), validationResult.Errors);
+        throw new InvalidRequestException(validationResult.Errors);
       }
     }
 

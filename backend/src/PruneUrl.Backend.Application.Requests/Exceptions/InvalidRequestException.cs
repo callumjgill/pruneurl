@@ -14,11 +14,10 @@ namespace PruneUrl.Backend.Application.Requests.Exceptions
     /// <summary>
     /// Instantiates a new instance of the <see cref="InvalidRequestException" />
     /// </summary>
-    /// <param name="requestName"> The name of the request that is invalid. </param>
     /// <param name="validationFailures">
     /// The collection of <see cref="ValidationFailure" />'s to create the exception message from.
     /// </param>
-    public InvalidRequestException(string requestName, IEnumerable<ValidationFailure> validationFailures) : base(GetExceptionMessage(requestName, validationFailures))
+    public InvalidRequestException(IEnumerable<ValidationFailure> validationFailures) : base(GetExceptionMessage(validationFailures))
     {
     }
 
@@ -26,19 +25,16 @@ namespace PruneUrl.Backend.Application.Requests.Exceptions
 
     #region Private Methods
 
-    private static string GetExceptionMessage(string requestName, IEnumerable<ValidationFailure> validationFailures)
+    private static string GetExceptionMessage(IEnumerable<ValidationFailure> validationFailures)
     {
       var builder = new StringBuilder();
-      builder.Append("The '")
-             .Append(requestName)
-             .AppendLine("' request is invalid! Validation errors:");
-      foreach (var validationFailure in validationFailures)
+      builder.AppendLine("The request is invalid!");
+      foreach (string propertyName in validationFailures.Select(validationFailure => validationFailure.PropertyName).Distinct())
       {
         builder.Append("\t")
                .Append("Property '")
-               .Append(validationFailure.PropertyName)
-               .Append("' is invalid: ")
-               .AppendLine(validationFailure.ErrorMessage);
+               .Append(propertyName)
+               .AppendLine("' is invalid.");
       }
 
       return builder.ToString();
