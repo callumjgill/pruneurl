@@ -15,7 +15,7 @@ namespace PruneUrl.Backend.Application.Commands.CreateShortUrl
     public CreateShortUrlCommandValidator()
     {
       RuleFor(command => command.SequenceId).GreaterThanOrEqualTo(0);
-      RuleFor(command => command.LongUrl).Must(BeUrl).When(command => !string.IsNullOrWhiteSpace(command.LongUrl));
+      RuleFor(command => command.LongUrl).Must(BeUrl);
     }
 
     #endregion Public Constructors
