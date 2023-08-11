@@ -63,6 +63,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.Infrastruc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.API", "PruneUrl.Backend.API\PruneUrl.Backend.API.csproj", "{F4E3F99E-5946-439B-848F-8EA3C63C7A66}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruneUrl.Backend.API.Tests", "PruneUrl.Backend.API.Tests\PruneUrl.Backend.API.Tests.csproj", "{074F2E8D-E1A9-4D00-B1AB-633EBB167430}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{F4E3F99E-5946-439B-848F-8EA3C63C7A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4E3F99E-5946-439B-848F-8EA3C63C7A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4E3F99E-5946-439B-848F-8EA3C63C7A66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{074F2E8D-E1A9-4D00-B1AB-633EBB167430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{074F2E8D-E1A9-4D00-B1AB-633EBB167430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{074F2E8D-E1A9-4D00-B1AB-633EBB167430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{074F2E8D-E1A9-4D00-B1AB-633EBB167430}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -195,6 +201,7 @@ Global
 		{3C161724-443D-42CE-837B-1E4E1C3A0F25} = {8D383C4D-5D61-47CD-8397-9166E6EB023D}
 		{80381119-4568-476C-B19D-F64DFF8779EB} = {8D383C4D-5D61-47CD-8397-9166E6EB023D}
 		{F4E3F99E-5946-439B-848F-8EA3C63C7A66} = {8CED138A-11A4-4621-A313-AE0840E6007D}
+		{074F2E8D-E1A9-4D00-B1AB-633EBB167430} = {8CED138A-11A4-4621-A313-AE0840E6007D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FEA1099-8BF1-4329-90EB-A8405E3F7CBA}
