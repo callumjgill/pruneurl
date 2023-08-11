@@ -283,3 +283,32 @@
 ### [0.13.1](https://github.com/callumjgill/pruneurl/compare/v0.13.0...v0.13.1) (2023-08-10)
 
 
+## [0.14.0](https://github.com/callumjgill/pruneurl/compare/v0.13.1...v0.14.0) (2023-08-11)
+
+
+### Features
+
+* **backend:** add 'CreateSequenceId' command ([c5838df](https://github.com/callumjgill/pruneurl/commit/c5838df5aea5a574f1a05f4e10c32e733bf11699))
+* **backend:** add 'GetSequenceId' query ([484e832](https://github.com/callumjgill/pruneurl/commit/484e83212d5b4cd63633ae38a668a75971831cc7))
+* **backend:** add autofac registrations for CreateSequenceIdCommand ([7a17afd](https://github.com/callumjgill/pruneurl/commit/7a17afd198003cc8d319ecfcff1fb470d50dc762))
+* **backend:** add autofac registrations for GetSequenceIdQuery ([0b0a0a1](https://github.com/callumjgill/pruneurl/commit/0b0a0a192e7f7df7c32afa65c4a1245746f6e46c))
+* **backend:** add console logger, autofac registration, http logging, https redirection and exception handler to the App program ([5e0e132](https://github.com/callumjgill/pruneurl/commit/5e0e132fedcae8992c218df30d7c1fc6d90a2e9f))
+* **backend:** add extensions for IHost which ensures the underlying db is setup properly ([2463e44](https://github.com/callumjgill/pruneurl/commit/2463e44fa4d8e1efc4ede7d111dd368853add861))
+* **backend:** add OpenAPI and Swagger to project ([95c6fab](https://github.com/callumjgill/pruneurl/commit/95c6fab3cd806273cbd97dcdf874434befd72328))
+* **backend:** add REST methods for redirecting a short url and creating a new one ([cbb5dc2](https://github.com/callumjgill/pruneurl/commit/cbb5dc2c29165b302d7fd5a9411f7d5d44338e34))
+* **backend:** add REST minimal API route mapping ([53743bb](https://github.com/callumjgill/pruneurl/commit/53743bb1609ad9b2f2cd3e485a9ab2aa94fd6a80))
+
+
+### Tests
+
+* **backend:** add PruneUrl.Backend.API.Tests project ([e806b3a](https://github.com/callumjgill/pruneurl/commit/e806b3a89520c7d52f02fd4aa90603af2b3af783))
+* **backend:** add unit tests for 'CreateSequenceId' command ([232a3f5](https://github.com/callumjgill/pruneurl/commit/232a3f59742acbf11b6d6b24c795954cd431f453))
+* **backend:** add unit tests for 'GetSequenceId' query ([f0aca38](https://github.com/callumjgill/pruneurl/commit/f0aca38957c3b40d0ce90914ecb4b4691039589d))
+* **backend:** extend integration tests for autofac registrations to include new command and query ([00ae395](https://github.com/callumjgill/pruneurl/commit/00ae39526c4a6520edee5fc0446765f5de3fd46e))
+
+
+### Code Refactoring
+
+* **backend:** remove IEntityIdProvider and refactor ISequenceIdFactory to have id passed into Create method ([452419a](https://github.com/callumjgill/pruneurl/commit/452419a07b254c406eac36ae6b627f8456109418))
+
+
