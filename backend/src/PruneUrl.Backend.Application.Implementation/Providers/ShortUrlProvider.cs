@@ -27,6 +27,11 @@ namespace PruneUrl.Backend.Application.Implementation.Providers
       foreach (char shortUrlCharacter in shortUrlChars)
       {
         double indexInCharMap = Array.FindIndex(characterMap, character => character == shortUrlCharacter);
+        if (indexInCharMap < 0)
+        {
+          return -1;
+        }
+
         sequenceId += (int)(indexInCharMap * Math.Pow(baseNumber, exponent));
         exponent--;
       }
