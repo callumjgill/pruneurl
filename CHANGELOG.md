@@ -320,3 +320,17 @@
 * **backend:** remove detailed validation message in favour of simpler one ([d21e90b](https://github.com/callumjgill/pruneurl/commit/d21e90bb2124ef9e9481b99a8a4a8d9ffff390fa))
 
 
+## [0.15.0](https://github.com/callumjgill/pruneurl/compare/v0.14.1...v0.15.0) (2023-08-17)
+
+
+### Features
+
+* **backend:** GetShortUrlQueryValdiator will now have validation error for incorrect short url format ([4dce537](https://github.com/callumjgill/pruneurl/commit/4dce537359fa96e0b25c7cb47a79905e20aee620))
+* **backend:** ShortUrlProvider will return -1 when an invalid character is found in the short url ([67f72f8](https://github.com/callumjgill/pruneurl/commit/67f72f811d425d097d223fb9005b4db1d08261d3))
+
+
+### Tests
+
+* **backend:** add unit tests for ShortUrlProvider asserting invalid characters ([f4354c2](https://github.com/callumjgill/pruneurl/commit/f4354c25565b107ef3a92d8d09f407eaeca37e18))
+
+
