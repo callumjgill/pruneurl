@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using PruneUrl.Backend.Application.Implementation.Providers;
+using System.Text.Unicode;
 
 namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Providers
 {
@@ -36,6 +37,34 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Providers
       var provider = new ShortUrlProvider();
       int actualSequenceId = provider.GetSequenceId(shortUrl);
       Assert.That(actualSequenceId, Is.EqualTo(expectedSequenceId));
+    }
+
+    [Test]
+    public void GetSequenceIdTest_ReturnsNegativeOne_InvalidCharacters()
+    {
+      var provider = new ShortUrlProvider();
+      IEnumerable<int> characterMap = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".Select(Convert.ToInt32);
+      UnicodeRange unicodeRange = UnicodeRanges.All;
+      IEnumerable<char> nonAlphanumericUnicodeCharacters = Enumerable.Range(unicodeRange.FirstCodePoint, unicodeRange.Length).Except(characterMap).Select(Convert.ToChar);
+      Assert.Multiple(() =>
+      {
+        foreach (char nonAlphanumericUnicodeCharacter in nonAlphanumericUnicodeCharacters)
+        {
+          int actualSequenceId = provider.GetSequenceId(nonAlphanumericUnicodeCharacter.ToString());
+          Assert.That(actualSequenceId, Is.EqualTo(-1));
+        }
+      });
+    }
+
+    [Test]
+    public void GetSequenceIdTest_ReturnsNegativeOne_InvalidCharactersInString()
+    {
+      var provider = new ShortUrlProvider();
+      IEnumerable<int> characterMap = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".Select(Convert.ToInt32);
+      UnicodeRange unicodeRange = UnicodeRanges.All;
+      string nonAlphanumericUnicodeCharactersString = string.Concat(Enumerable.Range(unicodeRange.FirstCodePoint, unicodeRange.Length).Except(characterMap).Select(Convert.ToChar));
+      int actualSequenceId = provider.GetSequenceId(nonAlphanumericUnicodeCharactersString);
+      Assert.That(actualSequenceId, Is.EqualTo(-1));
     }
 
     [Test]
