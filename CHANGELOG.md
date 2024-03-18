@@ -1,3 +1,11 @@
+## [0.15.2](https://github.com/callumjgill/pruneurl/compare/v0.15.1...v0.15.2) (2024-03-18)
+
+
+### Build Systems
+
+* **backend:** update to .NET 8 and use central package versioning ([7b781f0](https://github.com/callumjgill/pruneurl/commit/7b781f03b633826616e38ce55f78200040df77f3))
+
+
 ## [0.15.1](https://github.com/callumjgill/pruneurl/compare/v0.15.0...v0.15.1) (2024-03-18)
 
 
