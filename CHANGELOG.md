@@ -1,3 +1,11 @@
+## [0.15.3](https://github.com/callumjgill/pruneurl/compare/v0.15.2...v0.15.3) (2024-03-18)
+
+
+### Build Systems
+
+* **dependabot:** add dependabot.yml ([ec421db](https://github.com/callumjgill/pruneurl/commit/ec421db11dd91a7feb68fd052953f4d91cb7f5c8))
+
+
 ## [0.15.2](https://github.com/callumjgill/pruneurl/compare/v0.15.1...v0.15.2) (2024-03-18)
 
 
