@@ -1,3 +1,19 @@
+## [0.15.1](https://github.com/callumjgill/pruneurl/compare/v0.15.0...v0.15.1) (2024-03-18)
+
+
+### Documentation
+
+* **CHANGELOG:** reformat changelog entries to be in descending version order ([f583984](https://github.com/callumjgill/pruneurl/commit/f5839846a8e822478e4434aa784b9077b5ac7554))
+
+
+### Build Systems
+
+* **dev-deps:** add conventional commits and commit linting ([2f9a560](https://github.com/callumjgill/pruneurl/commit/2f9a56063ece691276864d8a0386817231d3d07f))
+* **dev-deps:** add Husky v9.0.11 ([8d8a995](https://github.com/callumjgill/pruneurl/commit/8d8a995cb653d0a1474dc999d3ddd525ba0e8c9d))
+* **workflows:** update bump_app_version.yml to create tag after pipeline commits pushed ([7facd76](https://github.com/callumjgill/pruneurl/commit/7facd763dadc3cecff57bd45f597d335d62fb7ad))
+* **workflows:** update React build and test workflow to use node 20.x ([396f59f](https://github.com/callumjgill/pruneurl/commit/396f59ff4640086c23ececde4336af20882bf71d))
+
+
 # [0.15.0](https://github.com/callumjgill/pruneurl/compare/v0.14.1...v0.15.0) (2023-08-17)
 
 ### Features
