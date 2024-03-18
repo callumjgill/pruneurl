@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -9,15 +8,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PruneUrl.Backend.Domain.Entities\PruneUrl.Backend.Domain.Entities.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\PruneUrl.Backend.Domain.Entities\PruneUrl.Backend.Domain.Entities.csproj" />
-  </ItemGroup>
-
 </Project>

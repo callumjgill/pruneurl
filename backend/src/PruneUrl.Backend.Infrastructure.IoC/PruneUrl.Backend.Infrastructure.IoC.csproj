@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="7.0.1" />
-    <PackageReference Include="AutoMapper.Contrib.Autofac.DependencyInjection" Version="7.1.0" />
-    <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Autofac" />
+    <PackageReference Include="AutoMapper.Contrib.Autofac.DependencyInjection" />
+    <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\PruneUrl.Backend.Application.Commands\PruneUrl.Backend.Application.Commands.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Application.Implementation\PruneUrl.Backend.Application.Implementation.csproj" />

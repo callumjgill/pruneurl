@@ -3,9 +3,9 @@
     <UserSecretsId>9472b95c-bf0e-409d-bbba-c618a5f13d29</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PruneUrl.Backend.Infrastructure.IoC\PruneUrl.Backend.Infrastructure.IoC.csproj" />
