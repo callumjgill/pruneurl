@@ -1,0 +1,47 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "./.github/"
+    schedule:
+      interval: "weekly"
+    pull-request-branch-name:
+      # Separate sections of the branch name with a hyphen
+      separator: "-"
+    groups:
+      github-actions-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "./frontend/"
+    schedule:
+      interval: "weekly"
+    pull-request-branch-name:
+      # Separate sections of the branch name with a hyphen
+      separator: "-"
+    groups:
+      npm-dev-dependencies:
+        dependency-type: "development"
+        patterns:
+          - "*"
+      npm-dependencies:
+        dependency-type: "production"
+        patterns:
+          - "*"
+
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "./backend/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+    pull-request-branch-name:
+      # Separate sections of the branch name with a hyphen
+      separator: "-"
+    groups:
+      nuget-dev-dependencies:
+        dependency-type: "development"
+        patterns:
+          - "*"
+      nuget-dependencies:
+        dependency-type: "production"
+        patterns:
+          - "*"
