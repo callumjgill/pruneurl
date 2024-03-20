@@ -47,14 +47,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: "https://registry.npmjs.org"
 
       - name: Install packages
         run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Bump package.json version
+        working-directory: ./frontend/
         run: |
           npm config set git-tag-version false
           npm version ${{ needs.calculate_version.outputs.version }}
@@ -62,7 +60,7 @@ jobs:
       - name: Commit package.json
         run: |
           git add :/
-          git commit -m "chore(package): bump package.json version to ${{ needs.calculate_version.outputs.version }}"
+          git commit -m "chore(package): bump frontend package.json version to ${{ needs.calculate_version.outputs.version }}"
 
       - name: Update CHANGELOG.md
         run: |
