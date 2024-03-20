@@ -1,3 +1,11 @@
+## [0.15.4](https://github.com/callumjgill/pruneurl/compare/v0.15.3...v0.15.4) (2024-03-20)
+
+
+### Build Systems
+
+* **dependabot:** updates will now occur monthly instead of weekly ([ee06568](https://github.com/callumjgill/pruneurl/commit/ee065683f2f8f4db09c1c3f25ff16c271be4cf93))
+
+
 ## [0.15.3](https://github.com/callumjgill/pruneurl/compare/v0.15.2...v0.15.3) (2024-03-18)
 
 
