@@ -1,7 +1,7 @@
 {
   "name": "pruneurl.com",
   "private": true,
-  "version": "0.16.0",
+  "version": "0.16.1",
   "type": "module",
   "scripts": {
     "prepare": "cd .. && npm ci && npm run prepare",
