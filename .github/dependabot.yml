@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "./.github/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     pull-request-branch-name:
       # Separate sections of the branch name with a hyphen
       separator: "-"
@@ -15,7 +15,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "./frontend/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     pull-request-branch-name:
       # Separate sections of the branch name with a hyphen
       separator: "-"
@@ -32,7 +32,7 @@ updates:
   - package-ecosystem: "nuget" # See documentation for possible values
     directory: "./backend/" # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     pull-request-branch-name:
       # Separate sections of the branch name with a hyphen
       separator: "-"
