@@ -33,7 +33,7 @@
     "prettier": "^3.2.5",
     "sass": "^1.72.0",
     "typescript": "^5.2.2",
-    "vite": "^5.1.6"
+    "vite": "^5.2.2"
   },
   "lint-staged": {
     "*.{json,md,html,js,jsx,ts,tsx}": "prettier --write --ignore-unknown"
