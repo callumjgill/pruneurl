@@ -1,2 +1,7 @@
-cd frontend
-npm run lint-frontend
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+dotnet husky run --name "csharpier"
+npm i -g prettier
+dotnet husky run --name "prettier"
+
