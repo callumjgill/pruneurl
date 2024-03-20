@@ -1,3 +1,11 @@
+## [0.16.1](https://github.com/callumjgill/pruneurl/compare/v0.16.0...v0.16.1) (2024-03-20)
+
+
+### Build Systems
+
+* **deps-dev:** bump the npm-dev-dependencies group ([1ced83c](https://github.com/callumjgill/pruneurl/commit/1ced83c3cffce5685a481227c1c9415c1b43ee46))
+
+
 # [0.16.0](https://github.com/callumjgill/pruneurl/compare/v0.15.4...v0.16.0) (2024-03-20)
 
 
