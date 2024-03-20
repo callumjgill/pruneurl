@@ -1,3 +1,16 @@
+# [0.16.0](https://github.com/callumjgill/pruneurl/compare/v0.15.4...v0.16.0) (2024-03-20)
+
+
+### Features
+
+* **frontend:** app migrated from Create-React-App to Vite ([081aada](https://github.com/callumjgill/pruneurl/commit/081aada565f09a2995ebabd21d6a78dd9c1e1399))
+
+
+### Bug Fixes
+
+* **workflows:** bump_app_version will now update the frontend package.json instead of repos ([b15ad84](https://github.com/callumjgill/pruneurl/commit/b15ad8491d52d5a2f1b131ffd0ae8111c4ee6efb))
+
+
 ## [0.15.4](https://github.com/callumjgill/pruneurl/compare/v0.15.3...v0.15.4) (2024-03-20)
 
 
