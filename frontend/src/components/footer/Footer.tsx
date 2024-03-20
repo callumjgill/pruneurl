@@ -15,7 +15,7 @@ const Footer = () => {
         </h6>
       </Row>
       <Row>
-        <h6>Version {`${process.env.REACT_APP_VERSION}`}</h6>
+        <h6>v{`${APP_VERSION}`}</h6>
       </Row>
     </Container>
   );

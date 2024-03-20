@@ -17,9 +17,9 @@ export default class DummyApi implements API {
   private getError(): number | undefined {
     if (
       this.returnError() &&
-      process.env.REACT_APP_DUMMY_API_ERRORS_STATUSCODE !== undefined
+      import.meta.env.VITE_DUMMY_API_ERRORS_STATUSCODE !== undefined
     ) {
-      return Number(process.env.REACT_APP_DUMMY_API_ERRORS_STATUSCODE);
+      return Number(import.meta.env.VITE_DUMMY_API_ERRORS_STATUSCODE);
     }
 
     return undefined;
@@ -27,8 +27,8 @@ export default class DummyApi implements API {
 
   private returnError(): boolean {
     return (
-      process.env.REACT_APP_DUMMY_API_ERRORS !== undefined &&
-      process.env.REACT_APP_DUMMY_API_ERRORS === "true"
+      import.meta.env.VITE_DUMMY_API_ERRORS !== undefined &&
+      import.meta.env.VITE_DUMMY_API_ERRORS === "true"
     );
   }
 }

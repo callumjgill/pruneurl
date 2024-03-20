@@ -6,6 +6,5 @@
   },
   "scripts": {
     "prepare": "node .husky/install.mjs"
-  },
-  "version": "0.15.4"
+  }
 }
