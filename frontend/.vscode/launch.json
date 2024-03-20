@@ -1,13 +1,12 @@
 {
   "version": "0.2.0",
   "configurations": [
-    {
-      "name": "Launch Brave Against Localhost (Windows)",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}",
-      "runtimeExecutable": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
-    }
+      {
+          "type": "chrome", //or "msedge"
+          "request": "launch",
+          "name": "Launch Chrome against localhost",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceFolder}"
+      }
   ]
 }

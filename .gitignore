@@ -1,1 +1,4 @@
 node_modules
+
+# C# dev kit (known bug)
+.mono
