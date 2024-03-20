@@ -1,0 +1,27 @@
+{
+  "tasks": [
+    {
+      "name": "commit-message-linter",
+      "command": "dotnet",
+      "args": [
+        "husky",
+        "exec",
+        ".husky/csx/commit-lint.csx",
+        "--args",
+        "${args}"
+      ]
+    },
+    {
+      "name": "csharpier",
+      "command": "dotnet",
+      "args": ["csharpier", "${staged}"],
+      "include": ["**/*.cs", "**/*.csx"]
+    },
+    {
+      "name": "prettier",
+      "command": "npx",
+      "args": ["prettier", "--ignore-unknown", "--write", "${staged}"],
+      "pathMode": "absolute"
+    }
+  ]
+}

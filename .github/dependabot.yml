@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "github-actions"
-    directory: "./.github/"
+    directory: "/"
     schedule:
       interval: "monthly"
     pull-request-branch-name:
@@ -25,6 +25,23 @@ updates:
         patterns:
           - "*"
       npm-dependencies:
+        dependency-type: "production"
+        patterns:
+          - "*"
+
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    pull-request-branch-name:
+      # Separate sections of the branch name with a hyphen
+      separator: "-"
+    groups:
+      repo-nuget-dev-dependencies:
+        dependency-type: "development"
+        patterns:
+          - "*"
+      repo-nuget-dependencies:
         dependency-type: "production"
         patterns:
           - "*"
