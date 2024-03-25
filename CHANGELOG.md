@@ -1,63 +1,65 @@
-## [0.16.1](https://github.com/callumjgill/pruneurl/compare/v0.16.0...v0.16.1) (2024-03-20)
-
-
-### Build Systems
-
-* **deps-dev:** bump the npm-dev-dependencies group ([1ced83c](https://github.com/callumjgill/pruneurl/commit/1ced83c3cffce5685a481227c1c9415c1b43ee46))
-
-
-# [0.16.0](https://github.com/callumjgill/pruneurl/compare/v0.15.4...v0.16.0) (2024-03-20)
-
-
-### Features
-
-* **frontend:** app migrated from Create-React-App to Vite ([081aada](https://github.com/callumjgill/pruneurl/commit/081aada565f09a2995ebabd21d6a78dd9c1e1399))
-
+## [0.16.2](https://github.com/callumjgill/pruneurl/compare/v0.16.1...v0.16.2) (2024-03-25)
 
 ### Bug Fixes
 
-* **workflows:** bump_app_version will now update the frontend package.json instead of repos ([b15ad84](https://github.com/callumjgill/pruneurl/commit/b15ad8491d52d5a2f1b131ffd0ae8111c4ee6efb))
+- **workflows:** bump app version workflow will install npm packages in correct directory ([182929b](https://github.com/callumjgill/pruneurl/commit/182929b676bf31564f1467556991d0133b65060b))
 
+### Code Refactoring
+
+- **backend:** remove regions & use primary constructors ([a83eaa6](https://github.com/callumjgill/pruneurl/commit/a83eaa640401041f09b85fda4234671cffc3d4d7))
+- **backend:** use flat namespaces for each project ([69f38a2](https://github.com/callumjgill/pruneurl/commit/69f38a277dfd8ae86de9730a90776f442cd7cd23))
+
+### Build Systems
+
+- **backend:** enforce file-scoped namespaces ([caa4b61](https://github.com/callumjgill/pruneurl/commit/caa4b61a0efaead6e51f1f3cf78ae4d9126247cd))
+- **Husky:** replace Husky node with Husky.Net and remove root npm packages ([543348e](https://github.com/callumjgill/pruneurl/commit/543348e6c1f27f2f2dbd2f95bfaa410678cf399a))
+
+## [0.16.1](https://github.com/callumjgill/pruneurl/compare/v0.16.0...v0.16.1) (2024-03-20)
+
+### Build Systems
+
+- **deps-dev:** bump the npm-dev-dependencies group ([1ced83c](https://github.com/callumjgill/pruneurl/commit/1ced83c3cffce5685a481227c1c9415c1b43ee46))
+
+# [0.16.0](https://github.com/callumjgill/pruneurl/compare/v0.15.4...v0.16.0) (2024-03-20)
+
+### Features
+
+- **frontend:** app migrated from Create-React-App to Vite ([081aada](https://github.com/callumjgill/pruneurl/commit/081aada565f09a2995ebabd21d6a78dd9c1e1399))
+
+### Bug Fixes
+
+- **workflows:** bump_app_version will now update the frontend package.json instead of repos ([b15ad84](https://github.com/callumjgill/pruneurl/commit/b15ad8491d52d5a2f1b131ffd0ae8111c4ee6efb))
 
 ## [0.15.4](https://github.com/callumjgill/pruneurl/compare/v0.15.3...v0.15.4) (2024-03-20)
 
-
 ### Build Systems
 
-* **dependabot:** updates will now occur monthly instead of weekly ([ee06568](https://github.com/callumjgill/pruneurl/commit/ee065683f2f8f4db09c1c3f25ff16c271be4cf93))
-
+- **dependabot:** updates will now occur monthly instead of weekly ([ee06568](https://github.com/callumjgill/pruneurl/commit/ee065683f2f8f4db09c1c3f25ff16c271be4cf93))
 
 ## [0.15.3](https://github.com/callumjgill/pruneurl/compare/v0.15.2...v0.15.3) (2024-03-18)
 
-
 ### Build Systems
 
-* **dependabot:** add dependabot.yml ([ec421db](https://github.com/callumjgill/pruneurl/commit/ec421db11dd91a7feb68fd052953f4d91cb7f5c8))
-
+- **dependabot:** add dependabot.yml ([ec421db](https://github.com/callumjgill/pruneurl/commit/ec421db11dd91a7feb68fd052953f4d91cb7f5c8))
 
 ## [0.15.2](https://github.com/callumjgill/pruneurl/compare/v0.15.1...v0.15.2) (2024-03-18)
 
-
 ### Build Systems
 
-* **backend:** update to .NET 8 and use central package versioning ([7b781f0](https://github.com/callumjgill/pruneurl/commit/7b781f03b633826616e38ce55f78200040df77f3))
-
+- **backend:** update to .NET 8 and use central package versioning ([7b781f0](https://github.com/callumjgill/pruneurl/commit/7b781f03b633826616e38ce55f78200040df77f3))
 
 ## [0.15.1](https://github.com/callumjgill/pruneurl/compare/v0.15.0...v0.15.1) (2024-03-18)
 
-
 ### Documentation
 
-* **CHANGELOG:** reformat changelog entries to be in descending version order ([f583984](https://github.com/callumjgill/pruneurl/commit/f5839846a8e822478e4434aa784b9077b5ac7554))
-
+- **CHANGELOG:** reformat changelog entries to be in descending version order ([f583984](https://github.com/callumjgill/pruneurl/commit/f5839846a8e822478e4434aa784b9077b5ac7554))
 
 ### Build Systems
 
-* **dev-deps:** add conventional commits and commit linting ([2f9a560](https://github.com/callumjgill/pruneurl/commit/2f9a56063ece691276864d8a0386817231d3d07f))
-* **dev-deps:** add Husky v9.0.11 ([8d8a995](https://github.com/callumjgill/pruneurl/commit/8d8a995cb653d0a1474dc999d3ddd525ba0e8c9d))
-* **workflows:** update bump_app_version.yml to create tag after pipeline commits pushed ([7facd76](https://github.com/callumjgill/pruneurl/commit/7facd763dadc3cecff57bd45f597d335d62fb7ad))
-* **workflows:** update React build and test workflow to use node 20.x ([396f59f](https://github.com/callumjgill/pruneurl/commit/396f59ff4640086c23ececde4336af20882bf71d))
-
+- **dev-deps:** add conventional commits and commit linting ([2f9a560](https://github.com/callumjgill/pruneurl/commit/2f9a56063ece691276864d8a0386817231d3d07f))
+- **dev-deps:** add Husky v9.0.11 ([8d8a995](https://github.com/callumjgill/pruneurl/commit/8d8a995cb653d0a1474dc999d3ddd525ba0e8c9d))
+- **workflows:** update bump_app_version.yml to create tag after pipeline commits pushed ([7facd76](https://github.com/callumjgill/pruneurl/commit/7facd763dadc3cecff57bd45f597d335d62fb7ad))
+- **workflows:** update React build and test workflow to use node 20.x ([396f59f](https://github.com/callumjgill/pruneurl/commit/396f59ff4640086c23ececde4336af20882bf71d))
 
 # [0.15.0](https://github.com/callumjgill/pruneurl/compare/v0.14.1...v0.15.0) (2023-08-17)
 
