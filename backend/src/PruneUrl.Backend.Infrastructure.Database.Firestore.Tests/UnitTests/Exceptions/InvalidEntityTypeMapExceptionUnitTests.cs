@@ -3,18 +3,17 @@ using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.Infrastructure.Database.Firestore.Exceptions;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Exceptions
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Exceptions;
+
+[TestFixture]
+[Parallelizable]
+public sealed class InvalidEntityTypeMapExceptionUnitTests
 {
-  [TestFixture]
-  [Parallelizable]
-  public sealed class InvalidEntityTypeMapExceptionUnitTests
+  [TestCase<SequenceId>]
+  [TestCase<ShortUrl>]
+  public void ConstructorTest<T>()
   {
-    [TestCase<SequenceId>]
-    [TestCase<ShortUrl>]
-    public void ConstructorTest<T>()
-    {
-      var exception = new InvalidEntityTypeMapException(typeof(T));
-      Assert.That(exception.Message, Is.EqualTo($"No mapping exists for the type {typeof(T)}!"));
-    }
+    var exception = new InvalidEntityTypeMapException(typeof(T));
+    Assert.That(exception.Message, Is.EqualTo($"No mapping exists for the type {typeof(T)}!"));
   }
 }

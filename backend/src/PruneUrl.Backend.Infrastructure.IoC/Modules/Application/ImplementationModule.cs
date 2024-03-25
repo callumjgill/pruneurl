@@ -4,29 +4,28 @@ using PruneUrl.Backend.Application.Implementation.Providers;
 using PruneUrl.Backend.Application.Interfaces.Factories.Entities;
 using PruneUrl.Backend.Application.Interfaces.Providers;
 
-namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application
+namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application;
+
+/// <summary>
+/// The Application "Implementation" specific code IoC module.
+/// </summary>
+internal sealed class ImplementationModule : Module
 {
-  /// <summary>
-  /// The Application "Implementation" specific code IoC module.
-  /// </summary>
-  internal sealed class ImplementationModule : Module
+  protected override void Load(ContainerBuilder builder)
   {
-    protected override void Load(ContainerBuilder builder)
-    {
-      RegisterProviders(builder);
-      RegisterFactories(builder);
-    }
+    RegisterProviders(builder);
+    RegisterFactories(builder);
+  }
 
-    private void RegisterFactories(ContainerBuilder builder)
-    {
-      builder.RegisterType<SequenceIdFactory>().As<ISequenceIdFactory>();
-      builder.RegisterType<ShortUrlFactory>().As<IShortUrlFactory>();
-    }
+  private void RegisterFactories(ContainerBuilder builder)
+  {
+    builder.RegisterType<SequenceIdFactory>().As<ISequenceIdFactory>();
+    builder.RegisterType<ShortUrlFactory>().As<IShortUrlFactory>();
+  }
 
-    private void RegisterProviders(ContainerBuilder builder)
-    {
-      builder.RegisterType<DateTimeProvider>().As<IDateTimeProvider>();
-      builder.RegisterType<ShortUrlProvider>().AsImplementedInterfaces();
-    }
+  private void RegisterProviders(ContainerBuilder builder)
+  {
+    builder.RegisterType<DateTimeProvider>().As<IDateTimeProvider>();
+    builder.RegisterType<ShortUrlProvider>().AsImplementedInterfaces();
   }
 }
