@@ -9,16 +9,13 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Utilities
   [Parallelizable]
   public sealed class CollectionReferenceHelperUnitTests
   {
-    #region Public Methods
-
     [TestCase<IEntity>("IEntitys")]
     [TestCase<ShortUrl>("ShortUrls")]
     [TestCase<SequenceId>("SequenceIds")]
-    public void GetCollectionPathTest<T>(string expectedResult) where T : IEntity
+    public void GetCollectionPathTest<T>(string expectedResult)
+      where T : IEntity
     {
       Assert.That(CollectionReferenceHelper.GetCollectionPath<T>(), Is.EqualTo(expectedResult));
     }
-
-    #endregion Public Methods
   }
 }

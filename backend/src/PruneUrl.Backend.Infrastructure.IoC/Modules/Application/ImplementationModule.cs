@@ -11,17 +11,11 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application
   /// </summary>
   internal sealed class ImplementationModule : Module
   {
-    #region Protected Methods
-
     protected override void Load(ContainerBuilder builder)
     {
       RegisterProviders(builder);
       RegisterFactories(builder);
     }
-
-    #endregion Protected Methods
-
-    #region Private Methods
 
     private void RegisterFactories(ContainerBuilder builder)
     {
@@ -34,7 +28,5 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application
       builder.RegisterType<DateTimeProvider>().As<IDateTimeProvider>();
       builder.RegisterType<ShortUrlProvider>().AsImplementedInterfaces();
     }
-
-    #endregion Private Methods
   }
 }

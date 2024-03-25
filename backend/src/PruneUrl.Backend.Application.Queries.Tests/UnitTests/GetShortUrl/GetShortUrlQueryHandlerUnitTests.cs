@@ -14,8 +14,6 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl
   [Parallelizable]
   public sealed class GetShortUrlQueryHandlerUnitTests
   {
-    #region Public Methods
-
     [Test]
     public async Task GetShortUrlTest_EntityFound()
     {
@@ -27,14 +25,20 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl
       var query = new GetShortUrlQuery(testShortUrl);
       var cancellationToken = CancellationToken.None;
 
-      dbGetByIdOperation.GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>()).Returns(testShortUrlEntity);
+      dbGetByIdOperation
+        .GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
+        .Returns(testShortUrlEntity);
       sequenceIdProvider.GetSequenceId(Arg.Any<string>()).Returns(testSequenceId);
 
       var handler = new GetShortUrlQueryHandler(dbGetByIdOperation, sequenceIdProvider);
       GetShortUrlQueryResponse response = await handler.Handle(query, cancellationToken);
       Assert.That(response.ShortUrl, Is.EqualTo(testShortUrlEntity));
-      await dbGetByIdOperation.Received(1).GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
-      await dbGetByIdOperation.Received(1).GetByIdAsync(testSequenceId.ToString(), cancellationToken);
+      await dbGetByIdOperation
+        .Received(1)
+        .GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
+      await dbGetByIdOperation
+        .Received(1)
+        .GetByIdAsync(testSequenceId.ToString(), cancellationToken);
       sequenceIdProvider.Received(1).GetSequenceId(Arg.Any<string>());
       sequenceIdProvider.Received(1).GetSequenceId(testShortUrl);
     }
@@ -53,13 +57,22 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl
       sequenceIdProvider.GetSequenceId(Arg.Any<string>()).Returns(testSequenceId);
 
       var handler = new GetShortUrlQueryHandler(dbGetByIdOperation, sequenceIdProvider);
-      Assert.That(async () => await handler.Handle(query, cancellationToken), Throws.TypeOf<EntityNotFoundException>().With.Message.EqualTo($"Entity of type {typeof(ShortUrl)} with id {testSequenceId} was not found!"));
-      await dbGetByIdOperation.Received(1).GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
-      await dbGetByIdOperation.Received(1).GetByIdAsync(testSequenceId.ToString(), cancellationToken);
+      Assert.That(
+        async () => await handler.Handle(query, cancellationToken),
+        Throws
+          .TypeOf<EntityNotFoundException>()
+          .With.Message.EqualTo(
+            $"Entity of type {typeof(ShortUrl)} with id {testSequenceId} was not found!"
+          )
+      );
+      await dbGetByIdOperation
+        .Received(1)
+        .GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
+      await dbGetByIdOperation
+        .Received(1)
+        .GetByIdAsync(testSequenceId.ToString(), cancellationToken);
       sequenceIdProvider.Received(1).GetSequenceId(Arg.Any<string>());
       sequenceIdProvider.Received(1).GetSequenceId(testShortUrl);
     }
-
-    #endregion Public Methods
   }
 }

@@ -12,8 +12,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs
   [FirestoreData]
   internal sealed class ShortUrlDTO : FirestoreEntityDTO
   {
-    #region Public Properties
-
     /// <summary>
     /// The date (and time) when this short url was created.
     /// </summary>
@@ -31,7 +29,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs
     /// </summary>
     [FirestoreProperty]
     public string? Url { get; set; }
-
-    #endregion Public Properties
   }
 }

@@ -10,25 +10,18 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application
   /// </summary>
   internal sealed class TransactionsModule : Module
   {
-    #region Protected Methods
-
     protected override void Load(ContainerBuilder builder)
     {
       RegisterGetAndBumpSequenceId(builder);
     }
 
-    #endregion Protected Methods
-
-    #region Private Methods
-
     private void RegisterGetAndBumpSequenceId(ContainerBuilder builder)
     {
-      MediatRConfiguration configuration = MediatRConfigurationBuilder.Create(typeof(GetAndBumpSequenceIdRequest).Assembly)
-                                                                      .WithAllOpenGenericHandlerTypesRegistered()
-                                                                      .Build();
+      MediatRConfiguration configuration = MediatRConfigurationBuilder
+        .Create(typeof(GetAndBumpSequenceIdRequest).Assembly)
+        .WithAllOpenGenericHandlerTypesRegistered()
+        .Build();
       builder.RegisterMediatR(configuration);
     }
-
-    #endregion Private Methods
   }
 }

@@ -8,13 +8,9 @@
   /// </summary>
   public interface IEntity
   {
-    #region Public Properties
-
     /// <summary>
     /// The unique identifier for the <see cref="IEntity" />.
     /// </summary>
     public string Id { get; }
-
-    #endregion Public Properties
   }
 }

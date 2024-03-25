@@ -14,22 +14,24 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
   [Parallelizable]
   public sealed class FirestoreDbTransactionProviderUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void MaxAttemptsTest()
     {
       FirestoreDb firestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
       var firestoreTransactionIOptions = Substitute.For<IOptions<FirestoreTransactionOptions>>();
-      var firestoreTransactionOptions = new FirestoreTransactionOptions()
-      {
-        MaxAttempts = 10
-      };
+      var firestoreTransactionOptions = new FirestoreTransactionOptions() { MaxAttempts = 10 };
 
       firestoreTransactionIOptions.Value.Returns(firestoreTransactionOptions);
 
-      var firestoreDbTransactionProvider = new FirestoreDbTransactionProvider(firestoreDb, Substitute.For<IFirestoreDbTransactionFactory>(), firestoreTransactionIOptions);
-      Assert.That(firestoreDbTransactionProvider.MaxAttempts, Is.EqualTo(firestoreTransactionOptions.MaxAttempts));
+      var firestoreDbTransactionProvider = new FirestoreDbTransactionProvider(
+        firestoreDb,
+        Substitute.For<IFirestoreDbTransactionFactory>(),
+        firestoreTransactionIOptions
+      );
+      Assert.That(
+        firestoreDbTransactionProvider.MaxAttempts,
+        Is.EqualTo(firestoreTransactionOptions.MaxAttempts)
+      );
       _ = firestoreTransactionIOptions.Received(1).Value;
     }
 
@@ -48,21 +50,28 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       var stubEntity = new StubFirestoreEntity(string.Empty);
 
       firestoreTransactionIOptions.Value.Returns(firestoreTransactionOptions);
-      firestoreDbTransactionFactory.Create<StubFirestoreEntity>(Arg.Any<Transaction>()).Returns(dbTransaction);
+      firestoreDbTransactionFactory
+        .Create<StubFirestoreEntity>(Arg.Any<Transaction>())
+        .Returns(dbTransaction);
 
       bool callbackCalled = false;
-      var firestoreDbTransactionProvider = new FirestoreDbTransactionProvider(firestoreDb, firestoreDbTransactionFactory, firestoreTransactionIOptions);
-      StubFirestoreEntity actualEntity = await firestoreDbTransactionProvider.RunTransactionAsync<StubFirestoreEntity>(actualDbTransaction =>
-      {
-        Assert.That(actualDbTransaction, Is.EqualTo(dbTransaction));
-        callbackCalled = true;
-        return Task.FromResult(stubEntity);
-      });
+      var firestoreDbTransactionProvider = new FirestoreDbTransactionProvider(
+        firestoreDb,
+        firestoreDbTransactionFactory,
+        firestoreTransactionIOptions
+      );
+      StubFirestoreEntity actualEntity =
+        await firestoreDbTransactionProvider.RunTransactionAsync<StubFirestoreEntity>(
+          actualDbTransaction =>
+          {
+            Assert.That(actualDbTransaction, Is.EqualTo(dbTransaction));
+            callbackCalled = true;
+            return Task.FromResult(stubEntity);
+          }
+        );
       Assert.That(callbackCalled, Is.True);
       Assert.That(actualEntity, Is.EqualTo(stubEntity));
       firestoreDbTransactionFactory.Received(1).Create<StubFirestoreEntity>(Arg.Any<Transaction>());
     }
-
-    #endregion Public Methods
   }
 }

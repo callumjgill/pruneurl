@@ -7,14 +7,10 @@ namespace PruneUrl.Backend.Application.Interfaces.Database.Operations.Write
   /// </summary>
   public interface IDbDeleteOperation
   {
-    #region Public Methods
-
     /// <summary>
     /// Performs the operation of deleting an entity.
     /// </summary>
     /// <param name="id"> The unique identifier of the <see cref="IEntity" /> to delete. </param>
     void Delete(string id);
-
-    #endregion Public Methods
   }
 }

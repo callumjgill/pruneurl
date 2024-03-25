@@ -12,36 +12,30 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application
   /// </summary>
   internal sealed class QueriesModule : Module
   {
-    #region Protected Methods
-
     protected override void Load(ContainerBuilder builder)
     {
       RegisterGetSequenceId(builder);
       RegisterGetShortUrl(builder);
     }
 
-    #endregion Protected Methods
-
-    #region Private Methods
-
     private void RegisterGetSequenceId(ContainerBuilder builder)
     {
-      MediatRConfiguration configuration = MediatRConfigurationBuilder.Create(typeof(GetSequenceIdQuery).Assembly)
-                                                                      .WithAllOpenGenericHandlerTypesRegistered()
-                                                                      .Build();
+      MediatRConfiguration configuration = MediatRConfigurationBuilder
+        .Create(typeof(GetSequenceIdQuery).Assembly)
+        .WithAllOpenGenericHandlerTypesRegistered()
+        .Build();
       builder.RegisterMediatR(configuration);
       builder.RegisterType<GetSequenceIdQueryValidator>().As<IValidator<GetSequenceIdQuery>>();
     }
 
     private void RegisterGetShortUrl(ContainerBuilder builder)
     {
-      MediatRConfiguration configuration = MediatRConfigurationBuilder.Create(typeof(GetShortUrlQuery).Assembly)
-                                                                      .WithAllOpenGenericHandlerTypesRegistered()
-                                                                      .Build();
+      MediatRConfiguration configuration = MediatRConfigurationBuilder
+        .Create(typeof(GetShortUrlQuery).Assembly)
+        .WithAllOpenGenericHandlerTypesRegistered()
+        .Build();
       builder.RegisterMediatR(configuration);
       builder.RegisterType<GetShortUrlQueryValidator>().As<IValidator<GetShortUrlQuery>>();
     }
-
-    #endregion Private Methods
   }
 }

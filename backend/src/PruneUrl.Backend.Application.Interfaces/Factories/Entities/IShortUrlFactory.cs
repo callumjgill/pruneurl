@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.Application.Interfaces.Factories.Entities
   /// </summary>
   public interface IShortUrlFactory
   {
-    #region Public Methods
-
     /// <summary>
     /// Creates a new <see cref="ShortUrl" /> instance given a <paramref name="longUrl" /> and a
     /// <paramref name="sequenceId" />.
@@ -22,7 +20,5 @@ namespace PruneUrl.Backend.Application.Interfaces.Factories.Entities
     /// existing "short url".
     /// </returns>
     ShortUrl Create(string longUrl, int sequenceId);
-
-    #endregion Public Methods
   }
 }

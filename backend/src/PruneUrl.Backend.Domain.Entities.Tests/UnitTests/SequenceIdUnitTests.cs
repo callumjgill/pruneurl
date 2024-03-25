@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.Domain.Entities.Tests.UnitTests
   [Parallelizable]
   public sealed class SequenceIdUnitTests
   {
-    #region Public Methods
-
     [TestCase("", default(int))]
     [TestCase("ab0ed3aa-b540-4732-a11f-1d43333a659d", 1076)]
     [TestCase("This is an id", 432)]
@@ -21,7 +19,5 @@ namespace PruneUrl.Backend.Domain.Entities.Tests.UnitTests
         Assert.That(testSequenceId.Value, Is.EqualTo(value));
       });
     }
-
-    #endregion Public Methods
   }
 }

@@ -13,8 +13,6 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateShortUrl
   [Parallelizable]
   public sealed class CreateShortUrlCommandHandlerUnitTests
   {
-    #region Public Methods
-
     [Test]
     public async Task HandleTest()
     {
@@ -40,7 +38,5 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateShortUrl
       await dbWriteBatch.Received(1).CommitAsync(Arg.Any<CancellationToken>());
       await dbWriteBatch.Received(1).CommitAsync(cancellationToken);
     }
-
-    #endregion Public Methods
   }
 }

@@ -8,8 +8,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Utilities
   /// </summary>
   internal static class CollectionReferenceHelper
   {
-    #region Public Methods
-
     /// <summary>
     /// Returns the relative path for a <see cref="CollectionReference" /> given a <typeparamref
     /// name="T" /> type.
@@ -19,11 +17,10 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Utilities
     /// The relative path for a <see cref="CollectionReference" /> holding documents concerning the
     /// <typeparamref name="T" /> type.
     /// </returns>
-    public static string GetCollectionPath<T>() where T : IEntity
+    public static string GetCollectionPath<T>()
+      where T : IEntity
     {
       return $"{typeof(T).Name}s";
     }
-
-    #endregion Public Methods
   }
 }

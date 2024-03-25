@@ -10,8 +10,6 @@ namespace PruneUrl.Backend.Application.Requests.Extensions
   /// </summary>
   internal static class ValidatorExtensions
   {
-    #region Public Methods
-
     /// <summary>
     /// Validates the given <paramref name="request" />
     /// </summary>
@@ -21,7 +19,11 @@ namespace PruneUrl.Backend.Application.Requests.Extensions
     /// <exception cref="InvalidRequestException">
     /// The exception thrown if the request is invalid.
     /// </exception>
-    public static void ValidateRequest<TRequest>(this IValidator<TRequest> validator, TRequest request) where TRequest : IBaseRequest
+    public static void ValidateRequest<TRequest>(
+      this IValidator<TRequest> validator,
+      TRequest request
+    )
+      where TRequest : IBaseRequest
     {
       ValidationResult validationResult = validator.Validate(request);
       if (!validationResult.IsValid)
@@ -29,7 +31,5 @@ namespace PruneUrl.Backend.Application.Requests.Extensions
         throw new InvalidRequestException(validationResult.Errors);
       }
     }
-
-    #endregion Public Methods
   }
 }

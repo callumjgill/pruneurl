@@ -8,8 +8,6 @@ namespace PruneUrl.Backend.Application.Queries.GetShortUrl
   /// </summary>
   public sealed class GetShortUrlQueryValidator : AbstractValidator<GetShortUrlQuery>
   {
-    #region Public Constructors
-
     /// <summary>
     /// Instantiates a new instance of the <see cref="GetShortUrlQueryValidator" /> class.
     /// </summary>
@@ -18,19 +16,15 @@ namespace PruneUrl.Backend.Application.Queries.GetShortUrl
     /// </param>
     public GetShortUrlQueryValidator(ISequenceIdProvider sequenceIdProvider)
     {
-      RuleFor(query => query.ShortUrl).NotEmpty().Must(shortUrl => BeValidShortUrl(sequenceIdProvider, shortUrl));
+      RuleFor(query => query.ShortUrl)
+        .NotEmpty()
+        .Must(shortUrl => BeValidShortUrl(sequenceIdProvider, shortUrl));
     }
-
-    #endregion Public Constructors
-
-    #region Private Methods
 
     private static bool BeValidShortUrl(ISequenceIdProvider sequenceIdProvider, string shortUrl)
     {
       int sequenceId = sequenceIdProvider.GetSequenceId(shortUrl);
       return sequenceId >= 0;
     }
-
-    #endregion Private Methods
   }
 }

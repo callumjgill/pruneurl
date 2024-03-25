@@ -8,32 +8,41 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
 {
   [TestFixture]
   [Parallelizable]
-  [Description("These tests require communicating with the FirestoreDb emulator, which is in-memory and so this can be considered a unit test.")]
+  [Description(
+    "These tests require communicating with the FirestoreDb emulator, which is in-memory and so this can be considered a unit test."
+  )]
   public sealed class FirestoreDbTransactionUnitTests
   {
-    #region Public Methods
-
     [Test]
     public async Task TransactionCommitTest_NothingToCommitDoesNothing()
     {
       // Setup database for test
       string testId = Guid.NewGuid().ToString();
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      CollectionReference testCollectionReference = TestFirestoreDbHelper.GetTestCollectionReference(testFirestoreDb);
+      CollectionReference testCollectionReference =
+        TestFirestoreDbHelper.GetTestCollectionReference(testFirestoreDb);
       DocumentReference testDocumentReference = testCollectionReference.Document(testId);
       var stubEntity = new StubFirestoreEntity(testId);
       await testDocumentReference.CreateAsync(stubEntity);
-      List<DocumentReference> beforeCommitDocuments = testCollectionReference.ListDocumentsAsync().ToBlockingEnumerable().ToList();
+      List<DocumentReference> beforeCommitDocuments = testCollectionReference
+        .ListDocumentsAsync()
+        .ToBlockingEnumerable()
+        .ToList();
       await testFirestoreDb.RunTransactionAsync(async transaction =>
       {
         // Test
-        var dbTransaction = new FirestoreDbTransaction<StubFirestoreEntity>(testCollectionReference, transaction);
+        var dbTransaction = new FirestoreDbTransaction<StubFirestoreEntity>(
+          testCollectionReference,
+          transaction
+        );
         StubFirestoreEntity? actualStubEntity = await dbTransaction.GetByIdAsync(testId);
         Assert.That(actualStubEntity, Is.Not.Null);
         Assert.That(actualStubEntity.Id, Is.EqualTo(testId));
       });
 
-      IEnumerable<DocumentReference> afterCommitDocuments = testCollectionReference.ListDocumentsAsync().ToBlockingEnumerable();
+      IEnumerable<DocumentReference> afterCommitDocuments = testCollectionReference
+        .ListDocumentsAsync()
+        .ToBlockingEnumerable();
       Assert.That(afterCommitDocuments, Is.EquivalentTo(beforeCommitDocuments));
     }
 
@@ -45,7 +54,8 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       string initialTestData = "Testing123";
       string newTestData = "NewTesting123";
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      CollectionReference testCollectionReference = TestFirestoreDbHelper.GetTestCollectionReference(testFirestoreDb);
+      CollectionReference testCollectionReference =
+        TestFirestoreDbHelper.GetTestCollectionReference(testFirestoreDb);
       DocumentReference testDocumentReference = testCollectionReference.Document(testId);
       var stubEntity = new StubFirestoreEntity(testId, initialTestData);
       await testDocumentReference.CreateAsync(stubEntity);
@@ -53,7 +63,10 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       await testFirestoreDb.RunTransactionAsync(async transaction =>
       {
         // Test
-        var dbTransaction = new FirestoreDbTransaction<StubFirestoreEntity>(testCollectionReference, transaction);
+        var dbTransaction = new FirestoreDbTransaction<StubFirestoreEntity>(
+          testCollectionReference,
+          transaction
+        );
         var newStubEntity = new StubFirestoreEntity(testId, newTestData);
         StubFirestoreEntity? actualStubEntity = await dbTransaction.GetByIdAsync(testId);
         Assert.That(actualStubEntity, Is.Not.Null);
@@ -75,22 +88,31 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       // Setup database for test
       string testId = Guid.NewGuid().ToString();
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      CollectionReference testCollectionReference = TestFirestoreDbHelper.GetTestCollectionReference(testFirestoreDb);
+      CollectionReference testCollectionReference =
+        TestFirestoreDbHelper.GetTestCollectionReference(testFirestoreDb);
       DocumentReference testDocumentReference = testCollectionReference.Document(testId);
       var stubEntity = new StubFirestoreEntity(testId);
       await testDocumentReference.CreateAsync(stubEntity);
-      List<DocumentReference> beforeCommitDocuments = testCollectionReference.ListDocumentsAsync().ToBlockingEnumerable().ToList();
+      List<DocumentReference> beforeCommitDocuments = testCollectionReference
+        .ListDocumentsAsync()
+        .ToBlockingEnumerable()
+        .ToList();
       DocumentReference testDocumentReferenceToCreate = testCollectionReference.Document(testId);
-      Assert.That(async () => await testFirestoreDb.RunTransactionAsync(async transaction =>
-      {
-        // Test
-        var dbTransaction = new FirestoreDbTransaction<StubFirestoreEntity>(testCollectionReference, transaction);
-        var newStubEntity = new StubFirestoreEntity(testId);
-        dbTransaction.Update(newStubEntity);
-        await dbTransaction.GetByIdAsync(testId);
-      }), Throws.Exception);
+      Assert.That(
+        async () =>
+          await testFirestoreDb.RunTransactionAsync(async transaction =>
+          {
+            // Test
+            var dbTransaction = new FirestoreDbTransaction<StubFirestoreEntity>(
+              testCollectionReference,
+              transaction
+            );
+            var newStubEntity = new StubFirestoreEntity(testId);
+            dbTransaction.Update(newStubEntity);
+            await dbTransaction.GetByIdAsync(testId);
+          }),
+        Throws.Exception
+      );
     }
-
-    #endregion Public Methods
   }
 }

@@ -8,8 +8,6 @@ namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSe
   [Parallelizable]
   public sealed class GetAndBumpSequenceIdResponseUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void ConstructorTest()
     {
@@ -17,7 +15,5 @@ namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSe
       var response = new GetAndBumpSequenceIdResponse(sequenceId);
       Assert.That(response.SequenceId, Is.EqualTo(sequenceId));
     }
-
-    #endregion Public Methods
   }
 }

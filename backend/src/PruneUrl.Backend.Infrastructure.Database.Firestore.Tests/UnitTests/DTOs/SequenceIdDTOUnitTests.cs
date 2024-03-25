@@ -8,8 +8,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.DTO
   [Parallelizable]
   internal sealed class SequenceIdDTOUnitTests : FirestoreEntityDTOUnitTests
   {
-    #region Public Methods
-
     [TestCase(0)]
     [TestCase(1)]
     [TestCase(2)]
@@ -22,18 +20,17 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.DTO
     [TestCase(256)]
     public void ValueTest(int testValue)
     {
-      PropertyTest(null, testValue, (entityDTO) => ((SequenceIdDTO)entityDTO).Value, (entityDTO, newValue) => ((SequenceIdDTO)entityDTO).Value = newValue);
+      PropertyTest(
+        null,
+        testValue,
+        (entityDTO) => ((SequenceIdDTO)entityDTO).Value,
+        (entityDTO, newValue) => ((SequenceIdDTO)entityDTO).Value = newValue
+      );
     }
-
-    #endregion Public Methods
-
-    #region Protected Methods
 
     protected override FirestoreEntityDTO CreateDTO()
     {
       return new SequenceIdDTO();
     }
-
-    #endregion Protected Methods
   }
 }

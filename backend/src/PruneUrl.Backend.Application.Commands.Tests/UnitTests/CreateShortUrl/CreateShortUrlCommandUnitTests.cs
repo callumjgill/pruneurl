@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateShortUrl
   [Parallelizable]
   public sealed class CreateShortUrlCommandUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void ConstructorTest()
     {
@@ -18,7 +16,5 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateShortUrl
       Assert.That(command.LongUrl, Is.EqualTo(testLongUrl));
       Assert.That(command.SequenceId, Is.EqualTo(testSequenceId));
     }
-
-    #endregion Public Methods
   }
 }

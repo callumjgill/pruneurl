@@ -1,6 +1,6 @@
-﻿using Google.Cloud.Firestore;
+﻿using System.Diagnostics.CodeAnalysis;
+using Google.Cloud.Firestore;
 using PruneUrl.Backend.Domain.Entities;
-using System.Diagnostics.CodeAnalysis;
 
 namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs
 {
@@ -9,13 +9,9 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs
   /// </summary>
   internal abstract class FirestoreEntityDTO : IEntity
   {
-    #region Public Properties
-
     /// <inheritdoc cref="IEntity.Id" />
     [FirestoreDocumentId]
     [AllowNull]
     public string Id { get; set; }
-
-    #endregion Public Properties
   }
 }

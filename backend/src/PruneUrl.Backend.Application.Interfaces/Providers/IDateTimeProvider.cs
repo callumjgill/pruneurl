@@ -6,14 +6,10 @@
   /// </summary>
   public interface IDateTimeProvider
   {
-    #region Public Methods
-
     /// <summary>
     /// Returns the current <see cref="DateTime.Now" /> value.
     /// </summary>
     /// <returns> The current <see cref="DateTime.Now" /> value. </returns>
     DateTime GetNow();
-
-    #endregion Public Methods
   }
 }

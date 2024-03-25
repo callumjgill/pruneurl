@@ -16,43 +16,35 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
   /// <typeparam name="TFirestoreEntity">
   /// The <see cref="FirestoreEntityDTO" /> the internal <see cref="IDbTransaction{T}" /> uses.
   /// </typeparam>
-  internal sealed class FirestoreDbTransactionAdapter<TEntity, TFirestoreEntity> : IDbTransaction<TEntity>
+  /// <param name="firestoreDbTransaction"> The adaptee <see cref="IDbTransaction{T}" />. </param>
+  /// <param name="mapper">
+  /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
+  /// />'s and the core <see cref="IEntity" />'s.
+  /// </param>
+  internal sealed class FirestoreDbTransactionAdapter<TEntity, TFirestoreEntity>(
+    IDbTransaction<TFirestoreEntity> firestoreDbTransaction,
+    IMapper mapper
+  ) : IDbTransaction<TEntity>
     where TEntity : IEntity
     where TFirestoreEntity : FirestoreEntityDTO
   {
-    #region Private Fields
-
-    private readonly IDbTransaction<TFirestoreEntity> firestoreDbTransaction;
-    private readonly IMapper mapper;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbTransactionAdapter{TEntity,
-    /// TFirestoreEntity}" /> class.
-    /// </summary>
-    /// <param name="firestoreDbTransaction"> The adaptee <see cref="IDbTransaction{T}" />. </param>
-    /// <param name="mapper">
-    /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
-    /// />'s and the core <see cref="IEntity" />'s.
-    /// </param>
-    public FirestoreDbTransactionAdapter(IDbTransaction<TFirestoreEntity> firestoreDbTransaction, IMapper mapper)
-    {
-      this.firestoreDbTransaction = firestoreDbTransaction;
-      this.mapper = mapper;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Methods
+    private readonly IDbTransaction<TFirestoreEntity> firestoreDbTransaction =
+      firestoreDbTransaction;
+    private readonly IMapper mapper = mapper;
 
     /// <inheritdoc cref="IDbGetByIdOperation{T}.GetByIdAsync(string, CancellationToken)" />
-    public async Task<TEntity?> GetByIdAsync(string id, CancellationToken cancellationToken = default)
+    public async Task<TEntity?> GetByIdAsync(
+      string id,
+      CancellationToken cancellationToken = default
+    )
     {
-      TFirestoreEntity? firestoreEntity = await firestoreDbTransaction.GetByIdAsync(id, cancellationToken);
-      return firestoreEntity != null ? mapper.Map<TFirestoreEntity, TEntity>(firestoreEntity) : default;
+      TFirestoreEntity? firestoreEntity = await firestoreDbTransaction.GetByIdAsync(
+        id,
+        cancellationToken
+      );
+      return firestoreEntity != null
+        ? mapper.Map<TFirestoreEntity, TEntity>(firestoreEntity)
+        : default;
     }
 
     /// <inheritdoc cref="IDbUpdateOperation{T}.Update(T)" />
@@ -61,7 +53,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
       TFirestoreEntity firestoreEntity = mapper.Map<TEntity, TFirestoreEntity>(entity);
       firestoreDbTransaction.Update(firestoreEntity);
     }
-
-    #endregion Public Methods
   }
 }

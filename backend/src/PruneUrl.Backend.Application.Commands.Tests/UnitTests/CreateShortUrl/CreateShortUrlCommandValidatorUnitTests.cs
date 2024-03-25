@@ -8,8 +8,6 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateShortUrl
   [Parallelizable]
   public sealed class CreateShortUrlCommandValidatorUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void ValidateTest_InvalidProperties()
     {
@@ -35,7 +33,5 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateShortUrl
       result.ShouldNotHaveValidationErrorFor(cmd => cmd.LongUrl);
       result.ShouldNotHaveValidationErrorFor(cmd => cmd.SequenceId);
     }
-
-    #endregion Public Methods
   }
 }

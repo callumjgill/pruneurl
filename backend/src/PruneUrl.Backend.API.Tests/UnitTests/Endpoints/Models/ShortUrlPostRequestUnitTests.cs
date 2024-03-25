@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints.Models
   [Parallelizable]
   public sealed class ShortUrlPostRequestUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void ConstructorTest()
     {
@@ -16,7 +14,5 @@ namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints.Models
       var shortUrlPostRequest = new ShortUrlPostRequest(testLongUrl);
       Assert.That(shortUrlPostRequest.LongUrl, Is.EqualTo(testLongUrl));
     }
-
-    #endregion Public Methods
   }
 }

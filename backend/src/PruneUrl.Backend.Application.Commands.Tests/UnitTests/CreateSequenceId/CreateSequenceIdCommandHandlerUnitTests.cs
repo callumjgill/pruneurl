@@ -12,8 +12,6 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateSequenceId
   [Parallelizable]
   public sealed class CreateSequenceIdCommandHandlerUnitTests
   {
-    #region Public Methods
-
     [Test]
     public async Task HandleTest()
     {
@@ -35,7 +33,5 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateSequenceId
       await dbWriteBatch.Received(1).CommitAsync(Arg.Any<CancellationToken>());
       await dbWriteBatch.Received(1).CommitAsync(cancellationToken);
     }
-
-    #endregion Public Methods
   }
 }

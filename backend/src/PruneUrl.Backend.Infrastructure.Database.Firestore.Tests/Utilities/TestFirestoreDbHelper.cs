@@ -8,14 +8,8 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities
   /// </summary>
   internal static class TestFirestoreDbHelper
   {
-    #region Private Fields
-
     private const string emulatorEnviromentVariable = "FIRESTORE_EMULATOR_HOST";
     private const string projectIdEnviromentVariable = "FIRESTORE_EMULATOR_PROJECT_ID";
-
-    #endregion Private Fields
-
-    #region Public Methods
 
     /// <summary>
     /// Clears the emulated database for the next test run.
@@ -29,7 +23,9 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities
     {
       var httpClient = new HttpClient();
       (string emulatorHost, string projectId) = GetTestFirestoreEnviromentVariables();
-      var requestUri = new Uri($"http://{emulatorHost}/emulator/v1/projects/{projectId}/databases/(default)/documents");
+      var requestUri = new Uri(
+        $"http://{emulatorHost}/emulator/v1/projects/{projectId}/databases/(default)/documents"
+      );
       using HttpResponseMessage response = await httpClient.DeleteAsync(requestUri);
       response.EnsureSuccessStatusCode();
     }
@@ -60,27 +56,25 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities
       return builder.Build();
     }
 
-    #endregion Public Methods
-
-    #region Private Methods
-
     private static (string, string) GetTestFirestoreEnviromentVariables()
     {
       string? emulatorHost = Environment.GetEnvironmentVariable(emulatorEnviromentVariable);
       if (emulatorHost == null)
       {
-        throw new InvalidOperationException($"The enviroment variable '{emulatorEnviromentVariable}' has not been set!");
+        throw new InvalidOperationException(
+          $"The enviroment variable '{emulatorEnviromentVariable}' has not been set!"
+        );
       }
 
       string? emulatorProjectId = Environment.GetEnvironmentVariable(projectIdEnviromentVariable);
       if (emulatorProjectId == null)
       {
-        throw new InvalidOperationException($"The enviroment variable '{projectIdEnviromentVariable}' has not been set!");
+        throw new InvalidOperationException(
+          $"The enviroment variable '{projectIdEnviromentVariable}' has not been set!"
+        );
       }
 
       return (emulatorHost, emulatorProjectId);
     }
-
-    #endregion Private Methods
   }
 }

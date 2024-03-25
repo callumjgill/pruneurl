@@ -14,37 +14,20 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
   /// <typeparam name="TFirestoreEntity">
   /// The <see cref="FirestoreEntityDTO" /> the internal <see cref="IDbWriteBatch{T}" /> uses.
   /// </typeparam>
-  internal sealed class FirestoreDbWriteBatchAdapter<TEntity, TFirestoreEntity> : IDbWriteBatch<TEntity>
+  /// <param name="firestoreDbWriteBatch"> The adaptee <see cref="IDbWriteBatch{T}" />. </param>
+  /// <param name="mapper">
+  /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
+  /// />'s and the core <see cref="IEntity" />'s.
+  /// </param>
+  internal sealed class FirestoreDbWriteBatchAdapter<TEntity, TFirestoreEntity>(
+    IDbWriteBatch<TFirestoreEntity> firestoreDbWriteBatch,
+    IMapper mapper
+  ) : IDbWriteBatch<TEntity>
     where TEntity : IEntity
     where TFirestoreEntity : FirestoreEntityDTO
   {
-    #region Private Fields
-
-    private readonly IDbWriteBatch<TFirestoreEntity> firestoreDbWriteBatch;
-    private readonly IMapper mapper;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbWriteBatchAdapter{TEntity,
-    /// TFirestoreEntity}" /> class.
-    /// </summary>
-    /// <param name="firestoreDbWriteBatch"> The adaptee <see cref="IDbWriteBatch{T}" />. </param>
-    /// <param name="mapper">
-    /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
-    /// />'s and the core <see cref="IEntity" />'s.
-    /// </param>
-    public FirestoreDbWriteBatchAdapter(IDbWriteBatch<TFirestoreEntity> firestoreDbWriteBatch, IMapper mapper)
-    {
-      this.firestoreDbWriteBatch = firestoreDbWriteBatch;
-      this.mapper = mapper;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Methods
+    private readonly IDbWriteBatch<TFirestoreEntity> firestoreDbWriteBatch = firestoreDbWriteBatch;
+    private readonly IMapper mapper = mapper;
 
     /// <inheritdoc cref="IDbWriteBatch{T}.CommitAsync(CancellationToken)" />
     public Task CommitAsync(CancellationToken cancellationToken = default)
@@ -64,7 +47,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
     {
       firestoreDbWriteBatch.Delete(id);
     }
-
-    #endregion Public Methods
   }
 }

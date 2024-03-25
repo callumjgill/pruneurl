@@ -9,18 +9,10 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities
   [FirestoreData]
   internal sealed class StubFirestoreEntity : FirestoreEntityDTO
   {
-    #region Public Constructors
-
     /// <summary>
     /// Constructor used by firestore in deserialization
     /// </summary>
-    public StubFirestoreEntity()
-    {
-    }
-
-    #endregion Public Constructors
-
-    #region Internal Constructors
+    public StubFirestoreEntity() { }
 
     /// <summary>
     /// Constructor for creating a new instance
@@ -33,13 +25,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities
       TestData = testData;
     }
 
-    #endregion Internal Constructors
-
-    #region Public Properties
-
     [FirestoreProperty]
     public string? TestData { get; set; }
-
-    #endregion Public Properties
   }
 }

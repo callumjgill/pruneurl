@@ -11,16 +11,10 @@ namespace PruneUrl.Backend.Application.Interfaces.Database.Requests
   /// </summary>
   public interface IDbTransactionProvider
   {
-    #region Public Properties
-
     /// <summary>
     /// The number of times the transaction will be attempted before failing.
     /// </summary>
     int MaxAttempts { get; }
-
-    #endregion Public Properties
-
-    #region Public Methods
 
     /// <summary>
     /// Runs a transaction asychronously, with an asynchronous callback with no return value. The
@@ -34,8 +28,10 @@ namespace PruneUrl.Backend.Application.Interfaces.Database.Requests
     /// A task which completes when the transaction has committed with the result being a
     /// <typeparamref name="T" /> type.
     /// </returns>
-    Task<T> RunTransactionAsync<T>(Func<IDbTransaction<T>, Task<T>> callback, CancellationToken cancellationToken = default) where T : IEntity;
-
-    #endregion Public Methods
+    Task<T> RunTransactionAsync<T>(
+      Func<IDbTransaction<T>, Task<T>> callback,
+      CancellationToken cancellationToken = default
+    )
+      where T : IEntity;
   }
 }

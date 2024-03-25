@@ -9,14 +9,9 @@ namespace PruneUrl.Backend.Application.Implementation.Providers
   /// </summary>
   public sealed class ShortUrlProvider : IShortUrlProvider, ISequenceIdProvider
   {
-    #region Private Fields
-
     private readonly int baseNumber = 62;
-    private readonly char[] characterMap = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-
-    #endregion Private Fields
-
-    #region Public Methods
+    private readonly char[] characterMap =
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
     /// <inheritdoc cref="ISequenceIdProvider.GetSequenceId(string)" />
     public int GetSequenceId(string shortUrl)
@@ -26,7 +21,10 @@ namespace PruneUrl.Backend.Application.Implementation.Providers
       double exponent = shortUrlChars.Length - 1;
       foreach (char shortUrlCharacter in shortUrlChars)
       {
-        double indexInCharMap = Array.FindIndex(characterMap, character => character == shortUrlCharacter);
+        double indexInCharMap = Array.FindIndex(
+          characterMap,
+          character => character == shortUrlCharacter
+        );
         if (indexInCharMap < 0)
         {
           return -1;
@@ -52,7 +50,5 @@ namespace PruneUrl.Backend.Application.Implementation.Providers
 
       return string.Concat(shortUrlCharacters);
     }
-
-    #endregion Public Methods
   }
 }

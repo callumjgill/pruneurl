@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.Application.Configuration.UnitTests.Entities.Sequence
   [Parallelizable]
   public sealed class SequenceIdOptionsUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void IdTest_DefaultValue()
     {
@@ -20,13 +18,8 @@ namespace PruneUrl.Backend.Application.Configuration.UnitTests.Entities.Sequence
     public void IdTest_Set()
     {
       var testId = Guid.NewGuid().ToString();
-      var sequenceIdOptions = new SequenceIdOptions()
-      {
-        Id = testId
-      };
+      var sequenceIdOptions = new SequenceIdOptions() { Id = testId };
       Assert.That(sequenceIdOptions.Id, Is.EqualTo(testId));
     }
-
-    #endregion Public Methods
   }
 }

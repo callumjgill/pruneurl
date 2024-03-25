@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.Application.Queries.GetSequenceId
   /// </summary>
   public sealed class GetSequenceIdQueryValidator : AbstractValidator<GetSequenceIdQuery>
   {
-    #region Public Constructors
-
     /// <summary>
     /// Instantiates a new instance of the <see cref="GetSequenceIdQueryValidator" /> class.
     /// </summary>
@@ -16,7 +14,5 @@ namespace PruneUrl.Backend.Application.Queries.GetSequenceId
     {
       RuleFor(query => query.Id).NotEmpty();
     }
-
-    #endregion Public Constructors
   }
 }

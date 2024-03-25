@@ -13,34 +13,19 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
   /// <typeparam name="T">
   /// The <see cref="FirestoreEntityDTO" /> the transaction is concerned with.
   /// </typeparam>
-  internal sealed class FirestoreDbTransaction<T> : IDbTransaction<T> where T : FirestoreEntityDTO
+  /// <param name="collection">
+  /// A reference to the collection in the Firestore database corresponding to the <typeparamref
+  /// name="T" /> type.
+  /// </param>
+  /// <param name="transaction"> The <see cref="Transaction" /> to wrap. </param>
+  internal sealed class FirestoreDbTransaction<T>(
+    CollectionReference collection,
+    Transaction transaction
+  ) : IDbTransaction<T>
+    where T : FirestoreEntityDTO
   {
-    #region Private Fields
-
-    private readonly CollectionReference collection;
-    private readonly Transaction transaction;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbTransaction{T}" />.
-    /// </summary>
-    /// <param name="collection">
-    /// A reference to the collection in the Firestore database corresponding to the <typeparamref
-    /// name="T" /> type.
-    /// </param>
-    /// <param name="transaction"> The <see cref="Transaction" /> to wrap. </param>
-    public FirestoreDbTransaction(CollectionReference collection, Transaction transaction)
-    {
-      this.collection = collection;
-      this.transaction = transaction;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Methods
+    private readonly CollectionReference collection = collection;
+    private readonly Transaction transaction = transaction;
 
     /// <inheritdoc cref="IDbGetByIdOperation{T}.GetByIdAsync(string, CancellationToken)" />
     public async Task<T?> GetByIdAsync(string id, CancellationToken cancellationToken = default)
@@ -56,7 +41,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
       DocumentReference document = collection.Document(entity.Id);
       transaction.Set(document, entity);
     }
-
-    #endregion Public Methods
   }
 }

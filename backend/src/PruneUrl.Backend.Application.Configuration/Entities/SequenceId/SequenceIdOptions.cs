@@ -6,13 +6,9 @@
   /// </summary>
   public sealed class SequenceIdOptions
   {
-    #region Public Properties
-
     /// <summary>
     /// The unique identifier used for retrieving a sequence id entity from the database.
     /// </summary>
     public string Id { get; set; } = string.Empty;
-
-    #endregion Public Properties
   }
 }

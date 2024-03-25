@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.Application.Interfaces.Factories.Entities
   /// </summary>
   public interface ISequenceIdFactory
   {
-    #region Public Methods
-
     /// <summary>
     /// Creates a new <see cref="SequenceId" /> instance given a <paramref name="sequenceId" />.
     /// </summary>
@@ -21,7 +19,5 @@ namespace PruneUrl.Backend.Application.Interfaces.Factories.Entities
     /// an existing "sequence id".
     /// </returns>
     SequenceId Create(string id, int sequenceId);
-
-    #endregion Public Methods
   }
 }

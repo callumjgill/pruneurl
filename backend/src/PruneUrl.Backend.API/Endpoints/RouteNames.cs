@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.App.Endpoints
   /// </summary>
   internal static class RouteNames
   {
-    #region Public Fields
-
     /// <summary>
     /// The route for the <see cref="ShortUrl" /> POST REST endpoint.
     /// </summary>
@@ -18,7 +16,5 @@ namespace PruneUrl.Backend.App.Endpoints
     /// The route for the redirecting of short urls REST endpoint.
     /// </summary>
     public static readonly string RedirectRoute = nameof(RedirectRoute);
-
-    #endregion Public Fields
   }
 }

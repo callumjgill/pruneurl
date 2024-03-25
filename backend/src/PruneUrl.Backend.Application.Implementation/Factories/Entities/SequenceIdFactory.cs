@@ -8,18 +8,12 @@ namespace PruneUrl.Backend.Application.Implementation.Factories.Entities
   /// </summary>
   public sealed class SequenceIdFactory : ISequenceIdFactory
   {
-    #region Public Methods
-
     /// <inheritdoc cref="ISequenceIdFactory.Create(string, int)" />
     public SequenceId Create(string id, int sequenceId)
     {
       AssertSequenceId(sequenceId);
       return new SequenceId(id, sequenceId);
     }
-
-    #endregion Public Methods
-
-    #region Private Methods
 
     private void AssertSequenceId(int sequenceId)
     {
@@ -28,7 +22,5 @@ namespace PruneUrl.Backend.Application.Implementation.Factories.Entities
         throw new ArgumentException("Sequence Id cannot be less than 0!", nameof(sequenceId));
       }
     }
-
-    #endregion Private Methods
   }
 }

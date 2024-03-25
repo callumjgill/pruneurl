@@ -8,15 +8,11 @@ namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSe
   [Parallelizable]
   public sealed class GetAndBumpSequenceIdRequestUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void ConstructorTest()
     {
       var request = new GetAndBumpSequenceIdRequest();
       Assert.That(request is IRequest<GetAndBumpSequenceIdResponse>, Is.True);
     }
-
-    #endregion Public Methods
   }
 }

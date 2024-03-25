@@ -12,39 +12,22 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read
   /// Defines a factory for creating <see cref="IDbGetByIdOperation{T}" /> ( <see
   /// cref="FirestoreDbGetByIdOperation{T}" />) instances.
   /// </summary>
-  public sealed class FirestoreDbGetByIdOperationFactory : IDbGetByIdOperationFactory
+  /// <param name="firestoreDb">
+  /// The <see cref="FirestoreDb" /> instance for creating the operations against.
+  /// </param>
+  /// <param name="mapper">
+  /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
+  /// />'s and the core <see cref="IEntity" />'s.
+  /// </param>
+  public sealed class FirestoreDbGetByIdOperationFactory(FirestoreDb firestoreDb, IMapper mapper)
+    : IDbGetByIdOperationFactory
   {
-    #region Private Fields
-
-    private readonly FirestoreDb firestoreDb;
-    private readonly IMapper mapper;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbGetByIdOperationFactory" /> class.
-    /// </summary>
-    /// <param name="firestoreDb">
-    /// The <see cref="FirestoreDb" /> instance for creating the operations against.
-    /// </param>
-    /// <param name="mapper">
-    /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
-    /// />'s and the core <see cref="IEntity" />'s.
-    /// </param>
-    public FirestoreDbGetByIdOperationFactory(FirestoreDb firestoreDb, IMapper mapper)
-    {
-      this.firestoreDb = firestoreDb;
-      this.mapper = mapper;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Methods
+    private readonly FirestoreDb firestoreDb = firestoreDb;
+    private readonly IMapper mapper = mapper;
 
     /// <inheritdoc cref="IDbGetByIdOperationFactory.Create{T}" />
-    public IDbGetByIdOperation<T> Create<T>() where T : IEntity
+    public IDbGetByIdOperation<T> Create<T>()
+      where T : IEntity
     {
       switch (typeof(T))
       {
@@ -59,19 +42,20 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read
       }
     }
 
-    #endregion Public Methods
-
-    #region Private Methods
-
     private IDbGetByIdOperation<TEntity> Create<TEntity, TFirestoreEntity>()
       where TEntity : IEntity
       where TFirestoreEntity : FirestoreEntityDTO
     {
-      CollectionReference collection = firestoreDb.Collection(CollectionReferenceHelper.GetCollectionPath<TEntity>());
-      var firestoreDbGetByIdOperation = new FirestoreDbGetByIdOperation<TFirestoreEntity>(collection);
-      return new FirestoreDbGetByIdOperationAdapter<TEntity, TFirestoreEntity>(firestoreDbGetByIdOperation, mapper);
+      CollectionReference collection = firestoreDb.Collection(
+        CollectionReferenceHelper.GetCollectionPath<TEntity>()
+      );
+      var firestoreDbGetByIdOperation = new FirestoreDbGetByIdOperation<TFirestoreEntity>(
+        collection
+      );
+      return new FirestoreDbGetByIdOperationAdapter<TEntity, TFirestoreEntity>(
+        firestoreDbGetByIdOperation,
+        mapper
+      );
     }
-
-    #endregion Private Methods
   }
 }

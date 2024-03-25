@@ -8,23 +8,13 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.IntegrationTe
   [TestFixture]
   public sealed class SequenceIdDTOIntegrationTests
   {
-    #region Private Fields
-
     private const string testCollectionPath = "SequenceIdDTOIntegrationTests";
-
-    #endregion Private Fields
-
-    #region Public Methods
 
     [Test]
     public async Task ConvertToFirestoreDocumentReferenceTest()
     {
       // Setup database for test
-      var testEntity = new SequenceIdDTO()
-      {
-        Id = Guid.NewGuid().ToString(),
-        Value = 412674231
-      };
+      var testEntity = new SequenceIdDTO() { Id = Guid.NewGuid().ToString(), Value = 412674231 };
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
       CollectionReference testCollectionReference = testFirestoreDb.Collection(testCollectionPath);
       DocumentReference testDocumentReference = testCollectionReference.Document(testEntity.Id);
@@ -37,7 +27,10 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.IntegrationTe
       {
         Assert.That(snapshot.Id, Is.EqualTo(testEntity.Id));
         Assert.That(snapshot.ContainsField(nameof(testEntity.Value)), Is.True);
-        Assert.That(snapshot.GetValue<int?>(nameof(testEntity.Value)), Is.EqualTo(testEntity.Value));
+        Assert.That(
+          snapshot.GetValue<int?>(nameof(testEntity.Value)),
+          Is.EqualTo(testEntity.Value)
+        );
       });
       SequenceIdDTO? result = snapshot.ConvertTo<SequenceIdDTO>();
       Assert.Multiple(() =>
@@ -53,7 +46,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.IntegrationTe
     {
       await TestFirestoreDbHelper.ClearEmulatedDatabase();
     }
-
-    #endregion Public Methods
   }
 }

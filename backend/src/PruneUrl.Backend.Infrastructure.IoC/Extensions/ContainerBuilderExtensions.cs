@@ -9,8 +9,6 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Extensions
   /// </summary>
   public static class ContainerBuilderExtensions
   {
-    #region Public Methods
-
     /// <summary>
     /// Register all the modules required for the container.
     /// </summary>
@@ -23,7 +21,5 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Extensions
       builder.RegisterModule<TransactionsModule>();
       builder.RegisterModule<FirebaseModule>();
     }
-
-    #endregion Public Methods
   }
 }
