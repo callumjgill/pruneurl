@@ -49,6 +49,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install packages
+        working-directory: ./frontend/
         run: npm ci
 
       - name: Bump package.json version
