@@ -4,31 +4,30 @@ using NSubstitute;
 using NUnit.Framework;
 using PruneUrl.Backend.App.Endpoints;
 
-namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints
+namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints;
+
+[TestFixture]
+[Parallelizable]
+public sealed class EndpointRestMethodsUtilitiesUnitTests
 {
-  [TestFixture]
-  [Parallelizable]
-  public sealed class EndpointRestMethodsUtilitiesUnitTests
+  [Test]
+  public async Task HandleErrorsTest_ExceptionThrown()
   {
-    [Test]
-    public async Task HandleErrorsTest_ExceptionThrown()
-    {
-      IResult actualResult = await EndpointRestMethodsUtilities.HandleErrors(
-        () => Task.FromException<IResult>(new Exception())
-      );
-      Assert.That(actualResult, Is.TypeOf<StatusCodeHttpResult>());
-      Assert.That(((StatusCodeHttpResult)actualResult).StatusCode, Is.EqualTo(500));
-    }
+    IResult actualResult = await EndpointRestMethodsUtilities.HandleErrors(
+      () => Task.FromException<IResult>(new Exception())
+    );
+    Assert.That(actualResult, Is.TypeOf<StatusCodeHttpResult>());
+    Assert.That(((StatusCodeHttpResult)actualResult).StatusCode, Is.EqualTo(500));
+  }
 
-    [Test]
-    public async Task HandleErrorsTest_NoExceptionThrown()
-    {
-      var result = Substitute.For<IResult>();
+  [Test]
+  public async Task HandleErrorsTest_NoExceptionThrown()
+  {
+    var result = Substitute.For<IResult>();
 
-      IResult actualResult = await EndpointRestMethodsUtilities.HandleErrors(
-        () => Task.FromResult(result)
-      );
-      Assert.That(actualResult, Is.EqualTo(result));
-    }
+    IResult actualResult = await EndpointRestMethodsUtilities.HandleErrors(
+      () => Task.FromResult(result)
+    );
+    Assert.That(actualResult, Is.EqualTo(result));
   }
 }

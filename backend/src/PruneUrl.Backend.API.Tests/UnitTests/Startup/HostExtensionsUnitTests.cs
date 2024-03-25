@@ -9,43 +9,40 @@ using PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
 using PruneUrl.Backend.Application.Queries.GetSequenceId;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.API.Tests.UnitTests.Startup
+namespace PruneUrl.Backend.API.Tests.UnitTests.Startup;
+
+[TestFixture]
+[Parallelizable]
+public sealed class HostExtensionsUnitTests
 {
-  [TestFixture]
-  [Parallelizable]
-  public sealed class HostExtensionsUnitTests
+  [TestCase(true)]
+  [TestCase(false)]
+  public async Task EnsureDbIsSetupTest(bool sequenceIdNull)
   {
-    [TestCase(true)]
-    [TestCase(false)]
-    public async Task EnsureDbIsSetupTest(bool sequenceIdNull)
-    {
-      var host = Substitute.For<IHost>();
-      var serviceProvider = Substitute.For<IServiceProvider>();
-      var mediator = Substitute.For<IMediator>();
-      var options = Substitute.For<IOptions<SequenceIdOptions>>();
-      var sequenceIdOptions = new SequenceIdOptions() { Id = "Testing123" };
+    var host = Substitute.For<IHost>();
+    var serviceProvider = Substitute.For<IServiceProvider>();
+    var mediator = Substitute.For<IMediator>();
+    var options = Substitute.For<IOptions<SequenceIdOptions>>();
+    var sequenceIdOptions = new SequenceIdOptions() { Id = "Testing123" };
 
-      options.Value.Returns(sequenceIdOptions);
+    options.Value.Returns(sequenceIdOptions);
 
-      serviceProvider.GetService(typeof(IMediator)).Returns(mediator);
-      serviceProvider.GetService(typeof(IOptions<SequenceIdOptions>)).Returns(options);
+    serviceProvider.GetService(typeof(IMediator)).Returns(mediator);
+    serviceProvider.GetService(typeof(IOptions<SequenceIdOptions>)).Returns(options);
 
-      host.Services.Returns(serviceProvider);
+    host.Services.Returns(serviceProvider);
 
-      mediator
-        .Send(Arg.Any<GetSequenceIdQuery>(), Arg.Any<CancellationToken>())
-        .Returns(
-          new GetSequenceIdQueryResponse(
-            sequenceIdNull ? null : EntityTestHelper.CreateSequenceId()
-          )
-        );
+    mediator
+      .Send(Arg.Any<GetSequenceIdQuery>(), Arg.Any<CancellationToken>())
+      .Returns(
+        new GetSequenceIdQueryResponse(sequenceIdNull ? null : EntityTestHelper.CreateSequenceId())
+      );
 
-      await host.EnsureDbIsSetup();
+    await host.EnsureDbIsSetup();
 
-      await mediator.Received(1).Send(Arg.Any<GetSequenceIdQuery>(), Arg.Any<CancellationToken>());
-      await mediator
-        .Received(sequenceIdNull ? 1 : 0)
-        .Send(Arg.Any<CreateSequenceIdCommand>(), Arg.Any<CancellationToken>());
-    }
+    await mediator.Received(1).Send(Arg.Any<GetSequenceIdQuery>(), Arg.Any<CancellationToken>());
+    await mediator
+      .Received(sequenceIdNull ? 1 : 0)
+      .Send(Arg.Any<CreateSequenceIdCommand>(), Arg.Any<CancellationToken>());
   }
 }
