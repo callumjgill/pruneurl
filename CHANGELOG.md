@@ -1,3 +1,9 @@
+## [0.16.3](https://github.com/callumjgill/pruneurl/compare/v0.16.2...v0.16.3) (2024-03-25)
+
+### Build Systems
+
+- **deps-dev:** bump the npm-dev-dependencies group ([a5933aa](https://github.com/callumjgill/pruneurl/commit/a5933aa43e5489659d58e974972196e94f9f0044))
+
 ## [0.16.2](https://github.com/callumjgill/pruneurl/compare/v0.16.1...v0.16.2) (2024-03-25)
 
 ### Bug Fixes
