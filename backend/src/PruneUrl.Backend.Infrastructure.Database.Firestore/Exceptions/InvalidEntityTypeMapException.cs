@@ -1,7 +1,6 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Exceptions;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// An exception which is thrown when mappings between <see cref="IEntity" /> and <see

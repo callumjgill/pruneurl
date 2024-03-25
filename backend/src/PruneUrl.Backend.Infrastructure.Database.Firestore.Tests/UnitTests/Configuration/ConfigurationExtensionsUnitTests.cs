@@ -1,10 +1,10 @@
 ﻿using Google.Api.Gax;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Configuration.Exceptions;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration;
+using PruneUrl.Backend.Application.Exceptions;
+using PruneUrl.Backend.Infrastructure.Database.Firestore;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Configuration;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 [TestFixture]
 [Parallelizable]

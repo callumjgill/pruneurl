@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Requests;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Requests;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 [TestFixture]
 [Parallelizable]

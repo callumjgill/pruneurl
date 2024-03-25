@@ -1,11 +1,10 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
-using PruneUrl.Backend.Application.Queries.GetSequenceId;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetSequenceId;
+namespace PruneUrl.Backend.Application.Queries.Tests;
 
 [TestFixture]
 [Parallelizable]

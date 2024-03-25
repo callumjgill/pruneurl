@@ -1,7 +1,7 @@
 ﻿using Google.Api.Gax;
 using Google.Cloud.Firestore;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 /// <summary>
 /// A helper for working with instances of <see cref="FirestoreDb" /> for testing.

@@ -1,7 +1,6 @@
-﻿using PruneUrl.Backend.Application.Interfaces.Database.Operations.Write;
-using PruneUrl.Backend.Domain.Entities;
+﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Interfaces.Database.Requests;
+namespace PruneUrl.Backend.Application.Interfaces.Database;
 
 /// <summary>
 /// Defines a "batch" of write-only operations which can be performed on an underlying database.

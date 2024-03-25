@@ -2,16 +2,11 @@
 using AutoMapper.Contrib.Autofac.DependencyInjection;
 using Google.Cloud.Firestore;
 using Microsoft.Extensions.Configuration;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Interfaces;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Mapping;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Requests;
+using PruneUrl.Backend.Infrastructure.Database.Firestore;
 
-namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Infrastructure;
+namespace PruneUrl.Backend.Infrastructure.IoC;
 
 /// <summary>
 /// The Firebase specific code IoC module

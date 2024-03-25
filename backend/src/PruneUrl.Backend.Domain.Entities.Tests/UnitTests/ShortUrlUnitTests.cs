@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.Domain.Entities.Tests.UnitTests;
+namespace PruneUrl.Backend.Domain.Entities.Tests;
 
 [TestFixture]
 [Parallelizable]

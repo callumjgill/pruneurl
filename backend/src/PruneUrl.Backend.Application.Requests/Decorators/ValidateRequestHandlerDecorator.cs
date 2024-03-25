@@ -1,8 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
-using PruneUrl.Backend.Application.Requests.Extensions;
 
-namespace PruneUrl.Backend.Application.Requests.Decorators;
+namespace PruneUrl.Backend.Application.Requests;
 
 /// <summary>
 /// A decorator which provides a validation as part of a request pipeline. This should be the

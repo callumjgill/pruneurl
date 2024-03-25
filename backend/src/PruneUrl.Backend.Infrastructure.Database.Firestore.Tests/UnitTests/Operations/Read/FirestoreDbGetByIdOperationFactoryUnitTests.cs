@@ -2,14 +2,10 @@
 using Google.Cloud.Firestore;
 using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Exceptions;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read;
-using PruneUrl.Backend.Infrastructure.Database.Tests.Utilities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Operations.Read;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 [TestFixture]
 [Parallelizable]

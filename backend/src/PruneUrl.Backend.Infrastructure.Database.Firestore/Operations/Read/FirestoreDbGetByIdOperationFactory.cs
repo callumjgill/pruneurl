@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using Google.Cloud.Firestore;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Exceptions;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Utilities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// Defines a factory for creating <see cref="IDbGetByIdOperation{T}" /> ( <see

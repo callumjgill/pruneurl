@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.DTOs;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 internal abstract class FirestoreEntityDTOUnitTests
 {

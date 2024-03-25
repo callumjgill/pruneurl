@@ -1,6 +1,6 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Interfaces.Database.Operations.Write;
+namespace PruneUrl.Backend.Application.Interfaces.Database;
 
 /// <summary>
 /// Defines an operation for deleting a <see cref="IEntity" /> from the underlying database.

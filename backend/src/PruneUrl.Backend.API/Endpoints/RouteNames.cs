@@ -1,6 +1,6 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.App.Endpoints;
+namespace PruneUrl.Backend.API;
 
 /// <summary>
 /// Static class containing the names of the REST routes in the API.

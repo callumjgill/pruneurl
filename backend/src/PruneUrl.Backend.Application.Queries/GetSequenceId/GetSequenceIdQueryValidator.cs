@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace PruneUrl.Backend.Application.Queries.GetSequenceId;
+namespace PruneUrl.Backend.Application.Queries;
 
 /// <summary>
 /// A validator for the <see cref="GetSequenceIdQuery" />.

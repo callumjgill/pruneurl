@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId;
+namespace PruneUrl.Backend.Application.Transactions;
 
 /// <summary>
 /// An immutable transaction request used to retrieve a <see cref="SequenceId" /> entity and bump

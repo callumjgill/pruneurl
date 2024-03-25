@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Options;
-using PruneUrl.Backend.Application.Commands.CreateSequenceId;
-using PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
-using PruneUrl.Backend.Application.Queries.GetSequenceId;
+using PruneUrl.Backend.Application.Commands;
+using PruneUrl.Backend.Application.Configuration;
+using PruneUrl.Backend.Application.Queries;
 
-namespace PruneUrl.Backend.App.Startup;
+namespace PruneUrl.Backend.API;
 
 /// <summary>
 /// Extensions for the <see cref="IHost" /> interface is

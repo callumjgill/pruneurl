@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace PruneUrl.Backend.Application.Queries.GetShortUrl;
+namespace PruneUrl.Backend.Application.Queries;
 
 /// <summary>
 /// An immutable query for getting a <see cref="Domain.Entities.ShortUrl" /> entity

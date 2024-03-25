@@ -1,7 +1,6 @@
 ﻿using Google.Cloud.Firestore;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Tests.Utilities;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 /// <summary>
 /// A test, or "stub", version of a "firestore" entity.

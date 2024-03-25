@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PruneUrl.Backend.Application.Exceptions.Database;
-using PruneUrl.Backend.Application.Queries.GetShortUrl;
+using PruneUrl.Backend.Application.Exceptions;
+using PruneUrl.Backend.Application.Queries;
 
-namespace PruneUrl.Backend.App.Endpoints;
+namespace PruneUrl.Backend.API;
 
 /// <summary>
 /// Static class containing the methods for redirecting REST endpoint.

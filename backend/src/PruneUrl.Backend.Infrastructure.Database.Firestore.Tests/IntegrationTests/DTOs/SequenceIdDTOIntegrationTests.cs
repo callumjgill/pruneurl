@@ -1,9 +1,7 @@
 ﻿using Google.Cloud.Firestore;
 using NUnit.Framework;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
-using PruneUrl.Backend.Infrastructure.Database.Tests.Utilities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.IntegrationTests.DTOs;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 [TestFixture]
 public sealed class SequenceIdDTOIntegrationTests

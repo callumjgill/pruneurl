@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
 using Google.Cloud.Firestore;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Exceptions;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Interfaces;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Utilities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// A Firestore specific factory for creating <see cref="IDbTransaction{T}" /> instances.

@@ -1,6 +1,6 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Queries.GetShortUrl;
+namespace PruneUrl.Backend.Application.Queries;
 
 /// <summary>
 /// The immutable response to a <see cref="GetShortUrlQuery" />.

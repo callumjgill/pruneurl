@@ -1,4 +1,4 @@
-﻿namespace PruneUrl.Backend.Application.Configuration.Exceptions;
+﻿namespace PruneUrl.Backend.Application.Exceptions;
 
 /// <summary>
 /// An exception which is thrown when the configuration is invalid.

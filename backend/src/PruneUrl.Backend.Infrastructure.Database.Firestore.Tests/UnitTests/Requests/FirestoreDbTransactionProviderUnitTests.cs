@@ -2,13 +2,9 @@
 using Microsoft.Extensions.Options;
 using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Interfaces;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Requests;
-using PruneUrl.Backend.Infrastructure.Database.Tests.Utilities;
+using PruneUrl.Backend.Application.Interfaces.Database;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Requests;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 [TestFixture]
 [Parallelizable]

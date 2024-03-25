@@ -1,6 +1,6 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
+namespace PruneUrl.Backend.Application.Interfaces.Database;
 
 /// <summary>
 /// Defines a factory for creating <see cref="IDbGetByIdOperation{T}" /> instances.

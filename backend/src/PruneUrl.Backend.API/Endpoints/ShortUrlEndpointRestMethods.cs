@@ -1,12 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PruneUrl.Backend.App.Endpoints.Models;
-using PruneUrl.Backend.Application.Commands.CreateShortUrl;
-using PruneUrl.Backend.Application.Interfaces.Providers;
-using PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId;
+using PruneUrl.Backend.Application.Commands;
+using PruneUrl.Backend.Application.Interfaces;
+using PruneUrl.Backend.Application.Transactions;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.App.Endpoints;
+namespace PruneUrl.Backend.API;
 
 /// <summary>
 /// Static class containing the methods for the <see cref="ShortUrl" /> entity resource REST endpoint.

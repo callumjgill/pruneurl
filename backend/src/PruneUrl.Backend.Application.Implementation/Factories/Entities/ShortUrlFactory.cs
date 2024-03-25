@@ -1,8 +1,7 @@
-﻿using PruneUrl.Backend.Application.Interfaces.Factories.Entities;
-using PruneUrl.Backend.Application.Interfaces.Providers;
+﻿using PruneUrl.Backend.Application.Interfaces;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Implementation.Factories.Entities;
+namespace PruneUrl.Backend.Application.Implementation;
 
 /// <summary>
 /// A factory for creating <see cref="ShortUrl" /> instances.

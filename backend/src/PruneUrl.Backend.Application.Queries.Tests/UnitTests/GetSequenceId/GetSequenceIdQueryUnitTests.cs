@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using PruneUrl.Backend.Application.Queries.GetSequenceId;
 
-namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetSequenceId;
+namespace PruneUrl.Backend.Application.Queries.Tests;
 
 [TestFixture]
 [Parallelizable]

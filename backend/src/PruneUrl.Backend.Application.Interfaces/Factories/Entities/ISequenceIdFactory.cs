@@ -1,6 +1,6 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Interfaces.Factories.Entities;
+namespace PruneUrl.Backend.Application.Interfaces;
 
 /// <summary>
 /// Defines a factory for creating <see cref="SequenceId" /> instances.

@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using PruneUrl.Backend.Application.Exceptions.Database;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
-using PruneUrl.Backend.Application.Interfaces.Providers;
+using PruneUrl.Backend.Application.Exceptions;
+using PruneUrl.Backend.Application.Interfaces;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Queries.GetShortUrl;
+namespace PruneUrl.Backend.Application.Queries;
 
 /// <summary>
 /// The handler for the <see cref="GetShortUrlQuery" /> which will return a <see

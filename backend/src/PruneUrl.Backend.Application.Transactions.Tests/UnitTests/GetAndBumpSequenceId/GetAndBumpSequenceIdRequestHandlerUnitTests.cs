@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.Options;
 using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
-using PruneUrl.Backend.Application.Exceptions.Database;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
-using PruneUrl.Backend.Application.Interfaces.Factories.Entities;
-using PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId;
+using PruneUrl.Backend.Application.Configuration;
+using PruneUrl.Backend.Application.Exceptions;
+using PruneUrl.Backend.Application.Interfaces;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSequenceId;
+namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests;
 
 [TestFixture]
 [Parallelizable]

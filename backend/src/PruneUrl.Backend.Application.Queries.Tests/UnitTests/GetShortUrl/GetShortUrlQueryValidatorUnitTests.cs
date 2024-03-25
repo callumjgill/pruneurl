@@ -1,10 +1,9 @@
 ﻿using FluentValidation.TestHelper;
 using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Interfaces.Providers;
-using PruneUrl.Backend.Application.Queries.GetShortUrl;
+using PruneUrl.Backend.Application.Interfaces;
 
-namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl;
+namespace PruneUrl.Backend.Application.Queries.Tests;
 
 [TestFixture]
 [Parallelizable]
@@ -15,9 +14,7 @@ public sealed class GetShortUrlQueryValidatorUnitTests
   [TestCase(null)]
   public void ValidateTest_InvalidProperties(string? testShortUrl)
   {
-#pragma warning disable CS8604 // Possible null reference argument.
-    var query = new GetShortUrlQuery(testShortUrl);
-#pragma warning restore CS8604 // Possible null reference argument.
+    var query = new GetShortUrlQuery(testShortUrl!);
     var validator = new GetShortUrlQueryValidator(Substitute.For<ISequenceIdProvider>());
 
     TestValidationResult<GetShortUrlQuery> result = validator.TestValidate(query);

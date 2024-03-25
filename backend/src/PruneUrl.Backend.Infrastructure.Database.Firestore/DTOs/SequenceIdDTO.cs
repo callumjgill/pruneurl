@@ -1,6 +1,6 @@
 ﻿using Google.Cloud.Firestore;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// An <see cref="FirestoreEntityDTO" /> encapsulating a "sequence id". This is an integer value

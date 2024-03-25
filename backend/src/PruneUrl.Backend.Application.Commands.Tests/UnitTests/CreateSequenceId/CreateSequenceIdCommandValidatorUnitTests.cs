@@ -1,9 +1,8 @@
 ﻿using FluentValidation.TestHelper;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
-using PruneUrl.Backend.Application.Commands.CreateSequenceId;
 
-namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateSequenceId;
+namespace PruneUrl.Backend.Application.Commands.Tests;
 
 [TestFixture]
 [Parallelizable]

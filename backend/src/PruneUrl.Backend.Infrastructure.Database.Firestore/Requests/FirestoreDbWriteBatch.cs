@@ -1,9 +1,7 @@
 ﻿using Google.Cloud.Firestore;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Write;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
+using PruneUrl.Backend.Application.Interfaces.Database;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// An implementation of <see cref="IDbWriteBatch{T}" /> specific to Firestore. This acts as a

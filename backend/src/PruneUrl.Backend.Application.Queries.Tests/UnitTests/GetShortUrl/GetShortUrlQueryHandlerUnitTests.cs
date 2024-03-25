@@ -1,14 +1,13 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
-using PruneUrl.Backend.Application.Exceptions.Database;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
-using PruneUrl.Backend.Application.Interfaces.Providers;
-using PruneUrl.Backend.Application.Queries.GetShortUrl;
+using PruneUrl.Backend.Application.Exceptions;
+using PruneUrl.Backend.Application.Interfaces;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl;
+namespace PruneUrl.Backend.Application.Queries.Tests;
 
 [TestFixture]
 [Parallelizable]

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace PruneUrl.Backend.Application.Commands.CreateShortUrl;
+namespace PruneUrl.Backend.Application.Commands;
 
 /// <summary>
 /// The validator for the <see cref="CreateShortUrlCommand" /> request.

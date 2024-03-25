@@ -2,10 +2,9 @@
 using FluentValidation;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using MediatR.Extensions.Autofac.DependencyInjection.Builder;
-using PruneUrl.Backend.Application.Queries.GetSequenceId;
-using PruneUrl.Backend.Application.Queries.GetShortUrl;
+using PruneUrl.Backend.Application.Queries;
 
-namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application;
+namespace PruneUrl.Backend.Infrastructure.IoC;
 
 /// <summary>
 /// The Application "Queries" specific code IoC module

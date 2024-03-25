@@ -1,8 +1,7 @@
 ﻿using System.Text.Unicode;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Implementation.Providers;
 
-namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Providers;
+namespace PruneUrl.Backend.Application.Implementation.Tests;
 
 [TestFixture]
 [Parallelizable]

@@ -1,10 +1,8 @@
 ﻿using Autofac;
-using PruneUrl.Backend.Application.Implementation.Factories.Entities;
-using PruneUrl.Backend.Application.Implementation.Providers;
-using PruneUrl.Backend.Application.Interfaces.Factories.Entities;
-using PruneUrl.Backend.Application.Interfaces.Providers;
+using PruneUrl.Backend.Application.Implementation;
+using PruneUrl.Backend.Application.Interfaces;
 
-namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application;
+namespace PruneUrl.Backend.Infrastructure.IoC;
 
 /// <summary>
 /// The Application "Implementation" specific code IoC module.

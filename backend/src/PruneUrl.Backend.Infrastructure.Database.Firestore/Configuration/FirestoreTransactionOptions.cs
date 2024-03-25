@@ -1,6 +1,6 @@
-﻿using PruneUrl.Backend.Application.Interfaces.Database.Requests;
+﻿using PruneUrl.Backend.Application.Interfaces.Database;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// A configuration DTO intended to be used in the options pattern. This is injected into classes

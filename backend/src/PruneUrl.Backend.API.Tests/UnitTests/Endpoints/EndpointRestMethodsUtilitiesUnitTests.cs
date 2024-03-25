@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.App.Endpoints;
 
-namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints;
+namespace PruneUrl.Backend.API.Tests;
 
 [TestFixture]
 [Parallelizable]

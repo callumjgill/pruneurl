@@ -1,4 +1,4 @@
-﻿namespace PruneUrl.Backend.Application.Interfaces.Providers;
+﻿namespace PruneUrl.Backend.Application.Interfaces;
 
 /// <summary>
 /// Defines a provider for "short" url's. Implementations will generate and return a short url

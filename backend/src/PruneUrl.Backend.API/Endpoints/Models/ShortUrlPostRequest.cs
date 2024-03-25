@@ -1,6 +1,6 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.App.Endpoints.Models;
+namespace PruneUrl.Backend.API;
 
 /// <summary>
 /// A DTO describing the request body for the POST REST endpoint of the <see cref="ShortUrl" /> resource.

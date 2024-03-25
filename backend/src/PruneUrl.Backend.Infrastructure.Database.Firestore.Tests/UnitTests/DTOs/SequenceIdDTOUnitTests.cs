@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
 using NUnit.Framework.Internal;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.DTOs;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 [TestFixture]
 [Parallelizable]

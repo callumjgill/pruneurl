@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using NUnit.Framework;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Mapping;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Mapping;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 [TestFixture]
 [Parallelizable]
