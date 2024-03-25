@@ -2,7 +2,7 @@
 using FluentValidation.Results;
 using MediatR;
 
-namespace PruneUrl.Backend.Application.Requests.Exceptions;
+namespace PruneUrl.Backend.Application.Requests;
 
 /// <summary>
 /// An exception which is thrown when a <see cref="IRequest" /> or <see cref="IRequest{T}" /> is invalid.

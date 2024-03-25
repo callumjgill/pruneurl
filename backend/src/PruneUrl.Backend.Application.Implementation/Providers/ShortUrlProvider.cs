@@ -1,6 +1,6 @@
-﻿using PruneUrl.Backend.Application.Interfaces.Providers;
+﻿using PruneUrl.Backend.Application.Interfaces;
 
-namespace PruneUrl.Backend.Application.Implementation.Providers;
+namespace PruneUrl.Backend.Application.Implementation;
 
 /// <summary>
 /// A provider/converter for "short" url's. This takes the long url and converts it's string

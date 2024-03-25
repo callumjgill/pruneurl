@@ -1,9 +1,7 @@
 ﻿using Google.Cloud.Firestore;
 using NUnit.Framework;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read;
-using PruneUrl.Backend.Infrastructure.Database.Tests.Utilities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Operations.Read;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests;
 
 [TestFixture]
 [Parallelizable]

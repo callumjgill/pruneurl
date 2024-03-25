@@ -1,30 +1,39 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using PruneUrl.Backend.App.Endpoints;
-using PruneUrl.Backend.App.Startup;
-using PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration;
-using PruneUrl.Backend.Infrastructure.IoC.Extensions;
+using PruneUrl.Backend.API;
+using PruneUrl.Backend.Application.Configuration;
+using PruneUrl.Backend.Infrastructure.Database.Firestore;
+using PruneUrl.Backend.Infrastructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Logging.ClearProviders() // Remove defaults
-               .AddConsole();
+builder
+  .Logging.ClearProviders() // Remove defaults
+  .AddConsole();
 
-builder.Services.AddOptions<SequenceIdOptions>().Bind(builder.Configuration.GetSection(nameof(SequenceIdOptions)));
-builder.Services.AddOptions<FirestoreTransactionOptions>().Bind(builder.Configuration.GetSection(nameof(FirestoreTransactionOptions)));
-builder.Services.AddOptions<FirestoreDbOptions>().Bind(builder.Configuration.GetSection(nameof(FirestoreDbOptions)));
+builder
+  .Services.AddOptions<SequenceIdOptions>()
+  .Bind(builder.Configuration.GetSection(nameof(SequenceIdOptions)));
+builder
+  .Services.AddOptions<FirestoreTransactionOptions>()
+  .Bind(builder.Configuration.GetSection(nameof(FirestoreTransactionOptions)));
+builder
+  .Services.AddOptions<FirestoreDbOptions>()
+  .Bind(builder.Configuration.GetSection(nameof(FirestoreDbOptions)));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-  options.SwaggerDoc("v1", new OpenApiInfo
-  {
-    Version = "v1",
-    Title = "PruneUrl REST API",
-    Description = "An ASP.NET Core Minimal API for managing the backend of PruneUrl"
-  });
+  options.SwaggerDoc(
+    "v1",
+    new OpenApiInfo
+    {
+      Version = "v1",
+      Title = "PruneUrl REST API",
+      Description = "An ASP.NET Core Minimal API for managing the backend of PruneUrl"
+    }
+  );
 });
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -47,7 +56,9 @@ if (app.Environment.IsDevelopment())
 
 if (!app.Environment.IsDevelopment())
 {
-  app.UseExceptionHandler(exceptionHandlerApp => exceptionHandlerApp.Run(async context => await Results.Problem().ExecuteAsync(context)));
+  app.UseExceptionHandler(exceptionHandlerApp =>
+    exceptionHandlerApp.Run(async context => await Results.Problem().ExecuteAsync(context))
+  );
 }
 
 app.UseHttpsRedirection();

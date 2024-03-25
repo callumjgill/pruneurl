@@ -1,4 +1,4 @@
-﻿namespace PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
+﻿namespace PruneUrl.Backend.Application.Configuration;
 
 /// <summary>
 /// A configuration DTO intended to be used in the options pattern. This is injected into classes

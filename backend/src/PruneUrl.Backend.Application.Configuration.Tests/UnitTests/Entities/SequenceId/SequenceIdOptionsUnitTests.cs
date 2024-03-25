@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
 
-namespace PruneUrl.Backend.Application.Configuration.UnitTests.Entities.SequenceId;
+namespace PruneUrl.Backend.Application.Configuration.Tests;
 
 [TestFixture]
 [Parallelizable]

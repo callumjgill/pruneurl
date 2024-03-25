@@ -1,8 +1,7 @@
 ﻿using Google.Cloud.Firestore;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
+using PruneUrl.Backend.Application.Interfaces.Database;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// An implementation of <see cref="IDbGetByIdOperation{T}" /> specific to Firestore.

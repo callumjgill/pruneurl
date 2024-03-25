@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using PruneUrl.Backend.Application.Interfaces.Providers;
+using PruneUrl.Backend.Application.Interfaces;
 
-namespace PruneUrl.Backend.Application.Implementation.Providers;
+namespace PruneUrl.Backend.Application.Implementation;
 
 /// <summary>
 /// A provider of <see cref="DateTime" /> values.

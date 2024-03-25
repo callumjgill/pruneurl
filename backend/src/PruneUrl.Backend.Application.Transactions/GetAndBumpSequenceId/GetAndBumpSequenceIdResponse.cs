@@ -1,6 +1,6 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId;
+namespace PruneUrl.Backend.Application.Transactions;
 
 /// <summary>
 /// The immutable response to a <see cref="GetAndBumpSequenceIdRequest" />.

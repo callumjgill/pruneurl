@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using PruneUrl.Backend.Application.Commands.CreateSequenceId;
 
-namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateSequenceId;
+namespace PruneUrl.Backend.Application.Commands.Tests;
 
 [TestFixture]
 [Parallelizable]

@@ -1,6 +1,6 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Interfaces.Database.Requests;
+namespace PruneUrl.Backend.Application.Interfaces.Database;
 
 /// <summary>
 /// Defines a provider for <see cref="IDbTransaction{T}" /> via the injection of an asynchronous

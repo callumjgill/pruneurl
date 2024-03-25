@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using PruneUrl.Backend.Application.Interfaces.Providers;
+using PruneUrl.Backend.Application.Interfaces;
 
-namespace PruneUrl.Backend.Application.Queries.GetShortUrl;
+namespace PruneUrl.Backend.Application.Queries;
 
 /// <summary>
 /// The validator for the <see cref="GetShortUrlQuery" />.

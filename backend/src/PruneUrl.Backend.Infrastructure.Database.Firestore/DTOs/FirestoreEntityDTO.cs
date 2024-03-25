@@ -2,7 +2,7 @@
 using Google.Cloud.Firestore;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// An <see cref="IEntity" /> DTO specific to the read/write values to the Firestore DB.

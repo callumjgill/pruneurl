@@ -2,9 +2,9 @@
 using Autofac.Features.Decorators;
 using FluentValidation;
 using MediatR;
-using PruneUrl.Backend.Application.Requests.Decorators;
+using PruneUrl.Backend.Application.Requests;
 
-namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application;
+namespace PruneUrl.Backend.Infrastructure.IoC;
 
 /// <summary>
 /// The Application "Requests" specific code IoC module.

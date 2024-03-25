@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Queries.GetSequenceId;
+namespace PruneUrl.Backend.Application.Queries;
 
 /// <summary>
 /// The handler for the <see cref="GetSequenceIdQuery" /> request.

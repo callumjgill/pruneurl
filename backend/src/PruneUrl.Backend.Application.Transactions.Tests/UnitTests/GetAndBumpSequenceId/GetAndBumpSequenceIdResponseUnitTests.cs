@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
-using PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSequenceId;
+namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests;
 
 [TestFixture]
 [Parallelizable]

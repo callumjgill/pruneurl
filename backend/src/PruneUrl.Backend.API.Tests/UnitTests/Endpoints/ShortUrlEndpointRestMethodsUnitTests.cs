@@ -3,15 +3,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.App.Endpoints;
-using PruneUrl.Backend.App.Endpoints.Models;
-using PruneUrl.Backend.Application.Commands.CreateShortUrl;
-using PruneUrl.Backend.Application.Interfaces.Providers;
-using PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId;
+using PruneUrl.Backend.Application.Commands;
+using PruneUrl.Backend.Application.Interfaces;
+using PruneUrl.Backend.Application.Transactions;
 using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints;
+namespace PruneUrl.Backend.API.Tests;
 
 [TestFixture]
 [Parallelizable]

@@ -2,9 +2,8 @@ using System.Collections.Concurrent;
 using System.Security.Cryptography;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
-using PruneUrl.Backend.Application.Implementation.Factories.Entities;
 
-namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.Entities;
+namespace PruneUrl.Backend.Application.Implementation.Tests;
 
 [TestFixture]
 [Parallelizable]

@@ -1,8 +1,8 @@
 ﻿using Google.Cloud.Firestore;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Interfaces;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// Defines a firestore specific factory for creating <see cref="IDbTransaction{T}" /> instances.

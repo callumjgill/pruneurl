@@ -1,7 +1,7 @@
 ﻿using Google.Cloud.Firestore;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Utilities;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// A helper class containing functions useful for dealing with <see cref="CollectionReference" />'s.

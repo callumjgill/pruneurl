@@ -1,10 +1,7 @@
 ﻿using Google.Cloud.Firestore;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Write;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
+using PruneUrl.Backend.Application.Interfaces.Database;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// A Firestore specific implementation of <see cref="IDbTransaction{T}" />. This is a wrapper

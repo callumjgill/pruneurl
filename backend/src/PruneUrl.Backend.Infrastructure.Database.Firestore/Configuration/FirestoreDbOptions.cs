@@ -1,7 +1,7 @@
 ﻿using Google.Api.Gax;
 using Google.Cloud.Firestore;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// A configuration DTO intended to be used in the options pattern. This is injected into classes

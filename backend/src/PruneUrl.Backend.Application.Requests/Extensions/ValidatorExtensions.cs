@@ -1,9 +1,8 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
-using PruneUrl.Backend.Application.Requests.Exceptions;
 
-namespace PruneUrl.Backend.Application.Requests.Extensions;
+namespace PruneUrl.Backend.Application.Requests;
 
 /// <summary>
 /// Extensions for the <see cref="IValidator{T}" /> interface.

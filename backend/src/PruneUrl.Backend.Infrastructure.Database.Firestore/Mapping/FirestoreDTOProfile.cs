@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using PruneUrl.Backend.Domain.Entities;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Mapping;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// A <see cref="Profile" /> for mapping <see cref="FirestoreEntityDTO" />'s to their equivalent

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Commands.CreateSequenceId;
+namespace PruneUrl.Backend.Application.Commands;
 
 /// <summary>
 /// The immutable command for creating a new <see cref="SequenceId" /> entity.

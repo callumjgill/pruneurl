@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Write;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// An adapter for <see cref="IDbTransaction{T}" /> which converts a <typeparamref name="TEntity"

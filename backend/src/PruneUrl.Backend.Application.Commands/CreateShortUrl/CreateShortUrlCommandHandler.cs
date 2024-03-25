@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
-using PruneUrl.Backend.Application.Interfaces.Factories.Entities;
+using PruneUrl.Backend.Application.Interfaces;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Commands.CreateShortUrl;
+namespace PruneUrl.Backend.Application.Commands;
 
 /// <summary>
 /// The handler for the <see cref="CreateShortUrlCommand" />.

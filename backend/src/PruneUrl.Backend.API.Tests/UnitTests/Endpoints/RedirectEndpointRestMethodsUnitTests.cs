@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.App.Endpoints;
-using PruneUrl.Backend.Application.Exceptions.Database;
-using PruneUrl.Backend.Application.Queries.GetShortUrl;
+using PruneUrl.Backend.Application.Exceptions;
+using PruneUrl.Backend.Application.Queries;
 using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints;
+namespace PruneUrl.Backend.API.Tests;
 
 [TestFixture]
 [Parallelizable]

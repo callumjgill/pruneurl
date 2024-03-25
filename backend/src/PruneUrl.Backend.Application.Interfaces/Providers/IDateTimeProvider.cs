@@ -1,4 +1,4 @@
-﻿namespace PruneUrl.Backend.Application.Interfaces.Providers;
+﻿namespace PruneUrl.Backend.Application.Interfaces;
 
 /// <summary>
 /// Defines a provider of <see cref="DateTime" /> values. This is used to assist with testing of

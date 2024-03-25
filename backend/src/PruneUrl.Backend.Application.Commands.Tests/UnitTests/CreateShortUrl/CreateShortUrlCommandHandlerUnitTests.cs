@@ -1,13 +1,12 @@
 ﻿using NSubstitute;
 using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Commands.CreateShortUrl;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
-using PruneUrl.Backend.Application.Interfaces.Factories.Entities;
+using PruneUrl.Backend.Application.Interfaces;
+using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateShortUrl;
+namespace PruneUrl.Backend.Application.Commands.Tests;
 
 [TestFixture]
 [Parallelizable]

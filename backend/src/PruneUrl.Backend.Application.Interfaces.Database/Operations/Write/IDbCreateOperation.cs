@@ -1,6 +1,6 @@
 ﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Interfaces.Database.Operations.Write;
+namespace PruneUrl.Backend.Application.Interfaces.Database;
 
 /// <summary>
 /// Defines an operation for writing a <typeparamref name="T" /> to the underlying database.

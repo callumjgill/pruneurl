@@ -1,8 +1,6 @@
-﻿using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Write;
-using PruneUrl.Backend.Domain.Entities;
+﻿using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Interfaces.Database.Requests;
+namespace PruneUrl.Backend.Application.Interfaces.Database;
 
 /// <summary>
 /// Defines a "transaction" which is a "batch" of read and write operations which can be performed

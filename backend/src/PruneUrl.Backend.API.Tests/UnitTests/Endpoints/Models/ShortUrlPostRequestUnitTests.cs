@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using PruneUrl.Backend.App.Endpoints.Models;
 
-namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints.Models;
+namespace PruneUrl.Backend.API.Tests;
 
 [TestFixture]
 [Parallelizable]

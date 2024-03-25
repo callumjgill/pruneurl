@@ -2,10 +2,9 @@
 using FluentValidation;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using MediatR.Extensions.Autofac.DependencyInjection.Builder;
-using PruneUrl.Backend.Application.Commands.CreateSequenceId;
-using PruneUrl.Backend.Application.Commands.CreateShortUrl;
+using PruneUrl.Backend.Application.Commands;
 
-namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application;
+namespace PruneUrl.Backend.Infrastructure.IoC;
 
 /// <summary>
 /// The Application "Commands" specific code IoC module

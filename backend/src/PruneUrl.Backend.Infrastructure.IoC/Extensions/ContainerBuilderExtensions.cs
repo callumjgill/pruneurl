@@ -1,8 +1,6 @@
 ﻿using Autofac;
-using PruneUrl.Backend.Infrastructure.IoC.Modules.Application;
-using PruneUrl.Backend.Infrastructure.IoC.Modules.Infrastructure;
 
-namespace PruneUrl.Backend.Infrastructure.IoC.Extensions;
+namespace PruneUrl.Backend.Infrastructure.IoC;
 
 /// <summary>
 /// Extensions for the <see cref="ContainerBuilder" /> class.

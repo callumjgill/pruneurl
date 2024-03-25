@@ -6,27 +6,18 @@ using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Commands.CreateSequenceId;
-using PruneUrl.Backend.Application.Commands.CreateShortUrl;
-using PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
-using PruneUrl.Backend.Application.Implementation.Factories.Entities;
-using PruneUrl.Backend.Application.Implementation.Providers;
-using PruneUrl.Backend.Application.Interfaces.Database.Operations.Read;
-using PruneUrl.Backend.Application.Interfaces.Database.Requests;
-using PruneUrl.Backend.Application.Interfaces.Factories.Entities;
-using PruneUrl.Backend.Application.Interfaces.Providers;
-using PruneUrl.Backend.Application.Queries.GetSequenceId;
-using PruneUrl.Backend.Application.Queries.GetShortUrl;
-using PruneUrl.Backend.Application.Requests.Decorators;
-using PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId;
+using PruneUrl.Backend.Application.Commands;
+using PruneUrl.Backend.Application.Configuration;
+using PruneUrl.Backend.Application.Implementation;
+using PruneUrl.Backend.Application.Interfaces;
+using PruneUrl.Backend.Application.Interfaces.Database;
+using PruneUrl.Backend.Application.Queries;
+using PruneUrl.Backend.Application.Requests;
+using PruneUrl.Backend.Application.Transactions;
 using PruneUrl.Backend.Domain.Entities;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Interfaces;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read;
-using PruneUrl.Backend.Infrastructure.Database.Firestore.Requests;
-using PruneUrl.Backend.Infrastructure.IoC.Extensions;
+using PruneUrl.Backend.Infrastructure.Database.Firestore;
 
-namespace PruneUrl.Backend.Infrastructure.IoC.Tests.IntegrationTests.Extensions;
+namespace PruneUrl.Backend.Infrastructure.IoC.Tests;
 
 [TestFixture]
 [Parallelizable]

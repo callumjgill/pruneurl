@@ -1,4 +1,4 @@
-﻿namespace PruneUrl.Backend.Application.Interfaces.Providers;
+﻿namespace PruneUrl.Backend.Application.Interfaces;
 
 /// <summary>
 /// Defines a provider for "sequence id"'s from a short url, intended as a mechanism to convert

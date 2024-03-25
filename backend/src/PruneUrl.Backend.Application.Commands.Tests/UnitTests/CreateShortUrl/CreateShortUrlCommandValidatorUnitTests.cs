@@ -1,8 +1,7 @@
 ﻿using FluentValidation.TestHelper;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Commands.CreateShortUrl;
 
-namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateShortUrl;
+namespace PruneUrl.Backend.Application.Commands.Tests;
 
 [TestFixture]
 [Parallelizable]

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Queries.GetSequenceId;
+namespace PruneUrl.Backend.Application.Queries;
 
 /// <summary>
 /// An immutable query for retrieving a <see cref="SequenceId" /> entity.

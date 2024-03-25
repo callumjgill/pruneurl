@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using PruneUrl.Backend.Application.Queries.GetShortUrl;
 
-namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl;
+namespace PruneUrl.Backend.Application.Queries.Tests;
 
 [TestFixture]
 [Parallelizable]

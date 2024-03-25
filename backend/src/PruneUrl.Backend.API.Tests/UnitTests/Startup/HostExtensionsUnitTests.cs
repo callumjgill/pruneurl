@@ -3,13 +3,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.App.Startup;
-using PruneUrl.Backend.Application.Commands.CreateSequenceId;
-using PruneUrl.Backend.Application.Configuration.Entities.SequenceId;
-using PruneUrl.Backend.Application.Queries.GetSequenceId;
+using PruneUrl.Backend.Application.Commands;
+using PruneUrl.Backend.Application.Configuration;
+using PruneUrl.Backend.Application.Queries;
 using PruneUrl.Backend.TestHelpers;
 
-namespace PruneUrl.Backend.API.Tests.UnitTests.Startup;
+namespace PruneUrl.Backend.API.Tests;
 
 [TestFixture]
 [Parallelizable]

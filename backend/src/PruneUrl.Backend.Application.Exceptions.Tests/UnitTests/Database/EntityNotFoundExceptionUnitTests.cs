@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using PruneUrl.Backend.Application.Exceptions.Database;
 
-namespace PruneUrl.Backend.Application.Exceptions.Tests.Database;
+namespace PruneUrl.Backend.Application.Exceptions.Tests;
 
 [TestFixture]
 [Parallelizable]

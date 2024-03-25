@@ -3,10 +3,8 @@ using FluentValidation.Results;
 using MediatR;
 using NSubstitute;
 using NUnit.Framework;
-using PruneUrl.Backend.Application.Requests.Decorators;
-using PruneUrl.Backend.Application.Requests.Exceptions;
 
-namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Decorators;
+namespace PruneUrl.Backend.Application.Requests.Tests;
 
 [TestFixture]
 [Parallelizable]

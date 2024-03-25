@@ -1,7 +1,6 @@
 using Microsoft.OpenApi.Models;
-using PruneUrl.Backend.App.Endpoints.Models;
 
-namespace PruneUrl.Backend.App.Endpoints;
+namespace PruneUrl.Backend.API;
 
 /// <summary>
 /// Provides API REST routes for the app.

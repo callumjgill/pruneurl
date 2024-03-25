@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using PruneUrl.Backend.Domain.Entities;
 
-namespace PruneUrl.Backend.Application.Commands.CreateShortUrl;
+namespace PruneUrl.Backend.Application.Commands;
 
 /// <summary>
 /// An immutable command for creating a <see cref="ShortUrl" />

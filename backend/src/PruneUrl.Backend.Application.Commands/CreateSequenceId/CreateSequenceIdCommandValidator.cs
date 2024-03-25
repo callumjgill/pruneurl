@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace PruneUrl.Backend.Application.Commands.CreateSequenceId;
+namespace PruneUrl.Backend.Application.Commands;
 
 /// <summary>
 /// A validator for the <see cref="CreateSequenceIdCommand" />.

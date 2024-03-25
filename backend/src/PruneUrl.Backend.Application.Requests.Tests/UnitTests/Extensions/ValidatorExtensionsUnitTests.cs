@@ -4,10 +4,8 @@ using MediatR;
 using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
-using PruneUrl.Backend.Application.Requests.Exceptions;
-using PruneUrl.Backend.Application.Requests.Extensions;
 
-namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Extensions;
+namespace PruneUrl.Backend.Application.Requests.Tests;
 
 [TestFixture]
 [Parallelizable]

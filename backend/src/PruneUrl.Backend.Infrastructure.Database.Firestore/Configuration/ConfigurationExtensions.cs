@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
-using PruneUrl.Backend.Application.Configuration.Exceptions;
+using PruneUrl.Backend.Application.Exceptions;
 
-namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration;
+namespace PruneUrl.Backend.Infrastructure.Database.Firestore;
 
 /// <summary>
 /// Extensions for the <see cref="IConfiguration" /> interface to allow retriving the options from

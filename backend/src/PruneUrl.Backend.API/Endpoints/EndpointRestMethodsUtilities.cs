@@ -1,6 +1,6 @@
-﻿using PruneUrl.Backend.Application.Requests.Exceptions;
+﻿using PruneUrl.Backend.Application.Requests;
 
-namespace PruneUrl.Backend.App.Endpoints;
+namespace PruneUrl.Backend.API;
 
 /// <summary>
 /// Static class containing useful utilities to be used by the REST endpoint methods.

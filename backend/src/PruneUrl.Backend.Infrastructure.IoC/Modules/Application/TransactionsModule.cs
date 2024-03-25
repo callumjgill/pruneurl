@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using MediatR.Extensions.Autofac.DependencyInjection.Builder;
-using PruneUrl.Backend.Application.Transactions.GetAndBumpSequenceId;
+using PruneUrl.Backend.Application.Transactions;
 
-namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application;
+namespace PruneUrl.Backend.Infrastructure.IoC;
 
 /// <summary>
 /// The Application "Transactions" specific code IoC module.
