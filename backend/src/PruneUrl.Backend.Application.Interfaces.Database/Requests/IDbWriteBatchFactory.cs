@@ -7,15 +7,12 @@ namespace PruneUrl.Backend.Application.Interfaces.Database.Requests
   /// </summary>
   public interface IDbWriteBatchFactory
   {
-    #region Public Methods
-
     /// <summary>
     /// Creates a new <see cref="IDbWriteBatch{T}" /> instance.
     /// </summary>
     /// <typeparam name="T"> The <see cref="IEntity" /> the batch is concerned with. </typeparam>
     /// <returns> A new <see cref="IDbWriteBatch{T}" /> instance. </returns>
-    IDbWriteBatch<T> Create<T>() where T : IEntity;
-
-    #endregion Public Methods
+    IDbWriteBatch<T> Create<T>()
+      where T : IEntity;
   }
 }

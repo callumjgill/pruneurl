@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl
   [Parallelizable]
   public sealed class GetShortUrlQueryUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void ConstructorTest()
     {
@@ -16,7 +14,5 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl
       var query = new GetShortUrlQuery(testShortUrl);
       Assert.That(query.ShortUrl, Is.EqualTo(testShortUrl));
     }
-
-    #endregion Public Methods
   }
 }

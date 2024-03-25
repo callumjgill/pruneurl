@@ -7,21 +7,30 @@ namespace PruneUrl.Backend.Domain.Entities.Tests.UnitTests
   [Parallelizable]
   public sealed class ShortUrlUnitTests
   {
-    #region Private Properties
-
     private static IEnumerable<TestCaseData> constructorTestCases
     {
       get
       {
-        yield return new TestCaseData(string.Empty, string.Empty, string.Empty, DateTime.MinValue).SetName("Constructor Test 1");
-        yield return new TestCaseData("ab0ed3aa-b540-4732-a11f-1d43333a659d", "https://www.youtube.com", "pruneurl.com/yt", DateTime.Now).SetName("Constructor Test 2");
-        yield return new TestCaseData("yes this is an id", "Absolutely is a long url", "Absolutely is a small url", DateTime.UtcNow).SetName("Constructor Test 3");
+        yield return new TestCaseData(
+          string.Empty,
+          string.Empty,
+          string.Empty,
+          DateTime.MinValue
+        ).SetName("Constructor Test 1");
+        yield return new TestCaseData(
+          "ab0ed3aa-b540-4732-a11f-1d43333a659d",
+          "https://www.youtube.com",
+          "pruneurl.com/yt",
+          DateTime.Now
+        ).SetName("Constructor Test 2");
+        yield return new TestCaseData(
+          "yes this is an id",
+          "Absolutely is a long url",
+          "Absolutely is a small url",
+          DateTime.UtcNow
+        ).SetName("Constructor Test 3");
       }
     }
-
-    #endregion Private Properties
-
-    #region Public Methods
 
     [TestCaseSource(nameof(constructorTestCases))]
     public void ConstructorTest(string id, string longUrl, string shortUrl, DateTime created)
@@ -35,7 +44,5 @@ namespace PruneUrl.Backend.Domain.Entities.Tests.UnitTests
         Assert.That(testShortUrl.Created, Is.EqualTo(created));
       });
     }
-
-    #endregion Public Methods
   }
 }

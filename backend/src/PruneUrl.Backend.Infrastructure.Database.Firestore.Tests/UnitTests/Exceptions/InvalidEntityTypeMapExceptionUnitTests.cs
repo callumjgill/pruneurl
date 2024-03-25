@@ -9,8 +9,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Exc
   [Parallelizable]
   public sealed class InvalidEntityTypeMapExceptionUnitTests
   {
-    #region Public Methods
-
     [TestCase<SequenceId>]
     [TestCase<ShortUrl>]
     public void ConstructorTest<T>()
@@ -18,7 +16,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Exc
       var exception = new InvalidEntityTypeMapException(typeof(T));
       Assert.That(exception.Message, Is.EqualTo($"No mapping exists for the type {typeof(T)}!"));
     }
-
-    #endregion Public Methods
   }
 }

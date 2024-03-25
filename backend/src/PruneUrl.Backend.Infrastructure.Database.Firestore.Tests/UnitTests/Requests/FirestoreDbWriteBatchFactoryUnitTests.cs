@@ -13,17 +13,22 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Requests
 {
   [TestFixture]
   [Parallelizable]
-  [Description("These tests don't require communicating with the FirestoreDb emulator, so they can be ran in parallel with each other and other test fixtures.")]
+  [Description(
+    "These tests don't require communicating with the FirestoreDb emulator, so they can be ran in parallel with each other and other test fixtures."
+  )]
   public sealed class FirestoreDbWriteBatchFactoryUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void CreateTest_Invalid()
     {
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
       var factory = new FirestoreDbWriteBatchFactory(testFirestoreDb, Substitute.For<IMapper>());
-      Assert.That(factory.Create<IEntity>, Throws.TypeOf<InvalidEntityTypeMapException>().With.Message.EqualTo($"No mapping exists for the type {typeof(IEntity)}!"));
+      Assert.That(
+        factory.Create<IEntity>,
+        Throws
+          .TypeOf<InvalidEntityTypeMapException>()
+          .With.Message.EqualTo($"No mapping exists for the type {typeof(IEntity)}!")
+      );
     }
 
     [Test]
@@ -38,10 +43,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Requests
       CreateTest<ShortUrl, ShortUrlDTO>();
     }
 
-    #endregion Public Methods
-
-    #region Private Methods
-
     private void CreateTest<TEntity, TFirestoreEntity>()
       where TEntity : IEntity
       where TFirestoreEntity : FirestoreEntityDTO
@@ -49,9 +50,10 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Requests
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
       var factory = new FirestoreDbWriteBatchFactory(testFirestoreDb, Substitute.For<IMapper>());
       IDbWriteBatch<TEntity> actualDbWriteBatch = factory.Create<TEntity>();
-      Assert.That(actualDbWriteBatch, Is.TypeOf<FirestoreDbWriteBatchAdapter<TEntity, TFirestoreEntity>>());
+      Assert.That(
+        actualDbWriteBatch,
+        Is.TypeOf<FirestoreDbWriteBatchAdapter<TEntity, TFirestoreEntity>>()
+      );
     }
-
-    #endregion Private Methods
   }
 }

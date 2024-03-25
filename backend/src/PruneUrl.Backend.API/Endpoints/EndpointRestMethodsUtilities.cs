@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.App.Endpoints
   /// </summary>
   internal static class EndpointRestMethodsUtilities
   {
-    #region Public Methods
-
     /// <summary>
     /// Handles any exceptions thrown by the REST method which itself doesn't handle.
     /// </summary>
@@ -33,7 +31,5 @@ namespace PruneUrl.Backend.App.Endpoints
         return Results.StatusCode(500);
       }
     }
-
-    #endregion Public Methods
   }
 }

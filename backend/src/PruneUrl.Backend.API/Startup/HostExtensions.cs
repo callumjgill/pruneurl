@@ -11,8 +11,6 @@ namespace PruneUrl.Backend.App.Startup
   /// </summary>
   public static class HostExtensions
   {
-    #region Public Methods
-
     /// <summary>
     /// Ensures that the underlying database is setup properly for use by the app.
     /// </summary>
@@ -23,14 +21,16 @@ namespace PruneUrl.Backend.App.Startup
     public static async Task EnsureDbIsSetup(this IHost host)
     {
       IMediator mediator = host.Services.GetRequiredService<IMediator>();
-      SequenceIdOptions sequenceIdOptions = host.Services.GetRequiredService<IOptions<SequenceIdOptions>>().Value;
-      GetSequenceIdQueryResponse getSequenceIdQueryResponse = await mediator.Send(new GetSequenceIdQuery(sequenceIdOptions.Id));
+      SequenceIdOptions sequenceIdOptions = host
+        .Services.GetRequiredService<IOptions<SequenceIdOptions>>()
+        .Value;
+      GetSequenceIdQueryResponse getSequenceIdQueryResponse = await mediator.Send(
+        new GetSequenceIdQuery(sequenceIdOptions.Id)
+      );
       if (getSequenceIdQueryResponse.SequenceId == null)
       {
         await mediator.Send(new CreateSequenceIdCommand(sequenceIdOptions.Id));
       }
     }
-
-    #endregion Public Methods
   }
 }

@@ -15,8 +15,6 @@ namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints
   [Parallelizable]
   public sealed class RedirectEndpointRestMethodsUnitTests
   {
-    #region Public Methods
-
     [Test]
     public async Task GetShortUrlTest_HandlesException()
     {
@@ -26,8 +24,12 @@ namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints
       var testShortUrlEntity = EntityTestHelper.CreateShortUrl(longUrl: testLongUrl);
       var response = new GetShortUrlQueryResponse(testShortUrlEntity);
 
-      mediator.When(x => x.Send(Arg.Any<GetShortUrlQuery>()))
-              .Do(x => { throw new Exception(); });
+      mediator
+        .When(x => x.Send(Arg.Any<GetShortUrlQuery>()))
+        .Do(x =>
+        {
+          throw new Exception();
+        });
 
       IResult result = await RedirectEndpointRestMethods.GetShortUrl(testShortUrl, mediator);
       Assert.That(result, Is.TypeOf<StatusCodeHttpResult>());
@@ -63,15 +65,17 @@ namespace PruneUrl.Backend.API.Tests.UnitTests.Endpoints
       var testShortUrlEntity = EntityTestHelper.CreateShortUrl(longUrl: testLongUrl);
       var response = new GetShortUrlQueryResponse(testShortUrlEntity);
 
-      mediator.When(x => x.Send(Arg.Any<GetShortUrlQuery>()))
-              .Do(x => { throw new EntityNotFoundException(typeof(ShortUrl), string.Empty); });
+      mediator
+        .When(x => x.Send(Arg.Any<GetShortUrlQuery>()))
+        .Do(x =>
+        {
+          throw new EntityNotFoundException(typeof(ShortUrl), string.Empty);
+        });
 
       IResult result = await RedirectEndpointRestMethods.GetShortUrl(testShortUrl, mediator);
       Assert.That(result, Is.TypeOf<NotFound>());
       await mediator.Received(1).Send(Arg.Any<GetShortUrlQuery>());
       await mediator.Received(1).Send(Arg.Is<GetShortUrlQuery>(x => x.ShortUrl == testShortUrl));
     }
-
-    #endregion Public Methods
   }
 }

@@ -7,38 +7,45 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.DTO
   [Parallelizable]
   internal sealed class ShortUrlDTOUnitTests : FirestoreEntityDTOUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void CreatedTest()
     {
       DateTime testCreated = DateTime.Now;
-      PropertyTest(null, testCreated, (entityDTO) => ((ShortUrlDTO)entityDTO).Created, (entityDTO, newValue) => ((ShortUrlDTO)entityDTO).Created = newValue);
+      PropertyTest(
+        null,
+        testCreated,
+        (entityDTO) => ((ShortUrlDTO)entityDTO).Created,
+        (entityDTO, newValue) => ((ShortUrlDTO)entityDTO).Created = newValue
+      );
     }
 
     [Test]
     public void LongUrlTest()
     {
       string testLongUrl = "Some long url would be here";
-      PropertyTest(null, testLongUrl, (entityDTO) => ((ShortUrlDTO)entityDTO).LongUrl, (entityDTO, newValue) => ((ShortUrlDTO)entityDTO).LongUrl = newValue);
+      PropertyTest(
+        null,
+        testLongUrl,
+        (entityDTO) => ((ShortUrlDTO)entityDTO).LongUrl,
+        (entityDTO, newValue) => ((ShortUrlDTO)entityDTO).LongUrl = newValue
+      );
     }
 
     [Test]
     public void UrlTest()
     {
       string testUrl = "Some short url would be here";
-      PropertyTest(null, testUrl, (entityDTO) => ((ShortUrlDTO)entityDTO).Url, (entityDTO, newValue) => ((ShortUrlDTO)entityDTO).Url = newValue);
+      PropertyTest(
+        null,
+        testUrl,
+        (entityDTO) => ((ShortUrlDTO)entityDTO).Url,
+        (entityDTO, newValue) => ((ShortUrlDTO)entityDTO).Url = newValue
+      );
     }
-
-    #endregion Public Methods
-
-    #region Protected Methods
 
     protected override FirestoreEntityDTO CreateDTO()
     {
       return new ShortUrlDTO();
     }
-
-    #endregion Protected Methods
   }
 }

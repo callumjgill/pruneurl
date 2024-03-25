@@ -8,8 +8,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Con
   [Parallelizable]
   public sealed class FirestoreDbOptionsUnitTests
   {
-    #region Public Methods
-
     [TestCase(EmulatorDetection.None)]
     [TestCase(EmulatorDetection.ProductionOnly)]
     [TestCase(EmulatorDetection.EmulatorOrProduction)]
@@ -31,7 +29,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Con
       firestoreDbOptions.ProjectId = testProjectId;
       Assert.That(firestoreDbOptions.ProjectId, Is.EqualTo(testProjectId));
     }
-
-    #endregion Public Methods
   }
 }

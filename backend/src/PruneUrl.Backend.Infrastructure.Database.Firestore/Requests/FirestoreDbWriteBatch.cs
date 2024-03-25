@@ -10,34 +10,19 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
   /// wrapper around <see cref="WriteBatch" />.
   /// </summary>
   /// <typeparam name="T"> The <see cref="FirestoreEntityDTO" /> the batch is concerned with. </typeparam>
-  internal sealed class FirestoreDbWriteBatch<T> : IDbWriteBatch<T> where T : FirestoreEntityDTO
+  /// <param name="collection">
+  /// A reference to the collection in the Firestore database corresponding to the <typeparamref
+  /// name="T" /> type.
+  /// </param>
+  /// <param name="writeBatch"> A batch of write operations, to be performed in a single commit. </param>
+  internal sealed class FirestoreDbWriteBatch<T>(
+    CollectionReference collection,
+    WriteBatch writeBatch
+  ) : IDbWriteBatch<T>
+    where T : FirestoreEntityDTO
   {
-    #region Private Fields
-
-    private readonly CollectionReference collection;
-    private readonly WriteBatch writeBatch;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbWriteBatch{T}" /> class.
-    /// </summary>
-    /// <param name="collection">
-    /// A reference to the collection in the Firestore database corresponding to the <typeparamref
-    /// name="T" /> type.
-    /// </param>
-    /// <param name="writeBatch"> A batch of write operations, to be performed in a single commit. </param>
-    public FirestoreDbWriteBatch(CollectionReference collection, WriteBatch writeBatch)
-    {
-      this.collection = collection;
-      this.writeBatch = writeBatch;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Methods
+    private readonly CollectionReference collection = collection;
+    private readonly WriteBatch writeBatch = writeBatch;
 
     /// <inheritdoc cref="IDbWriteBatch{T}.CommitAsync(CancellationToken)" />
     public Task CommitAsync(CancellationToken cancellationToken = default)
@@ -58,7 +43,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
       DocumentReference documentToDelete = collection.Document(id);
       writeBatch.Delete(documentToDelete);
     }
-
-    #endregion Public Methods
   }
 }

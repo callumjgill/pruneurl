@@ -15,14 +15,17 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
   [Parallelizable]
   public sealed class FirestoreDbTransactionFactoryUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void CreateTest_Invalid()
     {
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
       var factory = new FirestoreDbWriteBatchFactory(testFirestoreDb, Substitute.For<IMapper>());
-      Assert.That(factory.Create<IEntity>, Throws.TypeOf<InvalidEntityTypeMapException>().With.Message.EqualTo($"No mapping exists for the type {typeof(IEntity)}!"));
+      Assert.That(
+        factory.Create<IEntity>,
+        Throws
+          .TypeOf<InvalidEntityTypeMapException>()
+          .With.Message.EqualTo($"No mapping exists for the type {typeof(IEntity)}!")
+      );
     }
 
     [Test]
@@ -37,10 +40,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       return CreateTest<ShortUrl, ShortUrlDTO>();
     }
 
-    #endregion Public Methods
-
-    #region Private Methods
-
     private async Task CreateTest<TEntity, TFirestoreEntity>()
       where TEntity : IEntity
       where TFirestoreEntity : FirestoreEntityDTO
@@ -50,11 +49,12 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       await testFirestoreDb.RunTransactionAsync(transaction =>
       {
         IDbTransaction<TEntity> actualDbTransaction = factory.Create<TEntity>(transaction);
-        Assert.That(actualDbTransaction, Is.TypeOf<FirestoreDbTransactionAdapter<TEntity, TFirestoreEntity>>());
+        Assert.That(
+          actualDbTransaction,
+          Is.TypeOf<FirestoreDbTransactionAdapter<TEntity, TFirestoreEntity>>()
+        );
         return Task.CompletedTask;
       });
     }
-
-    #endregion Private Methods
   }
 }

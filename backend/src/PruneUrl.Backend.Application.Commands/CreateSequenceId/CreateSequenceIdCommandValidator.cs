@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.Application.Commands.CreateSequenceId
   /// </summary>
   public sealed class CreateSequenceIdCommandValidator : AbstractValidator<CreateSequenceIdCommand>
   {
-    #region Public Constructors
-
     /// <summary>
     /// Instantiates a new instance of the <see cref="CreateSequenceIdCommandValidator" /> class.
     /// </summary>
@@ -16,7 +14,5 @@ namespace PruneUrl.Backend.Application.Commands.CreateSequenceId
     {
       RuleFor(command => command.Id).NotEmpty();
     }
-
-    #endregion Public Constructors
   }
 }

@@ -13,17 +13,25 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Operations.Re
 {
   [TestFixture]
   [Parallelizable]
-  [Description("These tests don't require communicating with the FirestoreDb emulator, so they can be ran in parallel with each other and other test fixtures.")]
+  [Description(
+    "These tests don't require communicating with the FirestoreDb emulator, so they can be ran in parallel with each other and other test fixtures."
+  )]
   public sealed class FirestoreDbGetByIdOperationFactoryUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void CreateTest_Invalid()
     {
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      var factory = new FirestoreDbGetByIdOperationFactory(testFirestoreDb, Substitute.For<IMapper>());
-      Assert.That(factory.Create<IEntity>, Throws.TypeOf<InvalidEntityTypeMapException>().With.Message.EqualTo($"No mapping exists for the type {typeof(IEntity)}!"));
+      var factory = new FirestoreDbGetByIdOperationFactory(
+        testFirestoreDb,
+        Substitute.For<IMapper>()
+      );
+      Assert.That(
+        factory.Create<IEntity>,
+        Throws
+          .TypeOf<InvalidEntityTypeMapException>()
+          .With.Message.EqualTo($"No mapping exists for the type {typeof(IEntity)}!")
+      );
     }
 
     [Test]
@@ -38,20 +46,20 @@ namespace PruneUrl.Backend.Infrastructure.Database.Tests.UnitTests.Operations.Re
       CreateTest<ShortUrl, ShortUrlDTO>();
     }
 
-    #endregion Public Methods
-
-    #region Private Methods
-
     private void CreateTest<TEntity, TFirestoreEntity>()
       where TEntity : IEntity
       where TFirestoreEntity : FirestoreEntityDTO
     {
       FirestoreDb testFirestoreDb = TestFirestoreDbHelper.GetTestFirestoreDb();
-      var factory = new FirestoreDbGetByIdOperationFactory(testFirestoreDb, Substitute.For<IMapper>());
+      var factory = new FirestoreDbGetByIdOperationFactory(
+        testFirestoreDb,
+        Substitute.For<IMapper>()
+      );
       IDbGetByIdOperation<TEntity> actualDbGetByIdOperation = factory.Create<TEntity>();
-      Assert.That(actualDbGetByIdOperation, Is.TypeOf<FirestoreDbGetByIdOperationAdapter<TEntity, TFirestoreEntity>>());
+      Assert.That(
+        actualDbGetByIdOperation,
+        Is.TypeOf<FirestoreDbGetByIdOperationAdapter<TEntity, TFirestoreEntity>>()
+      );
     }
-
-    #endregion Private Methods
   }
 }

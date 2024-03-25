@@ -10,13 +10,18 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Con
   [Parallelizable]
   public sealed class ConfigurationExtensionsUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void GetFirestoreDbOptionsTest_Invalid_NoConfig()
     {
       IConfiguration configuration = new ConfigurationBuilder().Build();
-      Assert.That(configuration.GetFirestoreDbOptions, Throws.TypeOf<InvalidConfigurationException>().With.Message.EqualTo($"The section '{nameof(FirestoreDbOptions)}' is invalid! Could not bind the section to the type '{typeof(FirestoreDbOptions)}'."));
+      Assert.That(
+        configuration.GetFirestoreDbOptions,
+        Throws
+          .TypeOf<InvalidConfigurationException>()
+          .With.Message.EqualTo(
+            $"The section '{nameof(FirestoreDbOptions)}' is invalid! Could not bind the section to the type '{typeof(FirestoreDbOptions)}'."
+          )
+      );
     }
 
     [TestCase("")]
@@ -27,11 +32,20 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Con
       EmulatorDetection emulatorDetection = EmulatorDetection.EmulatorOnly;
       var config = new Dictionary<string, string?>
       {
-        {"FirestoreDbOptions:EmulatorDetection", emulatorDetection.ToString()},
-        {"FirestoreDbOptions:ProjectId", projectId}
+        { "FirestoreDbOptions:EmulatorDetection", emulatorDetection.ToString() },
+        { "FirestoreDbOptions:ProjectId", projectId }
       };
-      IConfiguration configuration = new ConfigurationBuilder().AddInMemoryCollection(config).Build();
-      Assert.That(configuration.GetFirestoreDbOptions, Throws.TypeOf<InvalidConfigurationException>().With.Message.EqualTo($"The section '{nameof(FirestoreDbOptions)}' is invalid! Missing '{nameof(FirestoreDbOptions.ProjectId)}' property!"));
+      IConfiguration configuration = new ConfigurationBuilder()
+        .AddInMemoryCollection(config)
+        .Build();
+      Assert.That(
+        configuration.GetFirestoreDbOptions,
+        Throws
+          .TypeOf<InvalidConfigurationException>()
+          .With.Message.EqualTo(
+            $"The section '{nameof(FirestoreDbOptions)}' is invalid! Missing '{nameof(FirestoreDbOptions.ProjectId)}' property!"
+          )
+      );
     }
 
     [Test]
@@ -41,15 +55,15 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Con
       EmulatorDetection emulatorDetection = EmulatorDetection.EmulatorOnly;
       var config = new Dictionary<string, string?>
       {
-        {"FirestoreDbOptions:EmulatorDetection", emulatorDetection.ToString()},
-        {"FirestoreDbOptions:ProjectId", projectId}
+        { "FirestoreDbOptions:EmulatorDetection", emulatorDetection.ToString() },
+        { "FirestoreDbOptions:ProjectId", projectId }
       };
-      IConfiguration configuration = new ConfigurationBuilder().AddInMemoryCollection(config).Build();
+      IConfiguration configuration = new ConfigurationBuilder()
+        .AddInMemoryCollection(config)
+        .Build();
       FirestoreDbOptions firestoreDbOptions = configuration.GetFirestoreDbOptions();
       Assert.That(firestoreDbOptions.EmulatorDetection, Is.EqualTo(emulatorDetection));
       Assert.That(firestoreDbOptions.ProjectId, Is.EqualTo(projectId));
     }
-
-    #endregion Public Methods
   }
 }

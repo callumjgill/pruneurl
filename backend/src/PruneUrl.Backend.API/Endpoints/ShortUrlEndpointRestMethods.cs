@@ -13,8 +13,6 @@ namespace PruneUrl.Backend.App.Endpoints
   /// </summary>
   internal static class ShortUrlEndpointRestMethods
   {
-    #region Public Methods
-
     /// <summary>
     /// The POST REST Endpoint for creating a new <see cref="ShortUrl" /> entity.
     /// </summary>
@@ -28,9 +26,11 @@ namespace PruneUrl.Backend.App.Endpoints
     /// <returns>
     /// A task representing the asynchronous operation of creating a new <see cref="ShortUrl" /> entity.
     /// </returns>
-    public static Task<IResult> PostShortUrl([FromBody] ShortUrlPostRequest requestBody,
-                                             [FromServices] IMediator mediator,
-                                             [FromServices] IShortUrlProvider shortUrlProvider)
+    public static Task<IResult> PostShortUrl(
+      [FromBody] ShortUrlPostRequest requestBody,
+      [FromServices] IMediator mediator,
+      [FromServices] IShortUrlProvider shortUrlProvider
+    )
     {
       return EndpointRestMethodsUtilities.HandleErrors(async () =>
       {
@@ -43,7 +43,5 @@ namespace PruneUrl.Backend.App.Endpoints
         return Results.CreatedAtRoute(RouteNames.RedirectRoute, new { shortUrl });
       });
     }
-
-    #endregion Public Methods
   }
 }

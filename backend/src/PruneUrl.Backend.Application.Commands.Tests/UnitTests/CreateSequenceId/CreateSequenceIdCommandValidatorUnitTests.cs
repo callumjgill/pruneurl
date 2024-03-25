@@ -9,8 +9,6 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateSequenceId
   [Parallelizable]
   public sealed class CreateSequenceIdCommandValidatorUnitTests
   {
-    #region Public Methods
-
     [TestCase(null)]
     [TestCase("")]
     [TestCase("             ")]
@@ -35,7 +33,5 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateSequenceId
       TestValidationResult<CreateSequenceIdCommand> result = validator.TestValidate(command);
       result.ShouldNotHaveValidationErrorFor(cmd => cmd.Id);
     }
-
-    #endregion Public Methods
   }
 }

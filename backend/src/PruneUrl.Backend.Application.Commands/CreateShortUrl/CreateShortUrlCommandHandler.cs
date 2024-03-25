@@ -8,33 +8,17 @@ namespace PruneUrl.Backend.Application.Commands.CreateShortUrl
   /// <summary>
   /// The handler for the <see cref="CreateShortUrlCommand" />.
   /// </summary>
-  public sealed class CreateShortUrlCommandHandler : IRequestHandler<CreateShortUrlCommand>
+  /// <param name="dbWriteBatch">
+  /// The operation for creating a <see cref="ShortUrl" /> in the database.
+  /// </param>
+  /// <param name="shortUrlFactory"> The factory for creating <see cref="ShortUrl" /> instances. </param>
+  public sealed class CreateShortUrlCommandHandler(
+    IDbWriteBatch<ShortUrl> dbWriteBatch,
+    IShortUrlFactory shortUrlFactory
+  ) : IRequestHandler<CreateShortUrlCommand>
   {
-    #region Private Fields
-
-    private readonly IDbWriteBatch<ShortUrl> dbWriteBatch;
-    private readonly IShortUrlFactory shortUrlFactory;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    /// <summary>
-    /// Instantiates a new instance of the <see cref="CreateShortUrlCommandHandler" /> class.
-    /// </summary>
-    /// <param name="dbWriteBatch">
-    /// The operation for creating a <see cref="ShortUrl" /> in the database.
-    /// </param>
-    /// <param name="shortUrlFactory"> The factory for creating <see cref="ShortUrl" /> instances. </param>
-    public CreateShortUrlCommandHandler(IDbWriteBatch<ShortUrl> dbWriteBatch, IShortUrlFactory shortUrlFactory)
-    {
-      this.dbWriteBatch = dbWriteBatch;
-      this.shortUrlFactory = shortUrlFactory;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Methods
+    private readonly IDbWriteBatch<ShortUrl> dbWriteBatch = dbWriteBatch;
+    private readonly IShortUrlFactory shortUrlFactory = shortUrlFactory;
 
     /// <inheritdoc cref="IRequestHandler{TRequest}.Handle(TRequest, CancellationToken)" />
     public Task Handle(CreateShortUrlCommand request, CancellationToken cancellationToken)
@@ -43,7 +27,5 @@ namespace PruneUrl.Backend.Application.Commands.CreateShortUrl
       dbWriteBatch.Create(shortUrl);
       return dbWriteBatch.CommitAsync(cancellationToken);
     }
-
-    #endregion Public Methods
   }
 }

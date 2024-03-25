@@ -15,8 +15,6 @@ namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSe
   [Parallelizable]
   public sealed class GetAndBumpSequenceIdRequestHandlerUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void HandleTest_Fail()
     {
@@ -27,12 +25,31 @@ namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSe
       SequenceId testSequenceId = EntityTestHelper.CreateSequenceId(testId, 1254);
 
       sequenceIdOptions.Value.Returns(new SequenceIdOptions() { Id = testId });
-      dbTransactionProvider.RunTransactionAsync(Arg.Any<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>(), Arg.Any<CancellationToken>())
-                           .Returns(x => x.Arg<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>().Invoke(Substitute.For<IDbTransaction<SequenceId>>()));
+      dbTransactionProvider
+        .RunTransactionAsync(
+          Arg.Any<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>(),
+          Arg.Any<CancellationToken>()
+        )
+        .Returns(x =>
+          x.Arg<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>()
+            .Invoke(Substitute.For<IDbTransaction<SequenceId>>())
+        );
 
       CancellationToken cancellationToken = CancellationToken.None;
-      var requestHandler = new GetAndBumpSequenceIdRequestHandler(dbTransactionProvider, sequenceIdOptions, Substitute.For<ISequenceIdFactory>());
-      Assert.That(async () => await requestHandler.Handle(new GetAndBumpSequenceIdRequest(), cancellationToken), Throws.TypeOf<EntityNotFoundException>().With.Message.EqualTo($"Entity of type {typeof(SequenceId)} with id {testId} was not found!"));
+      var requestHandler = new GetAndBumpSequenceIdRequestHandler(
+        dbTransactionProvider,
+        sequenceIdOptions,
+        Substitute.For<ISequenceIdFactory>()
+      );
+      Assert.That(
+        async () =>
+          await requestHandler.Handle(new GetAndBumpSequenceIdRequest(), cancellationToken),
+        Throws
+          .TypeOf<EntityNotFoundException>()
+          .With.Message.EqualTo(
+            $"Entity of type {typeof(SequenceId)} with id {testId} was not found!"
+          )
+      );
       _ = sequenceIdOptions.Received(1).Value;
     }
 
@@ -46,17 +63,35 @@ namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSe
 
       SequenceId testSequenceId = EntityTestHelper.CreateSequenceId(testId, 1254);
       var dbTransaction = Substitute.For<IDbTransaction<SequenceId>>();
-      SequenceId nextSequenceId = EntityTestHelper.CreateSequenceId(testId, testSequenceId.Value + 1);
+      SequenceId nextSequenceId = EntityTestHelper.CreateSequenceId(
+        testId,
+        testSequenceId.Value + 1
+      );
 
       sequenceIdOptions.Value.Returns(new SequenceIdOptions() { Id = testId });
-      dbTransaction.GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>()).Returns(testSequenceId);
-      dbTransactionProvider.RunTransactionAsync(Arg.Any<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>(), Arg.Any<CancellationToken>())
-                           .Returns(x => x.Arg<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>().Invoke(dbTransaction));
+      dbTransaction
+        .GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
+        .Returns(testSequenceId);
+      dbTransactionProvider
+        .RunTransactionAsync(
+          Arg.Any<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>(),
+          Arg.Any<CancellationToken>()
+        )
+        .Returns(x =>
+          x.Arg<Func<IDbTransaction<SequenceId>, Task<SequenceId>>>().Invoke(dbTransaction)
+        );
       sequenceIdFactory.Create(Arg.Any<string>(), Arg.Any<int>()).Returns(nextSequenceId);
 
       CancellationToken cancellationToken = CancellationToken.None;
-      var requestHandler = new GetAndBumpSequenceIdRequestHandler(dbTransactionProvider, sequenceIdOptions, sequenceIdFactory);
-      GetAndBumpSequenceIdResponse response = await requestHandler.Handle(new GetAndBumpSequenceIdRequest(), cancellationToken);
+      var requestHandler = new GetAndBumpSequenceIdRequestHandler(
+        dbTransactionProvider,
+        sequenceIdOptions,
+        sequenceIdFactory
+      );
+      GetAndBumpSequenceIdResponse response = await requestHandler.Handle(
+        new GetAndBumpSequenceIdRequest(),
+        cancellationToken
+      );
       Assert.That(response.SequenceId, Is.EqualTo(testSequenceId));
       await dbTransaction.Received(1).GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
       await dbTransaction.Received(1).GetByIdAsync(testId, cancellationToken);
@@ -66,7 +101,5 @@ namespace PruneUrl.Backend.Application.Transactions.Tests.UnitTests.GetAndBumpSe
       sequenceIdFactory.Received(1).Create(testId, testSequenceId.Value + 1);
       _ = sequenceIdOptions.Received(1).Value;
     }
-
-    #endregion Public Methods
   }
 }

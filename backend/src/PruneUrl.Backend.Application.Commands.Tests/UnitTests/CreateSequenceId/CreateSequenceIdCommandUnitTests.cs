@@ -7,15 +7,11 @@ namespace PruneUrl.Backend.Application.Commands.Tests.UnitTests.CreateSequenceId
   [Parallelizable]
   public sealed class CreateSequenceIdCommandUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void ConstructorTest()
     {
       const string testId = "Testing123";
       var command = new CreateSequenceIdCommand(testId);
     }
-
-    #endregion Public Methods
   }
 }

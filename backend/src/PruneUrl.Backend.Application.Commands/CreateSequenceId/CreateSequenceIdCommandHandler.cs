@@ -8,37 +8,20 @@ namespace PruneUrl.Backend.Application.Commands.CreateSequenceId
   /// <summary>
   /// The handler for the <see cref="CreateSequenceIdCommand" /> request.
   /// </summary>
-  public sealed class CreateSequenceIdCommandHandler : IRequestHandler<CreateSequenceIdCommand>
+  /// <param name="dbWriteBatch">
+  /// The batch of operations for the <see cref="SequenceId" /> entity which will be committed to
+  /// the database.
+  /// </param>
+  /// <param name="sequenceIdFactory">
+  /// The factory for creating instances of the <see cref="SequenceId" /> type.
+  /// </param>
+  public sealed class CreateSequenceIdCommandHandler(
+    IDbWriteBatch<SequenceId> dbWriteBatch,
+    ISequenceIdFactory sequenceIdFactory
+  ) : IRequestHandler<CreateSequenceIdCommand>
   {
-    #region Private Fields
-
-    private readonly IDbWriteBatch<SequenceId> dbWriteBatch;
-    private readonly ISequenceIdFactory sequenceIdFactory;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    /// <summary>
-    /// Instantiates a new instance of the <see cref="CreateSequenceIdCommandHandler" /> class.
-    /// </summary>
-    /// <param name="dbWriteBatch">
-    /// The batch of operations for the <see cref="SequenceId" /> entity which will be committed to
-    /// the database.
-    /// </param>
-    /// <param name="sequenceIdFactory">
-    /// The factory for creating instances of the <see cref="SequenceId" /> type.
-    /// </param>
-    public CreateSequenceIdCommandHandler(IDbWriteBatch<SequenceId> dbWriteBatch,
-                                          ISequenceIdFactory sequenceIdFactory)
-    {
-      this.dbWriteBatch = dbWriteBatch;
-      this.sequenceIdFactory = sequenceIdFactory;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Methods
+    private readonly IDbWriteBatch<SequenceId> dbWriteBatch = dbWriteBatch;
+    private readonly ISequenceIdFactory sequenceIdFactory = sequenceIdFactory;
 
     /// <inheritdoc cref="IRequestHandler{TRequest}.Handle(TRequest, CancellationToken)" />
     public Task Handle(CreateSequenceIdCommand request, CancellationToken cancellationToken)
@@ -47,7 +30,5 @@ namespace PruneUrl.Backend.Application.Commands.CreateSequenceId
       dbWriteBatch.Create(newSequenceId);
       return dbWriteBatch.CommitAsync(cancellationToken);
     }
-
-    #endregion Public Methods
   }
 }

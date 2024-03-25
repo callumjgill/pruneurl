@@ -11,8 +11,6 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
   [Parallelizable]
   public sealed class ShortUrlFactoryUnitTests
   {
-    #region Public Methods
-
     [TestCase("")]
     [TestCase("www.youtube.com")]
     [TestCase("https://www.youtube.com")]
@@ -47,7 +45,5 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
       shortUrlProvider.Received(1).GetShortUrl(Arg.Any<int>());
       shortUrlProvider.Received(1).GetShortUrl(testSequenceId);
     }
-
-    #endregion Public Methods
   }
 }

@@ -12,14 +12,15 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
   [Parallelizable]
   public sealed class FirestoreDbWriteBatchAdapterUnitTests
   {
-    #region Public Methods
-
     [Test]
     public async Task CommitAsyncTest()
     {
       var cancellationToken = new CancellationToken();
       var adapteeDbWriteBatch = Substitute.For<IDbWriteBatch<FirestoreEntityDTO>>();
-      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<IEntity, FirestoreEntityDTO>(adapteeDbWriteBatch, Substitute.For<IMapper>());
+      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<
+        IEntity,
+        FirestoreEntityDTO
+      >(adapteeDbWriteBatch, Substitute.For<IMapper>());
 
       await adapterFirestoreDbWriteBatch.CommitAsync(cancellationToken);
       await adapteeDbWriteBatch.Received(1).CommitAsync(Arg.Any<CancellationToken>());
@@ -32,7 +33,10 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       var testEntity = Substitute.For<IEntity>();
       var adapteeDbWriteBatch = Substitute.For<IDbWriteBatch<FirestoreEntityDTO>>();
       var mapper = Substitute.For<IMapper>();
-      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<IEntity, FirestoreEntityDTO>(adapteeDbWriteBatch, mapper);
+      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<
+        IEntity,
+        FirestoreEntityDTO
+      >(adapteeDbWriteBatch, mapper);
       var testFirestoreEntity = Substitute.For<FirestoreEntityDTO>();
 
       mapper.Map<IEntity, FirestoreEntityDTO>(Arg.Any<IEntity>()).Returns(testFirestoreEntity);
@@ -49,13 +53,14 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
     {
       var testId = Guid.NewGuid().ToString();
       var adapteeDbWriteBatch = Substitute.For<IDbWriteBatch<FirestoreEntityDTO>>();
-      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<IEntity, FirestoreEntityDTO>(adapteeDbWriteBatch, Substitute.For<IMapper>());
+      var adapterFirestoreDbWriteBatch = new FirestoreDbWriteBatchAdapter<
+        IEntity,
+        FirestoreEntityDTO
+      >(adapteeDbWriteBatch, Substitute.For<IMapper>());
 
       adapterFirestoreDbWriteBatch.Delete(testId);
       adapteeDbWriteBatch.Received(1).Delete(Arg.Any<string>());
       adapteeDbWriteBatch.Received(1).Delete(testId);
     }
-
-    #endregion Public Methods
   }
 }

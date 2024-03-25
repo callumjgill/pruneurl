@@ -11,36 +11,35 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application
   /// </summary>
   internal sealed class RequestsModule : Module
   {
-    #region Protected Methods
-
     protected override void Load(ContainerBuilder builder)
     {
       RegisterDecorators(builder);
     }
-
-    #endregion Protected Methods
-
-    #region Private Methods
 
     private void RegisterDecorators(ContainerBuilder builder)
     {
       builder.RegisterGenericDecorator(
         typeof(ValidateRequestHandlerDecorator<>),
         typeof(IRequestHandler<>),
-        context => ValidatorIsRegistered(typeof(IRequestHandler<>).Name, context));
+        context => ValidatorIsRegistered(typeof(IRequestHandler<>).Name, context)
+      );
       builder.RegisterGenericDecorator(
         typeof(ValidateRequestHandlerDecorator<,>),
         typeof(IRequestHandler<,>),
-        context => ValidatorIsRegistered(typeof(IRequestHandler<,>).Name, context));
+        context => ValidatorIsRegistered(typeof(IRequestHandler<,>).Name, context)
+      );
     }
 
     private bool ValidatorIsRegistered(string interfaceName, IDecoratorContext context)
     {
-      Type? requestHandlerInterfaceType = context.ImplementationType.GetInterfaces().FirstOrDefault(interfaceType => interfaceType.Name == interfaceName);
-      Type? genericTypeArgument = requestHandlerInterfaceType?.GenericTypeArguments.FirstOrDefault(genericTypeArgument => genericTypeArgument.IsAssignableTo(typeof(IBaseRequest)));
-      return genericTypeArgument != null && context.IsRegistered(typeof(IValidator<>).MakeGenericType(genericTypeArgument));
+      Type? requestHandlerInterfaceType = context
+        .ImplementationType.GetInterfaces()
+        .FirstOrDefault(interfaceType => interfaceType.Name == interfaceName);
+      Type? genericTypeArgument = requestHandlerInterfaceType?.GenericTypeArguments.FirstOrDefault(
+        genericTypeArgument => genericTypeArgument.IsAssignableTo(typeof(IBaseRequest))
+      );
+      return genericTypeArgument != null
+        && context.IsRegistered(typeof(IValidator<>).MakeGenericType(genericTypeArgument));
     }
-
-    #endregion Private Methods
   }
 }

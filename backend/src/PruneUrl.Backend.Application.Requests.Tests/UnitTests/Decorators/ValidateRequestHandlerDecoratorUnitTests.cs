@@ -12,8 +12,6 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Decorators
   [Parallelizable]
   public sealed class ValidateRequestHandlerDecoratorUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void HandleTest_NoResponse_IsNotValid()
     {
@@ -25,10 +23,15 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Decorators
 
       validationResult.IsValid.Returns(false);
       validator.Validate(Arg.Any<IRequest>()).Returns(validationResult);
-      requestHandler.Handle(Arg.Any<IRequest>(), Arg.Any<CancellationToken>()).Returns(Task.CompletedTask);
+      requestHandler
+        .Handle(Arg.Any<IRequest>(), Arg.Any<CancellationToken>())
+        .Returns(Task.CompletedTask);
 
       var decorator = new ValidateRequestHandlerDecorator<IRequest>(requestHandler, validator);
-      Assert.That(async () => await decorator.Handle(request, cancellationToken), Throws.TypeOf<InvalidRequestException>());
+      Assert.That(
+        async () => await decorator.Handle(request, cancellationToken),
+        Throws.TypeOf<InvalidRequestException>()
+      );
       validator.Received(1).Validate(Arg.Any<IRequest>());
       validator.Received(1).Validate(request);
       requestHandler.DidNotReceive().Handle(Arg.Any<IRequest>(), Arg.Any<CancellationToken>());
@@ -46,7 +49,9 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Decorators
 
       validationResult.IsValid.Returns(true);
       validator.Validate(Arg.Any<IRequest>()).Returns(validationResult);
-      requestHandler.Handle(Arg.Any<IRequest>(), Arg.Any<CancellationToken>()).Returns(Task.CompletedTask);
+      requestHandler
+        .Handle(Arg.Any<IRequest>(), Arg.Any<CancellationToken>())
+        .Returns(Task.CompletedTask);
 
       var decorator = new ValidateRequestHandlerDecorator<IRequest>(requestHandler, validator);
       Assert.That(async () => await decorator.Handle(request, cancellationToken), Throws.Nothing);
@@ -68,13 +73,23 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Decorators
 
       validationResult.IsValid.Returns(false);
       validator.Validate(Arg.Any<IRequest<StubResponse>>()).Returns(validationResult);
-      requestHandler.Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>()).Returns(response);
+      requestHandler
+        .Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>())
+        .Returns(response);
 
-      var decorator = new ValidateRequestHandlerDecorator<IRequest<StubResponse>, StubResponse>(requestHandler, validator);
-      Assert.That(async () => await decorator.Handle(request, cancellationToken), Throws.TypeOf<InvalidRequestException>());
+      var decorator = new ValidateRequestHandlerDecorator<IRequest<StubResponse>, StubResponse>(
+        requestHandler,
+        validator
+      );
+      Assert.That(
+        async () => await decorator.Handle(request, cancellationToken),
+        Throws.TypeOf<InvalidRequestException>()
+      );
       validator.Received(1).Validate(Arg.Any<IRequest<StubResponse>>());
       validator.Received(1).Validate(request);
-      requestHandler.DidNotReceive().Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>());
+      requestHandler
+        .DidNotReceive()
+        .Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>());
       requestHandler.DidNotReceive().Handle(request, cancellationToken);
     }
 
@@ -90,25 +105,24 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Decorators
 
       validationResult.IsValid.Returns(true);
       validator.Validate(Arg.Any<IRequest<StubResponse>>()).Returns(validationResult);
-      requestHandler.Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>()).Returns(response);
+      requestHandler
+        .Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>())
+        .Returns(response);
 
-      var decorator = new ValidateRequestHandlerDecorator<IRequest<StubResponse>, StubResponse>(requestHandler, validator);
+      var decorator = new ValidateRequestHandlerDecorator<IRequest<StubResponse>, StubResponse>(
+        requestHandler,
+        validator
+      );
       StubResponse actualResponse = await decorator.Handle(request, cancellationToken);
       Assert.That(actualResponse, Is.EqualTo(response));
       validator.Received(1).Validate(Arg.Any<IRequest<StubResponse>>());
       validator.Received(1).Validate(request);
-      await requestHandler.Received(1).Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>());
+      await requestHandler
+        .Received(1)
+        .Handle(Arg.Any<IRequest<StubResponse>>(), Arg.Any<CancellationToken>());
       await requestHandler.Received(1).Handle(request, cancellationToken);
     }
 
-    #endregion Public Methods
-
-    #region Internal Classes
-
-    internal abstract class StubResponse
-    {
-    }
-
-    #endregion Internal Classes
+    internal abstract class StubResponse { }
   }
 }

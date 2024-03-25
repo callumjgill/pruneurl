@@ -10,8 +10,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Mapping
   /// </summary>
   public sealed class FirestoreDTOProfile : Profile
   {
-    #region Public Constructors
-
     /// <summary>
     /// Instantiates a new instance of the <see cref="FirestoreDTOProfile" /> class.
     /// </summary>
@@ -20,7 +18,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Mapping
       CreateMap<SequenceIdDTO, SequenceId>().ReverseMap();
       CreateMap<ShortUrlDTO, ShortUrl>().ReverseMap();
     }
-
-    #endregion Public Constructors
   }
 }

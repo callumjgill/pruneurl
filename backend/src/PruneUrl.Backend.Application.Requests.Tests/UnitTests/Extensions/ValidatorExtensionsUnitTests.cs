@@ -13,8 +13,6 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Extensions
   [Parallelizable]
   public sealed class ValidatorExtensionsUnitTests
   {
-    #region Public Methods
-
     [TestCase(true)]
     [TestCase(false)]
     public void ValidateRequestTest(bool isValid)
@@ -26,12 +24,12 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Extensions
       validationResult.IsValid.Returns(isValid);
       validator.Validate(Arg.Any<IRequest>()).Returns(validationResult);
 
-      Constraint expectedOutcome = isValid ? Throws.Nothing : Throws.TypeOf<InvalidRequestException>();
+      Constraint expectedOutcome = isValid
+        ? Throws.Nothing
+        : Throws.TypeOf<InvalidRequestException>();
       Assert.That(() => validator.ValidateRequest(request), expectedOutcome);
       validator.Received(1).Validate(Arg.Any<IRequest>());
       validator.Received(1).Validate(request);
     }
-
-    #endregion Public Methods
   }
 }

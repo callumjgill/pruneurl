@@ -7,15 +7,11 @@
   /// </summary>
   public interface IShortUrlProvider
   {
-    #region Public Methods
-
     /// <summary>
     /// Returns a "short" url given the sequence id.
     /// </summary>
     /// <param name="sequenceId"> The sequence id for the short url. </param>
     /// <returns> A shortened url. </returns>
     string GetShortUrl(int sequenceId);
-
-    #endregion Public Methods
   }
 }

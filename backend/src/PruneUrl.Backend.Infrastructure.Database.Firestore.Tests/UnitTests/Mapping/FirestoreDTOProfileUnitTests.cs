@@ -8,8 +8,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Map
   [Parallelizable]
   public sealed class FirestoreDTOProfileUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void ConstructorTest_MappingsAreValid()
     {
@@ -19,7 +17,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Map
       });
       Assert.That(configuration.AssertConfigurationIsValid, Throws.Nothing);
     }
-
-    #endregion Public Methods
   }
 }

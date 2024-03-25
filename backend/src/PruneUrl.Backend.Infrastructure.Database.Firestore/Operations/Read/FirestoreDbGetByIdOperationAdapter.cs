@@ -14,47 +14,37 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Operations.Read
   /// <typeparam name="TFirestoreEntity">
   /// The <see cref="FirestoreEntityDTO" /> the internal <see cref="IDbGetByIdOperation{T}" /> uses.
   /// </typeparam>
-  internal sealed class FirestoreDbGetByIdOperationAdapter<TEntity, TFirestoreEntity> : IDbGetByIdOperation<TEntity>
+  /// <param name="firestoreDbGetByIdOperation">
+  /// The adaptee <see cref="IDbGetByIdOperation{T}" />.
+  /// </param>
+  /// <param name="mapper">
+  /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
+  /// />'s and the core <see cref="IEntity" />'s.
+  /// </param>
+  internal sealed class FirestoreDbGetByIdOperationAdapter<TEntity, TFirestoreEntity>(
+    IDbGetByIdOperation<TFirestoreEntity> firestoreDbGetByIdOperation,
+    IMapper mapper
+  ) : IDbGetByIdOperation<TEntity>
     where TEntity : IEntity
     where TFirestoreEntity : FirestoreEntityDTO
   {
-    #region Private Fields
-
-    private readonly IDbGetByIdOperation<TFirestoreEntity> firestoreDbGetByIdOperation;
-    private readonly IMapper mapper;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbGetByIdOperationAdapter{TEntity,
-    /// TFirestoreEntity}" /> class.
-    /// </summary>
-    /// <param name="firestoreDbGetByIdOperation">
-    /// The adaptee <see cref="IDbGetByIdOperation{T}" />.
-    /// </param>
-    /// <param name="mapper">
-    /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
-    /// />'s and the core <see cref="IEntity" />'s.
-    /// </param>
-    public FirestoreDbGetByIdOperationAdapter(IDbGetByIdOperation<TFirestoreEntity> firestoreDbGetByIdOperation, IMapper mapper)
-    {
-      this.firestoreDbGetByIdOperation = firestoreDbGetByIdOperation;
-      this.mapper = mapper;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Methods
+    private readonly IDbGetByIdOperation<TFirestoreEntity> firestoreDbGetByIdOperation =
+      firestoreDbGetByIdOperation;
+    private readonly IMapper mapper = mapper;
 
     /// <inheritdoc cref="IDbGetByIdOperation{T}.GetByIdAsync(string, CancellationToken)" />
-    public async Task<TEntity?> GetByIdAsync(string id, CancellationToken cancellationToken = default)
+    public async Task<TEntity?> GetByIdAsync(
+      string id,
+      CancellationToken cancellationToken = default
+    )
     {
-      TFirestoreEntity? firestoreEntity = await firestoreDbGetByIdOperation.GetByIdAsync(id, cancellationToken);
-      return firestoreEntity != null ? mapper.Map<TFirestoreEntity, TEntity>(firestoreEntity) : default;
+      TFirestoreEntity? firestoreEntity = await firestoreDbGetByIdOperation.GetByIdAsync(
+        id,
+        cancellationToken
+      );
+      return firestoreEntity != null
+        ? mapper.Map<TFirestoreEntity, TEntity>(firestoreEntity)
+        : default;
     }
-
-    #endregion Public Methods
   }
 }

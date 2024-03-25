@@ -1,8 +1,8 @@
+using System.Collections.Concurrent;
+using System.Security.Cryptography;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using PruneUrl.Backend.Application.Implementation.Factories.Entities;
-using System.Collections.Concurrent;
-using System.Security.Cryptography;
 
 namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.Entities
 {
@@ -10,13 +10,7 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
   [Parallelizable]
   public sealed class SequenceIdFactoryUnitTests
   {
-    #region Private Fields
-
     private const int NumberOfIntsToTest = 10000;
-
-    #endregion Private Fields
-
-    #region Public Methods
 
     [Test]
     public void CreateTest_Invalid()
@@ -25,17 +19,23 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
       var sequenceIdFactory = new SequenceIdFactory();
       var negativeIntegers = GetRandomRangeOfValues(int.MinValue, 0, NumberOfIntsToTest);
       var exceptions = new ConcurrentQueue<Exception>();
-      Parallel.ForEach(negativeIntegers, invalidSequenceId =>
-      {
-        try
+      Parallel.ForEach(
+        negativeIntegers,
+        invalidSequenceId =>
         {
-          Assert.That(() => sequenceIdFactory.Create(testId, invalidSequenceId), Throws.TypeOf<ArgumentException>());
+          try
+          {
+            Assert.That(
+              () => sequenceIdFactory.Create(testId, invalidSequenceId),
+              Throws.TypeOf<ArgumentException>()
+            );
+          }
+          catch (Exception ex)
+          {
+            exceptions.Enqueue(ex);
+          }
         }
-        catch (Exception ex)
-        {
-          exceptions.Enqueue(ex);
-        }
-      });
+      );
 
       if (!exceptions.IsEmpty)
       {
@@ -49,23 +49,26 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
       const string testId = "Testing123";
       var positiveIntegers = GetRandomRangeOfValues(0, int.MaxValue, NumberOfIntsToTest);
       var exceptions = new ConcurrentQueue<Exception>();
-      Parallel.ForEach(positiveIntegers, sequenceId =>
-      {
-        try
+      Parallel.ForEach(
+        positiveIntegers,
+        sequenceId =>
         {
-          var sequenceIdFactory = new SequenceIdFactory();
-          var actualSequenceId = sequenceIdFactory.Create(testId, sequenceId);
-          Assert.Multiple(() =>
+          try
           {
-            Assert.That(actualSequenceId.Id, Is.EqualTo(testId));
-            Assert.That(actualSequenceId.Value, Is.EqualTo(sequenceId));
-          });
+            var sequenceIdFactory = new SequenceIdFactory();
+            var actualSequenceId = sequenceIdFactory.Create(testId, sequenceId);
+            Assert.Multiple(() =>
+            {
+              Assert.That(actualSequenceId.Id, Is.EqualTo(testId));
+              Assert.That(actualSequenceId.Value, Is.EqualTo(sequenceId));
+            });
+          }
+          catch (Exception ex)
+          {
+            exceptions.Enqueue(ex);
+          }
         }
-        catch (Exception ex)
-        {
-          exceptions.Enqueue(ex);
-        }
-      });
+      );
 
       if (!exceptions.IsEmpty)
       {
@@ -73,11 +76,11 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
       }
     }
 
-    #endregion Public Methods
-
-    #region Private Methods
-
-    private IEnumerable<int> GetRandomRangeOfValues(int inclusiveMinValue, int exclusiveMaxValue, int count)
+    private IEnumerable<int> GetRandomRangeOfValues(
+      int inclusiveMinValue,
+      int exclusiveMaxValue,
+      int count
+    )
     {
       var rangeOfInts = new List<int>();
       while (count > 0)
@@ -88,7 +91,5 @@ namespace PruneUrl.Backend.Application.Implementation.Tests.UnitTests.Factories.
 
       return rangeOfInts;
     }
-
-    #endregion Private Methods
   }
 }

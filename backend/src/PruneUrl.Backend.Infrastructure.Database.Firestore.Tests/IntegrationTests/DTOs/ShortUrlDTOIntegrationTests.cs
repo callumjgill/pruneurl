@@ -8,13 +8,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.IntegrationTe
   [TestFixture]
   public sealed class ShortUrlDTOIntegrationTests
   {
-    #region Private Fields
-
     private const string testCollectionPath = "ShortUrlDTOIntegrationTests";
-
-    #endregion Private Fields
-
-    #region Public Methods
 
     [Test]
     public async Task ConvertToFirestoreDocumentReferenceTest()
@@ -39,7 +33,10 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.IntegrationTe
         Assert.That(snapshot.Id, Is.EqualTo(testEntity.Id));
         Assert.That(snapshot.CreateTime?.ToDateTime(), Is.Not.Null);
         Assert.That(snapshot.ContainsField(nameof(testEntity.LongUrl)), Is.True);
-        Assert.That(snapshot.GetValue<string?>(nameof(testEntity.LongUrl)), Is.EqualTo(testEntity.LongUrl));
+        Assert.That(
+          snapshot.GetValue<string?>(nameof(testEntity.LongUrl)),
+          Is.EqualTo(testEntity.LongUrl)
+        );
         Assert.That(snapshot.ContainsField(nameof(testEntity.Url)), Is.True);
         Assert.That(snapshot.GetValue<string?>(nameof(testEntity.Url)), Is.EqualTo(testEntity.Url));
       });
@@ -59,7 +56,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.IntegrationTe
     {
       await TestFirestoreDbHelper.ClearEmulatedDatabase();
     }
-
-    #endregion Public Methods
   }
 }

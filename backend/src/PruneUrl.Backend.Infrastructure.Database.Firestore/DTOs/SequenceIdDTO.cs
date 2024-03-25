@@ -9,14 +9,10 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.DTOs
   [FirestoreData]
   internal sealed class SequenceIdDTO : FirestoreEntityDTO
   {
-    #region Public Properties
-
     /// <summary>
     /// The actual value of the sequence id entity, i.e. the actual "sequence id".
     /// </summary>
     [FirestoreProperty]
     public int? Value { get; set; }
-
-    #endregion Public Properties
   }
 }

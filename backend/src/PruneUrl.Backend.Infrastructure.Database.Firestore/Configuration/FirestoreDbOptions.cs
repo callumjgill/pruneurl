@@ -9,8 +9,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration
   /// </summary>
   public sealed class FirestoreDbOptions
   {
-    #region Public Properties
-
     /// <summary>
     /// Specifies how the builder responds to the presence of the FIRESTORE_EMULATOR_HOST emulator
     /// environment variable.
@@ -21,7 +19,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration
     /// The ID of the Google Cloud Platform project that contains the database.
     /// </summary>
     public string ProjectId { get; set; } = string.Empty;
-
-    #endregion Public Properties
   }
 }

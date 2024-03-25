@@ -6,15 +6,11 @@
   /// </summary>
   public interface ISequenceIdProvider
   {
-    #region Public Methods
-
     /// <summary>
     /// Returns a "sequence id" given a "short" url.
     /// </summary>
     /// <param name="shortUrl"> The short url to get the sequence id for. </param>
     /// <returns> A sequence id. </returns>
     int GetSequenceId(string shortUrl);
-
-    #endregion Public Methods
   }
 }

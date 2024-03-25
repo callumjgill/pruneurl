@@ -12,39 +12,22 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
   /// A factory for creating <see cref="IDbWriteBatch{T}" /> ( <see cref="FirestoreDbWriteBatch{T}"
   /// />) instances.
   /// </summary>
-  public sealed class FirestoreDbWriteBatchFactory : IDbWriteBatchFactory
+  /// <param name="firestoreDb">
+  /// The <see cref="FirestoreDb" /> instance for creating batches against.
+  /// </param>
+  /// <param name="mapper">
+  /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
+  /// />'s and the core <see cref="IEntity" />'s.
+  /// </param>
+  public sealed class FirestoreDbWriteBatchFactory(FirestoreDb firestoreDb, IMapper mapper)
+    : IDbWriteBatchFactory
   {
-    #region Private Fields
-
-    private readonly FirestoreDb firestoreDb;
-    private readonly IMapper mapper;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbWriteBatchFactory" /> class.
-    /// </summary>
-    /// <param name="firestoreDb">
-    /// The <see cref="FirestoreDb" /> instance for creating batches against.
-    /// </param>
-    /// <param name="mapper">
-    /// The <see cref="IMapper" /> service for converting between the <see cref="FirestoreEntityDTO"
-    /// />'s and the core <see cref="IEntity" />'s.
-    /// </param>
-    public FirestoreDbWriteBatchFactory(FirestoreDb firestoreDb, IMapper mapper)
-    {
-      this.firestoreDb = firestoreDb;
-      this.mapper = mapper;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Methods
+    private readonly FirestoreDb firestoreDb = firestoreDb;
+    private readonly IMapper mapper = mapper;
 
     /// <inheritdoc cref="IDbWriteBatchFactory.Create{T}" />
-    public IDbWriteBatch<T> Create<T>() where T : IEntity
+    public IDbWriteBatch<T> Create<T>()
+      where T : IEntity
     {
       switch (typeof(T))
       {
@@ -59,20 +42,22 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
       }
     }
 
-    #endregion Public Methods
-
-    #region Private Methods
-
     private IDbWriteBatch<TEntity> Create<TEntity, TFirestoreEntity>()
       where TEntity : IEntity
       where TFirestoreEntity : FirestoreEntityDTO
     {
-      CollectionReference collection = firestoreDb.Collection(CollectionReferenceHelper.GetCollectionPath<TEntity>());
+      CollectionReference collection = firestoreDb.Collection(
+        CollectionReferenceHelper.GetCollectionPath<TEntity>()
+      );
       WriteBatch writeBatch = firestoreDb.StartBatch();
-      var firestoreDbWriteBatch = new FirestoreDbWriteBatch<TFirestoreEntity>(collection, writeBatch);
-      return new FirestoreDbWriteBatchAdapter<TEntity, TFirestoreEntity>(firestoreDbWriteBatch, mapper);
+      var firestoreDbWriteBatch = new FirestoreDbWriteBatch<TFirestoreEntity>(
+        collection,
+        writeBatch
+      );
+      return new FirestoreDbWriteBatchAdapter<TEntity, TFirestoreEntity>(
+        firestoreDbWriteBatch,
+        mapper
+      );
     }
-
-    #endregion Private Methods
   }
 }

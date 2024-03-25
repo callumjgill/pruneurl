@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Configuration;
 using PruneUrl.Backend.Application.Configuration.Exceptions;
-using System.Diagnostics.CodeAnalysis;
 
 namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration
 {
@@ -9,13 +9,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration
   /// </summary>
   public static class ConfigurationExtensions
   {
-    #region Private Fields
-
     private const string FirestoreDbOptionsSectionName = nameof(FirestoreDbOptions);
-
-    #endregion Private Fields
-
-    #region Public Methods
 
     /// <summary>
     /// Retrieves a <see cref="FirestoreDbOptions" /> instance from the underlying configuration.
@@ -30,8 +24,9 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration
     /// </exception>
     public static FirestoreDbOptions GetFirestoreDbOptions(this IConfiguration configuration)
     {
-      FirestoreDbOptions? firestoreDbOptions = configuration.GetSection(FirestoreDbOptionsSectionName)
-                                                            .Get<FirestoreDbOptions>();
+      FirestoreDbOptions? firestoreDbOptions = configuration
+        .GetSection(FirestoreDbOptionsSectionName)
+        .Get<FirestoreDbOptions>();
       if (TryGetErrorMessageForFirestoreDbOptions(firestoreDbOptions, out string errorMessage))
       {
         throw new InvalidConfigurationException(FirestoreDbOptionsSectionName, errorMessage);
@@ -40,11 +35,10 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration
       return firestoreDbOptions;
     }
 
-    #endregion Public Methods
-
-    #region Private Methods
-
-    private static bool TryGetErrorMessageForFirestoreDbOptions([NotNullWhen(false)] FirestoreDbOptions? firestoreDbOptions, out string errorMessage)
+    private static bool TryGetErrorMessageForFirestoreDbOptions(
+      [NotNullWhen(false)] FirestoreDbOptions? firestoreDbOptions,
+      out string errorMessage
+    )
     {
       errorMessage = string.Empty;
       if (firestoreDbOptions == null)
@@ -58,7 +52,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Configuration
 
       return !string.IsNullOrWhiteSpace(errorMessage);
     }
-
-    #endregion Private Methods
   }
 }

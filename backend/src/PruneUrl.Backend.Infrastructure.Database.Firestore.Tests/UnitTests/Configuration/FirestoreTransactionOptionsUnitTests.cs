@@ -7,8 +7,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Con
   [Parallelizable]
   public sealed class FirestoreTransactionOptionsUnitTests
   {
-    #region Public Methods
-
     [TestCase(0)]
     [TestCase(1)]
     [TestCase(2)]
@@ -26,7 +24,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Con
       options.MaxAttempts = maxAttemptValues;
       Assert.That(options.MaxAttempts, Is.EqualTo(maxAttemptValues));
     }
-
-    #endregion Public Methods
   }
 }

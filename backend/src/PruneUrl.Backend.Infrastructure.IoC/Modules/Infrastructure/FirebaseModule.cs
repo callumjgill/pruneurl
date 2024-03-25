@@ -18,8 +18,6 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Infrastructure
   /// </summary>
   internal sealed class FirebaseModule : Module
   {
-    #region Protected Methods
-
     protected override void Load(ContainerBuilder builder)
     {
       RegisterFirestoreInterfaces(builder);
@@ -28,10 +26,6 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Infrastructure
       RegisterOperationFactories(builder);
       RegisterRequests(builder);
     }
-
-    #endregion Protected Methods
-
-    #region Private Methods
 
     private void RegisterFirestoreInterfaces(ContainerBuilder builder)
     {
@@ -45,33 +39,43 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Infrastructure
 
     private void RegisterFirestoreSDK(ContainerBuilder builder)
     {
-      builder.Register(componentContext =>
-      {
-        FirestoreDbOptions firestoreDbOptions = componentContext.Resolve<IConfiguration>()
-                                                                .GetFirestoreDbOptions();
-        return new FirestoreDbBuilder
+      builder
+        .Register(componentContext =>
         {
-          ProjectId = firestoreDbOptions.ProjectId,
-          EmulatorDetection = firestoreDbOptions.EmulatorDetection
-        }.Build();
-      }).As<FirestoreDb>().SingleInstance();
+          FirestoreDbOptions firestoreDbOptions = componentContext
+            .Resolve<IConfiguration>()
+            .GetFirestoreDbOptions();
+          return new FirestoreDbBuilder
+          {
+            ProjectId = firestoreDbOptions.ProjectId,
+            EmulatorDetection = firestoreDbOptions.EmulatorDetection
+          }.Build();
+        })
+        .As<FirestoreDb>()
+        .SingleInstance();
     }
 
     private void RegisterOperationFactories(ContainerBuilder builder)
     {
       builder.RegisterType<FirestoreDbGetByIdOperationFactory>().As<IDbGetByIdOperationFactory>();
-      builder.Register(componentContext => componentContext.Resolve<IDbGetByIdOperationFactory>().Create<ShortUrl>());
-      builder.Register(componentContext => componentContext.Resolve<IDbGetByIdOperationFactory>().Create<SequenceId>());
+      builder.Register(componentContext =>
+        componentContext.Resolve<IDbGetByIdOperationFactory>().Create<ShortUrl>()
+      );
+      builder.Register(componentContext =>
+        componentContext.Resolve<IDbGetByIdOperationFactory>().Create<SequenceId>()
+      );
     }
 
     private void RegisterRequests(ContainerBuilder builder)
     {
       builder.RegisterType<FirestoreDbTransactionProvider>().As<IDbTransactionProvider>();
       builder.RegisterType<FirestoreDbWriteBatchFactory>().As<IDbWriteBatchFactory>();
-      builder.Register(componentContext => componentContext.Resolve<IDbWriteBatchFactory>().Create<ShortUrl>());
-      builder.Register(componentContext => componentContext.Resolve<IDbWriteBatchFactory>().Create<SequenceId>());
+      builder.Register(componentContext =>
+        componentContext.Resolve<IDbWriteBatchFactory>().Create<ShortUrl>()
+      );
+      builder.Register(componentContext =>
+        componentContext.Resolve<IDbWriteBatchFactory>().Create<SequenceId>()
+      );
     }
-
-    #endregion Private Methods
   }
 }

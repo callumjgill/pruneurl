@@ -9,8 +9,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Interfaces
   /// </summary>
   public interface IFirestoreDbTransactionFactory
   {
-    #region Public Methods
-
     /// <summary>
     /// Creates a new instance of a <see cref="IDbTransaction{T}" /> implementation using a <see
     /// cref="Transaction" />.
@@ -21,8 +19,7 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Interfaces
     /// /> instance.
     /// </param>
     /// <returns> A new instance of a <see cref="IDbTransaction{T}" />. </returns>
-    IDbTransaction<T> Create<T>(Transaction transaction) where T : IEntity;
-
-    #endregion Public Methods
+    IDbTransaction<T> Create<T>(Transaction transaction)
+      where T : IEntity;
   }
 }

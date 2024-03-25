@@ -8,8 +8,6 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Exceptions
   [Parallelizable]
   public sealed class InvalidRequestExceptionUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void ConstructorTest()
     {
@@ -22,13 +20,12 @@ namespace PruneUrl.Backend.Application.Requests.Tests.UnitTests.Exceptions
       string expectedMessage = $"The request is invalid!{Environment.NewLine}";
       foreach (ValidationFailure validationFailure in validationFailures)
       {
-        expectedMessage += $"\tProperty '{validationFailure.PropertyName}' is invalid.{Environment.NewLine}";
+        expectedMessage +=
+          $"\tProperty '{validationFailure.PropertyName}' is invalid.{Environment.NewLine}";
       }
 
       var exception = new InvalidRequestException(validationFailures);
       Assert.That(exception.Message, Is.EqualTo(expectedMessage));
     }
-
-    #endregion Public Methods
   }
 }

@@ -8,8 +8,6 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetSequenceId
   [Parallelizable]
   public sealed class GetSequenceIdQueryValidatorUnitTests
   {
-    #region Public Methods
-
     [TestCase(null)]
     [TestCase("")]
     [TestCase("             ")]
@@ -34,7 +32,5 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetSequenceId
       TestValidationResult<GetSequenceIdQuery> result = validator.TestValidate(query);
       result.ShouldNotHaveValidationErrorFor(qry => qry.Id);
     }
-
-    #endregion Public Methods
   }
 }

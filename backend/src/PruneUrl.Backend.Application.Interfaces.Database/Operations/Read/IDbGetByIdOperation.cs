@@ -7,10 +7,9 @@ namespace PruneUrl.Backend.Application.Interfaces.Database.Operations.Read
   /// underlying database.
   /// </summary>
   /// <typeparam name="T"> The <see cref="IEntity" /> the operation is concerned with. </typeparam>
-  public interface IDbGetByIdOperation<T> where T : IEntity
+  public interface IDbGetByIdOperation<T>
+    where T : IEntity
   {
-    #region Public Methods
-
     /// <summary>
     /// Asynchronously retrieves a <typeparamref name="T" /> by its unique id.
     /// </summary>
@@ -21,7 +20,5 @@ namespace PruneUrl.Backend.Application.Interfaces.Database.Operations.Read
     /// <c> null </c> if not found.
     /// </returns>
     Task<T?> GetByIdAsync(string id, CancellationToken cancellationToken = default);
-
-    #endregion Public Methods
   }
 }

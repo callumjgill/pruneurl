@@ -19,59 +19,46 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Requests
   /// This acts as a wrapper/facade around <see cref="Transaction" /> and <see cref="FirestoreDb" />.
   /// </para>
   /// </summary>
-  public sealed class FirestoreDbTransactionProvider : IDbTransactionProvider
+  /// <param name="firestoreDb">
+  /// The <see cref="FirestoreDb" /> instance for creating transactions against.
+  /// </param>
+  /// <param name="firestoreDbTransactionFactory">
+  /// The factory for creating <see cref="IDbTransaction{T}" /> instances.
+  /// </param>
+  /// <param name="firestoreTransactionOptions">
+  /// The <see cref="IOptions{TOptions}" /> used to determine the <see cref="MaxAttempts" /> by
+  /// retrieving a configured <see cref="FirestoreTransactionOptions" />
+  /// </param>
+  public sealed class FirestoreDbTransactionProvider(
+    FirestoreDb firestoreDb,
+    IFirestoreDbTransactionFactory firestoreDbTransactionFactory,
+    IOptions<FirestoreTransactionOptions> firestoreTransactionOptions
+  ) : IDbTransactionProvider
   {
-    #region Private Fields
-
-    private readonly FirestoreDb firestoreDb;
-    private readonly IFirestoreDbTransactionFactory firestoreDbTransactionFactory;
-
-    #endregion Private Fields
-
-    #region Public Constructors
-
-    /// <summary>
-    /// Instantiates a new instance of the <see cref="FirestoreDbTransactionProvider" /> class.
-    /// </summary>
-    /// <param name="firestoreDb">
-    /// The <see cref="FirestoreDb" /> instance for creating transactions against.
-    /// </param>
-    /// <param name="firestoreDbTransactionFactory">
-    /// The factory for creating <see cref="IDbTransaction{T}" /> instances.
-    /// </param>
-    /// <param name="firestoreTransactionOptions">
-    /// The <see cref="IOptions{TOptions}" /> used to determine the <see cref="MaxAttempts" /> by
-    /// retrieving a configured <see cref="FirestoreTransactionOptions" />
-    /// </param>
-    public FirestoreDbTransactionProvider(FirestoreDb firestoreDb, IFirestoreDbTransactionFactory firestoreDbTransactionFactory, IOptions<FirestoreTransactionOptions> firestoreTransactionOptions)
-    {
-      this.firestoreDb = firestoreDb;
-      this.firestoreDbTransactionFactory = firestoreDbTransactionFactory;
-      MaxAttempts = firestoreTransactionOptions.Value.MaxAttempts;
-    }
-
-    #endregion Public Constructors
-
-    #region Public Properties
+    private readonly FirestoreDb firestoreDb = firestoreDb;
+    private readonly IFirestoreDbTransactionFactory firestoreDbTransactionFactory =
+      firestoreDbTransactionFactory;
 
     /// <inheritdoc cref="IDbTransactionProvider.MaxAttempts" />
-    public int MaxAttempts { get; }
-
-    #endregion Public Properties
-
-    #region Public Methods
+    public int MaxAttempts { get; } = firestoreTransactionOptions.Value.MaxAttempts;
 
     /// <inheritdoc cref="IDbTransactionProvider.RunTransactionAsync{T}(Func{IDbTransaction{T}, Task}, CancellationToken)" />
-    public Task<T> RunTransactionAsync<T>(Func<IDbTransaction<T>, Task<T>> callback, CancellationToken cancellationToken = default) where T : IEntity
+    public Task<T> RunTransactionAsync<T>(
+      Func<IDbTransaction<T>, Task<T>> callback,
+      CancellationToken cancellationToken = default
+    )
+      where T : IEntity
     {
       TransactionOptions transactionOptions = TransactionOptions.ForMaxAttempts(MaxAttempts);
-      return firestoreDb.RunTransactionAsync(transaction =>
-      {
-        IDbTransaction<T> dbTransaction = firestoreDbTransactionFactory.Create<T>(transaction);
-        return callback(dbTransaction);
-      }, transactionOptions, cancellationToken);
+      return firestoreDb.RunTransactionAsync(
+        transaction =>
+        {
+          IDbTransaction<T> dbTransaction = firestoreDbTransactionFactory.Create<T>(transaction);
+          return callback(dbTransaction);
+        },
+        transactionOptions,
+        cancellationToken
+      );
     }
-
-    #endregion Public Methods
   }
 }

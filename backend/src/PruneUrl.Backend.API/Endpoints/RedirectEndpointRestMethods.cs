@@ -10,8 +10,6 @@ namespace PruneUrl.Backend.App.Endpoints
   /// </summary>
   internal static class RedirectEndpointRestMethods
   {
-    #region Public Methods
-
     /// <summary>
     /// The GET REST Endpoint which redirects to the corresponding long url.
     /// </summary>
@@ -23,7 +21,10 @@ namespace PruneUrl.Backend.App.Endpoints
     /// A task representing the asynchronous operation of retriving the long url for redirection
     /// from the given short url.
     /// </returns>
-    public static Task<IResult> GetShortUrl([FromRoute] string shortUrl, [FromServices] IMediator mediator)
+    public static Task<IResult> GetShortUrl(
+      [FromRoute] string shortUrl,
+      [FromServices] IMediator mediator
+    )
     {
       return EndpointRestMethodsUtilities.HandleErrors(async () =>
       {
@@ -39,7 +40,5 @@ namespace PruneUrl.Backend.App.Endpoints
         }
       });
     }
-
-    #endregion Public Methods
   }
 }

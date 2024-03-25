@@ -9,8 +9,6 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetSequenceId
   [Parallelizable]
   public sealed class GetSequenceIdQueryResponseUnitTests
   {
-    #region Public Methods
-
     [TestCase(true)]
     [TestCase(false)]
     public void ConstructorTest(bool isNull)
@@ -19,7 +17,5 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetSequenceId
       var response = new GetSequenceIdQueryResponse(testSequenceId);
       Assert.That(response.SequenceId, Is.EqualTo(testSequenceId));
     }
-
-    #endregion Public Methods
   }
 }

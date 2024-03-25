@@ -12,36 +12,34 @@ namespace PruneUrl.Backend.Infrastructure.IoC.Modules.Application
   /// </summary>
   internal sealed class CommandsModule : Module
   {
-    #region Protected Methods
-
     protected override void Load(ContainerBuilder builder)
     {
       RegisterCreateShortUrl(builder);
       RegisterCreateSequenceId(builder);
     }
 
-    #endregion Protected Methods
-
-    #region Private Methods
-
     private void RegisterCreateSequenceId(ContainerBuilder builder)
     {
-      MediatRConfiguration configuration = MediatRConfigurationBuilder.Create(typeof(CreateSequenceIdCommand).Assembly)
-                                                                      .WithAllOpenGenericHandlerTypesRegistered()
-                                                                      .Build();
+      MediatRConfiguration configuration = MediatRConfigurationBuilder
+        .Create(typeof(CreateSequenceIdCommand).Assembly)
+        .WithAllOpenGenericHandlerTypesRegistered()
+        .Build();
       builder.RegisterMediatR(configuration);
-      builder.RegisterType<CreateSequenceIdCommandValidator>().As<IValidator<CreateSequenceIdCommand>>();
+      builder
+        .RegisterType<CreateSequenceIdCommandValidator>()
+        .As<IValidator<CreateSequenceIdCommand>>();
     }
 
     private void RegisterCreateShortUrl(ContainerBuilder builder)
     {
-      MediatRConfiguration configuration = MediatRConfigurationBuilder.Create(typeof(CreateShortUrlCommand).Assembly)
-                                                                      .WithAllOpenGenericHandlerTypesRegistered()
-                                                                      .Build();
+      MediatRConfiguration configuration = MediatRConfigurationBuilder
+        .Create(typeof(CreateShortUrlCommand).Assembly)
+        .WithAllOpenGenericHandlerTypesRegistered()
+        .Build();
       builder.RegisterMediatR(configuration);
-      builder.RegisterType<CreateShortUrlCommandValidator>().As<IValidator<CreateShortUrlCommand>>();
+      builder
+        .RegisterType<CreateShortUrlCommandValidator>()
+        .As<IValidator<CreateShortUrlCommand>>();
     }
-
-    #endregion Private Methods
   }
 }

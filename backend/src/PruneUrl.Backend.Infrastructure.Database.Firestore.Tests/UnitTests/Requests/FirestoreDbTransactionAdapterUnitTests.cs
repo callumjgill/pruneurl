@@ -12,8 +12,6 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
   [Parallelizable]
   public sealed class FirestoreDbTransactionAdapterUnitTests
   {
-    #region Public Methods
-
     [Test]
     public async Task GetByIdAsyncTest_ReturnsMappedEntityIfAdapteeReturnsEntity()
     {
@@ -23,13 +21,22 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       var testFirestoreEntity = Substitute.For<FirestoreEntityDTO>();
       var expectedEntity = Substitute.For<IEntity>();
 
-      adapteeDbTransaction.GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>()).Returns(testFirestoreEntity);
-      mapper.Map<FirestoreEntityDTO, IEntity>(Arg.Any<FirestoreEntityDTO>()).Returns(expectedEntity);
+      adapteeDbTransaction
+        .GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
+        .Returns(testFirestoreEntity);
+      mapper
+        .Map<FirestoreEntityDTO, IEntity>(Arg.Any<FirestoreEntityDTO>())
+        .Returns(expectedEntity);
 
-      var adapter = new FirestoreDbTransactionAdapter<IEntity, FirestoreEntityDTO>(adapteeDbTransaction, mapper);
+      var adapter = new FirestoreDbTransactionAdapter<IEntity, FirestoreEntityDTO>(
+        adapteeDbTransaction,
+        mapper
+      );
       IEntity? actualEntity = await adapter.GetByIdAsync(testId);
       Assert.That(actualEntity, Is.EqualTo(expectedEntity));
-      await adapteeDbTransaction.Received(1).GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
+      await adapteeDbTransaction
+        .Received(1)
+        .GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
       await adapteeDbTransaction.Received(1).GetByIdAsync(testId, default);
       mapper.Received(1).Map<FirestoreEntityDTO, IEntity>(Arg.Any<FirestoreEntityDTO>());
       mapper.Received(1).Map<FirestoreEntityDTO, IEntity>(testFirestoreEntity);
@@ -42,10 +49,15 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       var adapteeDbTransaction = Substitute.For<IDbTransaction<FirestoreEntityDTO>>();
       var mapper = Substitute.For<IMapper>();
 
-      var adapter = new FirestoreDbTransactionAdapter<IEntity, FirestoreEntityDTO>(adapteeDbTransaction, mapper);
+      var adapter = new FirestoreDbTransactionAdapter<IEntity, FirestoreEntityDTO>(
+        adapteeDbTransaction,
+        mapper
+      );
       IEntity? actualEntity = await adapter.GetByIdAsync(testId);
       Assert.That(actualEntity, Is.Null);
-      await adapteeDbTransaction.Received(1).GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
+      await adapteeDbTransaction
+        .Received(1)
+        .GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
       await adapteeDbTransaction.Received(1).GetByIdAsync(testId, default);
     }
 
@@ -55,7 +67,10 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       var testEntity = Substitute.For<IEntity>();
       var adapteeDbTransaction = Substitute.For<IDbTransaction<FirestoreEntityDTO>>();
       var mapper = Substitute.For<IMapper>();
-      var adapterFirestoreDbTransaction = new FirestoreDbTransactionAdapter<IEntity, FirestoreEntityDTO>(adapteeDbTransaction, mapper);
+      var adapterFirestoreDbTransaction = new FirestoreDbTransactionAdapter<
+        IEntity,
+        FirestoreEntityDTO
+      >(adapteeDbTransaction, mapper);
       var testFirestoreEntity = Substitute.For<FirestoreEntityDTO>();
 
       mapper.Map<IEntity, FirestoreEntityDTO>(Arg.Any<IEntity>()).Returns(testFirestoreEntity);
@@ -66,7 +81,5 @@ namespace PruneUrl.Backend.Infrastructure.Database.Firestore.Tests.UnitTests.Req
       mapper.Received(1).Map<IEntity, FirestoreEntityDTO>(Arg.Any<IEntity>());
       mapper.Received(1).Map<IEntity, FirestoreEntityDTO>(testEntity);
     }
-
-    #endregion Public Methods
   }
 }

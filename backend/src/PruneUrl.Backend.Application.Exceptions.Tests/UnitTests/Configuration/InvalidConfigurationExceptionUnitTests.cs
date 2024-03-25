@@ -7,17 +7,16 @@ namespace PruneUrl.Backend.Application.Exceptions.Tests.UnitTests.Configuration
   [Parallelizable]
   public sealed class InvalidConfigurationExceptionUnitTests
   {
-    #region Public Methods
-
     [Test]
     public void ConstructorTest()
     {
       const string sectionName = "TestSection";
       const string error = "TestError";
       var invalidConfigException = new InvalidConfigurationException(sectionName, error);
-      Assert.That(invalidConfigException.Message, Is.EqualTo($"The section '{sectionName}' is invalid! {error}"));
+      Assert.That(
+        invalidConfigException.Message,
+        Is.EqualTo($"The section '{sectionName}' is invalid! {error}")
+      );
     }
-
-    #endregion Public Methods
   }
 }

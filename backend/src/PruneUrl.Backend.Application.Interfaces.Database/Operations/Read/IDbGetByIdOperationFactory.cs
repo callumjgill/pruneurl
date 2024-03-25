@@ -7,15 +7,12 @@ namespace PruneUrl.Backend.Application.Interfaces.Database.Operations.Read
   /// </summary>
   public interface IDbGetByIdOperationFactory
   {
-    #region Public Methods
-
     /// <summary>
     /// Creates a new <see cref="IDbGetByIdOperation{T}" /> instance.
     /// </summary>
     /// <typeparam name="T"> The <see cref="IEntity" /> the operation is concerned with. </typeparam>
     /// <returns> A new <see cref="IDbGetByIdOperation{T}" /> instance. </returns>
-    IDbGetByIdOperation<T> Create<T>() where T : IEntity;
-
-    #endregion Public Methods
+    IDbGetByIdOperation<T> Create<T>()
+      where T : IEntity;
   }
 }

@@ -10,8 +10,6 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl
   [Parallelizable]
   public sealed class GetShortUrlQueryValidatorUnitTests
   {
-    #region Public Methods
-
     [TestCase("")]
     [TestCase("        ")]
     [TestCase(null)]
@@ -53,7 +51,5 @@ namespace PruneUrl.Backend.Application.Queries.Tests.UnitTests.GetShortUrl
       TestValidationResult<GetShortUrlQuery> result = validator.TestValidate(query);
       result.ShouldNotHaveValidationErrorFor(qy => qy.ShortUrl);
     }
-
-    #endregion Public Methods
   }
 }

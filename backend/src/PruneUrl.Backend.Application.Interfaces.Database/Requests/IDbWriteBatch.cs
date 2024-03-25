@@ -9,10 +9,9 @@ namespace PruneUrl.Backend.Application.Interfaces.Database.Requests
   /// database, rather than individually.
   /// </summary>
   /// <typeparam name="T"> The <see cref="IEntity" /> the batch is concerned with. </typeparam>
-  public interface IDbWriteBatch<T> : IDbCreateOperation<T>, IDbDeleteOperation where T : IEntity
+  public interface IDbWriteBatch<T> : IDbCreateOperation<T>, IDbDeleteOperation
+    where T : IEntity
   {
-    #region Public Methods
-
     /// <summary>
     /// Aschronously commit the batch on the underlying database.
     /// </summary>
@@ -21,7 +20,5 @@ namespace PruneUrl.Backend.Application.Interfaces.Database.Requests
     /// A task representing the asychronous operation of commiting the batch to the server.
     /// </returns>
     Task CommitAsync(CancellationToken cancellationToken = default);
-
-    #endregion Public Methods
   }
 }
