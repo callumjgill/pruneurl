@@ -17,6 +17,5 @@ public static class ContainerBuilderExtensions
     builder.RegisterModule<QueriesModule>();
     builder.RegisterModule<RequestsModule>();
     builder.RegisterModule<TransactionsModule>();
-    builder.RegisterModule<FirebaseModule>();
   }
 }

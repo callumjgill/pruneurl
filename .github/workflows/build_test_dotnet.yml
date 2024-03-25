@@ -12,10 +12,6 @@ jobs:
   build_test:
     runs-on: ubuntu-latest
 
-    env:
-      FIRESTORE_EMULATOR_HOST: ${{ vars.FIRESTORE_EMULATOR_HOST }}
-      FIRESTORE_EMULATOR_PROJECT_ID: ${{ secrets.FIRESTORE_EMULATOR_PROJECT_ID }}
-
     strategy:
       matrix:
         dotnet-version: ["8.0.x"]
@@ -29,16 +25,6 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v1.1.1
-        with:
-          credentials_json: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}
-
-      - name: Set up gcloud Cloud SDK environment
-        uses: google-github-actions/setup-gcloud@v1.1.1
-        with:
-          install_components: "cloud-firestore-emulator"
-
       - name: Install dependencies
         working-directory: ./backend/src/
         run: dotnet restore PruneUrl.Backend.sln
@@ -49,10 +35,7 @@ jobs:
 
       - name: Run tests
         working-directory: ./backend/src/
-        run: |
-          gcloud emulators firestore start --quiet --host-port=${{ env.FIRESTORE_EMULATOR_HOST }} &
-          sleep 5s
-          dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ../coverage PruneUrl.Backend.sln
+        run: dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ../coverage PruneUrl.Backend.sln
 
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
