@@ -16,6 +16,7 @@ public static class ContainerBuilderExtensions
     builder.RegisterModule<ImplementationModule>();
     builder.RegisterModule<QueriesModule>();
     builder.RegisterModule<RequestsModule>();
-    builder.RegisterModule<TransactionsModule>();
+
+    builder.RegisterModule<DatabaseModule>();
   }
 }

@@ -20,4 +20,13 @@ public interface IShortUrlFactory
   /// existing "short url".
   /// </returns>
   ShortUrl Create(string longUrl, int sequenceId);
+
+  /// <summary>
+  /// Creates a new <see cref="ShortUrl"/> instance which has default values set for its properties. This is useful
+  /// if a placeholder <see cref="ShortUrl"/> is needed to be created, e.g. in the database.
+  /// </summary>
+  /// <returns>
+  /// A new <see cref="ShortUrl" /> instance.
+  /// </returns>
+  ShortUrl Create();
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PruneUrl.Backend.Application.Exceptions;
 using PruneUrl.Backend.Application.Queries;
+using PruneUrl.Backend.Domain.Entities;
 
 namespace PruneUrl.Backend.API;
 
@@ -30,11 +31,11 @@ internal static class RedirectEndpointRestMethods
     {
       try
       {
-        var query = new GetShortUrlQuery(shortUrl);
+        GetShortUrlQuery query = new(shortUrl);
         GetShortUrlQueryResponse response = await mediator.Send(query);
         return Results.Redirect(response.ShortUrl.LongUrl);
       }
-      catch (EntityNotFoundException)
+      catch (EntityNotFoundException<ShortUrl>)
       {
         return Results.NotFound();
       }

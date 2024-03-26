@@ -12,7 +12,6 @@ public sealed class CreateShortUrlCommandValidator : AbstractValidator<CreateSho
   /// </summary>
   public CreateShortUrlCommandValidator()
   {
-    RuleFor(command => command.SequenceId).GreaterThanOrEqualTo(0);
     RuleFor(command => command.LongUrl).Must(BeUrl);
   }
 

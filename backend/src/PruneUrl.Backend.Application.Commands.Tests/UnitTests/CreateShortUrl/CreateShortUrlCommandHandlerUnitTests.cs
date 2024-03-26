@@ -1,9 +1,10 @@
-﻿using NSubstitute;
+﻿using Autofac;
+using NSubstitute;
 using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
 using PruneUrl.Backend.Application.Interfaces;
-using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
+using PruneUrl.Backend.Infrastructure.Database;
 using PruneUrl.Backend.TestHelpers;
 
 namespace PruneUrl.Backend.Application.Commands.Tests;
@@ -15,26 +16,37 @@ public sealed class CreateShortUrlCommandHandlerUnitTests
   [Test]
   public async Task HandleTest()
   {
-    string testLongUrl = "https://www.youtube.com";
-    int testSequenceId = 6124323;
-    var dbWriteBatch = Substitute.For<IDbWriteBatch<ShortUrl>>();
-    var shortUrlFactory = Substitute.For<IShortUrlFactory>();
-    ShortUrl testShortUrl = EntityTestHelper.CreateShortUrl();
+    const string testUrl = "https://short";
+    const string testLongUrl = "https://www.youtube.com";
+    const int testSequenceId = 6124323;
+    IShortUrlFactory shortUrlFactory = Substitute.For<IShortUrlFactory>();
+    ShortUrl testPlaceholderShortUrl = EntityTestHelper.CreateShortUrl(id: testSequenceId);
+    ShortUrl testShortUrl = EntityTestHelper.CreateShortUrl(url: testUrl);
     CancellationToken cancellationToken = CancellationToken.None;
 
+    ContainerBuilder containerBuilder = new();
+    RegisterDependencies(containerBuilder);
+    using IContainer container = containerBuilder.Build();
+
+    AppDbContext dbContext = container.Resolve<AppDbContext>();
+    await dbContext.Database.EnsureCreatedAsync();
+
     shortUrlFactory.Create(Arg.Any<string>(), Arg.Any<int>()).Returns(testShortUrl);
-    dbWriteBatch.CommitAsync(Arg.Any<CancellationToken>()).Returns(Task.CompletedTask);
+    shortUrlFactory.Create().Returns(testPlaceholderShortUrl);
 
-    var handler = new CreateShortUrlCommandHandler(dbWriteBatch, shortUrlFactory);
-    var command = new CreateShortUrlCommand(testLongUrl, testSequenceId);
+    CreateShortUrlCommandHandler handler = new(dbContext, shortUrlFactory);
+    CreateShortUrlCommand command = new(testLongUrl);
 
-    await handler.Handle(command, cancellationToken);
+    CreateShortUrlCommandResponse response = await handler.Handle(command, cancellationToken);
 
     shortUrlFactory.Received(1).Create(Arg.Any<string>(), Arg.Any<int>());
     shortUrlFactory.Received(1).Create(testLongUrl, testSequenceId);
-    dbWriteBatch.Received(1).Create(Arg.Any<ShortUrl>());
-    dbWriteBatch.Received(1).Create(testShortUrl);
-    await dbWriteBatch.Received(1).CommitAsync(Arg.Any<CancellationToken>());
-    await dbWriteBatch.Received(1).CommitAsync(cancellationToken);
+    shortUrlFactory.Received(1).Create();
+    Assert.That(response.ShortUrl, Is.EqualTo(testUrl));
+  }
+
+  private static void RegisterDependencies(ContainerBuilder containerBuilder)
+  {
+    containerBuilder.RegisterInMemoryDbContext();
   }
 }

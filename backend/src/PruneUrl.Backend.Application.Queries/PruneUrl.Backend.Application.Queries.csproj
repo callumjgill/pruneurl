@@ -5,7 +5,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PruneUrl.Backend.Application.Exceptions\PruneUrl.Backend.Application.Exceptions.csproj" />
-    <ProjectReference Include="..\PruneUrl.Backend.Application.Interfaces.Database\PruneUrl.Backend.Application.Interfaces.Database.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Application.Interfaces\PruneUrl.Backend.Application.Interfaces.csproj" />
   </ItemGroup>
 </Project>

@@ -10,26 +10,22 @@ public sealed class CreateShortUrlCommandValidatorUnitTests
   [Test]
   public void ValidateTest_InvalidProperties()
   {
-    string testLongUrl = "testing123";
-    int testSequenceId = -6124323;
-    var command = new CreateShortUrlCommand(testLongUrl, testSequenceId);
-    var validator = new CreateShortUrlCommandValidator();
+    const string testLongUrl = "testing123";
+    CreateShortUrlCommand command = new(testLongUrl);
+    CreateShortUrlCommandValidator validator = new();
 
     TestValidationResult<CreateShortUrlCommand> result = validator.TestValidate(command);
     result.ShouldHaveValidationErrorFor(cmd => cmd.LongUrl);
-    result.ShouldHaveValidationErrorFor(cmd => cmd.SequenceId);
   }
 
   [Test]
   public void ValidateTest_ValidProperties()
   {
-    string testLongUrl = "https://www.youtube.com";
-    int testSequenceId = 6124323;
-    var command = new CreateShortUrlCommand(testLongUrl, testSequenceId);
-    var validator = new CreateShortUrlCommandValidator();
+    const string testLongUrl = "https://www.youtube.com";
+    CreateShortUrlCommand command = new(testLongUrl);
+    CreateShortUrlCommandValidator validator = new();
 
     TestValidationResult<CreateShortUrlCommand> result = validator.TestValidate(command);
     result.ShouldNotHaveValidationErrorFor(cmd => cmd.LongUrl);
-    result.ShouldNotHaveValidationErrorFor(cmd => cmd.SequenceId);
   }
 }

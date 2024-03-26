@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PruneUrl.Backend.Application.Commands;
-using PruneUrl.Backend.Application.Interfaces;
-using PruneUrl.Backend.Application.Transactions;
 using PruneUrl.Backend.Domain.Entities;
 
 namespace PruneUrl.Backend.API;
@@ -27,19 +25,14 @@ internal static class ShortUrlEndpointRestMethods
   /// </returns>
   public static Task<IResult> PostShortUrl(
     [FromBody] ShortUrlPostRequest requestBody,
-    [FromServices] IMediator mediator,
-    [FromServices] IShortUrlProvider shortUrlProvider
+    [FromServices] IMediator mediator
   )
   {
     return EndpointRestMethodsUtilities.HandleErrors(async () =>
     {
-      var sequenceIdRequest = new GetAndBumpSequenceIdRequest();
-      GetAndBumpSequenceIdResponse sequenceIdResponse = await mediator.Send(sequenceIdRequest);
-      int sequenceId = sequenceIdResponse.SequenceId.Value;
-      var command = new CreateShortUrlCommand(requestBody.LongUrl, sequenceId);
-      await mediator.Send(command);
-      string shortUrl = shortUrlProvider.GetShortUrl(sequenceId);
-      return Results.CreatedAtRoute(RouteNames.RedirectRoute, new { shortUrl });
+      CreateShortUrlCommand command = new(requestBody.LongUrl);
+      CreateShortUrlCommandResponse response = await mediator.Send(command);
+      return Results.CreatedAtRoute(RouteNames.RedirectRoute, new { response.ShortUrl });
     });
   }
 }
