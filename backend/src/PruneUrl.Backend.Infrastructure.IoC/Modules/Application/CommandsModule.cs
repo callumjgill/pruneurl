@@ -14,19 +14,6 @@ internal sealed class CommandsModule : Module
   protected override void Load(ContainerBuilder builder)
   {
     RegisterCreateShortUrl(builder);
-    RegisterCreateSequenceId(builder);
-  }
-
-  private void RegisterCreateSequenceId(ContainerBuilder builder)
-  {
-    MediatRConfiguration configuration = MediatRConfigurationBuilder
-      .Create(typeof(CreateSequenceIdCommand).Assembly)
-      .WithAllOpenGenericHandlerTypesRegistered()
-      .Build();
-    builder.RegisterMediatR(configuration);
-    builder
-      .RegisterType<CreateSequenceIdCommandValidator>()
-      .As<IValidator<CreateSequenceIdCommand>>();
   }
 
   private void RegisterCreateShortUrl(ContainerBuilder builder)

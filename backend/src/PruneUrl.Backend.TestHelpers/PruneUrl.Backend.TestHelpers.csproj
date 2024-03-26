@@ -8,10 +8,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <PackageReference Include="NSubstitute" />
+    <PackageReference Include="NSubstitute.Analyzers.CSharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="NUnit" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PruneUrl.Backend.Domain.Entities\PruneUrl.Backend.Domain.Entities.csproj" />
+    <ProjectReference Include="..\PruneUrl.Backend.Infrastructure.Database\PruneUrl.Backend.Infrastructure.Database.csproj" />
   </ItemGroup>
 </Project>

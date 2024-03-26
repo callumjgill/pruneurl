@@ -7,41 +7,31 @@ namespace PruneUrl.Backend.Domain.Entities.Tests;
 [Parallelizable]
 public sealed class ShortUrlUnitTests
 {
-  private static IEnumerable<TestCaseData> constructorTestCases
+  private static IEnumerable<TestCaseData> ConstructorTestCases
   {
     get
     {
+      yield return new TestCaseData(0, string.Empty, string.Empty).SetName("Constructor Test 1");
+      yield return new TestCaseData(50, "https://www.youtube.com", "pruneurl.com/yt").SetName(
+        "Constructor Test 2"
+      );
       yield return new TestCaseData(
-        string.Empty,
-        string.Empty,
-        string.Empty,
-        DateTime.MinValue
-      ).SetName("Constructor Test 1");
-      yield return new TestCaseData(
-        "ab0ed3aa-b540-4732-a11f-1d43333a659d",
-        "https://www.youtube.com",
-        "pruneurl.com/yt",
-        DateTime.Now
-      ).SetName("Constructor Test 2");
-      yield return new TestCaseData(
-        "yes this is an id",
+        999999,
         "Absolutely is a long url",
-        "Absolutely is a small url",
-        DateTime.UtcNow
+        "Absolutely is a small url"
       ).SetName("Constructor Test 3");
     }
   }
 
-  [TestCaseSource(nameof(constructorTestCases))]
-  public void ConstructorTest(string id, string longUrl, string shortUrl, DateTime created)
+  [TestCaseSource(nameof(ConstructorTestCases))]
+  public void ConstructorTest(int id, string longUrl, string shortUrl)
   {
-    ShortUrl testShortUrl = EntityTestHelper.CreateShortUrl(id, longUrl, shortUrl, created);
+    ShortUrl testShortUrl = EntityTestHelper.CreateShortUrl(id, longUrl, shortUrl);
     Assert.Multiple(() =>
     {
       Assert.That(testShortUrl.Id, Is.EqualTo(id));
       Assert.That(testShortUrl.LongUrl, Is.EqualTo(longUrl));
       Assert.That(testShortUrl.Url, Is.EqualTo(shortUrl));
-      Assert.That(testShortUrl.Created, Is.EqualTo(created));
     });
   }
 }

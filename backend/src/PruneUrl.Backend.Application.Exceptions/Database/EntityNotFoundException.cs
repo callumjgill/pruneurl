@@ -1,9 +1,11 @@
-﻿namespace PruneUrl.Backend.Application.Exceptions;
+﻿using PruneUrl.Backend.Domain.Entities;
+
+namespace PruneUrl.Backend.Application.Exceptions;
 
 /// <summary>
 /// An exception to be thrown when a particular entity must be found in the database but it wasn't.
 /// </summary>
-/// <param name="entityType"> The type of entity that wasn't found. </param>
-/// <param name="id"> The id of the entity that wasn't found. </param>
-public sealed class EntityNotFoundException(Type entityType, string id)
-  : Exception($"Entity of type {entityType} with id {id} was not found!") { }
+/// <param name="criteria">The criteria upon which the entity was not found</param>
+public sealed class EntityNotFoundException<TEntity>(string criteria)
+  : Exception($"Entity of type {typeof(TEntity)} was not found! {criteria}")
+  where TEntity : Entity { }

@@ -1,7 +1,7 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using PruneUrl.Backend.Application.Exceptions;
 using PruneUrl.Backend.Application.Interfaces;
-using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
 
 namespace PruneUrl.Backend.Application.Queries;
@@ -10,19 +10,13 @@ namespace PruneUrl.Backend.Application.Queries;
 /// The handler for the <see cref="GetShortUrlQuery" /> which will return a <see
 /// cref="GetShortUrlQueryResponse" />.
 /// </summary>
-/// <param name="dbGetByIdOperation">
-/// The operation for retriving a <see cref="ShortUrl" /> from the database using its id.
+/// <param name="dbContext">
+/// The <see cref="IDbContext"/> to allow interaction with the database.
 /// </param>
-/// <param name="sequenceIdProvider">
-/// The provider of a "sequence id" given the equivalent "short url".
-/// </param>
-public sealed class GetShortUrlQueryHandler(
-  IDbGetByIdOperation<ShortUrl> dbGetByIdOperation,
-  ISequenceIdProvider sequenceIdProvider
-) : IRequestHandler<GetShortUrlQuery, GetShortUrlQueryResponse>
+public sealed class GetShortUrlQueryHandler(IDbContext dbContext)
+  : IRequestHandler<GetShortUrlQuery, GetShortUrlQueryResponse>
 {
-  private readonly IDbGetByIdOperation<ShortUrl> dbGetByIdOperation = dbGetByIdOperation;
-  private readonly ISequenceIdProvider sequenceIdProvider = sequenceIdProvider;
+  private readonly IDbContext dbContext = dbContext;
 
   /// <inheritdoc cref="IRequestHandler{TRequest, TResponse}.Handle(TRequest, CancellationToken)" />
   public async Task<GetShortUrlQueryResponse> Handle(
@@ -30,20 +24,12 @@ public sealed class GetShortUrlQueryHandler(
     CancellationToken cancellationToken
   )
   {
-    int sequenceId = sequenceIdProvider.GetSequenceId(request.ShortUrl);
-    ShortUrl shortUrl = await GetShortUrl(sequenceId, cancellationToken);
+    ShortUrl shortUrl =
+      await dbContext.ShortUrls.FirstOrDefaultAsync(
+        shortUrl => shortUrl.Url == request.ShortUrl,
+        cancellationToken
+      )
+      ?? throw new EntityNotFoundException<ShortUrl>($"{nameof(ShortUrl.Url)}={request.ShortUrl}.");
     return new GetShortUrlQueryResponse(shortUrl);
-  }
-
-  private async Task<ShortUrl> GetShortUrl(int sequenceId, CancellationToken cancellationToken)
-  {
-    string id = sequenceId.ToString();
-    ShortUrl? shortUrl = await dbGetByIdOperation.GetByIdAsync(id, cancellationToken);
-    if (shortUrl == null)
-    {
-      throw new EntityNotFoundException(typeof(ShortUrl), id);
-    }
-
-    return shortUrl;
   }
 }

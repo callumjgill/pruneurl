@@ -17,13 +17,11 @@ internal sealed class ImplementationModule : Module
 
   private void RegisterFactories(ContainerBuilder builder)
   {
-    builder.RegisterType<SequenceIdFactory>().As<ISequenceIdFactory>();
     builder.RegisterType<ShortUrlFactory>().As<IShortUrlFactory>();
   }
 
   private void RegisterProviders(ContainerBuilder builder)
   {
-    builder.RegisterType<DateTimeProvider>().As<IDateTimeProvider>();
     builder.RegisterType<ShortUrlProvider>().AsImplementedInterfaces();
   }
 }

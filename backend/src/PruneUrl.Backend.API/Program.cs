@@ -2,8 +2,6 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using PruneUrl.Backend.API;
-using PruneUrl.Backend.Application.Configuration;
-using PruneUrl.Backend.Infrastructure.Database.Firestore;
 using PruneUrl.Backend.Infrastructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,16 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder
   .Logging.ClearProviders() // Remove defaults
   .AddConsole();
-
-builder
-  .Services.AddOptions<SequenceIdOptions>()
-  .Bind(builder.Configuration.GetSection(nameof(SequenceIdOptions)));
-builder
-  .Services.AddOptions<FirestoreTransactionOptions>()
-  .Bind(builder.Configuration.GetSection(nameof(FirestoreTransactionOptions)));
-builder
-  .Services.AddOptions<FirestoreDbOptions>()
-  .Bind(builder.Configuration.GetSection(nameof(FirestoreDbOptions)));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -34,6 +22,10 @@ builder.Services.AddSwaggerGen(options =>
       Description = "An ASP.NET Core Minimal API for managing the backend of PruneUrl"
     }
   );
+});
+builder.Services.AddHttpLogging(logging =>
+{
+  logging.CombineLogs = true;
 });
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -62,7 +54,5 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-await app.EnsureDbIsSetup();
 
 await app.RunAsync();

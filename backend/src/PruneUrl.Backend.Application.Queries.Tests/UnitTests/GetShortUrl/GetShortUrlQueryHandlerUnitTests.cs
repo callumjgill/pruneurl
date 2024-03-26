@@ -1,10 +1,10 @@
-﻿using NSubstitute;
+﻿using Autofac;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using PruneUrl.Backend.Application.Exceptions;
 using PruneUrl.Backend.Application.Interfaces;
-using PruneUrl.Backend.Application.Interfaces.Database;
 using PruneUrl.Backend.Domain.Entities;
+using PruneUrl.Backend.Infrastructure.Database;
 using PruneUrl.Backend.TestHelpers;
 
 namespace PruneUrl.Backend.Application.Queries.Tests;
@@ -17,56 +17,69 @@ public sealed class GetShortUrlQueryHandlerUnitTests
   public async Task GetShortUrlTest_EntityFound()
   {
     const string testShortUrl = "hsfwgss";
-    const int testSequenceId = 233243;
-    var dbGetByIdOperation = Substitute.For<IDbGetByIdOperation<ShortUrl>>();
-    var sequenceIdProvider = Substitute.For<ISequenceIdProvider>();
-    ShortUrl testShortUrlEntity = EntityTestHelper.CreateShortUrl();
-    var query = new GetShortUrlQuery(testShortUrl);
-    var cancellationToken = CancellationToken.None;
+    ShortUrl testShortUrlEntity = EntityTestHelper.CreateShortUrl(url: testShortUrl);
+    GetShortUrlQuery query = new(testShortUrl);
+    CancellationToken cancellationToken = CancellationToken.None;
 
-    dbGetByIdOperation
-      .GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
-      .Returns(testShortUrlEntity);
-    sequenceIdProvider.GetSequenceId(Arg.Any<string>()).Returns(testSequenceId);
+    ContainerBuilder containerBuilder = new();
+    RegisterDependencies(containerBuilder);
+    using IContainer container = containerBuilder.Build();
 
-    var handler = new GetShortUrlQueryHandler(dbGetByIdOperation, sequenceIdProvider);
+    AppDbContext dbContext = container.Resolve<AppDbContext>();
+    await dbContext.Database.EnsureCreatedAsync();
+    IEnumerable<ShortUrl> shortUrls =
+    [
+      testShortUrlEntity,
+      EntityTestHelper.CreateShortUrl(url: "abcdefg"),
+      EntityTestHelper.CreateShortUrl(url: "9086124hsjsmneh")
+    ];
+    dbContext.AddRange(shortUrls);
+    await dbContext.SaveChangesAsync();
+
+    GetShortUrlQueryHandler handler = container.Resolve<GetShortUrlQueryHandler>();
     GetShortUrlQueryResponse response = await handler.Handle(query, cancellationToken);
     Assert.That(response.ShortUrl, Is.EqualTo(testShortUrlEntity));
-    await dbGetByIdOperation
-      .Received(1)
-      .GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
-    await dbGetByIdOperation.Received(1).GetByIdAsync(testSequenceId.ToString(), cancellationToken);
-    sequenceIdProvider.Received(1).GetSequenceId(Arg.Any<string>());
-    sequenceIdProvider.Received(1).GetSequenceId(testShortUrl);
   }
 
   [Test]
   public async Task GetShortUrlTest_EntityNotFound()
   {
     const string testShortUrl = "hsfwgss";
-    const int testSequenceId = 233243;
-    var dbGetByIdOperation = Substitute.For<IDbGetByIdOperation<ShortUrl>>();
-    var sequenceIdProvider = Substitute.For<ISequenceIdProvider>();
     ShortUrl testShortUrlEntity = EntityTestHelper.CreateShortUrl();
-    var query = new GetShortUrlQuery(testShortUrl);
-    var cancellationToken = CancellationToken.None;
+    GetShortUrlQuery query = new(testShortUrl);
+    CancellationToken cancellationToken = CancellationToken.None;
 
-    sequenceIdProvider.GetSequenceId(Arg.Any<string>()).Returns(testSequenceId);
+    ContainerBuilder containerBuilder = new();
+    RegisterDependencies(containerBuilder);
+    using IContainer container = containerBuilder.Build();
 
-    var handler = new GetShortUrlQueryHandler(dbGetByIdOperation, sequenceIdProvider);
+    AppDbContext dbContext = container.Resolve<AppDbContext>();
+    await dbContext.Database.EnsureCreatedAsync();
+    IEnumerable<ShortUrl> shortUrls =
+    [
+      testShortUrlEntity,
+      EntityTestHelper.CreateShortUrl(url: "abcdefg"),
+      EntityTestHelper.CreateShortUrl(url: "9086124hsjsmneh")
+    ];
+    dbContext.AddRange(shortUrls);
+    await dbContext.SaveChangesAsync();
+
+    GetShortUrlQueryHandler handler = container.Resolve<GetShortUrlQueryHandler>();
     Assert.That(
       async () => await handler.Handle(query, cancellationToken),
       Throws
-        .TypeOf<EntityNotFoundException>()
+        .TypeOf<EntityNotFoundException<ShortUrl>>()
         .With.Message.EqualTo(
-          $"Entity of type {typeof(ShortUrl)} with id {testSequenceId} was not found!"
+          $"Entity of type {typeof(ShortUrl)} was not found! Url={testShortUrl}."
         )
     );
-    await dbGetByIdOperation
-      .Received(1)
-      .GetByIdAsync(Arg.Any<string>(), Arg.Any<CancellationToken>());
-    await dbGetByIdOperation.Received(1).GetByIdAsync(testSequenceId.ToString(), cancellationToken);
-    sequenceIdProvider.Received(1).GetSequenceId(Arg.Any<string>());
-    sequenceIdProvider.Received(1).GetSequenceId(testShortUrl);
+  }
+
+  private static void RegisterDependencies(ContainerBuilder containerBuilder)
+  {
+    containerBuilder.RegisterInMemoryDbContext();
+    containerBuilder.Register(
+      (componentContext) => new GetShortUrlQueryHandler(componentContext.Resolve<IDbContext>())
+    );
   }
 }

@@ -1,9 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <ProjectReference Include="..\PruneUrl.Backend.Infrastructure.IoC\PruneUrl.Backend.Infrastructure.IoC.csproj" />
   </ItemGroup>
 </Project>

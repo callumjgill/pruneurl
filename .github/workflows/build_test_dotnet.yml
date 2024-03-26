@@ -35,7 +35,7 @@ jobs:
 
       - name: Run tests
         working-directory: ./backend/src/
-        run: dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ../coverage PruneUrl.Backend.sln
+        run: dotnet test --configuration Release --no-build --settings .runsettings --verbosity normal --collect:"XPlat Code Coverage" --results-directory ../coverage PruneUrl.Backend.sln
 
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
