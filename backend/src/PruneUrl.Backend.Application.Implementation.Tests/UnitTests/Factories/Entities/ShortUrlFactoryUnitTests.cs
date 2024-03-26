@@ -14,10 +14,6 @@ public sealed class ShortUrlFactoryUnitTests
   [TestCase("www.youtube.com")]
   [TestCase("https://www.youtube.com")]
   [TestCase("This is a load gibberish")]
-  [TestCase("")]
-  [TestCase("www.youtube.com")]
-  [TestCase("https://www.youtube.com")]
-  [TestCase("This is a load gibberish")]
   public void CreateTest_LongUrlAndSequenceIdParameters(string longUrl)
   {
     const int testSequenceId = 23652;

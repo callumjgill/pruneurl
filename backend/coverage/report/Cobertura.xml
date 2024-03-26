@@ -1,0 +1,1121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage line-rate="0.7515923566878981" branch-rate="0.7" lines-covered="236" lines-valid="314" branches-covered="14" branches-valid="20" complexity="74" version="0" timestamp="1711446500">
+  <sources>
+    <source>/home/callum/github/pruneurl/backend/src/</source>
+  </sources>
+  <packages>
+    <package name="PruneUrl.Backend.API" line-rate="0.27884615384615385" branch-rate="0" complexity="12">
+      <classes>
+        <class name="Program" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.API/Program.cs" line-rate="0" branch-rate="0" complexity="4">
+          <methods>
+            <method name="&lt;Main&gt;$" signature="()" line-rate="0" branch-rate="0" complexity="4">
+              <lines>
+                <line number="7" hits="0" branch="false" />
+                <line number="9" hits="0" branch="false" />
+                <line number="10" hits="0" branch="false" />
+                <line number="11" hits="0" branch="false" />
+                <line number="13" hits="0" branch="false" />
+                <line number="14" hits="0" branch="false" />
+                <line number="15" hits="0" branch="false" />
+                <line number="16" hits="0" branch="false" />
+                <line number="17" hits="0" branch="false" />
+                <line number="18" hits="0" branch="false" />
+                <line number="19" hits="0" branch="false" />
+                <line number="20" hits="0" branch="false" />
+                <line number="21" hits="0" branch="false" />
+                <line number="22" hits="0" branch="false" />
+                <line number="23" hits="0" branch="false" />
+                <line number="24" hits="0" branch="false" />
+                <line number="25" hits="0" branch="false" />
+                <line number="26" hits="0" branch="false" />
+                <line number="27" hits="0" branch="false" />
+                <line number="28" hits="0" branch="false" />
+                <line number="29" hits="0" branch="false" />
+                <line number="31" hits="0" branch="false" />
+                <line number="32" hits="0" branch="false" />
+                <line number="34" hits="0" branch="false" />
+                <line number="36" hits="0" branch="false" />
+                <line number="38" hits="0" branch="false" />
+                <line number="40" hits="0" branch="true" condition-coverage="0% (0/2)" />
+                <line number="42" hits="0" branch="false" />
+                <line number="43" hits="0" branch="false" />
+                <line number="44" hits="0" branch="false" />
+                <line number="45" hits="0" branch="false" />
+                <line number="46" hits="0" branch="false" />
+                <line number="49" hits="0" branch="true" condition-coverage="0% (0/2)" />
+                <line number="51" hits="0" branch="false" />
+                <line number="52" hits="0" branch="false" />
+                <line number="53" hits="0" branch="false" />
+                <line number="56" hits="0" branch="false" />
+                <line number="58" hits="0" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="7" hits="0" branch="false" />
+            <line number="9" hits="0" branch="false" />
+            <line number="10" hits="0" branch="false" />
+            <line number="11" hits="0" branch="false" />
+            <line number="13" hits="0" branch="false" />
+            <line number="14" hits="0" branch="false" />
+            <line number="15" hits="0" branch="false" />
+            <line number="16" hits="0" branch="false" />
+            <line number="17" hits="0" branch="false" />
+            <line number="18" hits="0" branch="false" />
+            <line number="19" hits="0" branch="false" />
+            <line number="20" hits="0" branch="false" />
+            <line number="21" hits="0" branch="false" />
+            <line number="22" hits="0" branch="false" />
+            <line number="23" hits="0" branch="false" />
+            <line number="24" hits="0" branch="false" />
+            <line number="25" hits="0" branch="false" />
+            <line number="26" hits="0" branch="false" />
+            <line number="27" hits="0" branch="false" />
+            <line number="28" hits="0" branch="false" />
+            <line number="29" hits="0" branch="false" />
+            <line number="31" hits="0" branch="false" />
+            <line number="32" hits="0" branch="false" />
+            <line number="34" hits="0" branch="false" />
+            <line number="36" hits="0" branch="false" />
+            <line number="38" hits="0" branch="false" />
+            <line number="40" hits="0" branch="true" condition-coverage="0% (0/2)" />
+            <line number="42" hits="0" branch="false" />
+            <line number="43" hits="0" branch="false" />
+            <line number="44" hits="0" branch="false" />
+            <line number="45" hits="0" branch="false" />
+            <line number="46" hits="0" branch="false" />
+            <line number="49" hits="0" branch="true" condition-coverage="0% (0/2)" />
+            <line number="51" hits="0" branch="false" />
+            <line number="52" hits="0" branch="false" />
+            <line number="53" hits="0" branch="false" />
+            <line number="56" hits="0" branch="false" />
+            <line number="58" hits="0" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.API.EndpointRestMethodsUtilities" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.API/Endpoints/EndpointRestMethodsUtilities.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="HandleErrors" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="22" hits="1" branch="false" />
+                <line number="23" hits="1" branch="false" />
+                <line number="25" hits="1" branch="false" />
+                <line number="27" hits="1" branch="false" />
+                <line number="29" hits="1" branch="false" />
+                <line number="31" hits="1" branch="false" />
+                <line number="33" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="22" hits="1" branch="false" />
+            <line number="23" hits="1" branch="false" />
+            <line number="25" hits="1" branch="false" />
+            <line number="27" hits="1" branch="false" />
+            <line number="29" hits="1" branch="false" />
+            <line number="31" hits="1" branch="false" />
+            <line number="33" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.API.EndpointRoutes" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.API/Endpoints/EndpointRoutes.cs" line-rate="0" branch-rate="1" complexity="3">
+          <methods>
+            <method name="MapEndpointRoutes" signature="(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="20" hits="0" branch="false" />
+                <line number="22" hits="0" branch="false" />
+                <line number="23" hits="0" branch="false" />
+                <line number="25" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name="MapRedirectRoutes" signature="(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="30" hits="0" branch="false" />
+                <line number="31" hits="0" branch="false" />
+                <line number="32" hits="0" branch="false" />
+                <line number="33" hits="0" branch="false" />
+                <line number="34" hits="0" branch="false" />
+                <line number="35" hits="0" branch="false" />
+                <line number="36" hits="0" branch="false" />
+                <line number="37" hits="0" branch="false" />
+                <line number="38" hits="0" branch="false" />
+                <line number="39" hits="0" branch="false" />
+                <line number="40" hits="0" branch="false" />
+                <line number="41" hits="0" branch="false" />
+                <line number="42" hits="0" branch="false" />
+                <line number="43" hits="0" branch="false" />
+                <line number="44" hits="0" branch="false" />
+                <line number="45" hits="0" branch="false" />
+                <line number="46" hits="0" branch="false" />
+                <line number="48" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name="MapShortUrlRoutes" signature="(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="53" hits="0" branch="false" />
+                <line number="55" hits="0" branch="false" />
+                <line number="56" hits="0" branch="false" />
+                <line number="57" hits="0" branch="false" />
+                <line number="58" hits="0" branch="false" />
+                <line number="59" hits="0" branch="false" />
+                <line number="60" hits="0" branch="false" />
+                <line number="61" hits="0" branch="false" />
+                <line number="62" hits="0" branch="false" />
+                <line number="63" hits="0" branch="false" />
+                <line number="64" hits="0" branch="false" />
+                <line number="65" hits="0" branch="false" />
+                <line number="66" hits="0" branch="false" />
+                <line number="67" hits="0" branch="false" />
+                <line number="69" hits="0" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="20" hits="0" branch="false" />
+            <line number="22" hits="0" branch="false" />
+            <line number="23" hits="0" branch="false" />
+            <line number="25" hits="0" branch="false" />
+            <line number="30" hits="0" branch="false" />
+            <line number="31" hits="0" branch="false" />
+            <line number="32" hits="0" branch="false" />
+            <line number="33" hits="0" branch="false" />
+            <line number="34" hits="0" branch="false" />
+            <line number="35" hits="0" branch="false" />
+            <line number="36" hits="0" branch="false" />
+            <line number="37" hits="0" branch="false" />
+            <line number="38" hits="0" branch="false" />
+            <line number="39" hits="0" branch="false" />
+            <line number="40" hits="0" branch="false" />
+            <line number="41" hits="0" branch="false" />
+            <line number="42" hits="0" branch="false" />
+            <line number="43" hits="0" branch="false" />
+            <line number="44" hits="0" branch="false" />
+            <line number="45" hits="0" branch="false" />
+            <line number="46" hits="0" branch="false" />
+            <line number="48" hits="0" branch="false" />
+            <line number="53" hits="0" branch="false" />
+            <line number="55" hits="0" branch="false" />
+            <line number="56" hits="0" branch="false" />
+            <line number="57" hits="0" branch="false" />
+            <line number="58" hits="0" branch="false" />
+            <line number="59" hits="0" branch="false" />
+            <line number="60" hits="0" branch="false" />
+            <line number="61" hits="0" branch="false" />
+            <line number="62" hits="0" branch="false" />
+            <line number="63" hits="0" branch="false" />
+            <line number="64" hits="0" branch="false" />
+            <line number="65" hits="0" branch="false" />
+            <line number="66" hits="0" branch="false" />
+            <line number="67" hits="0" branch="false" />
+            <line number="69" hits="0" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.API.RedirectEndpointRestMethods" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.API/Endpoints/RedirectEndpointRestMethods.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="GetShortUrl" signature="(System.String,MediatR.IMediator)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="30" hits="1" branch="false" />
+                <line number="31" hits="1" branch="false" />
+                <line number="32" hits="1" branch="false" />
+                <line number="33" hits="1" branch="false" />
+                <line number="34" hits="1" branch="false" />
+                <line number="35" hits="1" branch="false" />
+                <line number="36" hits="1" branch="false" />
+                <line number="37" hits="1" branch="false" />
+                <line number="38" hits="1" branch="false" />
+                <line number="39" hits="1" branch="false" />
+                <line number="40" hits="1" branch="false" />
+                <line number="41" hits="1" branch="false" />
+                <line number="42" hits="2" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="30" hits="1" branch="false" />
+            <line number="31" hits="1" branch="false" />
+            <line number="32" hits="1" branch="false" />
+            <line number="33" hits="1" branch="false" />
+            <line number="34" hits="1" branch="false" />
+            <line number="35" hits="1" branch="false" />
+            <line number="36" hits="1" branch="false" />
+            <line number="37" hits="1" branch="false" />
+            <line number="38" hits="1" branch="false" />
+            <line number="39" hits="1" branch="false" />
+            <line number="40" hits="1" branch="false" />
+            <line number="41" hits="1" branch="false" />
+            <line number="42" hits="2" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.API.RouteNames" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.API/Endpoints/RouteNames.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name=".cctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="1" branch="false" />
+                <line number="18" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="13" hits="1" branch="false" />
+            <line number="18" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.API.ShortUrlEndpointRestMethods" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.API/Endpoints/ShortUrlEndpointRestMethods.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="PostShortUrl" signature="(PruneUrl.Backend.API.ShortUrlPostRequest,MediatR.IMediator)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="31" hits="1" branch="false" />
+                <line number="32" hits="1" branch="false" />
+                <line number="33" hits="1" branch="false" />
+                <line number="34" hits="1" branch="false" />
+                <line number="35" hits="1" branch="false" />
+                <line number="36" hits="2" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="31" hits="1" branch="false" />
+            <line number="32" hits="1" branch="false" />
+            <line number="33" hits="1" branch="false" />
+            <line number="34" hits="1" branch="false" />
+            <line number="35" hits="1" branch="false" />
+            <line number="36" hits="2" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.API.ShortUrlPostRequest" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.API/Endpoints/Models/ShortUrlPostRequest.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_LongUrl" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="11" hits="2" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="11" hits="2" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="PruneUrl.Backend.Application.Commands" line-rate="1" branch-rate="1" complexity="6">
+      <classes>
+        <class name="PruneUrl.Backend.Application.Commands.CreateShortUrlCommand" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Commands/CreateShortUrl/CreateShortUrlCommand.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_LongUrl" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="12" hits="4" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="12" hits="4" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Commands.CreateShortUrlCommandHandler" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Commands/CreateShortUrl/CreateShortUrlCommandHandler.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name=".ctor" signature="(PruneUrl.Backend.Application.Interfaces.IDbContext,PruneUrl.Backend.Application.Interfaces.IShortUrlFactory)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="2" branch="false" />
+                <line number="16" hits="2" branch="false" />
+                <line number="17" hits="2" branch="false" />
+                <line number="18" hits="2" branch="false" />
+                <line number="20" hits="2" branch="false" />
+                <line number="21" hits="2" branch="false" />
+              </lines>
+            </method>
+            <method name="Handle" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="30" hits="1" branch="false" />
+                <line number="31" hits="1" branch="false" />
+                <line number="32" hits="1" branch="false" />
+                <line number="34" hits="1" branch="false" />
+                <line number="36" hits="1" branch="false" />
+                <line number="37" hits="1" branch="false" />
+                <line number="38" hits="1" branch="false" />
+                <line number="39" hits="1" branch="false" />
+                <line number="40" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="15" hits="2" branch="false" />
+            <line number="16" hits="2" branch="false" />
+            <line number="17" hits="2" branch="false" />
+            <line number="18" hits="2" branch="false" />
+            <line number="20" hits="2" branch="false" />
+            <line number="21" hits="2" branch="false" />
+            <line number="30" hits="1" branch="false" />
+            <line number="31" hits="1" branch="false" />
+            <line number="32" hits="1" branch="false" />
+            <line number="34" hits="1" branch="false" />
+            <line number="36" hits="1" branch="false" />
+            <line number="37" hits="1" branch="false" />
+            <line number="38" hits="1" branch="false" />
+            <line number="39" hits="1" branch="false" />
+            <line number="40" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Commands.CreateShortUrlCommandResponse" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Commands/CreateShortUrl/CreateShortUrlCommandResponse.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_ShortUrl" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="7" hits="4" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="7" hits="4" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Commands.CreateShortUrlCommandValidator" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Commands/CreateShortUrl/CreateShortUrlCommandValidator.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="BeUrl" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="20" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="2" branch="false" />
+                <line number="15" hits="2" branch="false" />
+                <line number="16" hits="2" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="13" hits="2" branch="false" />
+            <line number="15" hits="2" branch="false" />
+            <line number="16" hits="2" branch="false" />
+            <line number="20" hits="1" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="PruneUrl.Backend.Application.Exceptions" line-rate="1" branch-rate="1" complexity="2">
+      <classes>
+        <class name="PruneUrl.Backend.Application.Exceptions.EntityNotFoundException`1" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Exceptions/Database/EntityNotFoundException.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name=".ctor" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="10" hits="3" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="10" hits="3" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Exceptions.InvalidConfigurationException" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Exceptions/Configuration/InvalidConfigurationException.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name=".ctor" signature="(System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="8" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="8" hits="1" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="PruneUrl.Backend.Application.Implementation" line-rate="1" branch-rate="1" complexity="10">
+      <classes>
+        <class name="PruneUrl.Backend.Application.Implementation.ShortUrlFactory" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Implementation/Factories/Entities/ShortUrlFactory.cs" line-rate="1" branch-rate="1" complexity="3">
+          <methods>
+            <method name="Create" signature="(System.String,System.Int32)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="17" hits="1" branch="false" />
+                <line number="18" hits="1" branch="false" />
+                <line number="19" hits="1" branch="false" />
+                <line number="20" hits="1" branch="false" />
+                <line number="21" hits="1" branch="false" />
+                <line number="22" hits="1" branch="false" />
+                <line number="23" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="Create" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="29" hits="1" branch="false" />
+                <line number="30" hits="1" branch="false" />
+                <line number="31" hits="1" branch="false" />
+                <line number="32" hits="1" branch="false" />
+                <line number="33" hits="1" branch="false" />
+                <line number="34" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(PruneUrl.Backend.Application.Interfaces.IShortUrlProvider)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="10" hits="2" branch="false" />
+                <line number="12" hits="2" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="10" hits="2" branch="false" />
+            <line number="12" hits="2" branch="false" />
+            <line number="17" hits="1" branch="false" />
+            <line number="18" hits="1" branch="false" />
+            <line number="19" hits="1" branch="false" />
+            <line number="20" hits="1" branch="false" />
+            <line number="21" hits="1" branch="false" />
+            <line number="22" hits="1" branch="false" />
+            <line number="23" hits="1" branch="false" />
+            <line number="29" hits="1" branch="false" />
+            <line number="30" hits="1" branch="false" />
+            <line number="31" hits="1" branch="false" />
+            <line number="32" hits="1" branch="false" />
+            <line number="33" hits="1" branch="false" />
+            <line number="34" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Implementation.ShortUrlProvider" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Implementation/Providers/ShortUrlProvider.cs" line-rate="1" branch-rate="1" complexity="7">
+          <methods>
+            <method name="GetSequenceId" signature="(System.String)" line-rate="1" branch-rate="1" complexity="4">
+              <lines>
+                <line number="19" hits="1" branch="false" />
+                <line number="20" hits="1" branch="false" />
+                <line number="21" hits="1" branch="false" />
+                <line number="22" hits="3" branch="true" condition-coverage="100% (2/2)" />
+                <line number="24" hits="1" branch="false" />
+                <line number="25" hits="1" branch="false" />
+                <line number="26" hits="1" branch="false" />
+                <line number="27" hits="1" branch="false" />
+                <line number="28" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="30" hits="1" branch="false" />
+                <line number="33" hits="1" branch="false" />
+                <line number="34" hits="1" branch="false" />
+                <line number="37" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="GetShortUrl" signature="(System.Int32)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="43" hits="1" branch="false" />
+                <line number="46" hits="1" branch="false" />
+                <line number="47" hits="1" branch="false" />
+                <line number="48" hits="1" branch="false" />
+                <line number="49" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="51" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="12" hits="2" branch="false" />
+                <line number="13" hits="2" branch="false" />
+                <line number="14" hits="2" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="12" hits="2" branch="false" />
+            <line number="13" hits="2" branch="false" />
+            <line number="14" hits="2" branch="false" />
+            <line number="19" hits="1" branch="false" />
+            <line number="20" hits="1" branch="false" />
+            <line number="21" hits="1" branch="false" />
+            <line number="22" hits="3" branch="true" condition-coverage="100% (2/2)" />
+            <line number="24" hits="1" branch="false" />
+            <line number="25" hits="1" branch="false" />
+            <line number="26" hits="1" branch="false" />
+            <line number="27" hits="1" branch="false" />
+            <line number="28" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="30" hits="1" branch="false" />
+            <line number="33" hits="1" branch="false" />
+            <line number="34" hits="1" branch="false" />
+            <line number="37" hits="1" branch="false" />
+            <line number="43" hits="1" branch="false" />
+            <line number="46" hits="1" branch="false" />
+            <line number="47" hits="1" branch="false" />
+            <line number="48" hits="1" branch="false" />
+            <line number="49" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="51" hits="1" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="PruneUrl.Backend.Application.Queries" line-rate="1" branch-rate="1" complexity="7">
+      <classes>
+        <class name="PruneUrl.Backend.Application.Queries.GetShortUrlQuery" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Queries/GetShortUrl/GetShortUrlQuery.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_ShortUrl" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="9" hits="4" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="9" hits="4" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Queries.GetShortUrlQueryHandler" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Queries/GetShortUrl/GetShortUrlQueryHandler.cs" line-rate="1" branch-rate="1" complexity="3">
+          <methods>
+            <method name=".ctor" signature="(PruneUrl.Backend.Application.Interfaces.IDbContext)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="2" branch="false" />
+                <line number="19" hits="2" branch="false" />
+              </lines>
+            </method>
+            <method name="Handle" signature="()" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="27" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="28" hits="1" branch="false" />
+                <line number="29" hits="1" branch="false" />
+                <line number="30" hits="1" branch="false" />
+                <line number="31" hits="1" branch="false" />
+                <line number="32" hits="1" branch="false" />
+                <line number="33" hits="1" branch="false" />
+                <line number="34" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="2" branch="false" />
+            <line number="19" hits="2" branch="false" />
+            <line number="27" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="28" hits="1" branch="false" />
+            <line number="29" hits="1" branch="false" />
+            <line number="30" hits="1" branch="false" />
+            <line number="31" hits="1" branch="false" />
+            <line number="32" hits="1" branch="false" />
+            <line number="33" hits="1" branch="false" />
+            <line number="34" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Queries.GetShortUrlQueryResponse" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Queries/GetShortUrl/GetShortUrlQueryResponse.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_ShortUrl" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="9" hits="4" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="9" hits="4" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Queries.GetShortUrlQueryValidator" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Queries/GetShortUrl/GetShortUrlQueryValidator.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="BeValidShortUrl" signature="(PruneUrl.Backend.Application.Interfaces.ISequenceIdProvider,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="26" hits="1" branch="false" />
+                <line number="27" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(PruneUrl.Backend.Application.Interfaces.ISequenceIdProvider)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="17" hits="2" branch="false" />
+                <line number="19" hits="2" branch="false" />
+                <line number="20" hits="2" branch="false" />
+                <line number="21" hits="3" branch="false" />
+                <line number="22" hits="2" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="17" hits="2" branch="false" />
+            <line number="19" hits="2" branch="false" />
+            <line number="20" hits="2" branch="false" />
+            <line number="21" hits="3" branch="false" />
+            <line number="22" hits="2" branch="false" />
+            <line number="26" hits="1" branch="false" />
+            <line number="27" hits="1" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="PruneUrl.Backend.Application.Requests" line-rate="1" branch-rate="1" complexity="9">
+      <classes>
+        <class name="PruneUrl.Backend.Application.Requests.InvalidRequestException" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Requests/Exceptions/InvalidRequestException.cs" line-rate="1" branch-rate="1" complexity="3">
+          <methods>
+            <method name="GetExceptionMessage" signature="(System.Collections.Generic.IEnumerable`1&lt;FluentValidation.Results.ValidationFailure&gt;)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="18" hits="2" branch="false" />
+                <line number="19" hits="2" branch="false" />
+                <line number="21" hits="5" branch="true" condition-coverage="100% (2/2)" />
+                <line number="22" hits="1" branch="false" />
+                <line number="23" hits="2" branch="false" />
+                <line number="26" hits="1" branch="false" />
+                <line number="29" hits="2" branch="false" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Collections.Generic.IEnumerable`1&lt;FluentValidation.Results.ValidationFailure&gt;)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="2" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="14" hits="2" branch="false" />
+            <line number="18" hits="2" branch="false" />
+            <line number="19" hits="2" branch="false" />
+            <line number="21" hits="5" branch="true" condition-coverage="100% (2/2)" />
+            <line number="22" hits="1" branch="false" />
+            <line number="23" hits="2" branch="false" />
+            <line number="26" hits="1" branch="false" />
+            <line number="29" hits="2" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Requests.ValidateRequestHandlerDecorator`1" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Requests/Decorators/ValidateRequestHandlerDecorator.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name=".ctor" signature="(MediatR.IRequestHandler`1&lt;TRequest&gt;,FluentValidation.IValidator`1&lt;TRequest&gt;)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="1" branch="false" />
+                <line number="16" hits="1" branch="false" />
+                <line number="17" hits="1" branch="false" />
+                <line number="18" hits="1" branch="false" />
+                <line number="21" hits="1" branch="false" />
+                <line number="22" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="Handle" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="27" hits="1" branch="false" />
+                <line number="28" hits="1" branch="false" />
+                <line number="29" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="15" hits="1" branch="false" />
+            <line number="16" hits="1" branch="false" />
+            <line number="17" hits="1" branch="false" />
+            <line number="18" hits="1" branch="false" />
+            <line number="21" hits="1" branch="false" />
+            <line number="22" hits="1" branch="false" />
+            <line number="27" hits="1" branch="false" />
+            <line number="28" hits="1" branch="false" />
+            <line number="29" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Requests.ValidateRequestHandlerDecorator`2" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Requests/Decorators/ValidateRequestHandlerDecorator.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name=".ctor" signature="(MediatR.IRequestHandler`2&lt;TRequest,TResponse&gt;,FluentValidation.IValidator`1&lt;TRequest&gt;)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="45" hits="2" branch="false" />
+                <line number="46" hits="2" branch="false" />
+                <line number="47" hits="2" branch="false" />
+                <line number="48" hits="2" branch="false" />
+                <line number="51" hits="2" branch="false" />
+                <line number="52" hits="2" branch="false" />
+                <line number="53" hits="2" branch="false" />
+              </lines>
+            </method>
+            <method name="Handle" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="58" hits="1" branch="false" />
+                <line number="59" hits="1" branch="false" />
+                <line number="60" hits="1" branch="false" />
+                <line number="61" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="45" hits="2" branch="false" />
+            <line number="46" hits="2" branch="false" />
+            <line number="47" hits="2" branch="false" />
+            <line number="48" hits="2" branch="false" />
+            <line number="51" hits="2" branch="false" />
+            <line number="52" hits="2" branch="false" />
+            <line number="53" hits="2" branch="false" />
+            <line number="58" hits="1" branch="false" />
+            <line number="59" hits="1" branch="false" />
+            <line number="60" hits="1" branch="false" />
+            <line number="61" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Application.Requests.ValidatorExtensions" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Application.Requests/Extensions/ValidatorExtensions.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="ValidateRequest" signature="(FluentValidation.IValidator`1&lt;TRequest&gt;,TRequest)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="27" hits="1" branch="false" />
+                <line number="28" hits="1" branch="true" condition-coverage="100% (2/2)" />
+                <line number="30" hits="1" branch="false" />
+                <line number="32" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="27" hits="1" branch="false" />
+            <line number="28" hits="1" branch="true" condition-coverage="100% (2/2)" />
+            <line number="30" hits="1" branch="false" />
+            <line number="32" hits="1" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="PruneUrl.Backend.Domain.Entities" line-rate="1" branch-rate="1" complexity="3">
+      <classes>
+        <class name="PruneUrl.Backend.Domain.Entities.Entity" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Domain.Entities/Entity.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="8" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="13" hits="8" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Domain.Entities.ShortUrl" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Domain.Entities/ShortUrl.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="get_LongUrl" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="8" branch="false" />
+              </lines>
+            </method>
+            <method name="get_Url" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="18" hits="8" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="13" hits="8" branch="false" />
+            <line number="18" hits="8" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="PruneUrl.Backend.Infrastructure.Database" line-rate="0.9" branch-rate="1" complexity="8">
+      <classes>
+        <class name="PruneUrl.Backend.Infrastructure.Database.AppDbContext" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Infrastructure.Database/AppDbContext.cs" line-rate="1" branch-rate="1" complexity="3">
+          <methods>
+            <method name="get_ShortUrls" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="18" hits="6" branch="false" />
+              </lines>
+            </method>
+            <method name="OnModelCreating" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="23" hits="3" branch="false" />
+                <line number="24" hits="3" branch="false" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(PruneUrl.Backend.Infrastructure.Database.IDatabaseConfiguration)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="12" hits="4" branch="false" />
+                <line number="15" hits="4" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="12" hits="4" branch="false" />
+            <line number="15" hits="4" branch="false" />
+            <line number="18" hits="6" branch="false" />
+            <line number="23" hits="3" branch="false" />
+            <line number="24" hits="3" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Infrastructure.Database.CommonDatabaseConfiguration" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Infrastructure.Database/Configuration/CommonDatabaseConfiguration.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="ConfigureModel" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="17" hits="3" branch="false" />
+                <line number="18" hits="3" branch="false" />
+              </lines>
+            </method>
+            <method name="ConfigureShortUrl" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="22" hits="3" branch="false" />
+                <line number="23" hits="3" branch="false" />
+                <line number="24" hits="3" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="17" hits="3" branch="false" />
+            <line number="18" hits="3" branch="false" />
+            <line number="22" hits="3" branch="false" />
+            <line number="23" hits="3" branch="false" />
+            <line number="24" hits="3" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Infrastructure.Database.PostgresqlDatabaseConfiguration" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Infrastructure.Database/Configuration/PostgresqlDatabaseConfiguration.cs" line-rate="0.8" branch-rate="1" complexity="3">
+          <methods>
+            <method name="get_Options" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="20" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="Configure" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="25" hits="0" branch="false" />
+                <line number="26" hits="0" branch="false" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="9" hits="1" branch="false" />
+                <line number="10" hits="1" branch="false" />
+                <line number="11" hits="1" branch="false" />
+                <line number="12" hits="1" branch="false" />
+                <line number="15" hits="1" branch="false" />
+                <line number="16" hits="1" branch="false" />
+                <line number="17" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="9" hits="1" branch="false" />
+            <line number="10" hits="1" branch="false" />
+            <line number="11" hits="1" branch="false" />
+            <line number="12" hits="1" branch="false" />
+            <line number="15" hits="1" branch="false" />
+            <line number="16" hits="1" branch="false" />
+            <line number="17" hits="1" branch="false" />
+            <line number="20" hits="1" branch="false" />
+            <line number="25" hits="0" branch="false" />
+            <line number="26" hits="0" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="PruneUrl.Backend.Infrastructure.IoC" line-rate="0.9868421052631579" branch-rate="0.5" complexity="17">
+      <classes>
+        <class name="PruneUrl.Backend.Infrastructure.IoC.CommandsModule" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Infrastructure.IoC/Modules/Application/CommandsModule.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="Load" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="1" branch="false" />
+                <line number="17" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="RegisterCreateShortUrl" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="21" hits="1" branch="false" />
+                <line number="22" hits="1" branch="false" />
+                <line number="23" hits="1" branch="false" />
+                <line number="24" hits="1" branch="false" />
+                <line number="25" hits="1" branch="false" />
+                <line number="26" hits="1" branch="false" />
+                <line number="27" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="1" branch="false" />
+            <line number="17" hits="1" branch="false" />
+            <line number="21" hits="1" branch="false" />
+            <line number="22" hits="1" branch="false" />
+            <line number="23" hits="1" branch="false" />
+            <line number="24" hits="1" branch="false" />
+            <line number="25" hits="1" branch="false" />
+            <line number="26" hits="1" branch="false" />
+            <line number="27" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Infrastructure.IoC.ContainerBuilderExtensions" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Infrastructure.IoC/Extensions/ContainerBuilderExtensions.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="RegisterAllModules" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="1" branch="false" />
+                <line number="16" hits="1" branch="false" />
+                <line number="17" hits="1" branch="false" />
+                <line number="18" hits="1" branch="false" />
+                <line number="20" hits="1" branch="false" />
+                <line number="21" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="15" hits="1" branch="false" />
+            <line number="16" hits="1" branch="false" />
+            <line number="17" hits="1" branch="false" />
+            <line number="18" hits="1" branch="false" />
+            <line number="20" hits="1" branch="false" />
+            <line number="21" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Infrastructure.IoC.DatabaseModule" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Infrastructure.IoC/Modules/Infrastructure/DatabaseModule.cs" line-rate="1" branch-rate="1" complexity="3">
+          <methods>
+            <method name="Load" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="17" hits="1" branch="false" />
+                <line number="18" hits="1" branch="false" />
+                <line number="19" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="RegisterDbContext" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="23" hits="2" branch="false" />
+                <line number="24" hits="1" branch="false" />
+                <line number="25" hits="1" branch="false" />
+                <line number="26" hits="1" branch="false" />
+                <line number="27" hits="1" branch="false" />
+                <line number="28" hits="1" branch="false" />
+                <line number="29" hits="1" branch="false" />
+                <line number="30" hits="1" branch="false" />
+                <line number="31" hits="1" branch="false" />
+                <line number="32" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="RegisterDatabaseConfiguration" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="36" hits="1" branch="false" />
+                <line number="37" hits="1" branch="false" />
+                <line number="38" hits="1" branch="false" />
+                <line number="39" hits="1" branch="false" />
+                <line number="40" hits="1" branch="false" />
+                <line number="41" hits="1" branch="false" />
+                <line number="42" hits="1" branch="false" />
+                <line number="43" hits="1" branch="false" />
+                <line number="44" hits="1" branch="false" />
+                <line number="45" hits="1" branch="false" />
+                <line number="46" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="17" hits="1" branch="false" />
+            <line number="18" hits="1" branch="false" />
+            <line number="19" hits="1" branch="false" />
+            <line number="23" hits="2" branch="false" />
+            <line number="24" hits="1" branch="false" />
+            <line number="25" hits="1" branch="false" />
+            <line number="26" hits="1" branch="false" />
+            <line number="27" hits="1" branch="false" />
+            <line number="28" hits="1" branch="false" />
+            <line number="29" hits="1" branch="false" />
+            <line number="30" hits="1" branch="false" />
+            <line number="31" hits="1" branch="false" />
+            <line number="32" hits="1" branch="false" />
+            <line number="36" hits="1" branch="false" />
+            <line number="37" hits="1" branch="false" />
+            <line number="38" hits="1" branch="false" />
+            <line number="39" hits="1" branch="false" />
+            <line number="40" hits="1" branch="false" />
+            <line number="41" hits="1" branch="false" />
+            <line number="42" hits="1" branch="false" />
+            <line number="43" hits="1" branch="false" />
+            <line number="44" hits="1" branch="false" />
+            <line number="45" hits="1" branch="false" />
+            <line number="46" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Infrastructure.IoC.ImplementationModule" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Infrastructure.IoC/Modules/Application/ImplementationModule.cs" line-rate="1" branch-rate="1" complexity="3">
+          <methods>
+            <method name="Load" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="1" branch="false" />
+                <line number="15" hits="1" branch="false" />
+                <line number="16" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="RegisterFactories" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="20" hits="1" branch="false" />
+                <line number="21" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="RegisterProviders" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="25" hits="1" branch="false" />
+                <line number="26" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="14" hits="1" branch="false" />
+            <line number="15" hits="1" branch="false" />
+            <line number="16" hits="1" branch="false" />
+            <line number="20" hits="1" branch="false" />
+            <line number="21" hits="1" branch="false" />
+            <line number="25" hits="1" branch="false" />
+            <line number="26" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Infrastructure.IoC.QueriesModule" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Infrastructure.IoC/Modules/Application/QueriesModule.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="Load" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="1" branch="false" />
+                <line number="17" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="RegisterGetShortUrl" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="21" hits="1" branch="false" />
+                <line number="22" hits="1" branch="false" />
+                <line number="23" hits="1" branch="false" />
+                <line number="24" hits="1" branch="false" />
+                <line number="25" hits="1" branch="false" />
+                <line number="26" hits="1" branch="false" />
+                <line number="27" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="1" branch="false" />
+            <line number="17" hits="1" branch="false" />
+            <line number="21" hits="1" branch="false" />
+            <line number="22" hits="1" branch="false" />
+            <line number="23" hits="1" branch="false" />
+            <line number="24" hits="1" branch="false" />
+            <line number="25" hits="1" branch="false" />
+            <line number="26" hits="1" branch="false" />
+            <line number="27" hits="1" branch="false" />
+          </lines>
+        </class>
+        <class name="PruneUrl.Backend.Infrastructure.IoC.RequestsModule" filename="/home/callum/github/pruneurl/backend/src/PruneUrl.Backend.Infrastructure.IoC/Modules/Application/RequestsModule.cs" line-rate="0.9523809523809523" branch-rate="0.5" complexity="6">
+          <methods>
+            <method name="Load" signature="(Autofac.ContainerBuilder)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="1" branch="false" />
+                <line number="17" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="RegisterDecorators" signature="(Autofac.ContainerBuilder)" line-rate="0.9090909090909091" branch-rate="1" complexity="1">
+              <lines>
+                <line number="21" hits="1" branch="false" />
+                <line number="22" hits="1" branch="false" />
+                <line number="23" hits="1" branch="false" />
+                <line number="24" hits="0" branch="false" />
+                <line number="25" hits="1" branch="false" />
+                <line number="26" hits="1" branch="false" />
+                <line number="27" hits="1" branch="false" />
+                <line number="28" hits="1" branch="false" />
+                <line number="29" hits="1" branch="false" />
+                <line number="30" hits="1" branch="false" />
+                <line number="31" hits="1" branch="false" />
+              </lines>
+            </method>
+            <method name="ValidatorIsRegistered" signature="(System.String,Autofac.Features.Decorators.IDecoratorContext)" line-rate="1" branch-rate="0.5" complexity="4">
+              <lines>
+                <line number="35" hits="1" branch="false" />
+                <line number="36" hits="1" branch="false" />
+                <line number="37" hits="2" branch="false" />
+                <line number="38" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="39" hits="1" branch="false" />
+                <line number="40" hits="1" branch="false" />
+                <line number="41" hits="1" branch="true" condition-coverage="50% (1/2)" />
+                <line number="42" hits="1" branch="false" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="1" branch="false" />
+            <line number="17" hits="1" branch="false" />
+            <line number="21" hits="1" branch="false" />
+            <line number="22" hits="1" branch="false" />
+            <line number="23" hits="1" branch="false" />
+            <line number="24" hits="0" branch="false" />
+            <line number="25" hits="1" branch="false" />
+            <line number="26" hits="1" branch="false" />
+            <line number="27" hits="1" branch="false" />
+            <line number="28" hits="1" branch="false" />
+            <line number="29" hits="1" branch="false" />
+            <line number="30" hits="1" branch="false" />
+            <line number="31" hits="1" branch="false" />
+            <line number="35" hits="1" branch="false" />
+            <line number="36" hits="1" branch="false" />
+            <line number="37" hits="2" branch="false" />
+            <line number="38" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="39" hits="1" branch="false" />
+            <line number="40" hits="1" branch="false" />
+            <line number="41" hits="1" branch="true" condition-coverage="50% (1/2)" />
+            <line number="42" hits="1" branch="false" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>
