@@ -1,3 +1,14 @@
+# [0.17.0](https://github.com/callumjgill/pruneurl/compare/v0.16.3...v0.17.0) (2024-03-26)
+
+### Features
+
+- **backend:** remove all Firestore database code ([9096c6a](https://github.com/callumjgill/pruneurl/commit/9096c6aa73cb4d6d5794af434da81c26d855cad0))
+- **backend:** use EF Core with PostgreSQL provider instead of custom Interfaces ([9103cc3](https://github.com/callumjgill/pruneurl/commit/9103cc39d03fadfe3b08932fa367786726c7ef72))
+
+### Tests
+
+- **backend:** combine coverage into a single report ([92502f1](https://github.com/callumjgill/pruneurl/commit/92502f10bf4bd4d41593743ea2c1d124f6cc624f))
+
 ## [0.16.3](https://github.com/callumjgill/pruneurl/compare/v0.16.2...v0.16.3) (2024-03-25)
 
 ### Build Systems
