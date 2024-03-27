@@ -1,3 +1,14 @@
+## [0.17.2](https://github.com/callumjgill/pruneurl/compare/v0.17.1...v0.17.2) (2024-03-27)
+
+### Code Refactoring
+
+- **backend:** replace Autofac with Microsoft.Extensions.DependencyInjection ([398e36c](https://github.com/callumjgill/pruneurl/commit/398e36c44f34dfd8079a5f27abe7f06fd6ca2321)), closes [#87](https://github.com/callumjgill/pruneurl/issues/87)
+- **backend:** use MediatR behaviours instead of decorators ([dd1eabf](https://github.com/callumjgill/pruneurl/commit/dd1eabf0602c3fdde5089e39cc7c473c34e24f65)), closes [#93](https://github.com/callumjgill/pruneurl/issues/93)
+
+### Build Systems
+
+- **deps:** remove uncessary NuGet dependencies from backend ([b50cb95](https://github.com/callumjgill/pruneurl/commit/b50cb95cf2f5a5a9bce77e499d5be96b0cde85de))
+
 ## [0.17.1](https://github.com/callumjgill/pruneurl/compare/v0.17.0...v0.17.1) (2024-03-27)
 
 ### Build Systems
