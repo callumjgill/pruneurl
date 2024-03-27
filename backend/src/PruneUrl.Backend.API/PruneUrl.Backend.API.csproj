@@ -3,7 +3,6 @@
     <UserSecretsId>9472b95c-bf0e-409d-bbba-c618a5f13d29</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <PrivateAssets>all</PrivateAssets>

@@ -1,5 +1,5 @@
-﻿using Autofac;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using NUnit.Framework;
 using PruneUrl.Backend.TestHelpers;
@@ -13,12 +13,13 @@ public sealed class AppDbContextUnitTests
   [Test]
   public async Task OnModelCreatingTest()
   {
-    ContainerBuilder containerBuilder = new();
-    containerBuilder.RegisterInMemoryDbContext();
-    using IContainer container = containerBuilder.Build();
+    ServiceCollection services = new();
+    services.AddInMemoryDbContext();
+    using ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-    IDatabaseConfiguration databaseConfiguration = container.Resolve<IDatabaseConfiguration>();
-    AppDbContext dbContext = container.Resolve<AppDbContext>();
+    IDatabaseConfiguration databaseConfiguration =
+      serviceProvider.GetRequiredService<IDatabaseConfiguration>();
+    AppDbContext dbContext = serviceProvider.GetRequiredService<AppDbContext>();
     await dbContext.Database.EnsureCreatedAsync();
 
     databaseConfiguration.Received().Configure(Arg.Any<ModelBuilder>());

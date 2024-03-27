@@ -1,5 +1,3 @@
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using PruneUrl.Backend.API;
 using PruneUrl.Backend.Infrastructure.IoC;
@@ -28,8 +26,7 @@ builder.Services.AddHttpLogging(logging =>
   logging.CombineLogs = true;
 });
 
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAllModules());
+builder.Services.AddAppServices();
 
 var app = builder.Build();
 

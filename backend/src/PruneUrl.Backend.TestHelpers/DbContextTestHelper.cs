@@ -1,8 +1,7 @@
-﻿using Autofac;
-using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
-using PruneUrl.Backend.Application.Interfaces;
 using PruneUrl.Backend.Infrastructure.Database;
 
 namespace PruneUrl.Backend.TestHelpers;
@@ -28,40 +27,29 @@ public static class DbContextTestHelper
   /// Creates and registers an in-memory <see cref="AppDbContext" /> instance in the
   /// IoC container.
   /// </summary>
-  /// <param name="containerBuilder"> The AutoFac dependency injection container builder.</param>
-  public static void RegisterInMemoryDbContext(this ContainerBuilder containerBuilder)
+  /// <param name="services"> This <see cref="IServiceCollection"/> dependency injection container builder.</param>
+  public static void AddInMemoryDbContext(this IServiceCollection services)
   {
-    containerBuilder.Register(_ =>
+    services.AddScoped(_ =>
     {
       SqliteConnection keepAliveConnection = new("DataSource=:memory:");
       keepAliveConnection.Open();
       return keepAliveConnection;
     });
-    containerBuilder
-      .Register(componentContext =>
-      {
-        DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
-          .UseSqlite(componentContext.Resolve<SqliteConnection>())
-          .EnableSensitiveDataLogging()
-          .Options;
-        IDatabaseConfiguration databaseConfiguration = Substitute.For<IDatabaseConfiguration>();
-        databaseConfiguration.Options.Returns(options);
-        databaseConfiguration
-          .When(x => x.Configure(Arg.Any<ModelBuilder>()))
-          .Do(x => CommonDatabaseConfiguration.ConfigureModel(x.Arg<ModelBuilder>()));
+    services.AddScoped(serviceProvider =>
+    {
+      DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
+        .UseSqlite(serviceProvider.GetRequiredService<SqliteConnection>())
+        .EnableSensitiveDataLogging()
+        .Options;
+      IDatabaseConfiguration databaseConfiguration = Substitute.For<IDatabaseConfiguration>();
+      databaseConfiguration.Options.Returns(options);
+      databaseConfiguration
+        .When(x => x.Configure(Arg.Any<ModelBuilder>()))
+        .Do(x => CommonDatabaseConfiguration.ConfigureModel(x.Arg<ModelBuilder>()));
 
-        return databaseConfiguration;
-      })
-      .InstancePerLifetimeScope();
-    containerBuilder
-      .Register(componentContext =>
-      {
-        IDatabaseConfiguration databaseConfiguration =
-          componentContext.Resolve<IDatabaseConfiguration>();
-        return new AppDbContext(databaseConfiguration);
-      })
-      .AsSelf()
-      .As<IDbContext>()
-      .InstancePerLifetimeScope();
+      return databaseConfiguration;
+    });
+    services.AddDbContext<AppDbContext>();
   }
 }

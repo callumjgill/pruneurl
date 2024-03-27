@@ -1,8 +1,7 @@
-﻿using Autofac;
+﻿using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using PruneUrl.Backend.Application.Exceptions;
-using PruneUrl.Backend.Application.Interfaces;
 using PruneUrl.Backend.Domain.Entities;
 using PruneUrl.Backend.Infrastructure.Database;
 using PruneUrl.Backend.TestHelpers;
@@ -21,11 +20,11 @@ public sealed class GetShortUrlQueryHandlerUnitTests
     GetShortUrlQuery query = new(testShortUrl);
     CancellationToken cancellationToken = CancellationToken.None;
 
-    ContainerBuilder containerBuilder = new();
-    RegisterDependencies(containerBuilder);
-    using IContainer container = containerBuilder.Build();
+    ServiceCollection services = new();
+    services.AddInMemoryDbContext();
+    using ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-    AppDbContext dbContext = container.Resolve<AppDbContext>();
+    AppDbContext dbContext = serviceProvider.GetRequiredService<AppDbContext>();
     await dbContext.Database.EnsureCreatedAsync();
     IEnumerable<ShortUrl> shortUrls =
     [
@@ -36,7 +35,7 @@ public sealed class GetShortUrlQueryHandlerUnitTests
     dbContext.AddRange(shortUrls);
     await dbContext.SaveChangesAsync();
 
-    GetShortUrlQueryHandler handler = container.Resolve<GetShortUrlQueryHandler>();
+    GetShortUrlQueryHandler handler = new(dbContext);
     GetShortUrlQueryResponse response = await handler.Handle(query, cancellationToken);
     Assert.That(response.ShortUrl, Is.EqualTo(testShortUrlEntity));
   }
@@ -49,11 +48,11 @@ public sealed class GetShortUrlQueryHandlerUnitTests
     GetShortUrlQuery query = new(testShortUrl);
     CancellationToken cancellationToken = CancellationToken.None;
 
-    ContainerBuilder containerBuilder = new();
-    RegisterDependencies(containerBuilder);
-    using IContainer container = containerBuilder.Build();
+    ServiceCollection services = new();
+    services.AddInMemoryDbContext();
+    using ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-    AppDbContext dbContext = container.Resolve<AppDbContext>();
+    AppDbContext dbContext = serviceProvider.GetRequiredService<AppDbContext>();
     await dbContext.Database.EnsureCreatedAsync();
     IEnumerable<ShortUrl> shortUrls =
     [
@@ -64,7 +63,7 @@ public sealed class GetShortUrlQueryHandlerUnitTests
     dbContext.AddRange(shortUrls);
     await dbContext.SaveChangesAsync();
 
-    GetShortUrlQueryHandler handler = container.Resolve<GetShortUrlQueryHandler>();
+    GetShortUrlQueryHandler handler = new(dbContext);
     Assert.That(
       async () => await handler.Handle(query, cancellationToken),
       Throws
@@ -72,14 +71,6 @@ public sealed class GetShortUrlQueryHandlerUnitTests
         .With.Message.EqualTo(
           $"Entity of type {typeof(ShortUrl)} was not found! Url={testShortUrl}."
         )
-    );
-  }
-
-  private static void RegisterDependencies(ContainerBuilder containerBuilder)
-  {
-    containerBuilder.RegisterInMemoryDbContext();
-    containerBuilder.Register(
-      (componentContext) => new GetShortUrlQueryHandler(componentContext.Resolve<IDbContext>())
     );
   }
 }
