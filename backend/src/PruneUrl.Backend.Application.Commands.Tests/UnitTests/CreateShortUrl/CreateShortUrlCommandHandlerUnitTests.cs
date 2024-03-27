@@ -1,4 +1,4 @@
-﻿using Autofac;
+﻿using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
@@ -24,11 +24,11 @@ public sealed class CreateShortUrlCommandHandlerUnitTests
     ShortUrl testShortUrl = EntityTestHelper.CreateShortUrl(url: testUrl);
     CancellationToken cancellationToken = CancellationToken.None;
 
-    ContainerBuilder containerBuilder = new();
-    RegisterDependencies(containerBuilder);
-    using IContainer container = containerBuilder.Build();
+    ServiceCollection services = new();
+    services.AddInMemoryDbContext();
+    using ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-    AppDbContext dbContext = container.Resolve<AppDbContext>();
+    AppDbContext dbContext = serviceProvider.GetRequiredService<AppDbContext>();
     await dbContext.Database.EnsureCreatedAsync();
 
     shortUrlFactory.Create(Arg.Any<string>(), Arg.Any<int>()).Returns(testShortUrl);
@@ -43,10 +43,5 @@ public sealed class CreateShortUrlCommandHandlerUnitTests
     shortUrlFactory.Received(1).Create(testLongUrl, testSequenceId);
     shortUrlFactory.Received(1).Create();
     Assert.That(response.ShortUrl, Is.EqualTo(testUrl));
-  }
-
-  private static void RegisterDependencies(ContainerBuilder containerBuilder)
-  {
-    containerBuilder.RegisterInMemoryDbContext();
   }
 }
