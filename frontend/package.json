@@ -1,7 +1,7 @@
 {
   "name": "pruneurl.com",
   "private": true,
-  "version": "0.17.0",
+  "version": "0.17.1",
   "type": "module",
   "scripts": {
     "prepare": "cd .. && dotnet tool restore && dotnet husky install",
