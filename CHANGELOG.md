@@ -1,3 +1,9 @@
+## [0.17.1](https://github.com/callumjgill/pruneurl/compare/v0.17.0...v0.17.1) (2024-03-27)
+
+### Build Systems
+
+- **deps:** bump the github-actions-dependencies group with 3 updates ([99ff8f1](https://github.com/callumjgill/pruneurl/commit/99ff8f1dc606f5d8034bbeaaf86ef0c19bd70478))
+
 # [0.17.0](https://github.com/callumjgill/pruneurl/compare/v0.16.3...v0.17.0) (2024-03-26)
 
 ### Features
