@@ -1,5 +1,11 @@
+@use "bootstrap";
+
 .submit-button {
   width: 75px;
+
+  @media screen and (max-width: #{map-get(bootstrap.$grid-breakpoints, sm)}) {
+    width: 100%;
+  }
 }
 
 .copy-button {
