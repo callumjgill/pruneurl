@@ -1,3 +1,9 @@
+## [0.18.1](https://github.com/callumjgill/pruneurl/compare/v0.18.0...v0.18.1) (2024-03-28)
+
+### Build Systems
+
+- **deps:** remove react-bootstrap-icons frontend dependency ([af8b2be](https://github.com/callumjgill/pruneurl/commit/af8b2be7df2b84066a7dda1eb219666e19af9e2c))
+
 # [0.18.0](https://github.com/callumjgill/pruneurl/compare/v0.17.2...v0.18.0) (2024-03-28)
 
 ### Features
