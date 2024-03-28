@@ -1,7 +1,6 @@
 import { Form, InputGroup } from "react-bootstrap";
 import FormRow from "../FormRow";
 import CopyToClipboardButton from "../buttons/CopyToClipboardButton";
-import { InfoCircle } from "react-bootstrap-icons";
 import { UrlFormControlProps } from "./UrlFormControlProps";
 
 interface GeneratedUrlFormControlProps extends UrlFormControlProps {
@@ -21,12 +20,6 @@ const GeneratedUrlFormControl = (props: GeneratedUrlFormControlProps) => {
         />
         <CopyToClipboardButton text={generatedUrl ?? ""} />
       </InputGroup>
-      <Form.Text id="generatedUrlBlock" muted>
-        <div className="form-expiry-text-container">
-          <InfoCircle />
-          <span>This pruned url will expire in 30 days.</span>
-        </div>
-      </Form.Text>
     </FormRow>
   );
 };
