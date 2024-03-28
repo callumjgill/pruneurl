@@ -5,6 +5,7 @@
     <ProjectReference Include="..\PruneUrl.Backend.Application.Queries\PruneUrl.Backend.Application.Queries.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Application.Requests\PruneUrl.Backend.Application.Requests.csproj" />
     <ProjectReference Include="..\PruneUrl.Backend.Infrastructure.Database\PruneUrl.Backend.Infrastructure.Database.csproj" />
+    <ProjectReference Include="..\PruneUrl.Backend.Infrastructure.Requests\PruneUrl.Backend.Infrastructure.Requests.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />

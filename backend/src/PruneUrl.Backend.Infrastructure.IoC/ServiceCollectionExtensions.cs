@@ -8,6 +8,7 @@ using PruneUrl.Backend.Application.Interfaces;
 using PruneUrl.Backend.Application.Queries;
 using PruneUrl.Backend.Application.Requests;
 using PruneUrl.Backend.Infrastructure.Database;
+using PruneUrl.Backend.Infrastructure.Requests;
 
 namespace PruneUrl.Backend.Infrastructure.IoC;
 
@@ -26,12 +27,17 @@ public static class ServiceCollectionExtensions
     return services.AddCommandAndQueryServices().AddDatabaseServices().AddImplementationServices();
   }
 
-  private static IServiceCollection AddCommandServices(this IServiceCollection services)
+  private static IServiceCollection AddCommandAndQueryServices(this IServiceCollection services)
   {
     services.AddMediatR(configuration =>
-      configuration.RegisterServicesFromAssemblyContaining<CreateShortUrlCommand>()
+      configuration
+        .RegisterServicesFromAssemblyContaining<CreateShortUrlCommand>()
+        .RegisterServicesFromAssemblyContaining<GetShortUrlQuery>()
+        .AddOpenBehavior(typeof(LogRequestBehavior<,>))
+        .AddOpenBehavior(typeof(ValidateRequestBehavior<,>))
     );
     services.AddTransient<IValidator<CreateShortUrlCommand>, CreateShortUrlCommandValidator>();
+    services.AddTransient<IValidator<GetShortUrlQuery>, GetShortUrlQueryValidator>();
     return services;
   }
 
@@ -63,19 +69,6 @@ public static class ServiceCollectionExtensions
     services.AddTransient<ISequenceIdProvider>(serviceProvider =>
       serviceProvider.GetRequiredService<ShortUrlProvider>()
     );
-    return services;
-  }
-
-  private static IServiceCollection AddCommandAndQueryServices(this IServiceCollection services)
-  {
-    services.AddMediatR(configuration =>
-      configuration
-        .RegisterServicesFromAssemblyContaining<CreateShortUrlCommand>()
-        .RegisterServicesFromAssemblyContaining<GetShortUrlQuery>()
-        .AddOpenBehavior(typeof(ValidateRequestBehavior<,>))
-    );
-    services.AddTransient<IValidator<CreateShortUrlCommand>, CreateShortUrlCommandValidator>();
-    services.AddTransient<IValidator<GetShortUrlQuery>, GetShortUrlQueryValidator>();
     return services;
   }
 }
