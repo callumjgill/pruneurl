@@ -10,7 +10,9 @@ const SubmitUrlButton = (props: SubmitUrlButtonProps) => {
 
   return (
     <Button className="submit-button" type="submit" disabled={submitting}>
-      {submitting ? <ButtonSpinner /> : "Prune"}
+      {submitting ?
+        <ButtonSpinner />
+      : "Submit"}
     </Button>
   );
 };
