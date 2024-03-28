@@ -1,3 +1,9 @@
+# [0.18.0](https://github.com/callumjgill/pruneurl/compare/v0.17.2...v0.18.0) (2024-03-28)
+
+### Features
+
+- **backend:** add logging behavior to MediatR request pipeline ([9667eee](https://github.com/callumjgill/pruneurl/commit/9667eee1b32a9018a53645250bce324b81e95cb1))
+
 ## [0.17.2](https://github.com/callumjgill/pruneurl/compare/v0.17.1...v0.17.2) (2024-03-27)
 
 ### Code Refactoring
