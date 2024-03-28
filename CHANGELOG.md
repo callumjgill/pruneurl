@@ -1,3 +1,9 @@
+## [0.18.2](https://github.com/callumjgill/pruneurl/compare/v0.18.1...v0.18.2) (2024-03-28)
+
+### Styles
+
+- **frontend:** submit button occupies fullwidth on sm screens ([4581067](https://github.com/callumjgill/pruneurl/commit/458106774ac4a60f49fb7b414211bae3b5b09a28))
+
 ## [0.18.1](https://github.com/callumjgill/pruneurl/compare/v0.18.0...v0.18.1) (2024-03-28)
 
 ### Build Systems
