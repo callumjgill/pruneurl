@@ -1,3 +1,9 @@
+## [0.18.3](https://github.com/callumjgill/pruneurl/compare/v0.18.2...v0.18.3) (2024-04-22)
+
+### Build Systems
+
+- **deps-dev:** bump the npm-dev-dependencies group ([893de7e](https://github.com/callumjgill/pruneurl/commit/893de7ea31e6c83ded255af2679512eb9c6dd241))
+
 ## [0.18.2](https://github.com/callumjgill/pruneurl/compare/v0.18.1...v0.18.2) (2024-03-28)
 
 ### Styles
