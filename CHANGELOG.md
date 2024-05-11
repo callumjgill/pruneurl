@@ -1,3 +1,9 @@
+## [0.19.1](https://github.com/callumjgill/pruneurl/compare/v0.19.0...v0.19.1) (2024-05-11)
+
+### Bug Fixes
+
+- **workflows:** add permissions to test workflow so all PRs have code coverage results ([431e013](https://github.com/callumjgill/pruneurl/commit/431e013ba7df4dc33f9b0d4a629d1fee07c3a886))
+
 # [0.19.0](https://github.com/callumjgill/pruneurl/compare/v0.18.3...v0.19.0) (2024-05-11)
 
 ### Features
