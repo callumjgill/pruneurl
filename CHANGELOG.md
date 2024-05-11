@@ -1,3 +1,9 @@
+# [0.20.0](https://github.com/callumjgill/pruneurl/compare/v0.19.5...v0.20.0) (2024-05-11)
+
+### Features
+
+- **frontend:** replace SubmitToast's with more generic Notifications ([3ca978f](https://github.com/callumjgill/pruneurl/commit/3ca978f1c2cf9e4b7c282e13e62c24eb1f6abc7e))
+
 ## [0.19.5](https://github.com/callumjgill/pruneurl/compare/v0.19.4...v0.19.5) (2024-05-11)
 
 ### Build Systems
