@@ -1,3 +1,9 @@
+## [0.19.4](https://github.com/callumjgill/pruneurl/compare/v0.19.3...v0.19.4) (2024-05-11)
+
+### Build Systems
+
+- **deps:** bump the npm-dependencies group across 1 directory with 4 updates ([668fb47](https://github.com/callumjgill/pruneurl/commit/668fb4753eff4297d274bb7e443ef92dd4e36502))
+
 ## [0.19.3](https://github.com/callumjgill/pruneurl/compare/v0.19.2...v0.19.3) (2024-05-11)
 
 ### Build Systems
