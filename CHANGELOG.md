@@ -1,3 +1,15 @@
+# [0.19.0](https://github.com/callumjgill/pruneurl/compare/v0.18.3...v0.19.0) (2024-05-11)
+
+### Features
+
+- **backend:** the REST API will return a problems details object for errors ([4b42969](https://github.com/callumjgill/pruneurl/commit/4b42969589a0b1f9cacbe3de0078de52ecf93710))
+- **frontend:** add axios client to communicate with backend ([c29fa1e](https://github.com/callumjgill/pruneurl/commit/c29fa1ef21b91219d51f1d1072d2c2ff46943381))
+
+### Code Refactoring
+
+- **frontend:** replace getApi function with hook ([bee62e6](https://github.com/callumjgill/pruneurl/commit/bee62e67b05117ae8d5c0e550311e00d07e61e19))
+- **frontend:** the API middleware now uses DTO responses ([ecc4684](https://github.com/callumjgill/pruneurl/commit/ecc4684eb2a0fd5c87203f723c200874e9652625))
+
 ## [0.18.3](https://github.com/callumjgill/pruneurl/compare/v0.18.2...v0.18.3) (2024-04-22)
 
 ### Build Systems
