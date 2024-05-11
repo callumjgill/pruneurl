@@ -1,3 +1,9 @@
+## [0.19.3](https://github.com/callumjgill/pruneurl/compare/v0.19.2...v0.19.3) (2024-05-11)
+
+### Build Systems
+
+- **deps:** bump the nuget-dependencies group ([2848553](https://github.com/callumjgill/pruneurl/commit/2848553664912c1161daa51c79adb2800548dff6))
+
 ## [0.19.2](https://github.com/callumjgill/pruneurl/compare/v0.19.1...v0.19.2) (2024-05-11)
 
 ### Build Systems
