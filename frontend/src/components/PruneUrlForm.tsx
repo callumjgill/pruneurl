@@ -6,7 +6,7 @@ import SubmitToastContainer from "./toasts/SubmitToastContainer";
 import GeneratedUrlFormControl from "./FormControls/GeneratedUrlFormControl";
 import getAPI from "../middleware/API/getAPI";
 import API from "../middleware/API/API";
-import PruneUrlResult from "../middleware/API/DTOs/PruneUrlResult";
+import { UrlResult } from "../middleware/API/DTOs";
 
 const domain = window.location.host;
 const longUrlControlId = `${domain}-LongURL`;
@@ -30,13 +30,10 @@ const PruneUrlForm = () => {
     event.preventDefault();
     const form: HTMLFormElement = event.currentTarget;
     const formIsValid: boolean = form.checkValidity();
-    if (!form.checkValidity()) {
-      event.stopPropagation();
-    }
-
     setValidated(true);
     setSubmitting(formIsValid);
     if (!formIsValid) {
+      event.stopPropagation();
       return;
     }
 
@@ -50,10 +47,9 @@ const PruneUrlForm = () => {
     setLongUrl(longUrlValue);
   };
 
-  const handleApiResult = (result: PruneUrlResult): void => {
+  const handleApiResult = (result: UrlResult): void => {
     setSubmitting(false);
-    const statusCode: number = result.error === undefined ? 200 : result.error;
-    setLatestStatusCode(statusCode);
+    setLatestStatusCode(result.statusCode);
     if (result.error !== undefined) {
       return;
     }
