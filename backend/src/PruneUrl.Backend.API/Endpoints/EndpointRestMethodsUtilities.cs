@@ -22,13 +22,13 @@ internal static class EndpointRestMethodsUtilities
       IResult result = await restMethod();
       return result;
     }
-    catch (InvalidRequestException ex)
+    catch (Exception ex)
     {
-      return Results.BadRequest(ex.Message);
-    }
-    catch (Exception)
-    {
-      return Results.StatusCode(500);
+      int statusCode =
+        ex is InvalidRequestException
+          ? StatusCodes.Status400BadRequest
+          : StatusCodes.Status500InternalServerError;
+      return Results.Problem(ex.Message, statusCode: statusCode);
     }
   }
 }

@@ -24,18 +24,20 @@ public sealed class RedirectEndpointRestMethodsUnitTests
     ShortUrl testShortUrlEntity = EntityTestHelper.CreateShortUrl(longUrl: testLongUrl);
     GetShortUrlQueryResponse response = new(testShortUrlEntity);
 
+    Exception exception = new("This is an error!");
     mediator
       .When(x => x.Send(Arg.Any<GetShortUrlQuery>()))
       .Do(x =>
       {
-        throw new Exception();
+        throw exception;
       });
 
     IResult result = await RedirectEndpointRestMethods.GetShortUrl(testShortUrl, mediator);
     Assert.Multiple(() =>
     {
-      Assert.That(result, Is.TypeOf<StatusCodeHttpResult>());
-      Assert.That(((StatusCodeHttpResult)result).StatusCode, Is.EqualTo(500));
+      Assert.That(result, Is.TypeOf<ProblemHttpResult>());
+      Assert.That(((ProblemHttpResult)result).StatusCode, Is.EqualTo(500));
+      Assert.That(((ProblemHttpResult)result).ProblemDetails.Detail, Is.EqualTo(exception.Message));
     });
 
     await mediator.Received(1).Send(Arg.Any<GetShortUrlQuery>());
@@ -51,18 +53,20 @@ public sealed class RedirectEndpointRestMethodsUnitTests
     ShortUrl testShortUrlEntity = EntityTestHelper.CreateShortUrl(longUrl: testLongUrl);
     GetShortUrlQueryResponse response = new(testShortUrlEntity);
 
+    InvalidRequestException exception = new([]);
     mediator
       .When(x => x.Send(Arg.Any<GetShortUrlQuery>()))
       .Do(x =>
       {
-        throw new InvalidRequestException([]);
+        throw exception;
       });
 
     IResult result = await RedirectEndpointRestMethods.GetShortUrl(testShortUrl, mediator);
     Assert.Multiple(() =>
     {
-      Assert.That(result, Is.TypeOf<BadRequest<string>>());
-      Assert.That(((BadRequest<string>)result).StatusCode, Is.EqualTo(400));
+      Assert.That(result, Is.TypeOf<ProblemHttpResult>());
+      Assert.That(((ProblemHttpResult)result).StatusCode, Is.EqualTo(400));
+      Assert.That(((ProblemHttpResult)result).ProblemDetails.Detail, Is.EqualTo(exception.Message));
     });
 
     await mediator.Received(1).Send(Arg.Any<GetShortUrlQuery>());

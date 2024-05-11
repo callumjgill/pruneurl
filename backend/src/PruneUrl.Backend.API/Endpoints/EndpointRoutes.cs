@@ -43,7 +43,8 @@ internal static class EndpointRoutes
       })
       .Produces(StatusCodes.Status307TemporaryRedirect)
       .Produces(StatusCodes.Status404NotFound)
-      .Produces(StatusCodes.Status500InternalServerError);
+      .ProducesProblem(StatusCodes.Status400BadRequest)
+      .ProducesProblem(StatusCodes.Status500InternalServerError);
 
     return routeBuilder;
   }
@@ -64,7 +65,8 @@ internal static class EndpointRoutes
       })
       .Accepts<ShortUrlPostRequest>("application/json")
       .Produces(StatusCodes.Status201Created)
-      .Produces(StatusCodes.Status500InternalServerError);
+      .ProducesProblem(StatusCodes.Status400BadRequest)
+      .ProducesProblem(StatusCodes.Status500InternalServerError);
 
     return routeBuilder;
   }

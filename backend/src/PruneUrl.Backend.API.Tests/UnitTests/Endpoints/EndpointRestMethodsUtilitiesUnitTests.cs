@@ -12,11 +12,16 @@ public sealed class EndpointRestMethodsUtilitiesUnitTests
   [Test]
   public async Task HandleErrorsTest_ExceptionThrown()
   {
-    IResult actualResult = await EndpointRestMethodsUtilities.HandleErrors(
-      () => Task.FromException<IResult>(new Exception())
+    Exception exception = new("This is an error!");
+    IResult result = await EndpointRestMethodsUtilities.HandleErrors(
+      () => Task.FromException<IResult>(exception)
     );
-    Assert.That(actualResult, Is.TypeOf<StatusCodeHttpResult>());
-    Assert.That(((StatusCodeHttpResult)actualResult).StatusCode, Is.EqualTo(500));
+    Assert.Multiple(() =>
+    {
+      Assert.That(result, Is.TypeOf<ProblemHttpResult>());
+      Assert.That(((ProblemHttpResult)result).StatusCode, Is.EqualTo(500));
+      Assert.That(((ProblemHttpResult)result).ProblemDetails.Detail, Is.EqualTo(exception.Message));
+    });
   }
 
   [Test]

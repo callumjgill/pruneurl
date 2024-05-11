@@ -46,11 +46,16 @@ public sealed class ShortUrlEndpointRestMethodsUnitTests
     IMediator mediator = Substitute.For<IMediator>();
     ShortUrlPostRequest shortUrlPostRequest = new(testLongUrl);
 
-    mediator.When(x => x.Send(Arg.Any<CreateShortUrlCommand>())).Do(_ => throw new Exception());
+    Exception exception = new("This is an error.");
+    mediator.When(x => x.Send(Arg.Any<CreateShortUrlCommand>())).Do(_ => throw exception);
 
     IResult result = await ShortUrlEndpointRestMethods.PostShortUrl(shortUrlPostRequest, mediator);
-    Assert.That(result, Is.TypeOf<StatusCodeHttpResult>());
-    Assert.That(((StatusCodeHttpResult)result).StatusCode, Is.EqualTo(500));
+    Assert.Multiple(() =>
+    {
+      Assert.That(result, Is.TypeOf<ProblemHttpResult>());
+      Assert.That(((ProblemHttpResult)result).StatusCode, Is.EqualTo(500));
+      Assert.That(((ProblemHttpResult)result).ProblemDetails.Detail, Is.EqualTo(exception.Message));
+    });
 
     await mediator.Received(1).Send(Arg.Any<CreateShortUrlCommand>());
     await mediator.Received(1).Send(Arg.Is<CreateShortUrlCommand>(x => x.LongUrl == testLongUrl));
@@ -63,15 +68,15 @@ public sealed class ShortUrlEndpointRestMethodsUnitTests
     IMediator mediator = Substitute.For<IMediator>();
     ShortUrlPostRequest shortUrlPostRequest = new(testLongUrl);
 
-    mediator
-      .When(x => x.Send(Arg.Any<CreateShortUrlCommand>()))
-      .Do(_ => throw new InvalidRequestException([]));
+    InvalidRequestException exception = new([]);
+    mediator.When(x => x.Send(Arg.Any<CreateShortUrlCommand>())).Do(_ => throw exception);
 
     IResult result = await ShortUrlEndpointRestMethods.PostShortUrl(shortUrlPostRequest, mediator);
     Assert.Multiple(() =>
     {
-      Assert.That(result, Is.TypeOf<BadRequest<string>>());
-      Assert.That(((BadRequest<string>)result).StatusCode, Is.EqualTo(400));
+      Assert.That(result, Is.TypeOf<ProblemHttpResult>());
+      Assert.That(((ProblemHttpResult)result).StatusCode, Is.EqualTo(400));
+      Assert.That(((ProblemHttpResult)result).ProblemDetails.Detail, Is.EqualTo(exception.Message));
     });
 
     await mediator.Received(1).Send(Arg.Any<CreateShortUrlCommand>());
