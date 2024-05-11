@@ -4,6 +4,10 @@ export interface UrlError {
 
 export interface UrlResult {
   statusCode: number;
-  prunedUrl?: string;
+  shortUrl?: string;
   error?: UrlError;
+}
+
+export interface CreateShortUrlPostRequestBody {
+  longUrl: string;
 }

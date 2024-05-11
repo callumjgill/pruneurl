@@ -8,9 +8,8 @@ import { UrlResult } from "../middleware/API/DTOs";
 import useApi from "../middleware/API/hooks/useApi";
 import API from "../middleware/API/API";
 
-const domain = window.location.host;
-const longUrlControlId = `${domain}-LongURL`;
-const generatedUrlControlId = `${domain}-PrunedUrl`;
+const longUrlControlId = "LongURL";
+const generatedUrlControlId = "ShortUrl";
 
 const PruneUrlForm = () => {
   const { getApi } = useApi();
@@ -55,7 +54,7 @@ const PruneUrlForm = () => {
     }
 
     setSubmitted(true);
-    setGeneratedUrl(`${domain}/${result.prunedUrl}`);
+    setGeneratedUrl(result.shortUrl);
   };
 
   useEffect(() => {
@@ -70,7 +69,7 @@ const PruneUrlForm = () => {
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <h1 className="text-center mb-4">{domain}</h1>
+        <h1 className="text-center mb-4">PruneURL</h1>
         <UrlFormControl controlId={longUrlControlId} />
         <SubmitUrlButton submitting={submitting} />
         <Collapse in={submitted} timeout={5000} mountOnEnter>
