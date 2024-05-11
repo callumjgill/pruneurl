@@ -1,3 +1,9 @@
+## [0.19.2](https://github.com/callumjgill/pruneurl/compare/v0.19.1...v0.19.2) (2024-05-11)
+
+### Build Systems
+
+- **deps:** bump danielpalme/ReportGenerator-GitHub-Action ([ca6fcba](https://github.com/callumjgill/pruneurl/commit/ca6fcba739f0c940aa24ec3e5390bf847cf0b214))
+
 ## [0.19.1](https://github.com/callumjgill/pruneurl/compare/v0.19.0...v0.19.1) (2024-05-11)
 
 ### Bug Fixes
