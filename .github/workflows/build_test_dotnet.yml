@@ -8,6 +8,10 @@ on:
     branches:
       - "**"
 
+permissions:
+  pull-requests: write
+  contents: read
+
 jobs:
   build_test:
     runs-on: ubuntu-latest
