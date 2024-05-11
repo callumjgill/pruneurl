@@ -1,19 +1,19 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Collapse, Form } from "react-bootstrap";
 import UrlFormControl from "./FormControls/UrlFormControl";
 import SubmitUrlButton from "./buttons/SubmitUrlButton";
 import SubmitToastContainer from "./toasts/SubmitToastContainer";
 import GeneratedUrlFormControl from "./FormControls/GeneratedUrlFormControl";
-import getAPI from "../middleware/API/getAPI";
-import API from "../middleware/API/API";
 import { UrlResult } from "../middleware/API/DTOs";
+import useApi from "../middleware/API/hooks/useApi";
+import API from "../middleware/API/API";
 
 const domain = window.location.host;
 const longUrlControlId = `${domain}-LongURL`;
 const generatedUrlControlId = `${domain}-PrunedUrl`;
 
 const PruneUrlForm = () => {
-  const api = useRef<API>(getAPI());
+  const { getApi } = useApi();
 
   const [longUrl, setLongUrl] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(false);
@@ -59,10 +59,13 @@ const PruneUrlForm = () => {
   };
 
   useEffect(() => {
-    if (submitting) {
-      api.current.pruneUrl(longUrl).then(handleApiResult);
+    if (!submitting) {
+      return;
     }
-  }, [longUrl, submitting]);
+
+    const api: API = getApi();
+    api.pruneUrl(longUrl).then(handleApiResult);
+  }, [getApi, longUrl, submitting]);
 
   return (
     <>
