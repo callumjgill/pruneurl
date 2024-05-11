@@ -12,7 +12,7 @@ export default class DummyApi implements API {
     await waitAsync(2);
     const result: UrlResult = {
       statusCode: this.getStatusCode(),
-      prunedUrl: this.dummyPrunedUrl,
+      shortUrl: this.dummyPrunedUrl,
       error: this.getError(),
     };
     return result;

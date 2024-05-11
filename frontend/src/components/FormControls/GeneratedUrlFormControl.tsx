@@ -11,7 +11,7 @@ const GeneratedUrlFormControl = (props: GeneratedUrlFormControlProps) => {
   const { controlId, generatedUrl } = { ...props };
   return (
     <FormRow controlId={controlId}>
-      <Form.Label>Your generated pruned URL:</Form.Label>
+      <Form.Label>Your generated URL:</Form.Label>
       <InputGroup>
         <Form.Control
           readOnly

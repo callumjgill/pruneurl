@@ -2,6 +2,8 @@ import { MutableRefObject, useCallback, useRef } from "react";
 import API from "../API";
 import isDevelopment from "../../../utils/isDevelopment";
 import DummyApi from "../DummyAPI";
+import AxiosAPI from "../AxiosAPI";
+import axios, { AxiosInstance } from "axios";
 
 export interface UseApiReturn {
   getApi: () => API;
@@ -19,8 +21,8 @@ const createApi = (): API => {
     return new DummyApi();
   }
 
-  // TODO: change this to a genuine implementation once ready
-  return new DummyApi();
+  const axiosInstance: AxiosInstance = axios.create();
+  return new AxiosAPI(axiosInstance);
 };
 
 const useApi = (): UseApiReturn => {
