@@ -1,5 +1,5 @@
 import { Container, Row } from "react-bootstrap";
-import PruneUrlForm from "../components/PruneUrlForm";
+import PruneUrlForm from "../features/form/components/PruneUrlForm";
 
 const FormView = () => {
   return (

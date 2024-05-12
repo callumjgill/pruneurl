@@ -1,6 +1,6 @@
 import { Form, InputGroup } from "react-bootstrap";
 import FormRow from "../FormRow";
-import CopyToClipboardButton from "../buttons/CopyToClipboardButton";
+import CopyToClipboardButton from "../buttons/copy-to-clipboard/CopyToClipboardButton";
 import { UrlFormControlProps } from "./UrlFormControlProps";
 
 interface GeneratedUrlFormControlProps extends UrlFormControlProps {

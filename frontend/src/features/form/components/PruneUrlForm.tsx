@@ -1,15 +1,12 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { Collapse, Form } from "react-bootstrap";
-import UrlFormControl from "./FormControls/UrlFormControl";
+import UrlFormControl from "./controls/UrlFormControl";
 import SubmitUrlButton from "./buttons/SubmitUrlButton";
-import GeneratedUrlFormControl from "./FormControls/GeneratedUrlFormControl";
-import { UrlResult } from "../middleware/API/DTOs";
-import useApi from "../middleware/API/hooks/useApi";
-import API from "../middleware/API/API";
-import {
-  NotificationActions,
-  useNotificationStore,
-} from "../features/notifications";
+import GeneratedUrlFormControl from "./controls/GeneratedUrlFormControl";
+import { UrlResult } from "../../../middleware/API/DTOs";
+import useApi from "../../../middleware/API/hooks/useApi";
+import API from "../../../middleware/API/API";
+import { NotificationActions, useNotificationStore } from "../../notifications";
 
 const longUrlControlId = "LongURL";
 const generatedUrlControlId = "ShortUrl";
@@ -56,9 +53,8 @@ const PruneUrlForm = () => {
     (result: UrlResult): void => {
       setSubmitting(false);
       if (result.statusCode !== 201) {
-        const error: string =
-          result.error ?
-            `Status Code: ${result.statusCode}; Message: ${result.error.message}`
+        const error: string = result.error
+          ? `Status Code: ${result.statusCode}; Message: ${result.error.message}`
           : "An unknown error occurred submitting the form!";
         addError(error);
         return;

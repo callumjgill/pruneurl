@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
-import ButtonSpinner from "./ButtonSpinner";
+import ButtonSpinner from "../../../../../components/spinners/ButtonSpinner";
 import { useRef, useState } from "react";
-import CopyToClipboardTooltip from "../tooltips/CopyToClipboardTooltip";
+import CopyToClipboardTooltip from "./CopyToClipboardTooltip";
 
 interface CopyToClipboardButtonProps {
   text: string;
