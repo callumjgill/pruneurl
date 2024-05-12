@@ -1,3 +1,15 @@
+## [0.20.1](https://github.com/callumjgill/pruneurl/compare/v0.20.0...v0.20.1) (2024-05-12)
+
+### Code Refactoring
+
+- **frontend:** move the components for the URL form into their own feature folder ([c554783](https://github.com/callumjgill/pruneurl/commit/c554783274e6a4c65a5f22577332a386b5acc6e6))
+- **frontend:** remove unused SmallTimeAgo component ([095c188](https://github.com/callumjgill/pruneurl/commit/095c1887b25efb9b40a99c8d4dead3b5a722675f))
+- **frontend:** rename middleware folder to services ([88027d9](https://github.com/callumjgill/pruneurl/commit/88027d925ea37b9a11104439cd743b27a4aba54f))
+
+### Documentation
+
+- **README:** add setup steps and app description ([5ef174d](https://github.com/callumjgill/pruneurl/commit/5ef174d6d2af496a698d13584af4b03f180bbbf3))
+
 # [0.20.0](https://github.com/callumjgill/pruneurl/compare/v0.19.5...v0.20.0) (2024-05-11)
 
 ### Features
