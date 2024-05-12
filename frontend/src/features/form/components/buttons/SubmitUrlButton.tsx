@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import ButtonSpinner from "./ButtonSpinner";
+import ButtonSpinner from "../../../../components/spinners/ButtonSpinner";
 
 interface SubmitUrlButtonProps {
   submitting: boolean;
@@ -10,9 +10,7 @@ const SubmitUrlButton = (props: SubmitUrlButtonProps) => {
 
   return (
     <Button className="submit-button" type="submit" disabled={submitting}>
-      {submitting ?
-        <ButtonSpinner />
-      : "Submit"}
+      {submitting ? <ButtonSpinner /> : "Submit"}
     </Button>
   );
 };

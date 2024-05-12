@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Overlay, Tooltip } from "react-bootstrap";
-import { waitAsync } from "../../utils/time";
+import { waitAsync } from "../../../../../utils/time";
 
 interface CopyToClipboardTooltipProps {
   target: HTMLElement | null;
